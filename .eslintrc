@@ -1,0 +1,77 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": "<root>/tsconfig.json"
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "curly": ["error", "all"],
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": true
+    }],
+    "indent": ["error", 4, {
+      "SwitchCase": 1
+    }],
+    "no-multiple-empty-lines": ["error", {
+      "max": 1,
+      "maxEOF": 1
+    }],
+    "no-plusplus": ["error", {
+      "allowForLoopAfterthoughts": true
+    }],
+    "semi": ["error", "never"],
+    "valid-jsdoc": ["error", {
+      "requireReturn": false,
+      "requireReturnType": true,
+      "requireReturnDescription": false,
+      "requireParamType": true,
+      "requireParamDescription": false,
+      "prefer": {
+        "return": "returns"
+      },
+      "preferType": {
+        "Null": "null",
+        "Undefined": "undefined",
+        "Number": "number",
+        "Boolean": "boolean",
+        "String": "string",
+        "array": "Array",
+        "object": "Object"
+      }
+    }],
+    "react/forbid-prop-types": [false],
+    "react/jsx-filename-extension": [1, {
+      "extensions": [
+        ".jsx",
+        ".tsx"
+      ]
+    }],
+    "react/jsx-indent": ["error", 4],
+    "react/jsx-indent-props": ["error", 4],
+    "jsx-a11y/no-autofocus": [false],
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/explicit-function-return-type": ["error", {
+      "allowExpressions": true
+    }],
+    "@typescript-eslint/explicit-member-accessibility": 0,
+    "@typescript-eslint/member-delimiter-style": ["error", {
+      "multiline": {
+        "delimiter": "none"
+      }
+    }]
+  }
+}

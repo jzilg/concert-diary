@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# JetBrains
+.idea
+
+# VS Code
+.vscode
+
+# npm
+node_modules
+npm-debug.log*
+
+# Jest
+coverage
+
+# Built files
+/dist
