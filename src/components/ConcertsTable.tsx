@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react'
-import Concert from '../entities/Concert.interface'
+import Concert, { Concerts } from '../entities/Concert.interface'
 
 interface Props {
-    concerts: Concert[]
+    concerts: Concerts
 }
 
 function ConcertsTable({ concerts }: Props): ReactElement {

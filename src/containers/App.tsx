@@ -1,7 +1,7 @@
 import React, { Fragment, ReactElement } from 'react'
 import { connect } from 'react-redux'
 import State from '../redux/interfaces/state.interface'
-import Concert from '../entities/Concert.interface'
+import { Concerts } from '../entities/Concert.interface'
 import ConcertsTable from '../components/ConcertsTable'
 
 interface Props extends StateProps {}
@@ -16,7 +16,7 @@ function App({ concerts }: Props): ReactElement {
 }
 
 interface StateProps {
-    concerts: Concert[]
+    concerts: Concerts
 }
 
 const mapStateToProps = (state: State): StateProps => ({

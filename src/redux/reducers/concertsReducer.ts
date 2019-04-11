@@ -1,7 +1,7 @@
-import Concert from '../../entities/Concert.interface'
+import { Concerts } from '../../entities/Concert.interface'
 import { ConcertsAction, ADD_CONCERT } from '../actions/concerts.actions'
 
-type concertsState = Concert[]
+type concertsState = Concerts
 
 export const defaultState: concertsState = []
 

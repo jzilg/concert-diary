@@ -1,3 +1,5 @@
+export type Concerts = Concert[]
+
 export default interface Concert {
     date: string
     act: string[]
