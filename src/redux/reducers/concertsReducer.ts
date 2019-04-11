@@ -5,12 +5,15 @@ type concertsState = Concert[]
 
 export const defaultState: concertsState = []
 
-function concertsReducer(state: concertsState = defaultState, action: ConcertsAction) {
+function concertsReducer(
+    state: concertsState = defaultState,
+    action: ConcertsAction,
+): concertsState {
     switch (action.type) {
         case ADD_CONCERT: {
             return [
                 ...state,
-                action.payload.concert
+                action.payload.concert,
             ]
         }
         default: {

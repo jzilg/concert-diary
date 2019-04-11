@@ -1,7 +1,26 @@
-import React, { ReactElement } from 'react'
+import React, { Fragment, ReactElement } from 'react'
+import { connect } from 'react-redux'
+import State from '../redux/interfaces/state.interface'
+import Concert from '../entities/Concert.interface'
+import ConcertsTable from '../components/ConcertsTable'
 
-function App(): ReactElement {
-    return <h1>Concert Diary</h1>
+interface Props extends StateProps {}
+
+function App({ concerts }: Props): ReactElement {
+    return (
+        <Fragment>
+            <h1>Concert Diary</h1>
+            <ConcertsTable concerts={concerts} />
+        </Fragment>
+    )
 }
 
-export default App
+interface StateProps {
+    concerts: Concert[]
+}
+
+const mapStateToProps = (state: State): StateProps => ({
+    concerts: state.concerts,
+})
+
+export default connect(mapStateToProps)(App)

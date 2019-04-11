@@ -13,5 +13,5 @@ export const addConcert = (concert: Concert): ConcertsAction => ({
     type: ADD_CONCERT,
     payload: {
         concert,
-    }
+    },
 })
