@@ -1,4 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
+import store from './redux/store'
+import Root from './containers/Root'
 
-render(<h1>Concert Diary</h1>, document.getElementById('root'))
+render(<Root store={store} />, document.getElementById('root'))
