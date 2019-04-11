@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux'
+import concertsReducer from './concertsReducer'
 
-const rootReducer = combineReducers({})
+const rootReducer = combineReducers({
+    concerts: concertsReducer,
+})
 
 export default rootReducer
