@@ -1,7 +1,10 @@
-import { combineReducers } from 'redux'
+import { combineReducers, Reducer } from 'redux'
+import { connectRouter } from 'connected-react-router'
+import history from '../../history'
 import concertsReducer from './concertsReducer'
 
-const rootReducer = combineReducers({
+const rootReducer: Reducer = combineReducers({
+    router: connectRouter(history),
     concerts: concertsReducer,
 })
 
