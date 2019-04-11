@@ -8,10 +8,16 @@ import ConcertsTable from '../components/ConcertsTable'
 interface Props extends StateProps {}
 
 function App({ concerts }: Props): ReactElement {
+    function createId(): number {
+        return concerts.reduce((accumulator, concert) => concert.id + 1, 0)
+    }
+
+    const newConcertUrl = `edit/${createId()}`
+
     return (
         <Fragment>
             <h1>Concert Diary</h1>
-            <Link to="/edit">Add new concert</Link>
+            <Link to={newConcertUrl}>Add new concert</Link>
             <ConcertsTable concerts={concerts} />
         </Fragment>
     )
