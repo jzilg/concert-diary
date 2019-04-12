@@ -30,7 +30,7 @@ function EditConcert(props: Props): ReactElement {
 
 function createEmptyConcert(id): Concert {
     return {
-        id: parseInt(id, 10),
+        id,
         act: [],
         supportAct: [],
         location: '',
@@ -45,12 +45,12 @@ interface StateProps {
 }
 
 const mapStateToProps = (state, ownProps): StateProps => {
-    const { id } = ownProps.match.params
-    const concert = state.concerts[id]
+    const paramId = parseInt(ownProps.match.params.id, 10)
+    const concert = state.concerts.find(stateConcert => stateConcert.id === paramId)
     const concertExists: boolean = !!concert
 
     return {
-        concert: concert || createEmptyConcert(id),
+        concert: concert || createEmptyConcert(paramId),
         concertExists,
     }
 }
