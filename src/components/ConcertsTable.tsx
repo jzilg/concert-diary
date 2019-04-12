@@ -18,7 +18,7 @@ function ConcertsTable({ concerts }: Props): ReactElement {
         const companions = concert.companions.join(', ')
 
         return (
-            <tr>
+            <tr key={id}>
                 <td>{act}</td>
                 <td>{supportAct}</td>
                 <td>{location}</td>
