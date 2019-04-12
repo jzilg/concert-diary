@@ -6,14 +6,14 @@ import {
     REMOVE_CONCERT,
 } from '../actions/concerts.actions'
 
-type concertsState = Concerts
+export type ConcertsState = Concerts
 
-export const defaultState: concertsState = []
+export const defaultState: ConcertsState = []
 
 function concertsReducer(
-    state: concertsState = defaultState,
+    state: ConcertsState = defaultState,
     action: ConcertsAction,
-): concertsState {
+): ConcertsState {
     switch (action.type) {
         case ADD_CONCERT: {
             return [

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import State from '../redux/interfaces/state.interface'
 import { Concerts } from '../entities/Concert.interface'
+import concertsSortedByDateSelector from '../redux/selectors/concertsSortedByDateSelector'
 import { removeConcert } from '../redux/actions/concerts.actions'
 import ConcertsTable from '../components/ConcertsTable'
 
@@ -37,7 +38,7 @@ interface StateProps {
 }
 
 const mapStateToProps = (state: State): StateProps => ({
-    concerts: state.concerts,
+    concerts: concertsSortedByDateSelector(state),
 })
 
 interface DispatchProps {
