@@ -14,7 +14,9 @@ function ListInput(props: Props): ReactElement {
 
     function changeHandler(event): void {
         const newValueString = event.target.value
-        const newList: string[] = newValueString.split(separator)
+        const newList: string[] = newValueString
+            .replace(/( )*,( )*/g, separator) // remove extra spaces around comma
+            .split(separator)
         setValueString(newValueString)
         onChange(newList)
     }
