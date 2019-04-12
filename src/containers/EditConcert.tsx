@@ -4,6 +4,7 @@ import { push } from 'connected-react-router'
 import Concert from '../entities/Concert.interface'
 import { addConcert, updateConcert } from '../redux/actions/concerts.actions'
 import ConcertForm from '../components/ConcertForm'
+import getTodaysDate from '../utils/getTodaysDate'
 
 interface Props extends StateProps, DispatchProps {}
 
@@ -33,7 +34,7 @@ function createEmptyConcert(id): Concert {
         act: [],
         supportAct: [],
         location: '',
-        date: '',
+        date: getTodaysDate(),
         companions: [],
     }
 }
