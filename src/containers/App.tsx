@@ -3,11 +3,14 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import State from '../redux/interfaces/state.interface'
 import { Concerts } from '../entities/Concert.interface'
+import { removeConcert } from '../redux/actions/concerts.actions'
 import ConcertsTable from '../components/ConcertsTable'
 
-interface Props extends StateProps {}
+interface Props extends StateProps, DispatchProps {}
 
-function App({ concerts }: Props): ReactElement {
+function App(props: Props): ReactElement {
+    const { concerts, deleteConcert } = props
+
     function createId(): number {
         return concerts.reduce((accumulator, concert) => concert.id + 1, 0)
     }
@@ -18,7 +21,7 @@ function App({ concerts }: Props): ReactElement {
         <Fragment>
             <h1>Concert Diary</h1>
             <Link to={newConcertUrl}>Add new concert</Link>
-            <ConcertsTable concerts={concerts} />
+            <ConcertsTable concerts={concerts} deleteConcert={deleteConcert} />
         </Fragment>
     )
 }
@@ -31,4 +34,12 @@ const mapStateToProps = (state: State): StateProps => ({
     concerts: state.concerts,
 })
 
-export default connect(mapStateToProps)(App)
+interface DispatchProps {
+    deleteConcert: Function
+}
+
+const mapDispatchToProps: DispatchProps = {
+    deleteConcert: removeConcert,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

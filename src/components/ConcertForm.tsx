@@ -9,7 +9,9 @@ interface Props {
     goToHome: Function
 }
 
-function ConcertForm({ concert, saveConcert, goToHome }: Props): ReactElement {
+function ConcertForm(props: Props): ReactElement {
+    const { concert, saveConcert, goToHome } = props
+
     const [act, setAct] = useState(concert.act)
     const [supportAct, setSupportAct] = useState(concert.supportAct)
     const [location, setLocation] = useState(concert.location)

@@ -1,5 +1,10 @@
 import { Concerts } from '../../entities/Concert.interface'
-import { ConcertsAction, ADD_CONCERT, UPDATE_CONCERT } from '../actions/concerts.actions'
+import {
+    ConcertsAction,
+    ADD_CONCERT,
+    UPDATE_CONCERT,
+    REMOVE_CONCERT,
+} from '../actions/concerts.actions'
 
 type concertsState = Concerts
 
@@ -22,6 +27,9 @@ function concertsReducer(
                 return isConcertToUpdate ? action.payload.concert : concertFromState
             })
             return updatedConcerts
+        }
+        case REMOVE_CONCERT: {
+            return state.filter(concert => concert.id !== action.payload.concertId)
         }
         default: {
             return state
