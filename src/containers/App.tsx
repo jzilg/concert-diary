@@ -20,7 +20,13 @@ function App(props: Props): ReactElement {
     return (
         <Fragment>
             <h1>Concert Diary</h1>
-            <Link to={newConcertUrl}>Add new concert</Link>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to={newConcertUrl}>Add new concert</Link>
+                    </li>
+                </ul>
+            </nav>
             <ConcertsTable concerts={concerts} deleteConcert={deleteConcert} />
         </Fragment>
     )

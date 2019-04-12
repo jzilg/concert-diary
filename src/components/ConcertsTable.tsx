@@ -47,12 +47,12 @@ function ConcertsTable(props: Props): ReactElement {
         <table>
             <thead>
                 <tr>
-                    <td>Band</td>
-                    <td>Support</td>
-                    <td>Location</td>
-                    <td>Date</td>
-                    <td>Companions</td>
-                    <td />
+                    <th>Band</th>
+                    <th>Support</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Companions</th>
+                    <th />
                 </tr>
             </thead>
             <tbody>

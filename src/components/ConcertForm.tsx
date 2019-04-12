@@ -33,7 +33,9 @@ function ConcertForm(props: Props): ReactElement {
 
     return (
         <Fragment>
-            <Link to="/">Back to List</Link>
+            <p>
+                <Link to="/">Back to List</Link>
+            </p>
             <form onSubmit={handleSubmit}>
                 <label>
                     <span>Band</span>
