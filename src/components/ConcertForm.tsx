@@ -39,23 +39,44 @@ function ConcertForm(props: Props): ReactElement {
             <form onSubmit={handleSubmit}>
                 <label>
                     <span>Band</span>
-                    <ListInput list={act} onChange={list => setAct(list)} />
+                    <ListInput
+                        list={act}
+                        onChange={list => setAct(list)}
+                        placeholder="Pink Floyd, The Cure,..."
+                    />
                 </label>
                 <label>
                     <span>Support</span>
-                    <ListInput list={supportAct} onChange={list => setSupportAct(list)} />
+                    <ListInput
+                        list={supportAct}
+                        onChange={list => setSupportAct(list)}
+                        placeholder="The Beatles, Talking Heads,..."
+                    />
                 </label>
                 <label>
                     <span>Location</span>
-                    <input type="text" value={location} onChange={event => setLocation(event.target.value)} />
+                    <input
+                        type="text"
+                        value={location}
+                        onChange={event => setLocation(event.target.value)}
+                        placeholder="Wuhlheide"
+                    />
                 </label>
                 <label>
                     <span>Date</span>
-                    <input type="date" value={date} onChange={event => setDate(event.target.value)} />
+                    <input
+                        type="date"
+                        value={date}
+                        onChange={event => setDate(event.target.value)}
+                    />
                 </label>
                 <label>
                     <span>Companions</span>
-                    <ListInput list={companions} onChange={list => setCompanions(list)} />
+                    <ListInput
+                        list={companions}
+                        onChange={list => setCompanions(list)}
+                        placeholder="Leo, Max, Peter,..."
+                    />
                 </label>
                 <button type="submit">Save</button>
             </form>
