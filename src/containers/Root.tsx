@@ -5,6 +5,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import { Route, Switch } from 'react-router-dom'
 import history from '../history'
 import App from './App'
+import EditConcert from './EditConcert'
 
 interface Props {
     store: Store
@@ -14,7 +15,8 @@ const Root = ({ store }: Props): ReactElement => (
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <Switch>
-                <Route exact path="/" render={() => <App />} />
+                <Route exact path="/" component={App} />
+                <Route exact path="/edit/:id" component={EditConcert} />
                 <Route render={() => <h1>404 Not Found</h1>} />
             </Switch>
         </ConnectedRouter>
