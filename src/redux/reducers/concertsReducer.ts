@@ -1,5 +1,5 @@
 import { Concerts } from '../../entities/Concert.interface'
-import { ConcertsAction, ADD_CONCERT } from '../actions/concerts.actions'
+import { ConcertsAction, ADD_CONCERT, UPDATE_CONCERT } from '../actions/concerts.actions'
 
 type concertsState = Concerts
 
@@ -15,6 +15,13 @@ function concertsReducer(
                 ...state,
                 action.payload.concert,
             ]
+        }
+        case UPDATE_CONCERT: {
+            const updatedConcerts = state.map((concertFromState) => {
+                const isConcertToUpdate = concertFromState.id === action.payload.concert.id
+                return isConcertToUpdate ? action.payload.concert : concertFromState
+            })
+            return updatedConcerts
         }
         default: {
             return state

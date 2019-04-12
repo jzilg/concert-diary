@@ -5,11 +5,11 @@ import ListInput from './ListInput'
 
 interface Props {
     concert: Concert
-    addConcert: Function
+    saveConcert: Function
     goToHome: Function
 }
 
-function ConcertForm({ concert, addConcert, goToHome }: Props): ReactElement {
+function ConcertForm({ concert, saveConcert, goToHome }: Props): ReactElement {
     const [act, setAct] = useState(concert.act)
     const [supportAct, setSupportAct] = useState(concert.supportAct)
     const [location, setLocation] = useState(concert.location)
@@ -18,7 +18,7 @@ function ConcertForm({ concert, addConcert, goToHome }: Props): ReactElement {
 
     function handleSubmit(event): void {
         event.preventDefault()
-        addConcert({
+        saveConcert({
             id: concert.id,
             act,
             supportAct,

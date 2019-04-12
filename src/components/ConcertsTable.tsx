@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+import { Link } from 'react-router-dom'
 import Concert, { Concerts } from '../entities/Concert.interface'
 
 interface Props {
@@ -8,12 +9,13 @@ interface Props {
 function ConcertsTable({ concerts }: Props): ReactElement {
     const rowElements = concerts.map((concert: Concert) => {
         const {
-            act,
-            supportAct,
+            id,
             location,
             date,
-            companions,
         } = concert
+        const act = concert.act.join(', ')
+        const supportAct = concert.supportAct.join(', ')
+        const companions = concert.companions.join(', ')
 
         return (
             <tr>
@@ -22,6 +24,9 @@ function ConcertsTable({ concerts }: Props): ReactElement {
                 <td>{location}</td>
                 <td>{date}</td>
                 <td>{companions}</td>
+                <td>
+                    <Link to={`edit/${id}`}>Edit</Link>
+                </td>
             </tr>
         )
     })
@@ -35,6 +40,7 @@ function ConcertsTable({ concerts }: Props): ReactElement {
                     <td>Location</td>
                     <td>Date</td>
                     <td>Companions</td>
+                    <td />
                 </tr>
             </thead>
             <tbody>
