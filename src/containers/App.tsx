@@ -13,7 +13,11 @@ function App(props: Props): ReactElement {
     const { concerts, deleteConcert } = props
 
     function createId(): number {
-        return concerts.reduce((accumulator, concert) => concert.id + 1, 0)
+        const getHighestId = (accumulator, concert): number => {
+            const accumulatorIsHigher = accumulator >= concert.id
+            return accumulatorIsHigher ? accumulator : concert.id + 1
+        }
+        return concerts.reduce(getHighestId, 0)
     }
 
     const newConcertUrl = `edit/${createId()}`
