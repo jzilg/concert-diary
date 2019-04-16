@@ -17,7 +17,7 @@ function App(props: Props): ReactElement {
 
     function createId(): number {
         const getHighestId = (accumulator, concert): number => {
-            const accumulatorIsHigher = accumulator >= concert.id
+            const accumulatorIsHigher = accumulator > concert.id
             return accumulatorIsHigher ? accumulator : concert.id + 1
         }
         return concerts.reduce(getHighestId, 0)
