@@ -13,7 +13,11 @@ interface Props extends StateProps, DispatchProps {}
 function App(props: Props): ReactElement {
     const { concerts, fetchConcerts, deleteConcert } = props
 
-    useOnMount(fetchConcerts)
+    useOnMount(() => {
+        if (!concerts.length) {
+            fetchConcerts()
+        }
+    })
 
     function createId(): number {
         const getHighestId = (accumulator, concert): number => {
