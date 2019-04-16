@@ -4,7 +4,8 @@ import {
     ADD_CONCERT,
     UPDATE_CONCERT,
     REMOVE_CONCERT,
-} from '../actions/concerts.actions'
+    ADD_CONCERTS,
+} from '../actions/app/concerts.actions'
 
 export type ConcertsState = Concerts
 
@@ -15,6 +16,12 @@ function concertsReducer(
     action: ConcertsAction,
 ): ConcertsState {
     switch (action.type) {
+        case ADD_CONCERTS: {
+            return [
+                ...state,
+                ...action.payload.concerts,
+            ]
+        }
         case ADD_CONCERT: {
             return [
                 ...state,

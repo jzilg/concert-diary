@@ -4,13 +4,16 @@ import { Link } from 'react-router-dom'
 import State from '../redux/interfaces/state.interface'
 import { Concerts } from '../entities/Concert.interface'
 import concertsSortedByDateSelector from '../redux/selectors/concertsSortedByDateSelector'
-import { removeConcert } from '../redux/actions/concerts.actions'
+import useOnMount from '../hooks/useOnMount'
+import { fetchConcerts as fetchConcertsActionCreator, removeConcert } from '../redux/actions/app/concerts.actions'
 import ConcertsTable from '../components/ConcertsTable'
 
 interface Props extends StateProps, DispatchProps {}
 
 function App(props: Props): ReactElement {
-    const { concerts, deleteConcert } = props
+    const { concerts, fetchConcerts, deleteConcert } = props
+
+    useOnMount(fetchConcerts)
 
     function createId(): number {
         const getHighestId = (accumulator, concert): number => {
@@ -46,10 +49,12 @@ const mapStateToProps = (state: State): StateProps => ({
 })
 
 interface DispatchProps {
+    fetchConcerts: Function
     deleteConcert: Function
 }
 
 const mapDispatchToProps: DispatchProps = {
+    fetchConcerts: fetchConcertsActionCreator,
     deleteConcert: removeConcert,
 }
 

@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import Concert from '../entities/Concert.interface'
-import { addConcert, updateConcert } from '../redux/actions/concerts.actions'
+import { addConcert, updateConcert } from '../redux/actions/app/concerts.actions'
 import ConcertForm from '../components/ConcertForm'
 import getTodaysDate from '../utils/getTodaysDate'
 
