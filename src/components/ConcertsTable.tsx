@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 import Concert, { Concerts } from '../entities/Concert.interface'
 
 interface Props {
@@ -11,10 +12,11 @@ function ConcertsTable(props: Props): ReactElement {
     const { concerts, deleteConcert } = props
 
     const rowElements = concerts.map((concert: Concert) => {
-        const { id, location, date } = concert
+        const { id, location } = concert
         const act = concert.act.join(', ')
         const supportAct = concert.supportAct.join(', ')
         const companions = concert.companions.join(', ')
+        const date = moment(concert.date).format('DD.MM.YYYY')
 
         function deleteButtonClickHandler(): void {
             deleteConcert(id)
