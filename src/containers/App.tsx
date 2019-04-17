@@ -5,7 +5,10 @@ import State from '../redux/interfaces/state.interface'
 import { Concerts } from '../entities/Concert.interface'
 import concertsSortedByDateSelector from '../redux/selectors/concertsSortedByDateSelector'
 import useOnMount from '../hooks/useOnMount'
-import { fetchConcerts as fetchConcertsActionCreator, removeConcert } from '../redux/actions/app/concerts.actions'
+import {
+    fetchConcerts as fetchConcertsActionCreator,
+    deleteConcert as deleteConcertActionCreator,
+} from '../redux/actions/app/concerts.actions'
 import ConcertsTable from '../components/ConcertsTable'
 
 interface Props extends StateProps, DispatchProps {}
@@ -59,7 +62,7 @@ interface DispatchProps {
 
 const mapDispatchToProps: DispatchProps = {
     fetchConcerts: fetchConcertsActionCreator,
-    deleteConcert: removeConcert,
+    deleteConcert: deleteConcertActionCreator,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
