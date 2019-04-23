@@ -13,7 +13,7 @@ import ConcertsTable from '../components/ConcertsTable'
 
 interface Props extends StateProps, DispatchProps {}
 
-function App(props: Props): ReactElement {
+function ShowConcerts(props: Props): ReactElement {
     const { concerts, fetchConcerts, deleteConcert } = props
 
     useOnMount(() => {
@@ -49,4 +49,4 @@ const mapDispatchToProps: DispatchProps = {
     deleteConcert: deleteConcertActionCreator,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(ShowConcerts)

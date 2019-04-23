@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import { Route, Switch } from 'react-router-dom'
 import history from '../history'
-import App from './App'
+import ShowConcerts from './ShowConcerts'
 import EditConcert from './EditConcert'
 import Statistics from '../components/Statistics'
 
@@ -16,7 +16,7 @@ const Root = ({ store }: Props): ReactElement => (
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <Switch>
-                <Route exact path="/" component={App} />
+                <Route exact path="/" component={ShowConcerts} />
                 <Route exact path="/edit/:id" component={EditConcert} />
                 <Route exact path="/statistics" component={Statistics} />
                 <Route render={() => <h1>404 Not Found</h1>} />
