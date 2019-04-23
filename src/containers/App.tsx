@@ -1,6 +1,5 @@
 import React, { Fragment, ReactElement } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import State from '../redux/interfaces/state.interface'
 import { Concerts } from '../entities/Concert.interface'
 import concertsSortedByDateSelector from '../redux/selectors/concertsSortedByDateSelector'
@@ -9,6 +8,7 @@ import {
     fetchConcerts as fetchConcertsActionCreator,
     deleteConcert as deleteConcertActionCreator,
 } from '../redux/actions/app/concerts.actions'
+import Navigation from './Navigation'
 import ConcertsTable from '../components/ConcertsTable'
 
 interface Props extends StateProps, DispatchProps {}
@@ -22,26 +22,10 @@ function App(props: Props): ReactElement {
         }
     })
 
-    function createId(): number {
-        const getHighestId = (accumulator, concert): number => {
-            const accumulatorIsHigher = accumulator > concert.id
-            return accumulatorIsHigher ? accumulator : concert.id + 1
-        }
-        return concerts.reduce(getHighestId, 0)
-    }
-
-    const newConcertUrl = `edit/${createId()}`
-
     return (
         <Fragment>
             <h1>Concert Diary</h1>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to={newConcertUrl}>Add new concert</Link>
-                    </li>
-                </ul>
-            </nav>
+            <Navigation />
             <ConcertsTable concerts={concerts} deleteConcert={deleteConcert} />
         </Fragment>
     )
