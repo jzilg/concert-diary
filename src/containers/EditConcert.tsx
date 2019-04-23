@@ -1,8 +1,9 @@
-import React, { ReactElement } from 'react'
+import React, { Fragment, ReactElement } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import Concert from '../entities/Concert.interface'
 import { postConcert, putConcert } from '../redux/actions/app/concerts.actions'
+import Navigation from './Navigation'
 import ConcertForm from '../components/ConcertForm'
 import getTodaysDate from '../utils/getTodaysDate'
 
@@ -18,17 +19,22 @@ function EditConcert(props: Props): ReactElement {
     } = props
 
     const saveConcert = concertExists ? updateExistingConcert : addNewConcert
+    const title = concertExists ? 'Edit Concert' : 'Add New Concert'
 
     return (
-        <ConcertForm
-            concert={concert}
-            saveConcert={saveConcert}
-            goToHome={goToHome}
-        />
+        <Fragment>
+            <h1>{title}</h1>
+            <Navigation />
+            <ConcertForm
+                concert={concert}
+                saveConcert={saveConcert}
+                goToHome={goToHome}
+            />
+        </Fragment>
     )
 }
 
-function createEmptyConcert(id): Concert {
+function createEmptyConcert(id: number): Concert {
     return {
         id,
         act: [],
