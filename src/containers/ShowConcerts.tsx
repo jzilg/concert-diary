@@ -3,30 +3,23 @@ import { connect } from 'react-redux'
 import State from '../redux/interfaces/state.interface'
 import { Concerts } from '../entities/Concert.interface'
 import concertsSortedByDateSelector from '../redux/selectors/concertsSortedByDateSelector'
-import useOnMount from '../hooks/useOnMount'
-import {
-    fetchConcerts as fetchConcertsActionCreator,
-    deleteConcert as deleteConcertActionCreator,
-} from '../redux/actions/app/concerts.actions'
+import { deleteConcert as deleteConcertActionCreator } from '../redux/actions/app/concerts.actions'
 import Navigation from './Navigation'
+import LoadConcerts from './LoadConcerts'
 import ConcertsTable from '../components/ConcertsTable'
 
 interface Props extends StateProps, DispatchProps {}
 
 function ShowConcerts(props: Props): ReactElement {
-    const { concerts, fetchConcerts, deleteConcert } = props
-
-    useOnMount(() => {
-        if (!concerts.length) {
-            fetchConcerts()
-        }
-    })
+    const { concerts, deleteConcert } = props
 
     return (
         <Fragment>
             <h1>Concert Diary</h1>
             <Navigation />
-            <ConcertsTable concerts={concerts} deleteConcert={deleteConcert} />
+            <LoadConcerts>
+                <ConcertsTable concerts={concerts} deleteConcert={deleteConcert} />
+            </LoadConcerts>
         </Fragment>
     )
 }
@@ -40,12 +33,10 @@ const mapStateToProps = (state: State): StateProps => ({
 })
 
 interface DispatchProps {
-    fetchConcerts: Function
     deleteConcert: Function
 }
 
 const mapDispatchToProps: DispatchProps = {
-    fetchConcerts: fetchConcertsActionCreator,
     deleteConcert: deleteConcertActionCreator,
 }
 

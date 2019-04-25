@@ -1,5 +1,4 @@
-import React, { Fragment, useState, ReactElement } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect, ReactElement } from 'react'
 import Concert from '../entities/Concert.interface'
 import ListInput from './ListInput'
 
@@ -17,6 +16,14 @@ function ConcertForm(props: Props): ReactElement {
     const [location, setLocation] = useState(concert.location)
     const [date, setDate] = useState(concert.date)
     const [companions, setCompanions] = useState(concert.companions)
+
+    useEffect(() => {
+        setAct(concert.act)
+        setSupportAct(concert.supportAct)
+        setLocation(concert.location)
+        setDate(concert.date)
+        setCompanions(concert.companions)
+    }, [concert])
 
     function handleSubmit(event): void {
         event.preventDefault()

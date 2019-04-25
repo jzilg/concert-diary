@@ -1,4 +1,4 @@
-import React, { useState, ReactElement } from 'react'
+import React, { useState, useEffect, ReactElement } from 'react'
 
 interface Props {
     list: string[]
@@ -11,6 +11,10 @@ function ListInput(props: Props): ReactElement {
     const separator = ', '
     const initValueString = list.join(separator)
     const [valueString, setValueString] = useState(initValueString)
+
+    useEffect(() => {
+        setValueString(list.join(separator))
+    }, [list])
 
     function changeHandler(event): void {
         const newValueString = event.target.value
