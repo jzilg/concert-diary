@@ -26,6 +26,7 @@ function MostSeenBands({ mostSeenBands }: Props): ReactElement {
 
     return (
         <table>
+            <caption>Most Seen Bands</caption>
             <thead>
                 <tr>
                     <th>Band</th>
