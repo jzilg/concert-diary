@@ -46,7 +46,7 @@ function ConcertForm(props: Props): ReactElement {
                     type="text"
                     value={band}
                     onChange={event => setBand(event.target.value)}
-                    placeholder="Pink Floyd, The Cure,..."
+                    placeholder="Pink Floyd"
                 />
             </label>
             <label>
@@ -54,7 +54,7 @@ function ConcertForm(props: Props): ReactElement {
                 <ListInput
                     list={supportBands}
                     onChange={list => setSupportBands(list)}
-                    placeholder="The Beatles, Talking Heads,..."
+                    placeholder="The Cure, Talking Heads,..."
                 />
             </label>
             <label>
