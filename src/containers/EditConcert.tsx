@@ -40,8 +40,8 @@ function EditConcert(props: Props): ReactElement {
 function createEmptyConcert(id: number): Concert {
     return {
         id,
-        act: [],
-        supportAct: [],
+        band: '',
+        supportBands: [],
         location: '',
         date: getTodaysDate(),
         companions: [],

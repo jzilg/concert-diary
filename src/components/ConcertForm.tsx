@@ -11,15 +11,15 @@ interface Props {
 function ConcertForm(props: Props): ReactElement {
     const { concert, saveConcert, goToHome } = props
 
-    const [act, setAct] = useState(concert.act)
-    const [supportAct, setSupportAct] = useState(concert.supportAct)
+    const [band, setBand] = useState(concert.band)
+    const [supportBands, setSupportBands] = useState(concert.supportBands)
     const [location, setLocation] = useState(concert.location)
     const [date, setDate] = useState(concert.date)
     const [companions, setCompanions] = useState(concert.companions)
 
     useEffect(() => {
-        setAct(concert.act)
-        setSupportAct(concert.supportAct)
+        setBand(concert.band)
+        setSupportBands(concert.supportBands)
         setLocation(concert.location)
         setDate(concert.date)
         setCompanions(concert.companions)
@@ -29,8 +29,8 @@ function ConcertForm(props: Props): ReactElement {
         event.preventDefault()
         saveConcert({
             id: concert.id,
-            act,
-            supportAct,
+            band,
+            supportBands,
             location,
             date,
             companions,
@@ -42,17 +42,18 @@ function ConcertForm(props: Props): ReactElement {
         <form onSubmit={handleSubmit}>
             <label>
                 <span>Band</span>
-                <ListInput
-                    list={act}
-                    onChange={list => setAct(list)}
+                <input
+                    type="text"
+                    value={band}
+                    onChange={event => setBand(event.target.value)}
                     placeholder="Pink Floyd, The Cure,..."
                 />
             </label>
             <label>
                 <span>Support</span>
                 <ListInput
-                    list={supportAct}
-                    onChange={list => setSupportAct(list)}
+                    list={supportBands}
+                    onChange={list => setSupportBands(list)}
                     placeholder="The Beatles, Talking Heads,..."
                 />
             </label>

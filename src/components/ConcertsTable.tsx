@@ -12,9 +12,8 @@ function ConcertsTable(props: Props): ReactElement {
     const { concerts, deleteConcert } = props
 
     const rowElements = concerts.map((concert: Concert) => {
-        const { id, location } = concert
-        const act = concert.act.join(', ')
-        const supportAct = concert.supportAct.join(', ')
+        const { id, band, location } = concert
+        const supportBands = concert.supportBands.join(', ')
         const companions = concert.companions.join(', ')
         const date = moment(concert.date).format('DD.MM.YYYY')
 
@@ -24,8 +23,8 @@ function ConcertsTable(props: Props): ReactElement {
 
         return (
             <tr key={id}>
-                <td>{act}</td>
-                <td>{supportAct}</td>
+                <td>{band}</td>
+                <td>{supportBands}</td>
                 <td>{location}</td>
                 <td>{date}</td>
                 <td>{companions}</td>

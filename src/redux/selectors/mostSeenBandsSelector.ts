@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect'
+import State from '../interfaces/state.interface'
 import { ConcertsState } from '../reducers/concertsReducer'
 import { Concerts } from '../../entities/Concert.interface'
 
-const concertsSelector = (state): ConcertsState => state.concerts
+const concertsSelector = (state: State): ConcertsState => state.concerts
 
 export interface MostSeenBand {
     name: string
@@ -18,9 +19,13 @@ interface Band {
 
 function getMostSeenBands(concerts: Concerts): MostSeenBand[] {
     const bands: Band[] = concerts.reduce((accumulator, concert) => {
-        const mainBands = concert.act.map(band => ({ name: band, type: 'main' }))
-        const supportBands = concert.supportAct.map(band => ({ name: band, type: 'support' }))
-        return accumulator.concat(mainBands).concat(supportBands)
+        const mainBand = { name: concert.band, type: 'main' }
+        const supportBands = concert.supportBands.map(band => ({ name: band, type: 'support' }))
+        return [
+            ...accumulator,
+            ...supportBands,
+            mainBand,
+        ]
     }, [])
 
     const toMostSeenBands = (accumulator, band: Band): MostSeenBand[] => {

@@ -4,8 +4,8 @@ export type ConcertId = number
 export default interface Concert {
     id: ConcertId
     date: string
-    act: string[]
-    supportAct: string[]
+    band: string
+    supportBands: string[]
     location: string
     companions: string[]
 }
