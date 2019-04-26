@@ -1,3 +1,7 @@
 .table {
     table-layout: fixed;
 }
+
+.centeredCol {
+    text-align: center;
+}

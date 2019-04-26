@@ -18,9 +18,9 @@ function MostSeenBands({ mostSeenBands }: Props): ReactElement {
         return (
             <tr key={name}>
                 <td>{name}</td>
-                <td>{totalCount}</td>
-                <td>{mainCount}</td>
-                <td>{supportCount}</td>
+                <td className={style.centeredCol}>{totalCount}</td>
+                <td className={style.centeredCol}>{mainCount}</td>
+                <td className={style.centeredCol}>{supportCount}</td>
             </tr>
         )
     })
@@ -31,9 +31,9 @@ function MostSeenBands({ mostSeenBands }: Props): ReactElement {
             <thead>
                 <tr>
                     <th>Band</th>
-                    <th>Sum</th>
-                    <th>Main Act</th>
-                    <th>Support Act</th>
+                    <th className={style.centeredCol}>Sum</th>
+                    <th className={style.centeredCol}>Main Act</th>
+                    <th className={style.centeredCol}>Support Act</th>
                 </tr>
             </thead>
             <tbody>
