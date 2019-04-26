@@ -6,7 +6,7 @@ import { Route, Switch } from 'react-router-dom'
 import history from '../history'
 import ShowConcerts from './ShowConcerts'
 import EditConcert from './EditConcert'
-import Statistics from '../components/Statistics'
+import Statistics from './Statistics'
 
 interface Props {
     store: Store

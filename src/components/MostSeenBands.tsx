@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react'
-import { connect } from 'react-redux'
-import mostSeenBandsSelector, { MostSeenBand } from '../redux/selectors/mostSeenBandsSelector'
-import State from '../redux/interfaces/state.interface'
+import { MostSeenBand } from '../redux/selectors/mostSeenBandsSelector'
 
-interface Props extends StateProps {}
+interface Props {
+    mostSeenBands: MostSeenBand[]
+}
 
 function MostSeenBands({ mostSeenBands }: Props): ReactElement {
     const rowElements = mostSeenBands.map((mostSeenBand) => {
@@ -42,12 +42,4 @@ function MostSeenBands({ mostSeenBands }: Props): ReactElement {
     )
 }
 
-interface StateProps {
-    mostSeenBands: MostSeenBand[]
-}
-
-const mapStateToProps = (state: State): StateProps => ({
-    mostSeenBands: mostSeenBandsSelector(state),
-})
-
-export default connect(mapStateToProps)(MostSeenBands)
+export default MostSeenBands
