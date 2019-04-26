@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { MostSeenBand } from '../redux/selectors/mostSeenBandsSelector'
+import style from './mostSeenBands.css'
 
 interface Props {
     mostSeenBands: MostSeenBand[]
@@ -25,7 +26,7 @@ function MostSeenBands({ mostSeenBands }: Props): ReactElement {
     })
 
     return (
-        <table>
+        <table className={style.table}>
             <caption>Most Seen Bands</caption>
             <thead>
                 <tr>

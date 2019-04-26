@@ -1,6 +1,7 @@
 const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const isDevServer = process.argv[1].includes('webpack-dev-server')
 const filename = '[name]-[contenthash]'
@@ -49,6 +50,23 @@ module.exports = {
                     typescriptIsUsed: true,
                 }),
             },
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: isDevServer,
+                            modules: true,
+                            localIdentName: '[name]-[local]',
+                        },
+                    },
+                ],
+            },
         ],
     },
     optimization: {
@@ -66,6 +84,10 @@ module.exports = {
         !isDevServer ? new CleanWebpackPlugin('./dist') : null,
         new HtmlWebpackPlugin({
             template: './src/index.html',
+        }),
+        new MiniCssExtractPlugin({
+            filename: `${filename}.css`,
+            chunkFilename: `${filename}.css`,
         }),
     ].filter(Boolean),
     devServer: {

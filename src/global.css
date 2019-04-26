@@ -1,0 +1,33 @@
+input,
+label,
+table {
+    width: 100%;
+}
+
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+    border-width: 0 0 1px;
+    border-radius: 0;
+}
+
+label {
+    display: inline-block;
+}
+
+label > span + input {
+    margin-top: .5em;
+}
+
+label > span {
+    font-weight: bold;
+}
+
+label + button,
+label + label {
+    margin-top: 1em;
+}
+
+caption {
+    text-align: left;
+}

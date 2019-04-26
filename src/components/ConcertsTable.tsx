@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import Concert, { Concerts } from '../entities/Concert.interface'
+import style from './concertsTable.css'
 
 interface Props {
     concerts: Concerts
@@ -29,7 +30,7 @@ function ConcertsTable(props: Props): ReactElement {
                 <td>{date}</td>
                 <td>{companions}</td>
                 <td>
-                    <ul>
+                    <ul className={style.controlsList}>
                         <li>
                             <Link to={`edit/${id}`}>Edit</Link>
                         </li>
