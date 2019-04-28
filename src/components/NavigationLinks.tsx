@@ -10,7 +10,10 @@ function NavigationLinks({ newConcertUrl }: Props): ReactElement {
     return (
         <ul>
             <li className={style.listItem}>
-                <Link to="/">Concerts</Link>
+                <Link to="/concerts">Concerts</Link>
+            </li>
+            <li className={style.listItem}>
+                <Link to="/festivals">Festivals</Link>
             </li>
             <li className={style.listItem}>
                 <Link to="/statistics">Statistics</Link>

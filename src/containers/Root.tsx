@@ -6,6 +6,8 @@ import { Route, Switch } from 'react-router-dom'
 import history from '../history'
 import ShowConcerts from './ShowConcerts'
 import EditConcert from './EditConcert'
+import ShowFestivals from './ShowFestivals'
+import EditFestival from './EditFestival'
 import Statistics from './Statistics'
 
 interface Props {
@@ -17,7 +19,10 @@ const Root = ({ store }: Props): ReactElement => (
         <ConnectedRouter history={history}>
             <Switch>
                 <Route exact path="/" component={ShowConcerts} />
-                <Route exact path="/edit/:id" component={EditConcert} />
+                <Route exact path="/concerts" component={ShowConcerts} />
+                <Route exact path="/concerts/edit/:id" component={EditConcert} />
+                <Route exact path="/festivals" component={ShowFestivals} />
+                <Route exact path="/festivals/edit/:id" component={EditFestival} />
                 <Route exact path="/statistics" component={Statistics} />
                 <Route render={() => <h1>404 Not Found</h1>} />
             </Switch>

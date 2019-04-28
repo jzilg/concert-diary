@@ -1,38 +1,39 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
-import Concert, { Concerts } from '../entities/Concert.interface'
+import Festival, { Festivals } from '../entities/Festival.interface'
 import style from './concertsTable.css'
 
 interface Props {
-    concerts: Concerts
-    deleteConcert: Function
+    festivals: Festivals
+    deleteFestival: Function
 }
 
-function ConcertsTable(props: Props): ReactElement {
-    const { concerts, deleteConcert } = props
+function FestivalsTable(props: Props): ReactElement {
+    const { festivals, deleteFestival } = props
 
-    const rowElements = concerts.map((concert: Concert) => {
-        const { id, band, location } = concert
-        const supportBands = concert.supportBands.join(', ')
-        const companions = concert.companions.join(', ')
-        const date = moment(concert.date).format('DD.MM.YYYY')
+    const rowElements = festivals.map((festival: Festival) => {
+        const { id, name } = festival
+        const bands = festival.bands.join(', ')
+        const companions = festival.companions.join(', ')
+        const startDate = moment(festival.date.from).format('DD.MM.YYYY')
+        const endDate = moment(festival.date.until).format('DD.MM.YYYY')
+        const date = `${startDate} - ${endDate}`
 
         function deleteButtonClickHandler(): void {
-            deleteConcert(id)
+            deleteFestival(id)
         }
 
         return (
             <tr key={id}>
-                <td>{band}</td>
-                <td>{supportBands}</td>
-                <td>{location}</td>
+                <td>{name}</td>
+                <td>{bands}</td>
                 <td>{date}</td>
                 <td>{companions}</td>
                 <td>
                     <ul className={style.controlsList}>
                         <li>
-                            <Link to={`concerts/edit/${id}`}>Edit</Link>
+                            <Link to={`festivals/edit/${id}`}>Edit</Link>
                         </li>
                         <li>
                             <button type="button" onClick={deleteButtonClickHandler}>
@@ -49,9 +50,8 @@ function ConcertsTable(props: Props): ReactElement {
         <table>
             <thead>
                 <tr>
-                    <th>Band</th>
-                    <th>Support</th>
-                    <th>Location</th>
+                    <th>Name</th>
+                    <th>Bands</th>
                     <th>Date</th>
                     <th>Companions</th>
                     <th />
@@ -64,4 +64,4 @@ function ConcertsTable(props: Props): ReactElement {
     )
 }
 
-export default ConcertsTable
+export default FestivalsTable
