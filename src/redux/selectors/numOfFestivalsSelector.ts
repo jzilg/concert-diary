@@ -5,21 +5,13 @@ import { Festivals } from '../../entities/Festival.interface'
 
 const festivalsSelector = (state: State): FestivalsState => state.festivals
 
-function festivalsSortedByDate(festivals: Festivals): number {
-    const bands = new Set()
-
-    festivals.forEach((festival) => {
-        festival.bands.forEach((band) => {
-            bands.add(band)
-        })
-    })
-
-    return bands.size
+function calcNumOfFestivals(festivals: Festivals): number {
+    return festivals.length
 }
 
 const numOfFestivalsSelector = createSelector(
     festivalsSelector,
-    festivalsSortedByDate,
+    calcNumOfFestivals,
 )
 
 export default numOfFestivalsSelector
