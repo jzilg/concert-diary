@@ -16,7 +16,7 @@ function EditConcert(props: Props): ReactElement {
         concertExists,
         addNewConcert,
         updateExistingConcert,
-        goToHome,
+        goToConcerts,
     } = props
 
     const saveConcert = concertExists ? updateExistingConcert : addNewConcert
@@ -30,7 +30,7 @@ function EditConcert(props: Props): ReactElement {
                 <ConcertForm
                     concert={concert}
                     saveConcert={saveConcert}
-                    goToHome={goToHome}
+                    goToConcerts={goToConcerts}
                 />
             </LoadConcerts>
         </Fragment>
@@ -67,13 +67,13 @@ const mapStateToProps = (state, ownProps): StateProps => {
 interface DispatchProps {
     addNewConcert: Function
     updateExistingConcert: Function
-    goToHome: Function
+    goToConcerts: Function
 }
 
 const mapDispatchToProps: DispatchProps = {
     addNewConcert: postConcert,
     updateExistingConcert: putConcert,
-    goToHome: push.bind(this, '/'),
+    goToConcerts: push.bind(this, '/'),
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditConcert)

@@ -4,9 +4,10 @@ import style from './navigationLinks.css'
 
 interface Props {
     newConcertUrl: string
+    newFestivalUrl: string
 }
 
-function NavigationLinks({ newConcertUrl }: Props): ReactElement {
+function NavigationLinks({ newConcertUrl, newFestivalUrl }: Props): ReactElement {
     return (
         <ul>
             <li className={style.listItem}>
@@ -20,6 +21,9 @@ function NavigationLinks({ newConcertUrl }: Props): ReactElement {
             </li>
             <li className={style.listItem}>
                 <Link to={`/${newConcertUrl}`}>Add new concert</Link>
+            </li>
+            <li className={style.listItem}>
+                <Link to={`/${newFestivalUrl}`}>Add new festival</Link>
             </li>
         </ul>
     )

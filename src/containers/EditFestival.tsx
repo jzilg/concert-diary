@@ -15,7 +15,7 @@ function EditFestival(props: Props): ReactElement {
         festivalExists,
         addNewFestival,
         updateExistingFestival,
-        goToHome,
+        goToFestivals,
     } = props
 
     const saveFestival = festivalExists ? updateExistingFestival : addNewFestival
@@ -29,7 +29,7 @@ function EditFestival(props: Props): ReactElement {
                 <FestivalForm
                     festival={festival}
                     saveFestival={saveFestival}
-                    goToHome={goToHome}
+                    goToFestivals={goToFestivals}
                 />
             </LoadConcerts>
         </Fragment>
@@ -68,13 +68,13 @@ const mapStateToProps = (state, ownProps): StateProps => {
 interface DispatchProps {
     addNewFestival: Function
     updateExistingFestival: Function
-    goToHome: Function
+    goToFestivals: Function
 }
 
 const mapDispatchToProps: DispatchProps = {
     addNewFestival: postFestival,
     updateExistingFestival: putFestival,
-    goToHome: push.bind(this, '/'),
+    goToFestivals: push.bind(this, '/festivals'),
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditFestival)

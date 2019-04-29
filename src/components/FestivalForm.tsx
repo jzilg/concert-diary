@@ -5,11 +5,11 @@ import ListInput from './ListInput'
 interface Props {
     festival: Festival
     saveFestival: Function
-    goToHome: Function
+    goToFestivals: Function
 }
 
 function FestivalForm(props: Props): ReactElement {
-    const { festival, saveFestival, goToHome } = props
+    const { festival, saveFestival, goToFestivals } = props
 
     const [name, setName] = useState(festival.name)
     const [bands, setBands] = useState(festival.bands)
@@ -37,7 +37,7 @@ function FestivalForm(props: Props): ReactElement {
             },
             companions,
         })
-        goToHome()
+        goToFestivals()
     }
 
     return (
