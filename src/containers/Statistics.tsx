@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import State from '../redux/interfaces/state.interface'
 import mostSeenBandsSelector, { MostSeenBand } from '../redux/selectors/mostSeenBandsSelector'
 import numOfBandsSelector from '../redux/selectors/numOfBandsSelector'
+import numOfFestivalsSelector from '../redux/selectors/numOfFestivalsSelector'
 import numOfLocationsSelector from '../redux/selectors/numOfLocationsSelector'
 import Navigation from './Navigation'
 import LoadConcerts from './LoadConcerts'
@@ -15,6 +16,7 @@ function Statistics(props: Props): ReactElement {
     const {
         mostSeenBands,
         totalNumOfConcerts,
+        totalNumOfFestivals,
         totalNumOfBands,
         totalNumOfLocations,
     } = props
@@ -27,6 +29,7 @@ function Statistics(props: Props): ReactElement {
                 <GeneralStatistics
                     totalNumOfBands={totalNumOfBands}
                     totalNumOfConcerts={totalNumOfConcerts}
+                    totalNumOfFestivals={totalNumOfFestivals}
                     totalNumOfLocations={totalNumOfLocations}
                 />
                 <MostSeenBands mostSeenBands={mostSeenBands} />
@@ -38,6 +41,7 @@ function Statistics(props: Props): ReactElement {
 interface StateProps {
     mostSeenBands: MostSeenBand[]
     totalNumOfConcerts: number
+    totalNumOfFestivals: number
     totalNumOfBands: number
     totalNumOfLocations: number
 }
@@ -45,6 +49,7 @@ interface StateProps {
 const mapStateToProps = (state: State): StateProps => ({
     mostSeenBands: mostSeenBandsSelector(state),
     totalNumOfConcerts: state.concerts.length,
+    totalNumOfFestivals: numOfFestivalsSelector(state),
     totalNumOfBands: numOfBandsSelector(state),
     totalNumOfLocations: numOfLocationsSelector(state),
 })

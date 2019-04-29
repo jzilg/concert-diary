@@ -12,6 +12,7 @@ function MostSeenBands({ mostSeenBands }: Props): ReactElement {
             name,
             mainCount,
             supportCount,
+            festivalCount,
             totalCount,
         } = mostSeenBand
 
@@ -20,6 +21,7 @@ function MostSeenBands({ mostSeenBands }: Props): ReactElement {
                 <td>{name}</td>
                 <td className={style.centeredCol}>{totalCount}</td>
                 <td className={style.centeredCol}>{mainCount}</td>
+                <td className={style.centeredCol}>{festivalCount}</td>
                 <td className={style.centeredCol}>{supportCount}</td>
             </tr>
         )
@@ -33,6 +35,7 @@ function MostSeenBands({ mostSeenBands }: Props): ReactElement {
                     <th>Band</th>
                     <th className={style.centeredCol}>Sum</th>
                     <th className={style.centeredCol}>Main Act</th>
+                    <th className={style.centeredCol}>Festival Act</th>
                     <th className={style.centeredCol}>Support Act</th>
                 </tr>
             </thead>

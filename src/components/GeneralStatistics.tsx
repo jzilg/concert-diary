@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 
 interface Props {
     totalNumOfConcerts: number
+    totalNumOfFestivals: number
     totalNumOfBands: number
     totalNumOfLocations: number
 }
@@ -10,6 +11,7 @@ function GeneralStatistics(props: Props): ReactElement {
     const {
         totalNumOfConcerts,
         totalNumOfBands,
+        totalNumOfFestivals,
         totalNumOfLocations,
     } = props
 
@@ -17,6 +19,10 @@ function GeneralStatistics(props: Props): ReactElement {
         {
             label: 'Total number of Concerts',
             value: totalNumOfConcerts,
+        },
+        {
+            label: 'Total number of Festivals',
+            value: totalNumOfFestivals,
         },
         {
             label: 'Total number of Bands',
