@@ -7,24 +7,42 @@ interface Props {
     newFestivalUrl: string
 }
 
-function NavigationLinks({ newConcertUrl, newFestivalUrl }: Props): ReactElement {
+function NavigationLinks(props: Props): ReactElement {
+    const { newConcertUrl, newFestivalUrl } = props
+    const links = [
+        {
+            url: '/concerts',
+            label: 'Concerts',
+        },
+        {
+            url: '/festivals',
+            label: 'Festivals',
+        },
+        {
+            url: '/statistics',
+            label: 'Statistics',
+        },
+        {
+            url: newConcertUrl,
+            label: 'Add new concert',
+        },
+        {
+            url: newFestivalUrl,
+            label: 'Add new festival',
+        },
+    ]
+
+    const linkElements = links.map(link => (
+        <li key={`${link.url}-${link.label}`} className={style.listItem}>
+            <Link to={link.url}>
+                {link.label}
+            </Link>
+        </li>
+    ))
+
     return (
         <ul>
-            <li className={style.listItem}>
-                <Link to="/concerts">Concerts</Link>
-            </li>
-            <li className={style.listItem}>
-                <Link to="/festivals">Festivals</Link>
-            </li>
-            <li className={style.listItem}>
-                <Link to="/statistics">Statistics</Link>
-            </li>
-            <li className={style.listItem}>
-                <Link to={`/${newConcertUrl}`}>Add new concert</Link>
-            </li>
-            <li className={style.listItem}>
-                <Link to={`/${newFestivalUrl}`}>Add new festival</Link>
-            </li>
+            {linkElements}
         </ul>
     )
 }

@@ -18,8 +18,8 @@ function Navigation(props: Props): ReactElement {
         return list.reduce(getHighestId, 0)
     }
 
-    const newConcertUrl = `concerts/edit/${createId(concerts)}`
-    const newFestivaltUrl = `festivals/edit/${createId(festivals)}`
+    const newConcertUrl = `/concerts/edit/${createId(concerts)}`
+    const newFestivaltUrl = `/festivals/edit/${createId(festivals)}`
 
     return (
         <nav>
