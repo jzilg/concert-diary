@@ -2,14 +2,14 @@ import Action from '../../interfaces/action.interface'
 import Festival, { Festivals, FestivalId } from '../../../entities/Festival.interface'
 import API_URL from '../../../constants/api'
 
-export const FETCH_FESTIVALS = '[CMD] FETCH_FESTIVALS'
-export const ADD_FESTIVALS_TO_STATE = '[STATE] ADD_FESTIVALS_TO_STATE'
-export const POST_FESTIVAL = '[CMD] POST_FESTIVAL'
-export const ADD_FESTIVAL_TO_STATE = '[STATE] ADD_FESTIVAL_TO_STATE'
-export const PUT_FESTIVAL = '[CMD] PUT_FESTIVAL'
-export const UPDATE_FESTIVAL_ON_STATE = '[STATE] UPDATE_FESTIVAL_ON_STATE'
-export const DELETE_FESTIVAL = '[CMD] DELETE_FESTIVAL'
-export const REMOVE_FESTIVAL_FROM_STATE = '[STATE] REMOVE_FESTIVAL_FROM_STATE'
+export const FETCH_FESTIVALS = 'FETCH_FESTIVALS'
+export const ADD_FESTIVALS_TO_STATE = 'ADD_FESTIVALS_TO_STATE'
+export const POST_FESTIVAL = 'POST_FESTIVAL'
+export const ADD_FESTIVAL_TO_STATE = 'ADD_FESTIVAL_TO_STATE'
+export const PUT_FESTIVAL = 'PUT_FESTIVAL'
+export const UPDATE_FESTIVAL_ON_STATE = 'UPDATE_FESTIVAL_ON_STATE'
+export const DELETE_FESTIVAL = 'DELETE_FESTIVAL'
+export const REMOVE_FESTIVAL_FROM_STATE = 'REMOVE_FESTIVAL_FROM_STATE'
 
 export interface FestivalsAction extends Action {
     payload?: {

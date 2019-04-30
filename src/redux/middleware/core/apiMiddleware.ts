@@ -34,7 +34,7 @@ const apiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: ApiA
         return
     }
 
-    if (action.type === API_REQUEST) {
+    if (action.type.includes(API_REQUEST)) {
         const {
             url,
             method,
@@ -53,7 +53,7 @@ const apiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: ApiA
         return
     }
 
-    if (action.type === API_SUCCESS) {
+    if (action.type.includes(API_SUCCESS)) {
         const { successAction, data } = action.payload
         dispatch(successAction(data))
     }

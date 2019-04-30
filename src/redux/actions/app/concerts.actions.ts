@@ -2,14 +2,14 @@ import Action from '../../interfaces/action.interface'
 import Concert, { Concerts, ConcertId } from '../../../entities/Concert.interface'
 import API_URL from '../../../constants/api'
 
-export const FETCH_CONCERTS = '[CMD] FETCH_CONCERTS'
-export const ADD_CONCERTS_TO_STATE = '[STATE] ADD_CONCERTS_TO_STATE'
-export const POST_CONCERT = '[CMD] POST_CONCERT'
-export const ADD_CONCERT_TO_STATE = '[STATE] ADD_CONCERT_TO_STATE'
-export const PUT_CONCERT = '[CMD] PUT_CONCERT'
-export const UPDATE_CONCERT_ON_STATE = '[STATE] UPDATE_CONCERT_ON_STATE'
-export const DELETE_CONCERT = '[CMD] DELETE_CONCERT'
-export const REMOVE_CONCERT_FROM_STATE = '[STATE] REMOVE_CONCERT_FROM_STATE'
+export const FETCH_CONCERTS = 'FETCH_CONCERTS'
+export const ADD_CONCERTS_TO_STATE = 'ADD_CONCERTS_TO_STATE'
+export const POST_CONCERT = 'POST_CONCERT'
+export const ADD_CONCERT_TO_STATE = 'ADD_CONCERT_TO_STATE'
+export const PUT_CONCERT = 'PUT_CONCERT'
+export const UPDATE_CONCERT_ON_STATE = 'UPDATE_CONCERT_ON_STATE'
+export const DELETE_CONCERT = 'DELETE_CONCERT'
+export const REMOVE_CONCERT_FROM_STATE = 'REMOVE_CONCERT_FROM_STATE'
 
 export interface ConcertsAction extends Action {
     payload?: {

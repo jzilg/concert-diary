@@ -1,12 +1,12 @@
 import Action from '../../interfaces/action.interface'
 import { ApiRequestOptions } from '../../middleware/core/apiMiddleware'
 
-export const API_REQUEST = '[API] REQUEST'
-export const API_SUCCESS = '[API] SUCCESS'
-export const API_ERROR = '[API] ERROR'
+export const API_REQUEST = 'API_REQUEST'
+export const API_SUCCESS = 'API_SUCCESS'
+export const API_ERROR = 'API_ERROR'
 
 export const apiRequest = (apiRequestOptions: ApiRequestOptions, triggeredBy: string): Action => ({
-    type: API_REQUEST,
+    type: `${API_REQUEST} to ${triggeredBy}`,
     payload: { ...apiRequestOptions },
     meta: {
         triggeredBy,
@@ -14,7 +14,7 @@ export const apiRequest = (apiRequestOptions: ApiRequestOptions, triggeredBy: st
 })
 
 export const apiSuccess = (successAction: Function, data: object, triggeredBy: string): Action => ({
-    type: API_SUCCESS,
+    type: `${API_SUCCESS} in ${triggeredBy}`,
     payload: {
         successAction,
         data,
@@ -25,7 +25,7 @@ export const apiSuccess = (successAction: Function, data: object, triggeredBy: s
 })
 
 export const apiError = (errorMsg: string, triggeredBy: string): Action => ({
-    type: API_ERROR,
+    type: `${API_ERROR} while ${triggeredBy}`,
     payload: {
         errorMsg,
     },
