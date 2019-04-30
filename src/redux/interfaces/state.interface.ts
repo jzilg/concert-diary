@@ -1,7 +1,9 @@
-import { Concerts } from '../../entities/Concert.interface'
-import { Festivals } from '../../entities/Festival.interface';
+import { ConcertsState } from '../reducers/concertsReducer'
+import { FestivalsState } from '../reducers/festivalsReducer'
+import { UiState } from '../reducers/uiReducer'
 
 export default interface State {
-    concerts: Concerts
-    festivals: Festivals
+    concerts: ConcertsState
+    festivals: FestivalsState
+    ui: UiState
 }

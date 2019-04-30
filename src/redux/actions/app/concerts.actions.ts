@@ -24,6 +24,11 @@ export const addConcertsToState = (concerts: Concerts): ConcertsAction => ({
     payload: {
         concerts,
     },
+    meta: {
+        ui: {
+            showLoader: false,
+        },
+    },
 })
 
 export const fetchConcerts = (): ConcertsAction => ({
@@ -33,6 +38,9 @@ export const fetchConcerts = (): ConcertsAction => ({
             url: `${API_URL}/concerts`,
             method: 'GET',
             successAction: addConcertsToState,
+        },
+        ui: {
+            showLoader: true,
         },
     },
 })

@@ -24,6 +24,11 @@ export const addFestivalsToState = (festivals: Festivals): FestivalsAction => ({
     payload: {
         festivals,
     },
+    meta: {
+        ui: {
+            showLoader: false,
+        },
+    },
 })
 
 export const fetchFestivals = (): FestivalsAction => ({
@@ -33,6 +38,9 @@ export const fetchFestivals = (): FestivalsAction => ({
             url: `${API_URL}/festivals`,
             method: 'GET',
             successAction: addFestivalsToState,
+        },
+        ui: {
+            showLoader: true,
         },
     },
 })

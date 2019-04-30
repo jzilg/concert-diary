@@ -1,0 +1,25 @@
+.bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30vw;
+    height: 5px;
+    background-color: var(--blue);
+    animation-name: move;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    transform-origin: 0 50% 0;
+    will-change: transform;
+    z-index: 1;
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(-30vw);
+    }
+
+    100% {
+        transform: translateX(100vw);
+    }
+}
