@@ -1,17 +1,17 @@
-import Action from '../../interfaces/action.interface'
+import Action, { Feature } from '../../interfaces/action.interface'
 import { ApiRequestOptions } from '../../middleware/core/apiMiddleware'
 
 export const API_REQUEST = 'API_REQUEST'
 export const API_SUCCESS = 'API_SUCCESS'
 export const API_ERROR = 'API_ERROR'
 
-export const apiRequest = (apiRequestOptions: ApiRequestOptions, feature: string): Action => ({
+export const apiRequest = (apiRequestOptions: ApiRequestOptions, feature: Feature): Action => ({
     type: `${feature} ${API_REQUEST}`,
     feature,
     payload: { ...apiRequestOptions },
 })
 
-export const apiSuccess = (successAction: Function, data: object, feature: string): Action => ({
+export const apiSuccess = (successAction: Function, data: object, feature: Feature): Action => ({
     type: `${feature} ${API_SUCCESS}`,
     feature,
     payload: {
@@ -20,7 +20,7 @@ export const apiSuccess = (successAction: Function, data: object, feature: strin
     },
 })
 
-export const apiError = (errorMsg: string, feature: string): Action => ({
+export const apiError = (errorMsg: string, feature: Feature): Action => ({
     type: `${feature} ${API_ERROR}`,
     feature,
     payload: {

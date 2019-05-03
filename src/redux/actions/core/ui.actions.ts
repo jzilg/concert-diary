@@ -1,4 +1,4 @@
-import Action from '../../interfaces/action.interface'
+import Action, { Feature } from '../../interfaces/action.interface'
 import Notification, { NotificationId } from '../../../entities/Notification.interface'
 
 export const SET_LOADER_ON_STATE = 'SET_LOADER_ON_STATE'
@@ -13,7 +13,7 @@ export const setLoader = (value: boolean, feature): Action => ({
     },
 })
 
-export const setNotification = (notification: Notification, feature: string): Action => ({
+export const setNotification = (notification: Notification, feature: Feature): Action => ({
     type: `${feature} ${SET_NOTIFICATION_ON_STATE}`,
     feature,
     payload: {
@@ -21,7 +21,7 @@ export const setNotification = (notification: Notification, feature: string): Ac
     },
 })
 
-export const unsetNotification = (notificationId: NotificationId, feature: string): Action => ({
+export const unsetNotification = (notificationId: NotificationId, feature: Feature): Action => ({
     type: `${feature} ${UNSET_NOTIFICATION_ON_STATE}`,
     feature,
     payload: {
