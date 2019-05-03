@@ -1,8 +1,8 @@
+import uniqid from 'uniqid'
 import MiddlewareCreator from '../../interfaces/middleware-creator.interface'
 import { NotificationType, NotificationMessage, NotificationDuration } from '../../../entities/Notification.interface'
 import Action from '../../interfaces/action.interface'
 import { setLoader, setNotification, unsetNotification } from '../../actions/core/ui.actions'
-import createUniqueId from '../../../utils/createUniqueId'
 
 interface NotificationOptions {
     type: NotificationType
@@ -27,7 +27,7 @@ const uiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: Actio
     }
 
     if (action.meta.ui.notification) {
-        const id = createUniqueId()
+        const id = uniqid()
         const notification = {
             id,
             ...action.meta.ui.notification,
