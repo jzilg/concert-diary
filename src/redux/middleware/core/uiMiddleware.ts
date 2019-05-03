@@ -23,7 +23,7 @@ const uiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: Actio
     }
 
     if (action.meta.ui.showLoader !== undefined) {
-        dispatch(setLoader(action.meta.ui.showLoader, action.type))
+        dispatch(setLoader(action.meta.ui.showLoader, action.feature))
     }
 
     if (action.meta.ui.notification) {
@@ -33,12 +33,12 @@ const uiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: Actio
             ...action.meta.ui.notification,
         }
 
-        dispatch(setNotification(notification, action.type))
+        dispatch(setNotification(notification, action.feature))
 
         const { duration } = action.meta.ui.notification
         if (duration) {
             setTimeout(() => {
-                dispatch(unsetNotification(id, action.type))
+                dispatch(unsetNotification(id, action.feature))
             }, duration)
         }
     }

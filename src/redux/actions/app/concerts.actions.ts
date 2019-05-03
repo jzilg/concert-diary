@@ -2,14 +2,17 @@ import Action from '../../interfaces/action.interface'
 import Concert, { Concerts, ConcertId } from '../../../entities/Concert.interface'
 import API_URL from '../../../constants/api'
 
-export const FETCH_CONCERTS = 'FETCH_CONCERTS'
-export const ADD_CONCERTS_TO_STATE = 'ADD_CONCERTS_TO_STATE'
-export const POST_CONCERT = 'POST_CONCERT'
-export const ADD_CONCERT_TO_STATE = 'ADD_CONCERT_TO_STATE'
-export const PUT_CONCERT = 'PUT_CONCERT'
-export const UPDATE_CONCERT_ON_STATE = 'UPDATE_CONCERT_ON_STATE'
-export const DELETE_CONCERT = 'DELETE_CONCERT'
-export const REMOVE_CONCERT_FROM_STATE = 'REMOVE_CONCERT_FROM_STATE'
+const CONCERTS = '[CONCERTS]'
+const CONCERT = '[CONCERT]'
+
+export const FETCH_CONCERTS = `${CONCERTS} FETCH`
+export const ADD_CONCERTS_TO_STATE = `${CONCERTS} ADD_TO_STATE`
+export const POST_CONCERT = `${CONCERT} POST`
+export const ADD_CONCERT_TO_STATE = `${CONCERT} ADD_TO_STATE`
+export const PUT_CONCERT = `${CONCERT} PUT`
+export const UPDATE_CONCERT_ON_STATE = `${CONCERT} UPDATE_ON_STATE`
+export const DELETE_CONCERT = `${CONCERT} DELETE`
+export const REMOVE_CONCERT_FROM_STATE = `${CONCERT} REMOVE_FROM_STATE`
 
 export interface ConcertsAction extends Action {
     payload?: {
@@ -21,6 +24,7 @@ export interface ConcertsAction extends Action {
 
 export const addConcertsToState = (concerts: Concerts): ConcertsAction => ({
     type: ADD_CONCERTS_TO_STATE,
+    feature: CONCERTS,
     payload: {
         concerts,
     },
@@ -28,6 +32,7 @@ export const addConcertsToState = (concerts: Concerts): ConcertsAction => ({
 
 export const fetchConcerts = (): ConcertsAction => ({
     type: FETCH_CONCERTS,
+    feature: CONCERTS,
     meta: {
         api: {
             url: `${API_URL}/concerts`,
@@ -39,6 +44,7 @@ export const fetchConcerts = (): ConcertsAction => ({
 
 export const addConcertToState = (concert: Concert): ConcertsAction => ({
     type: ADD_CONCERT_TO_STATE,
+    feature: CONCERT,
     payload: {
         concert,
     },
@@ -46,6 +52,7 @@ export const addConcertToState = (concert: Concert): ConcertsAction => ({
 
 export const postConcert = (concert: Concert): ConcertsAction => ({
     type: POST_CONCERT,
+    feature: CONCERT,
     meta: {
         api: {
             url: `${API_URL}/concerts`,
@@ -58,6 +65,7 @@ export const postConcert = (concert: Concert): ConcertsAction => ({
 
 export const updateConcertOnState = (concert: Concert): ConcertsAction => ({
     type: UPDATE_CONCERT_ON_STATE,
+    feature: CONCERT,
     payload: {
         concert,
     },
@@ -65,6 +73,7 @@ export const updateConcertOnState = (concert: Concert): ConcertsAction => ({
 
 export const putConcert = (concert: Concert): ConcertsAction => ({
     type: PUT_CONCERT,
+    feature: CONCERT,
     meta: {
         api: {
             url: `${API_URL}/concerts/${concert.id}`,
@@ -77,6 +86,7 @@ export const putConcert = (concert: Concert): ConcertsAction => ({
 
 export const removeConcertFromState = (concertId: ConcertId): ConcertsAction => ({
     type: REMOVE_CONCERT_FROM_STATE,
+    feature: CONCERT,
     payload: {
         concertId,
     },
@@ -84,6 +94,7 @@ export const removeConcertFromState = (concertId: ConcertId): ConcertsAction => 
 
 export const deleteConcert = (concertId: ConcertId): ConcertsAction => ({
     type: DELETE_CONCERT,
+    feature: CONCERT,
     meta: {
         api: {
             url: `${API_URL}/concerts/${concertId}`,

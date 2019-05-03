@@ -7,11 +7,11 @@ const apiUiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: Ac
     next(action)
 
     if (action.type.includes(API_REQUEST)) {
-        dispatch(setLoader(true, action.type))
+        dispatch(setLoader(true, action.feature))
     }
 
     if (action.type.includes(API_SUCCESS) || action.type.includes(API_ERROR)) {
-        dispatch(setLoader(false, action.type))
+        dispatch(setLoader(false, action.feature))
     }
 }
 

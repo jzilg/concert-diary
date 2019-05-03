@@ -5,32 +5,26 @@ export const SET_LOADER_ON_STATE = 'SET_LOADER_ON_STATE'
 export const SET_NOTIFICATION_ON_STATE = 'SET_NOTIFICATION_ON_STATE'
 export const UNSET_NOTIFICATION_ON_STATE = 'UNSET_NOTIFICATION_ON_STATE'
 
-export const setLoader = (value: boolean, triggeredBy): Action => ({
-    type: SET_LOADER_ON_STATE,
+export const setLoader = (value: boolean, feature): Action => ({
+    type: `${feature} ${SET_LOADER_ON_STATE}`,
+    feature,
     payload: {
         value,
     },
-    meta: {
-        triggeredBy,
-    },
 })
 
-export const setNotification = (notification: Notification, triggeredBy: string): Action => ({
-    type: SET_NOTIFICATION_ON_STATE,
+export const setNotification = (notification: Notification, feature: string): Action => ({
+    type: `${feature} ${SET_NOTIFICATION_ON_STATE}`,
+    feature,
     payload: {
         notification,
     },
-    meta: {
-        triggeredBy,
-    },
 })
 
-export const unsetNotification = (notificationId: NotificationId, triggeredBy: string): Action => ({
-    type: UNSET_NOTIFICATION_ON_STATE,
+export const unsetNotification = (notificationId: NotificationId, feature: string): Action => ({
+    type: `${feature} ${UNSET_NOTIFICATION_ON_STATE}`,
+    feature,
     payload: {
         notificationId,
-    },
-    meta: {
-        triggeredBy,
     },
 })
