@@ -6,7 +6,7 @@ import numOfBandsSelector from '../redux/selectors/numOfBandsSelector'
 import numOfFestivalsSelector from '../redux/selectors/numOfFestivalsSelector'
 import numOfLocationsSelector from '../redux/selectors/numOfLocationsSelector'
 import Navigation from './Navigation'
-import LoadConcerts from './LoadConcerts'
+import LoadData from './LoadData'
 import MostSeenBands from '../components/MostSeenBands'
 import GeneralStatistics from '../components/GeneralStatistics'
 
@@ -25,7 +25,7 @@ function Statistics(props: Props): ReactElement {
         <Fragment>
             <h1>Statistics</h1>
             <Navigation />
-            <LoadConcerts>
+            <LoadData>
                 <GeneralStatistics
                     totalNumOfBands={totalNumOfBands}
                     totalNumOfConcerts={totalNumOfConcerts}
@@ -33,7 +33,7 @@ function Statistics(props: Props): ReactElement {
                     totalNumOfLocations={totalNumOfLocations}
                 />
                 <MostSeenBands mostSeenBands={mostSeenBands} />
-            </LoadConcerts>
+            </LoadData>
         </Fragment>
     )
 }

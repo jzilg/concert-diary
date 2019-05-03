@@ -4,7 +4,7 @@ import { push } from 'connected-react-router'
 import Festival from '../entities/Festival.interface'
 import { postFestival, putFestival } from '../redux/actions/app/festivals.actions'
 import Navigation from './Navigation'
-import LoadConcerts from './LoadConcerts'
+import LoadData from './LoadData'
 import FestivalForm from '../components/FestivalForm'
 
 interface Props extends StateProps, DispatchProps {}
@@ -25,13 +25,13 @@ function EditFestival(props: Props): ReactElement {
         <Fragment>
             <h1>{title}</h1>
             <Navigation />
-            <LoadConcerts>
+            <LoadData>
                 <FestivalForm
                     festival={festival}
                     saveFestival={saveFestival}
                     goToFestivals={goToFestivals}
                 />
-            </LoadConcerts>
+            </LoadData>
         </Fragment>
     )
 }

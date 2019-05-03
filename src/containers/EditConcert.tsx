@@ -4,7 +4,7 @@ import { push } from 'connected-react-router'
 import Concert from '../entities/Concert.interface'
 import { postConcert, putConcert } from '../redux/actions/app/concerts.actions'
 import Navigation from './Navigation'
-import LoadConcerts from './LoadConcerts'
+import LoadData from './LoadData'
 import ConcertForm from '../components/ConcertForm'
 import getTodaysDate from '../utils/getTodaysDate'
 
@@ -26,13 +26,13 @@ function EditConcert(props: Props): ReactElement {
         <Fragment>
             <h1>{title}</h1>
             <Navigation />
-            <LoadConcerts>
+            <LoadData>
                 <ConcertForm
                     concert={concert}
                     saveConcert={saveConcert}
                     goToConcerts={goToConcerts}
                 />
-            </LoadConcerts>
+            </LoadData>
         </Fragment>
     )
 }

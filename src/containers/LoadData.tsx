@@ -9,7 +9,7 @@ interface Props extends StateProps, DispatchProps {
     children: ReactNode
 }
 
-function LoadConcerts(props: Props): ReactElement {
+function LoadData(props: Props): ReactElement {
     const {
         concertsAreLoaded,
         loadConcerts,
@@ -55,4 +55,4 @@ const mapDispatchToProps: DispatchProps = {
     loadFestivals: fetchFestivals,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoadConcerts)
+export default connect(mapStateToProps, mapDispatchToProps)(LoadData)

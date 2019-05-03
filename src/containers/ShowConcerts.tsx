@@ -5,7 +5,7 @@ import { Concerts } from '../entities/Concert.interface'
 import concertsSortedByDateSelector from '../redux/selectors/concertsSortedByDateSelector'
 import { deleteConcert as deleteConcertActionCreator } from '../redux/actions/app/concerts.actions'
 import Navigation from './Navigation'
-import LoadConcerts from './LoadConcerts'
+import LoadData from './LoadData'
 import ConcertsTable from '../components/ConcertsTable'
 
 interface Props extends StateProps, DispatchProps {}
@@ -17,9 +17,9 @@ function ShowConcerts(props: Props): ReactElement {
         <Fragment>
             <h1>Concert Diary</h1>
             <Navigation />
-            <LoadConcerts>
+            <LoadData>
                 <ConcertsTable concerts={concerts} deleteConcert={deleteConcert} />
-            </LoadConcerts>
+            </LoadData>
         </Fragment>
     )
 }
