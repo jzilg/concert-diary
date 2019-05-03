@@ -19,13 +19,13 @@ function Navigation(props: Props): ReactElement {
     }
 
     const newConcertUrl = `/concerts/edit/${createId(concerts)}`
-    const newFestivaltUrl = `/festivals/edit/${createId(festivals)}`
+    const newFestivalUrl = `/festivals/edit/${createId(festivals)}`
 
     return (
         <nav>
             <NavigationLinks
                 newConcertUrl={newConcertUrl}
-                newFestivalUrl={newFestivaltUrl}
+                newFestivalUrl={newFestivalUrl}
             />
         </nav>
     )
