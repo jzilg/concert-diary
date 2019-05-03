@@ -1,4 +1,4 @@
-export type NotificationId = number
+export type NotificationId = string
 export type NotificationType = 'success' | 'warning' | 'error'
 export type NotificationMessage = string
 export type NotificationDuration = number

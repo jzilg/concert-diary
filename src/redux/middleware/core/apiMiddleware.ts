@@ -1,7 +1,7 @@
 import MiddlewareCreator from '../../interfaces/middleware-creator.interface'
-import Action from '../../interfaces/action.interface'
 import getApiOptions, { HTTPMethod } from '../../api-options'
 import {
+    ApiAction,
     API_REQUEST,
     API_SUCCESS,
     apiRequest,
@@ -15,15 +15,6 @@ export interface ApiRequestOptions {
     headers?: object
     body?: string
     successAction: Function
-}
-
-interface ApiActionPayload extends ApiRequestOptions {
-    data: object
-    errorMsg: string
-}
-
-interface ApiAction extends Action {
-    payload: ApiActionPayload
 }
 
 const apiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: ApiAction) => {

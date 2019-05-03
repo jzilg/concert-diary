@@ -5,7 +5,16 @@ export const API_REQUEST = 'API_REQUEST'
 export const API_SUCCESS = 'API_SUCCESS'
 export const API_ERROR = 'API_ERROR'
 
-export const apiRequest = (apiRequestOptions: ApiRequestOptions, feature: Feature): Action => ({
+interface ApiActionPayload extends ApiRequestOptions {
+    data?: object
+    errorMsg?: string
+}
+
+export interface ApiAction extends Action {
+    payload: ApiActionPayload
+}
+
+export const apiRequest = (apiRequestOptions: ApiRequestOptions, feature: Feature): ApiAction => ({
     type: `${feature} ${API_REQUEST}`,
     feature,
     payload: { ...apiRequestOptions },
