@@ -1,3 +1,7 @@
+:root {
+    --red: #cb4335;
+}
+
 input,
 label,
 table {
@@ -30,4 +34,28 @@ label + label {
 
 caption {
     text-align: left;
+}
+
+:global .no-list-style {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+:global .no-button-style {
+    padding: 0;
+    border-width: 0;
+    background-color: transparent;
+}
+
+:global .fade-in {
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-fill-mode: forwards;
+}
+
+:global @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }

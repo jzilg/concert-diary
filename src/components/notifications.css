@@ -1,0 +1,52 @@
+.list {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    animation-duration: .4s;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1140px;
+    min-height: 2.5em;
+    margin-right: auto;
+    margin-left: auto;
+    color: var(--white);
+}
+
+.success,
+.error,
+.warning {
+    border-width: 1px;
+    border-style: solid;
+}
+
+.success {
+    background-color: var(--green);
+    border-color: darken(var(--green), 10%);
+}
+
+.error {
+    background-color: var(--red);
+    border-color: darken(var(--red), 10%);
+}
+
+.warning {
+    background-color: var(--orange);
+    border-color: darken(var(--orange), 10%);
+}
+
+.button {
+    width: 40px;
+    height: 2.5em;
+    color: white;
+    transition: background-color .2s;
+
+}
+
+.button:hover {
+    background-color: rgba(var(--white), .2);
+}

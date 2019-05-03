@@ -16,7 +16,11 @@ const apiUiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: Ap
         dispatch(increaseLoaderCount(action.feature))
     }
 
-    if (action.type.includes(API_SUCCESS) || action.type.includes(API_ERROR)) {
+    if (action.type.includes(API_SUCCESS)) {
+        dispatch(decreaseLoaderCount(action.feature))
+    }
+
+    if (action.type.includes(API_ERROR)) {
         dispatch(decreaseLoaderCount(action.feature))
 
         const notification: Notification = {
