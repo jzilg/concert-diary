@@ -25,7 +25,7 @@ function Statistics(props: Props): ReactElement {
         <Fragment>
             <h1>Statistics</h1>
             <Navigation />
-            <LoadData>
+            <LoadData concerts festivals>
                 <GeneralStatistics
                     totalNumOfBands={totalNumOfBands}
                     totalNumOfConcerts={totalNumOfConcerts}

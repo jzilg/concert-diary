@@ -17,7 +17,7 @@ function ShowConcerts(props: Props): ReactElement {
         <Fragment>
             <h1>Concert Diary</h1>
             <Navigation />
-            <LoadData>
+            <LoadData concerts>
                 <ConcertsTable concerts={concerts} deleteConcert={deleteConcert} />
             </LoadData>
         </Fragment>

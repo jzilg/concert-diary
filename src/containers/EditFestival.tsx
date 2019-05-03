@@ -25,7 +25,7 @@ function EditFestival(props: Props): ReactElement {
         <Fragment>
             <h1>{title}</h1>
             <Navigation />
-            <LoadData>
+            <LoadData festivals>
                 <FestivalForm
                     festival={festival}
                     saveFestival={saveFestival}

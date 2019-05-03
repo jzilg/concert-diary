@@ -26,7 +26,7 @@ function EditConcert(props: Props): ReactElement {
         <Fragment>
             <h1>{title}</h1>
             <Navigation />
-            <LoadData>
+            <LoadData concerts>
                 <ConcertForm
                     concert={concert}
                     saveConcert={saveConcert}

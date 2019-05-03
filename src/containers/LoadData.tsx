@@ -7,23 +7,29 @@ import { fetchFestivals } from '../redux/actions/app/festivals.actions'
 
 interface Props extends StateProps, DispatchProps {
     children: ReactNode
+    concerts?: boolean
+    festivals?: boolean
 }
 
 function LoadData(props: Props): ReactElement {
     const {
+        concerts,
         concertsAreLoaded,
         loadConcerts,
+        festivals,
         festivalsAreLoaded,
         loadFestivals,
         children,
     } = props
+    const shouldLoadConcerts = concerts
+    const shouldLoadFestivals = festivals
 
     useOnMount(() => {
-        if (!concertsAreLoaded) {
+        if (shouldLoadConcerts && !concertsAreLoaded) {
             loadConcerts()
         }
 
-        if (!festivalsAreLoaded) {
+        if (shouldLoadFestivals && !festivalsAreLoaded) {
             loadFestivals()
         }
     })
@@ -33,6 +39,11 @@ function LoadData(props: Props): ReactElement {
             {children}
         </Fragment>
     )
+}
+
+LoadData.defaultProps = {
+    concerts: false,
+    festivals: false,
 }
 
 interface StateProps {
