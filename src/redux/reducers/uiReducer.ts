@@ -1,10 +1,14 @@
 import Action from '../interfaces/action.interface'
 import Notification, { NotificationId } from '../../entities/Notification.interface'
-import { UNSET_NOTIFICATION_ON_STATE, SET_LOADER_ON_STATE, SET_NOTIFICATION_ON_STATE } from '../actions/core/ui.actions'
+import {
+    INCREASE_LOADER_COUNT_ON_STATE,
+    DECREASE_LOADER_COUNT_ON_STATE,
+    UNSET_NOTIFICATION_ON_STATE,
+    SET_NOTIFICATION_ON_STATE,
+} from '../actions/core/ui.actions'
 
 export interface UiState {
-    numOfLoadingRequests: number
-    isLoading: boolean
+    loaderCount: number
     notifications: Notification[]
 }
 
@@ -17,33 +21,31 @@ interface UiAction extends Action {
 }
 
 export const defaultState: UiState = {
-    numOfLoadingRequests: 0,
-    isLoading: false,
+    loaderCount: 0,
     notifications: [],
 }
 
 function uiReducer(state = defaultState, action: UiAction): UiState {
-    switch (action.type) {
-        case SET_LOADER_ON_STATE: {
-            const { value } = action.payload
-            const { numOfLoadingRequests } = state
-            const newNumOfLoadingRequests = value === false
-                ? numOfLoadingRequests - 1
-                : numOfLoadingRequests + 1
-
+    switch (true) {
+        case action.type.includes(INCREASE_LOADER_COUNT_ON_STATE): {
             return {
                 ...state,
-                numOfLoadingRequests: newNumOfLoadingRequests,
-                isLoading: newNumOfLoadingRequests > 0,
+                loaderCount: state.loaderCount + 1,
             }
         }
-        case SET_NOTIFICATION_ON_STATE: {
+        case action.type.includes(DECREASE_LOADER_COUNT_ON_STATE): {
+            return {
+                ...state,
+                loaderCount: state.loaderCount - 1,
+            }
+        }
+        case action.type.includes(SET_NOTIFICATION_ON_STATE): {
             return {
                 ...state,
                 notifications: state.notifications.concat(action.payload.notification),
             }
         }
-        case UNSET_NOTIFICATION_ON_STATE: {
+        case action.type.includes(UNSET_NOTIFICATION_ON_STATE): {
             const notificationIdToRemove = action.payload.notificationId
             const updatedNotifications = state.notifications.filter(notification => (
                 notification.id !== notificationIdToRemove

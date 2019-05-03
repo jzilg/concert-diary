@@ -4,6 +4,7 @@ import { connect, Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import { Route, Switch } from 'react-router-dom'
 import State from '../redux/interfaces/state.interface'
+import isLoadingSelector from '../redux/selectors/isLoadingSelector'
 import history from '../history'
 import ShowConcerts from './ShowConcerts'
 import EditConcert from './EditConcert'
@@ -45,7 +46,7 @@ interface StateProps {
 }
 
 const mapStateToProps = (state: State): StateProps => ({
-    isLoading: state.ui.isLoading,
+    isLoading: isLoadingSelector(state),
 })
 
 export default connect(mapStateToProps)(Root)

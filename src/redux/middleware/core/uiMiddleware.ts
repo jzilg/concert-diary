@@ -2,7 +2,7 @@ import uniqid from 'uniqid'
 import MiddlewareCreator from '../../interfaces/middleware-creator.interface'
 import { NotificationType, NotificationMessage, NotificationDuration } from '../../../entities/Notification.interface'
 import Action from '../../interfaces/action.interface'
-import { setLoader, setNotification, unsetNotification } from '../../actions/core/ui.actions'
+import { increaseLoaderCount, setNotification, unsetNotification } from '../../actions/core/ui.actions'
 
 interface NotificationOptions {
     type: NotificationType
@@ -23,7 +23,7 @@ const uiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: Actio
     }
 
     if (action.meta.ui.showLoader !== undefined) {
-        dispatch(setLoader(action.meta.ui.showLoader, action.feature))
+        dispatch(increaseLoaderCount(action.feature))
     }
 
     if (action.meta.ui.notification) {
