@@ -5,6 +5,6 @@ import appMiddleware from './app'
 
 export default [
     routerMiddleware(history),
-    ...coreMiddleware,
     ...appMiddleware,
+    ...coreMiddleware,
 ]
