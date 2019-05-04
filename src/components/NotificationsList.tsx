@@ -14,7 +14,7 @@ function NotificationsList(props: Props): ReactElement {
         const { id, type, message } = notification
 
         function clickHandler(): void {
-            removeNotification(id, 'button on notification itself clicked')
+            removeNotification(id, '[USER EVENT]')
         }
 
         return (
