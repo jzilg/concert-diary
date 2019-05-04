@@ -81,7 +81,7 @@ module.exports = {
         },
     },
     plugins: [
-        !isDevServer ? new CleanWebpackPlugin('./dist') : null,
+        !isDevServer ? new CleanWebpackPlugin() : null,
         new HtmlWebpackPlugin({
             template: './src/index.html',
         }),
