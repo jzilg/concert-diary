@@ -3,10 +3,10 @@ import { UiOptions } from '../middleware/core/uiMiddleware'
 
 export type Feature = string
 
-export default interface Action {
+export default interface Action<Payload = {}> {
     type: string
     feature: Feature
-    payload?: object
+    payload?: Payload
     meta?: {
         api?: ApiRequestOptions
         ui?: UiOptions

@@ -14,15 +14,22 @@ export const UPDATE_FESTIVAL_ON_STATE = `${FESTIVAL} UPDATE_ON_STATE`
 export const DELETE_FESTIVAL = `${FESTIVAL} DELETE`
 export const REMOVE_FESTIVAL_FROM_STATE = `${FESTIVAL} REMOVE_FROM_STATE`
 
-export interface FestivalsAction extends Action {
-    payload?: {
-        festival?: Festival
-        festivals?: Festivals
-        festivalId?: FestivalId
-    }
+interface FestivalsPayload {
+    festivals: Festivals
 }
 
-export const addFestivalsToState = (festivals: Festivals): FestivalsAction => ({
+interface FestivalPayload {
+    festival: Festival
+}
+
+interface FestivalIdPayload {
+    festivalId: FestivalId
+}
+
+interface FestivalsPayloads extends FestivalsPayload, FestivalPayload, FestivalIdPayload {}
+export type FestivalsAction = Action<FestivalsPayloads>
+
+export const addFestivalsToState = (festivals: Festivals): Action<FestivalsPayload> => ({
     type: ADD_FESTIVALS_TO_STATE,
     feature: FESTIVALS,
     payload: {
@@ -30,7 +37,7 @@ export const addFestivalsToState = (festivals: Festivals): FestivalsAction => ({
     },
 })
 
-export const fetchFestivals = (): FestivalsAction => ({
+export const fetchFestivals = (): Action => ({
     type: FETCH_FESTIVALS,
     feature: FESTIVALS,
     meta: {
@@ -42,7 +49,7 @@ export const fetchFestivals = (): FestivalsAction => ({
     },
 })
 
-export const addFestivalToState = (festival: Festival): FestivalsAction => ({
+export const addFestivalToState = (festival: Festival): Action<FestivalPayload> => ({
     type: ADD_FESTIVAL_TO_STATE,
     feature: FESTIVAL,
     payload: {
@@ -63,7 +70,7 @@ export const postFestival = (festival: Festival): FestivalsAction => ({
     },
 })
 
-export const updateFestivalOnState = (festival: Festival): FestivalsAction => ({
+export const updateFestivalOnState = (festival: Festival): Action<FestivalPayload> => ({
     type: UPDATE_FESTIVAL_ON_STATE,
     feature: FESTIVAL,
     payload: {
@@ -71,7 +78,7 @@ export const updateFestivalOnState = (festival: Festival): FestivalsAction => ({
     },
 })
 
-export const putFestival = (festival: Festival): FestivalsAction => ({
+export const putFestival = (festival: Festival): Action => ({
     type: PUT_FESTIVAL,
     feature: FESTIVAL,
     meta: {
@@ -84,7 +91,7 @@ export const putFestival = (festival: Festival): FestivalsAction => ({
     },
 })
 
-export const removeFestivalFromState = (festivalId: FestivalId): FestivalsAction => ({
+export const removeFestivalFromState = (festivalId: FestivalId): Action<FestivalIdPayload> => ({
     type: REMOVE_FESTIVAL_FROM_STATE,
     feature: FESTIVAL,
     payload: {
@@ -92,7 +99,7 @@ export const removeFestivalFromState = (festivalId: FestivalId): FestivalsAction
     },
 })
 
-export const deleteFestival = (festivalId: FestivalId): FestivalsAction => ({
+export const deleteFestival = (festivalId: FestivalId): Action => ({
     type: DELETE_FESTIVAL,
     feature: FESTIVAL,
     meta: {
