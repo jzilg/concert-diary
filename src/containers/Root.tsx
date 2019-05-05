@@ -6,7 +6,7 @@ import { Route, Switch } from 'react-router-dom'
 import State from '../redux/interfaces/state.interface'
 import { Notifications } from '../entities/Notification.interface'
 import isLoadingSelector from '../redux/selectors/isLoadingSelector'
-import { unsetNotification } from '../redux/actions/core/ui.actions'
+import { deleteNotification } from '../redux/actions/core/ui.actions'
 import history from '../history'
 import Loader from '../components/Loader'
 import NotificationsList from '../components/NotificationsList'
@@ -72,7 +72,7 @@ interface DispatchProps {
 }
 
 const mapDispatchToProps = {
-    removeNotification: unsetNotification,
+    removeNotification: deleteNotification,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Root)

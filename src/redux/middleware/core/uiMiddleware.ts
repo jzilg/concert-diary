@@ -1,8 +1,18 @@
 import uniqid from 'uniqid'
 import MiddlewareCreator from '../../interfaces/middleware-creator.interface'
-import { NotificationType, NotificationMessage, NotificationDuration } from '../../../entities/Notification.interface'
 import Action from '../../interfaces/action.interface'
-import { increaseLoaderCount, setNotification, unsetNotification } from '../../actions/core/ui.actions'
+import {
+    NotificationType,
+    NotificationMessage,
+    NotificationDuration,
+    NotificationId,
+} from '../../../entities/Notification.interface'
+import {
+    increaseLoaderCount,
+    addNotificationToState,
+    removeNotificationFromState,
+    DELETE_NOTIFICATION,
+} from '../../actions/core/ui.actions'
 
 interface NotificationOptions {
     type: NotificationType
@@ -15,8 +25,19 @@ export interface UiOptions {
     notification?: NotificationOptions
 }
 
-const uiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: Action) => {
+interface UiAction extends Action {
+    payload: {
+        notification?: Notification
+        notificationId?: NotificationId
+    }
+}
+
+const uiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: UiAction) => {
     next(action)
+
+    if (action.type.includes(DELETE_NOTIFICATION)) {
+        dispatch(removeNotificationFromState(action.payload.notificationId, action.feature))
+    }
 
     if (!action.meta || !action.meta.ui) {
         return
@@ -33,12 +54,12 @@ const uiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: Actio
             ...action.meta.ui.notification,
         }
 
-        dispatch(setNotification(notification, action.feature))
+        dispatch(addNotificationToState(notification, action.feature))
 
         const { duration } = action.meta.ui.notification
         if (duration) {
             setTimeout(() => {
-                dispatch(unsetNotification(id, action.feature))
+                dispatch(removeNotificationFromState(id, action.feature))
             }, duration)
         }
     }

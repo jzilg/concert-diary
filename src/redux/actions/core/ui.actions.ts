@@ -3,6 +3,7 @@ import Notification, { NotificationId } from '../../../entities/Notification.int
 
 export const INCREASE_LOADER_COUNT_ON_STATE = 'INCREASE_LOADER_COUNT_ON_STATE'
 export const DECREASE_LOADER_COUNT_ON_STATE = 'DECREASE_LOADER_COUNT_ON_STATE'
+export const DELETE_NOTIFICATION = 'DELETE_NOTIFICATION'
 export const ADD_NOTIFICATION_TO_STATE = 'ADD_NOTIFICATION_TO_STATE'
 export const REMOVE_NOTIFICATION_FROM_STATE = 'REMOVE_NOTIFICATION_FROM_STATE'
 
@@ -16,7 +17,15 @@ export const decreaseLoaderCount = (feature: Feature): Action => ({
     feature,
 })
 
-export const setNotification = (notification: Notification, feature: Feature): Action => ({
+export const deleteNotification = (notificationId: NotificationId, feature: Feature): Action => ({
+    type: `${feature} ${DELETE_NOTIFICATION}`,
+    feature,
+    payload: {
+        notificationId,
+    },
+})
+
+export const addNotificationToState = (notification: Notification, feature: Feature): Action => ({
     type: `${feature} ${ADD_NOTIFICATION_TO_STATE}`,
     feature,
     payload: {
@@ -24,7 +33,10 @@ export const setNotification = (notification: Notification, feature: Feature): A
     },
 })
 
-export const unsetNotification = (notificationId: NotificationId, feature: Feature): Action => ({
+export const removeNotificationFromState = (
+    notificationId: NotificationId,
+    feature: Feature,
+): Action => ({
     type: `${feature} ${REMOVE_NOTIFICATION_FROM_STATE}`,
     feature,
     payload: {

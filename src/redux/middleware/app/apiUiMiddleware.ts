@@ -7,7 +7,7 @@ import {
     API_SUCCESS,
     API_ERROR,
 } from '../../actions/core/api.actions'
-import { increaseLoaderCount, decreaseLoaderCount, setNotification } from '../../actions/core/ui.actions'
+import { increaseLoaderCount, decreaseLoaderCount, addNotificationToState } from '../../actions/core/ui.actions'
 
 const apiUiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: ApiAction) => {
     next(action)
@@ -28,7 +28,7 @@ const apiUiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: Ap
             type: 'error',
             message: action.payload.errorMsg,
         }
-        dispatch(setNotification(notification, action.feature))
+        dispatch(addNotificationToState(notification, action.feature))
     }
 }
 
