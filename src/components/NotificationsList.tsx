@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import Notification from '../entities/Notification.interface'
-import style from './notifications.css'
+import style from './notificationsList.css'
 
 interface Props {
     notifications: Notification[]
