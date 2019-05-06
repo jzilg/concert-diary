@@ -18,7 +18,7 @@ function NotificationsList(props: Props): ReactElement {
         }
 
         return (
-            <li key={id} className={style[type]}>
+            <li key={id} className={`${style.listItem} ${style[type]}`}>
                 <div className={style.container}>
                     <span>
                         {message}

@@ -17,26 +17,20 @@
     color: var(--white);
 }
 
-.success,
-.error,
-.warning {
-    border-width: 1px;
-    border-style: solid;
+.listItem + .listItem {
+    border-top: 1px solid var(--black);
 }
 
 .success {
     background-color: var(--green);
-    border-color: darken(var(--green), 10%);
 }
 
 .error {
     background-color: var(--red);
-    border-color: darken(var(--red), 10%);
 }
 
 .warning {
     background-color: var(--orange);
-    border-color: darken(var(--orange), 10%);
 }
 
 .button {
