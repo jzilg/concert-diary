@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "connected-react-router": "^6.3.2",
+    "embellish.css": "^1.1.1",
     "history": "^4.9.0",
     "moment": "^2.24.0",
     "react": "^16.8.6",
