@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
-import style from './navigationLinks.css'
+import style from './navigationLinks.scss'
 
 interface Props {
     newConcertUrl: string

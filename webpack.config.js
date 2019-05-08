@@ -2,6 +2,7 @@ const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const dartSass = require('dart-sass')
 
 const isDevServer = process.argv[1].includes('webpack-dev-server')
 const filename = '[name]-[contenthash]'
@@ -51,7 +52,7 @@ module.exports = {
                 }),
             },
             {
-                test: /\.css$/,
+                test: /\.(s)?css$/,
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
@@ -60,8 +61,16 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             sourceMap: isDevServer,
+                            importLoaders: 1,
                             modules: true,
                             localIdentName: '[name]-[local]',
+                        },
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: isDevServer,
+                            implementation: dartSass,
                         },
                     },
                 ],

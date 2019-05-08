@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { MostSeenBand } from '../redux/selectors/mostSeenBandsSelector'
-import style from './mostSeenBands.css'
+import style from './mostSeenBands.scss'
 
 interface Props {
     mostSeenBands: MostSeenBand[]

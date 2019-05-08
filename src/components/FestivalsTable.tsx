@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import Festival, { Festivals } from '../entities/Festival.interface'
-import style from './concertsTable.css'
+import style from './concertsTable.scss'
 
 interface Props {
     festivals: Festivals

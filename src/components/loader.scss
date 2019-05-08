@@ -1,8 +1,10 @@
+$loaderWidth: 30vw;
+
 .bar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 30vw;
+    width: $loaderWidth;
     height: 5px;
     background-color: var(--blue);
     animation-name: move;
@@ -16,7 +18,7 @@
 
 @keyframes move {
     0% {
-        transform: translateX(-30vw);
+        transform: translateX(-$loaderWidth);
     }
 
     100% {
