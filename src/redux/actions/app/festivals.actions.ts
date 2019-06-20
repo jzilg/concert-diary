@@ -2,7 +2,7 @@ import Action from '../../interfaces/action.interface'
 import Festival, { Festivals, FestivalId } from '../../../entities/Festival.interface'
 import API_URL from '../../../constants/api'
 
-const FESTIVALS = '[FESTIVALS]'
+const FESTIVALS = '[Festivals]'
 
 export const FETCH_FESTIVALS = `${FESTIVALS} [CMD] FETCH`
 export const ADD_FESTIVALS_TO_STATE = `${FESTIVALS} [DOC] ADD_TO_STATE`
