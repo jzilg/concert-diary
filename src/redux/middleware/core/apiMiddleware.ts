@@ -1,5 +1,5 @@
 import MiddlewareCreator from '../../interfaces/middleware-creator.interface'
-import getApiOptions, { HTTPMethod } from '../../api-options'
+import getApiOptions, { HTTPMethod } from '../../getApiOptions'
 import {
     ApiAction,
     API_REQUEST,
