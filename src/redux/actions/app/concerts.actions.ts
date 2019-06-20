@@ -3,16 +3,15 @@ import Concert, { Concerts, ConcertId } from '../../../entities/Concert.interfac
 import API_URL from '../../../constants/api'
 
 const CONCERTS = '[CONCERTS]'
-const CONCERT = '[CONCERT]'
 
 export const FETCH_CONCERTS = `${CONCERTS} FETCH`
 export const ADD_CONCERTS_TO_STATE = `${CONCERTS} ADD_TO_STATE`
-export const POST_CONCERT = `${CONCERT} POST`
-export const ADD_CONCERT_TO_STATE = `${CONCERT} ADD_TO_STATE`
-export const PUT_CONCERT = `${CONCERT} PUT`
-export const UPDATE_CONCERT_ON_STATE = `${CONCERT} UPDATE_ON_STATE`
-export const DELETE_CONCERT = `${CONCERT} DELETE`
-export const REMOVE_CONCERT_FROM_STATE = `${CONCERT} REMOVE_FROM_STATE`
+export const POST_CONCERT = `${CONCERTS} POST`
+export const ADD_CONCERT_TO_STATE = `${CONCERTS} ADD_TO_STATE`
+export const PUT_CONCERT = `${CONCERTS} PUT`
+export const UPDATE_CONCERT_ON_STATE = `${CONCERTS} UPDATE_ON_STATE`
+export const DELETE_CONCERT = `${CONCERTS} DELETE`
+export const REMOVE_CONCERT_FROM_STATE = `${CONCERTS} REMOVE_FROM_STATE`
 
 interface ConcertsPayload {
     concerts: Concerts
@@ -51,7 +50,7 @@ export const fetchConcerts = (): Action => ({
 
 export const addConcertToState = (concert: Concert): Action<ConcertPayload> => ({
     type: ADD_CONCERT_TO_STATE,
-    feature: CONCERT,
+    feature: CONCERTS,
     payload: {
         concert,
     },
@@ -59,7 +58,7 @@ export const addConcertToState = (concert: Concert): Action<ConcertPayload> => (
 
 export const postConcert = (concert: Concert): Action => ({
     type: POST_CONCERT,
-    feature: CONCERT,
+    feature: CONCERTS,
     meta: {
         api: {
             url: `${API_URL}/concerts`,
@@ -72,7 +71,7 @@ export const postConcert = (concert: Concert): Action => ({
 
 export const updateConcertOnState = (concert: Concert): Action<ConcertPayload> => ({
     type: UPDATE_CONCERT_ON_STATE,
-    feature: CONCERT,
+    feature: CONCERTS,
     payload: {
         concert,
     },
@@ -80,7 +79,7 @@ export const updateConcertOnState = (concert: Concert): Action<ConcertPayload> =
 
 export const putConcert = (concert: Concert): Action => ({
     type: PUT_CONCERT,
-    feature: CONCERT,
+    feature: CONCERTS,
     meta: {
         api: {
             url: `${API_URL}/concerts/${concert.id}`,
@@ -93,7 +92,7 @@ export const putConcert = (concert: Concert): Action => ({
 
 export const removeConcertFromState = (concertId: ConcertId): Action<ConcertIdPayload> => ({
     type: REMOVE_CONCERT_FROM_STATE,
-    feature: CONCERT,
+    feature: CONCERTS,
     payload: {
         concertId,
     },
@@ -101,7 +100,7 @@ export const removeConcertFromState = (concertId: ConcertId): Action<ConcertIdPa
 
 export const deleteConcert = (concertId: ConcertId): Action => ({
     type: DELETE_CONCERT,
-    feature: CONCERT,
+    feature: CONCERTS,
     meta: {
         api: {
             url: `${API_URL}/concerts/${concertId}`,
