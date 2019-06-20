@@ -1,9 +1,9 @@
 import Action, { Feature } from '../../interfaces/action.interface'
 import { ApiRequestOptions } from '../../middleware/core/apiMiddleware'
 
-export const API_REQUEST = 'API_REQUEST'
-export const API_SUCCESS = 'API_SUCCESS'
-export const API_ERROR = 'API_ERROR'
+export const API_REQUEST = '[EVENT] API_REQUEST'
+export const API_SUCCESS = '[EVENT] API_SUCCESS'
+export const API_ERROR = '[EVENT] API_ERROR'
 
 interface ApiActionPayload extends ApiRequestOptions {
     data?: object

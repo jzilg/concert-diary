@@ -4,14 +4,14 @@ import API_URL from '../../../constants/api'
 
 const CONCERTS = '[CONCERTS]'
 
-export const FETCH_CONCERTS = `${CONCERTS} FETCH`
-export const ADD_CONCERTS_TO_STATE = `${CONCERTS} ADD_TO_STATE`
-export const POST_CONCERT = `${CONCERTS} POST`
-export const ADD_CONCERT_TO_STATE = `${CONCERTS} ADD_TO_STATE`
-export const PUT_CONCERT = `${CONCERTS} PUT`
-export const UPDATE_CONCERT_ON_STATE = `${CONCERTS} UPDATE_ON_STATE`
-export const DELETE_CONCERT = `${CONCERTS} DELETE`
-export const REMOVE_CONCERT_FROM_STATE = `${CONCERTS} REMOVE_FROM_STATE`
+export const FETCH_CONCERTS = `${CONCERTS} [CMD] FETCH`
+export const ADD_CONCERTS_TO_STATE = `${CONCERTS} [DOC] ADD_TO_STATE`
+export const POST_CONCERT = `${CONCERTS} [CMD] POST`
+export const ADD_CONCERT_TO_STATE = `${CONCERTS} [DOC] ADD_TO_STATE`
+export const PUT_CONCERT = `${CONCERTS} [CMD] PUT`
+export const UPDATE_CONCERT_ON_STATE = `${CONCERTS} [DOC] UPDATE_ON_STATE`
+export const DELETE_CONCERT = `${CONCERTS} [CMD] DELETE`
+export const REMOVE_CONCERT_FROM_STATE = `${CONCERTS} [DOC] REMOVE_FROM_STATE`
 
 interface ConcertsPayload {
     concerts: Concerts

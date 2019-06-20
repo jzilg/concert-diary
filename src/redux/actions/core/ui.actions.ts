@@ -1,11 +1,11 @@
 import Action, { Feature } from '../../interfaces/action.interface'
 import Notification, { NotificationId } from '../../../entities/Notification.interface'
 
-export const INCREASE_LOADER_COUNT_ON_STATE = 'INCREASE_LOADER_COUNT_ON_STATE'
-export const DECREASE_LOADER_COUNT_ON_STATE = 'DECREASE_LOADER_COUNT_ON_STATE'
-export const DELETE_NOTIFICATION = 'DELETE_NOTIFICATION'
-export const ADD_NOTIFICATION_TO_STATE = 'ADD_NOTIFICATION_TO_STATE'
-export const REMOVE_NOTIFICATION_FROM_STATE = 'REMOVE_NOTIFICATION_FROM_STATE'
+export const INCREASE_LOADER_COUNT_ON_STATE = '[DOC] INCREASE_LOADER_COUNT_ON_STATE'
+export const DECREASE_LOADER_COUNT_ON_STATE = '[DOC] DECREASE_LOADER_COUNT_ON_STATE'
+export const DELETE_NOTIFICATION = '[CMD] DELETE_NOTIFICATION'
+export const ADD_NOTIFICATION_TO_STATE = '[DOC] ADD_NOTIFICATION_TO_STATE'
+export const REMOVE_NOTIFICATION_FROM_STATE = '[DOC] REMOVE_NOTIFICATION_FROM_STATE'
 
 export const increaseLoaderCount = (feature: Feature): Action => ({
     type: `${feature} ${INCREASE_LOADER_COUNT_ON_STATE}`,
