@@ -1,6 +1,6 @@
 export type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
-export interface ApiOptions {
+interface ApiOptions {
     method: HTTPMethod
     headers?: object
     body?: string
