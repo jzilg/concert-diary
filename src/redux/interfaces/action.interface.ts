@@ -10,6 +10,5 @@ export default interface Action<Payload = {}> {
     meta?: {
         api?: ApiRequestOptions
         ui?: UiOptions
-        triggeredBy?: string
     }
 }
