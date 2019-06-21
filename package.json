@@ -16,7 +16,7 @@
   "homepage": "https://github.com/jzilg/concert-diary#readme",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack"
+    "build": "webpack -p"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
