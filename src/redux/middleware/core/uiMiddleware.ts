@@ -1,5 +1,4 @@
 import uniqid from 'uniqid'
-import MiddlewareCreator from '../../interfaces/middleware-creator.interface'
 import Action from '../../interfaces/action.interface'
 import {
     NotificationType,
@@ -32,7 +31,7 @@ interface UiAction extends Action {
     }
 }
 
-const uiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: UiAction) => {
+const uiMiddleware = ({ dispatch }) => next => (action: UiAction) => {
     next(action)
 
     if (action.type.includes(DELETE_NOTIFICATION)) {

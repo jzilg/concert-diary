@@ -1,6 +1,5 @@
 import uniqid from 'uniqid'
 import Notification from '../../../entities/Notification.interface'
-import MiddlewareCreator from '../../interfaces/middleware-creator.interface'
 import {
     ApiAction,
     API_REQUEST,
@@ -9,7 +8,7 @@ import {
 } from '../../actions/core/api.actions'
 import { increaseLoaderCount, decreaseLoaderCount, addNotificationToState } from '../../actions/core/ui.actions'
 
-const apiUiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: ApiAction) => {
+const apiUiMiddleware = ({ dispatch }) => next => (action: ApiAction) => {
     next(action)
 
     if (action.type.includes(API_REQUEST)) {

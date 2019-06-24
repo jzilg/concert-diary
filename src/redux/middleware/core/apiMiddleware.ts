@@ -1,4 +1,3 @@
-import MiddlewareCreator from '../../interfaces/middleware-creator.interface'
 import getApiOptions, { HTTPMethod } from '../../getApiOptions'
 import {
     ApiAction,
@@ -17,7 +16,7 @@ export interface ApiRequestOptions {
     successAction: Function
 }
 
-const apiMiddleware = ({ dispatch }): MiddlewareCreator => next => (action: ApiAction) => {
+const apiMiddleware = ({ dispatch }) => next => (action: ApiAction) => {
     next(action)
 
     if (action.meta && action.meta.api) {
