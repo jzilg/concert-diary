@@ -6,7 +6,7 @@ import { postConcert, putConcert } from '../redux/actions/app/concerts.actions'
 import Navigation from './Navigation'
 import LoadData from './LoadData'
 import ConcertForm from '../components/ConcertForm'
-import getTodaysDate from '../utils/getTodaysDate'
+import todaysDate from '../utils/todaysDate'
 
 interface Props extends StateProps, DispatchProps {}
 
@@ -43,7 +43,7 @@ function createEmptyConcert(id: number): Concert {
         band: '',
         supportBands: [],
         location: '',
-        date: getTodaysDate(),
+        date: todaysDate,
         companions: [],
     }
 }
