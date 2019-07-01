@@ -57,7 +57,7 @@ interface StateProps {
 const mapStateToProps = (state, ownProps): StateProps => {
     const paramId = parseInt(ownProps.match.params.id, 10)
     const festival = state.festivals.find(stateFestival => stateFestival.id === paramId)
-    const festivalExists: boolean = !!festival
+    const festivalExists = !!festival
 
     return {
         festival: festival || createEmptyFestival(paramId),

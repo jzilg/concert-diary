@@ -56,7 +56,7 @@ interface StateProps {
 const mapStateToProps = (state, ownProps): StateProps => {
     const paramId = parseInt(ownProps.match.params.id, 10)
     const concert = state.concerts.find(stateConcert => stateConcert.id === paramId)
-    const concertExists: boolean = !!concert
+    const concertExists = !!concert
 
     return {
         concert: concert || createEmptyConcert(paramId),
