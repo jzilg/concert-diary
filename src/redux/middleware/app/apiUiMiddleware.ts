@@ -12,22 +12,22 @@ const apiUiMiddleware = ({ dispatch }) => next => (action: ApiAction) => {
     next(action)
 
     if (action.type.includes(API_REQUEST)) {
-        dispatch(increaseLoaderCount(action.feature))
+        dispatch(increaseLoaderCount(action.meta.feature))
     }
 
     if (action.type.includes(API_SUCCESS)) {
-        dispatch(decreaseLoaderCount(action.feature))
+        dispatch(decreaseLoaderCount(action.meta.feature))
     }
 
     if (action.type.includes(API_ERROR)) {
-        dispatch(decreaseLoaderCount(action.feature))
+        dispatch(decreaseLoaderCount(action.meta.feature))
 
         const notification: Notification = {
             id: uniqid(),
             type: 'error',
             message: action.payload.errorMsg,
         }
-        dispatch(addNotificationToState(notification, action.feature))
+        dispatch(addNotificationToState(notification, action.meta.feature))
     }
 }
 

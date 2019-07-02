@@ -9,17 +9,23 @@ export const REMOVE_NOTIFICATION_FROM_STATE = '[DOC] REMOVE_NOTIFICATION_FROM_ST
 
 export const increaseLoaderCount = (feature: Feature): Action => ({
     type: `${feature} ${INCREASE_LOADER_COUNT_ON_STATE}`,
-    feature,
+    meta: {
+        feature,
+    },
 })
 
 export const decreaseLoaderCount = (feature: Feature): Action => ({
     type: `${feature} ${DECREASE_LOADER_COUNT_ON_STATE}`,
-    feature,
+    meta: {
+        feature,
+    },
 })
 
 export const deleteNotification = (notificationId: NotificationId, feature: Feature): Action => ({
     type: `${feature} ${DELETE_NOTIFICATION}`,
-    feature,
+    meta: {
+        feature,
+    },
     payload: {
         notificationId,
     },
@@ -27,7 +33,9 @@ export const deleteNotification = (notificationId: NotificationId, feature: Feat
 
 export const addNotificationToState = (notification: Notification, feature: Feature): Action => ({
     type: `${feature} ${ADD_NOTIFICATION_TO_STATE}`,
-    feature,
+    meta: {
+        feature,
+    },
     payload: {
         notification,
     },
@@ -38,7 +46,9 @@ export const removeNotificationFromState = (
     feature: Feature,
 ): Action => ({
     type: `${feature} ${REMOVE_NOTIFICATION_FROM_STATE}`,
-    feature,
+    meta: {
+        feature,
+    },
     payload: {
         notificationId,
     },

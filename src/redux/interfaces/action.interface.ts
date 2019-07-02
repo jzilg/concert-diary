@@ -5,9 +5,9 @@ export type Feature = string
 
 export default interface Action<Payload = {}> {
     type: string
-    feature: Feature
     payload?: Payload
-    meta?: {
+    meta: {
+        feature: Feature
         api?: ApiRequestOptions
         ui?: UiOptions
     }

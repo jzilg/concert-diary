@@ -16,13 +16,19 @@ export interface ApiAction extends Action {
 
 export const apiRequest = (apiRequestOptions: ApiRequestOptions, feature: Feature): ApiAction => ({
     type: `${feature} ${API_REQUEST}`,
-    feature,
-    payload: { ...apiRequestOptions },
+    meta: {
+        feature,
+    },
+    payload: {
+        ...apiRequestOptions,
+    },
 })
 
 export const apiSuccess = (successAction: Function, data: object, feature: Feature): Action => ({
     type: `${feature} ${API_SUCCESS}`,
-    feature,
+    meta: {
+        feature,
+    },
     payload: {
         successAction,
         data,
@@ -31,7 +37,9 @@ export const apiSuccess = (successAction: Function, data: object, feature: Featu
 
 export const apiError = (errorMsg: string, feature: Feature): Action => ({
     type: `${feature} ${API_ERROR}`,
-    feature,
+    meta: {
+        feature,
+    },
     payload: {
         errorMsg,
     },

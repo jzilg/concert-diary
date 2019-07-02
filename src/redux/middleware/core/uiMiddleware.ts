@@ -35,7 +35,7 @@ const uiMiddleware = ({ dispatch }) => next => (action: UiAction) => {
     next(action)
 
     if (action.type.includes(DELETE_NOTIFICATION)) {
-        dispatch(removeNotificationFromState(action.payload.notificationId, action.feature))
+        dispatch(removeNotificationFromState(action.payload.notificationId, action.meta.feature))
     }
 
     if (!action.meta || !action.meta.ui) {
@@ -43,7 +43,7 @@ const uiMiddleware = ({ dispatch }) => next => (action: UiAction) => {
     }
 
     if (action.meta.ui.showLoader !== undefined) {
-        dispatch(increaseLoaderCount(action.feature))
+        dispatch(increaseLoaderCount(action.meta.feature))
     }
 
     if (action.meta.ui.notification) {
@@ -53,12 +53,12 @@ const uiMiddleware = ({ dispatch }) => next => (action: UiAction) => {
             ...action.meta.ui.notification,
         }
 
-        dispatch(addNotificationToState(notification, action.feature))
+        dispatch(addNotificationToState(notification, action.meta.feature))
 
         const { duration } = action.meta.ui.notification
         if (duration) {
             setTimeout(() => {
-                dispatch(removeNotificationFromState(id, action.feature))
+                dispatch(removeNotificationFromState(id, action.meta.feature))
             }, duration)
         }
     }

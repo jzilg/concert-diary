@@ -30,7 +30,9 @@ export type FestivalsAction = Action<FestivalsPayloads>
 
 export const addFestivalsToState = (festivals: Festivals): Action<FestivalsPayload> => ({
     type: ADD_FESTIVALS_TO_STATE,
-    feature: FESTIVALS,
+    meta: {
+        feature: FESTIVALS,
+    },
     payload: {
         festivals,
     },
@@ -38,8 +40,8 @@ export const addFestivalsToState = (festivals: Festivals): Action<FestivalsPaylo
 
 export const fetchFestivals = (): Action => ({
     type: FETCH_FESTIVALS,
-    feature: FESTIVALS,
     meta: {
+        feature: FESTIVALS,
         api: {
             url: `${API_URL}/festivals`,
             method: 'GET',
@@ -50,7 +52,9 @@ export const fetchFestivals = (): Action => ({
 
 export const addFestivalToState = (festival: Festival): Action<FestivalPayload> => ({
     type: ADD_FESTIVAL_TO_STATE,
-    feature: FESTIVALS,
+    meta: {
+        feature: FESTIVALS,
+    },
     payload: {
         festival,
     },
@@ -58,8 +62,8 @@ export const addFestivalToState = (festival: Festival): Action<FestivalPayload> 
 
 export const postFestival = (festival: Festival): FestivalsAction => ({
     type: POST_FESTIVAL,
-    feature: FESTIVALS,
     meta: {
+        feature: FESTIVALS,
         api: {
             url: `${API_URL}/festivals`,
             method: 'POST',
@@ -71,7 +75,9 @@ export const postFestival = (festival: Festival): FestivalsAction => ({
 
 export const updateFestivalOnState = (festival: Festival): Action<FestivalPayload> => ({
     type: UPDATE_FESTIVAL_ON_STATE,
-    feature: FESTIVALS,
+    meta: {
+        feature: FESTIVALS,
+    },
     payload: {
         festival,
     },
@@ -79,8 +85,8 @@ export const updateFestivalOnState = (festival: Festival): Action<FestivalPayloa
 
 export const putFestival = (festival: Festival): Action => ({
     type: PUT_FESTIVAL,
-    feature: FESTIVALS,
     meta: {
+        feature: FESTIVALS,
         api: {
             url: `${API_URL}/festivals/${festival.id}`,
             method: 'PUT',
@@ -92,7 +98,9 @@ export const putFestival = (festival: Festival): Action => ({
 
 export const removeFestivalFromState = (festivalId: FestivalId): Action<FestivalIdPayload> => ({
     type: REMOVE_FESTIVAL_FROM_STATE,
-    feature: FESTIVALS,
+    meta: {
+        feature: FESTIVALS,
+    },
     payload: {
         festivalId,
     },
@@ -100,8 +108,8 @@ export const removeFestivalFromState = (festivalId: FestivalId): Action<Festival
 
 export const deleteFestival = (festivalId: FestivalId): Action => ({
     type: DELETE_FESTIVAL,
-    feature: FESTIVALS,
     meta: {
+        feature: FESTIVALS,
         api: {
             url: `${API_URL}/festivals/${festivalId}`,
             method: 'DELETE',

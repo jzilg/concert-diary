@@ -30,7 +30,9 @@ export type ConcertsAction = Action<ConcertsPayloads>
 
 export const addConcertsToState = (concerts: Concerts): Action<ConcertsPayload> => ({
     type: ADD_CONCERTS_TO_STATE,
-    feature: CONCERTS,
+    meta: {
+        feature: CONCERTS,
+    },
     payload: {
         concerts,
     },
@@ -38,8 +40,8 @@ export const addConcertsToState = (concerts: Concerts): Action<ConcertsPayload> 
 
 export const fetchConcerts = (): Action => ({
     type: FETCH_CONCERTS,
-    feature: CONCERTS,
     meta: {
+        feature: CONCERTS,
         api: {
             url: `${API_URL}/concerts`,
             method: 'GET',
@@ -50,7 +52,9 @@ export const fetchConcerts = (): Action => ({
 
 export const addConcertToState = (concert: Concert): Action<ConcertPayload> => ({
     type: ADD_CONCERT_TO_STATE,
-    feature: CONCERTS,
+    meta: {
+        feature: CONCERTS,
+    },
     payload: {
         concert,
     },
@@ -58,8 +62,8 @@ export const addConcertToState = (concert: Concert): Action<ConcertPayload> => (
 
 export const postConcert = (concert: Concert): Action => ({
     type: POST_CONCERT,
-    feature: CONCERTS,
     meta: {
+        feature: CONCERTS,
         api: {
             url: `${API_URL}/concerts`,
             method: 'POST',
@@ -71,7 +75,9 @@ export const postConcert = (concert: Concert): Action => ({
 
 export const updateConcertOnState = (concert: Concert): Action<ConcertPayload> => ({
     type: UPDATE_CONCERT_ON_STATE,
-    feature: CONCERTS,
+    meta: {
+        feature: CONCERTS,
+    },
     payload: {
         concert,
     },
@@ -79,8 +85,8 @@ export const updateConcertOnState = (concert: Concert): Action<ConcertPayload> =
 
 export const putConcert = (concert: Concert): Action => ({
     type: PUT_CONCERT,
-    feature: CONCERTS,
     meta: {
+        feature: CONCERTS,
         api: {
             url: `${API_URL}/concerts/${concert.id}`,
             method: 'PUT',
@@ -92,7 +98,9 @@ export const putConcert = (concert: Concert): Action => ({
 
 export const removeConcertFromState = (concertId: ConcertId): Action<ConcertIdPayload> => ({
     type: REMOVE_CONCERT_FROM_STATE,
-    feature: CONCERTS,
+    meta: {
+        feature: CONCERTS,
+    },
     payload: {
         concertId,
     },
@@ -100,8 +108,8 @@ export const removeConcertFromState = (concertId: ConcertId): Action<ConcertIdPa
 
 export const deleteConcert = (concertId: ConcertId): Action => ({
     type: DELETE_CONCERT,
-    feature: CONCERTS,
     meta: {
+        feature: CONCERTS,
         api: {
             url: `${API_URL}/concerts/${concertId}`,
             method: 'DELETE',

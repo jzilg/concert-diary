@@ -20,7 +20,7 @@ const apiMiddleware = ({ dispatch }) => next => (action: ApiAction) => {
     next(action)
 
     if (action.meta && action.meta.api) {
-        dispatch(apiRequest(action.meta.api, action.feature))
+        dispatch(apiRequest(action.meta.api, action.meta.feature))
         return
     }
 
@@ -36,8 +36,8 @@ const apiMiddleware = ({ dispatch }) => next => (action: ApiAction) => {
 
         fetch(url, options)
             .then(response => response.json())
-            .then(data => dispatch(apiSuccess(successAction, data, action.feature)))
-            .catch(error => dispatch(apiError(error.message, action.feature)))
+            .then(data => dispatch(apiSuccess(successAction, data, action.meta.feature)))
+            .catch(error => dispatch(apiError(error.message, action.meta.feature)))
 
         return
     }
