@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Concerts } from '../entities/Concert.interface'
 import { Festivals } from '../entities/Festival.interface'
 import State from '../redux/interfaces/state.interface'
-import NavigationLinks from '../components/NavigationLinks'
+import NavigationLinks from '../components/navigation-links'
 
 interface Props extends StateProps {}
 

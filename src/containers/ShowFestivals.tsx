@@ -6,7 +6,7 @@ import festivalsSortedByDateSelector from '../redux/selectors/festivalsSortedByD
 import { deleteFestival as deleteFestivalActionCreator } from '../redux/actions/app/festivals.actions'
 import Navigation from './Navigation'
 import LoadData from './LoadData'
-import FestivalsTable from '../components/FestivalsTable'
+import FestivalsTable from '../components/festivals-table'
 
 interface Props extends StateProps, DispatchProps {}
 

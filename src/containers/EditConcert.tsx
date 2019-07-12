@@ -5,7 +5,7 @@ import Concert from '../entities/Concert.interface'
 import { postConcert, putConcert } from '../redux/actions/app/concerts.actions'
 import Navigation from './Navigation'
 import LoadData from './LoadData'
-import ConcertForm from '../components/ConcertForm'
+import ConcertForm from '../components/concert-form'
 import todaysDate from '../utils/todaysDate'
 
 interface Props extends StateProps, DispatchProps {}

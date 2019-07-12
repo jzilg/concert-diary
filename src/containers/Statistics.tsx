@@ -7,8 +7,8 @@ import numOfFestivalsSelector from '../redux/selectors/numOfFestivalsSelector'
 import numOfLocationsSelector from '../redux/selectors/numOfLocationsSelector'
 import Navigation from './Navigation'
 import LoadData from './LoadData'
-import MostSeenBands from '../components/MostSeenBands'
-import GeneralStatistics from '../components/GeneralStatistics'
+import MostSeenBands from '../components/most-seen-bands'
+import GeneralStatistics from '../components/general-statistics'
 
 interface Props extends StateProps {}
 

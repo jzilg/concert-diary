@@ -6,7 +6,7 @@ import concertsSortedByDateSelector from '../redux/selectors/concertsSortedByDat
 import { deleteConcert as deleteConcertActionCreator } from '../redux/actions/app/concerts.actions'
 import Navigation from './Navigation'
 import LoadData from './LoadData'
-import ConcertsTable from '../components/ConcertsTable'
+import ConcertsTable from '../components/concerts-table'
 
 interface Props extends StateProps, DispatchProps {}
 

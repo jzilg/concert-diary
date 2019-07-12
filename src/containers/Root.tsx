@@ -5,9 +5,9 @@ import State from '../redux/interfaces/state.interface'
 import { Notifications } from '../entities/Notification.interface'
 import isLoadingSelector from '../redux/selectors/isLoadingSelector'
 import { deleteNotification } from '../redux/actions/core/ui.actions'
-import Loader from '../components/Loader'
-import NotificationsList from '../components/NotificationsList'
-import Router from '../components/Router'
+import Loader from '../components/loader'
+import NotificationsList from '../components/notification-list'
+import Router from '../components/router'
 
 interface Props extends StateProps, DispatchProps {
     store: Store

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ReactElement } from 'react'
-import Concert from '../entities/Concert.interface'
-import ListInput from './ListInput'
+import Concert from '../../entities/Concert.interface'
+import ListInput from '../list-input'
 
 interface Props {
     concert: Concert

@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react'
 import { ConnectedRouter } from 'connected-react-router'
 import { Route, Switch } from 'react-router-dom'
-import history from '../history'
-import ShowConcerts from '../containers/ShowConcerts'
-import EditConcert from '../containers/EditConcert'
-import ShowFestivals from '../containers/ShowFestivals'
-import EditFestival from '../containers/EditFestival'
-import Statistics from '../containers/Statistics'
+import history from '../../history'
+import ShowConcerts from '../../containers/ShowConcerts'
+import EditConcert from '../../containers/EditConcert'
+import ShowFestivals from '../../containers/ShowFestivals'
+import EditFestival from '../../containers/EditFestival'
+import Statistics from '../../containers/Statistics'
 
 function Router(): ReactElement {
     return (

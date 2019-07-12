@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
-import Concert, { Concerts } from '../entities/Concert.interface'
+import Concert, { Concerts } from '../../entities/Concert.interface'
 import style from './concertsTable.scss'
 
 interface Props {

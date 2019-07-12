@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import Notification from '../entities/Notification.interface'
+import Notification from '../../entities/Notification.interface'
 import style from './notificationsList.scss'
 
 interface Props {

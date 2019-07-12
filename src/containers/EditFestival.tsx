@@ -5,7 +5,7 @@ import Festival from '../entities/Festival.interface'
 import { postFestival, putFestival } from '../redux/actions/app/festivals.actions'
 import Navigation from './Navigation'
 import LoadData from './LoadData'
-import FestivalForm from '../components/FestivalForm'
+import FestivalForm from '../components/festival-form'
 
 interface Props extends StateProps, DispatchProps {}
 
