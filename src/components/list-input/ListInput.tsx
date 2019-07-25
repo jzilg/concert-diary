@@ -1,8 +1,10 @@
 import React, { useState, useEffect, ReactElement } from 'react'
 
+export type InputList = string[]
+
 interface Props {
-    list: string[]
-    onChange: (list: string[]) => void
+    list: InputList
+    onChange: (list: InputList) => void
     placeholder?: string
 }
 
@@ -18,7 +20,7 @@ function ListInput(props: Props): ReactElement {
 
     function changeHandler(event): void {
         const newValueString = event.target.value
-        const newList: string[] = newValueString
+        const newList: InputList = newValueString
             .replace(/( )*,( )*/g, separator) // remove extra spaces around comma
             .split(separator)
         setValueString(newValueString)
