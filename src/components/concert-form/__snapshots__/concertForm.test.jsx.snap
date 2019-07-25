@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading should render correctly 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <label>
+    <span>
+      Band
+    </span>
+    <input
+      onChange={[Function]}
+      placeholder="Pink Floyd"
+      type="text"
+      value="The Cure"
+    />
+  </label>
+  <label>
+    <span>
+      Support
+    </span>
+    <ListInput
+      list={
+        Array [
+          "Talking Heads",
+        ]
+      }
+      onChange={[Function]}
+      placeholder="The Cure, Talking Heads,..."
+    />
+  </label>
+  <label>
+    <span>
+      Location
+    </span>
+    <input
+      onChange={[Function]}
+      placeholder="Wuhlheide"
+      type="text"
+      value="C-Halle"
+    />
+  </label>
+  <label>
+    <span>
+      Date
+    </span>
+    <input
+      onChange={[Function]}
+      type="date"
+      value="2019-04-17"
+    />
+  </label>
+  <label>
+    <span>
+      Companions
+    </span>
+    <ListInput
+      list={
+        Array [
+          "Max",
+          "Peter",
+          "Julia",
+        ]
+      }
+      onChange={[Function]}
+      placeholder="Leo, Max, Peter,..."
+    />
+  </label>
+  <button
+    type="submit"
+  >
+    Save
+  </button>
+</form>
+`;

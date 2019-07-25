@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "band": "The Cure",
+    "supportBands": [
+      "Talking Heads"
+    ],
+    "location": "C-Halle",
+    "date": "2019-04-17",
+    "companions": [
+      "Max",
+      "Peter",
+      "Julia"
+    ]
+  },
+  {
+    "id": 2,
+    "band": "Metallica",
+    "supportBands": [
+      "Tool",
+      "Slayer",
+      "Rammstein"
+    ],
+    "location": "Wuhlheide",
+    "date": "2000-11-01",
+    "companions": [
+      "Peter",
+      "Matze",
+      "Leo"
+    ]
+  },
+  {
+    "id": 4,
+    "band": "The Smiths",
+    "supportBands": [
+      "Depeche Mode"
+    ],
+    "location": "C-Halle",
+    "date": "2019-04-01",
+    "companions": []
+  }
+]
