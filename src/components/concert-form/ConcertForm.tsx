@@ -1,6 +1,8 @@
-import React, { useState, useEffect, ReactElement } from 'react'
+import React, { useEffect, ReactElement } from 'react'
 import Concert from '../../entities/Concert.interface'
 import ListInput from '../list-input'
+import useFormInput from '../../hooks/useFormInput'
+import useListInput from '../../hooks/useListInput'
 
 interface Props {
     concert: Concert
@@ -11,11 +13,11 @@ interface Props {
 function ConcertForm(props: Props): ReactElement {
     const { concert, saveConcert, goToConcerts } = props
 
-    const [band, setBand] = useState(concert.band)
-    const [supportBands, setSupportBands] = useState(concert.supportBands)
-    const [location, setLocation] = useState(concert.location)
-    const [date, setDate] = useState(concert.date)
-    const [companions, setCompanions] = useState(concert.companions)
+    const [band, onBandInputChange, setBand] = useFormInput(concert.band)
+    const [supportBands, onSupportBandChange, setSupportBands] = useListInput(concert.supportBands)
+    const [location, onLocationInputChange, setLocation] = useFormInput(concert.location)
+    const [date, onDateInputChange, setDate] = useFormInput(concert.date)
+    const [companions, onCompanionsChange, setCompanions] = useListInput(concert.companions)
 
     useEffect(() => {
         setBand(concert.band)
@@ -45,7 +47,7 @@ function ConcertForm(props: Props): ReactElement {
                 <input
                     type="text"
                     value={band}
-                    onChange={event => setBand(event.target.value)}
+                    onChange={onBandInputChange}
                     placeholder="Pink Floyd"
                 />
             </label>
@@ -53,7 +55,7 @@ function ConcertForm(props: Props): ReactElement {
                 <span>Support</span>
                 <ListInput
                     list={supportBands}
-                    onChange={list => setSupportBands(list)}
+                    onChange={onSupportBandChange}
                     placeholder="The Cure, Talking Heads,..."
                 />
             </label>
@@ -62,7 +64,7 @@ function ConcertForm(props: Props): ReactElement {
                 <input
                     type="text"
                     value={location}
-                    onChange={event => setLocation(event.target.value)}
+                    onChange={onLocationInputChange}
                     placeholder="Wuhlheide"
                 />
             </label>
@@ -71,14 +73,14 @@ function ConcertForm(props: Props): ReactElement {
                 <input
                     type="date"
                     value={date}
-                    onChange={event => setDate(event.target.value)}
+                    onChange={onDateInputChange}
                 />
             </label>
             <label>
                 <span>Companions</span>
                 <ListInput
                     list={companions}
-                    onChange={list => setCompanions(list)}
+                    onChange={onCompanionsChange}
                     placeholder="Leo, Max, Peter,..."
                 />
             </label>

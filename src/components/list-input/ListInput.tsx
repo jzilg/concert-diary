@@ -2,7 +2,7 @@ import React, { useState, useEffect, ReactElement } from 'react'
 
 interface Props {
     list: string[]
-    onChange: (event) => void
+    onChange: (list: string[]) => void
     placeholder?: string
 }
 
