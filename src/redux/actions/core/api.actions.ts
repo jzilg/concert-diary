@@ -14,33 +14,39 @@ export interface ApiAction extends Action {
     payload: ApiActionPayload
 }
 
-export const apiRequest = (apiRequestOptions: ApiRequestOptions, feature: Feature): ApiAction => ({
-    type: `${feature} ${API_REQUEST}`,
-    meta: {
-        feature,
-    },
-    payload: {
-        ...apiRequestOptions,
-    },
-})
+export function apiRequest(apiRequestOptions: ApiRequestOptions, feature: Feature): ApiAction {
+    return {
+        type: `${feature} ${API_REQUEST}`,
+        meta: {
+            feature,
+        },
+        payload: {
+            ...apiRequestOptions,
+        },
+    }
+}
 
-export const apiSuccess = (successAction: Function, data: object, feature: Feature): Action => ({
-    type: `${feature} ${API_SUCCESS}`,
-    meta: {
-        feature,
-    },
-    payload: {
-        successAction,
-        data,
-    },
-})
+export function apiSuccess(successAction: Function, data: object, feature: Feature): Action {
+    return {
+        type: `${feature} ${API_SUCCESS}`,
+        meta: {
+            feature,
+        },
+        payload: {
+            successAction,
+            data,
+        },
+    }
+}
 
-export const apiError = (errorMsg: string, feature: Feature): Action => ({
-    type: `${feature} ${API_ERROR}`,
-    meta: {
-        feature,
-    },
-    payload: {
-        errorMsg,
-    },
-})
+export function apiError(errorMsg: string, feature: Feature): Action {
+    return {
+        type: `${feature} ${API_ERROR}`,
+        meta: {
+            feature,
+        },
+        payload: {
+            errorMsg,
+        },
+    }
+}

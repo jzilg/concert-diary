@@ -1,13 +1,11 @@
 import Action from '../../interfaces/action.interface'
 import Concert, { Concerts, ConcertId } from '../../../entities/Concert.interface'
-import API_URL from '../../../constants/api'
 
-const CONCERTS = '[Concerts]'
+export const CONCERTS = '[Concerts]'
 
 export const FETCH_CONCERTS = `${CONCERTS} [CMD] FETCH`
 export const ADD_CONCERTS_TO_STATE = `${CONCERTS} [DOC] ADD_TO_STATE`
 export const POST_CONCERT = `${CONCERTS} [CMD] POST`
-export const ADD_CONCERT_TO_STATE = `${CONCERTS} [DOC] ADD_TO_STATE`
 export const PUT_CONCERT = `${CONCERTS} [CMD] PUT`
 export const UPDATE_CONCERT_ON_STATE = `${CONCERTS} [DOC] UPDATE_ON_STATE`
 export const DELETE_CONCERT = `${CONCERTS} [CMD] DELETE`
@@ -28,92 +26,66 @@ interface ConcertIdPayload {
 interface ConcertsPayloads extends ConcertsPayload, ConcertPayload, ConcertIdPayload {}
 export type ConcertsAction = Action<ConcertsPayloads>
 
-export const addConcertsToState = (concerts: Concerts): Action<ConcertsPayload> => ({
-    type: ADD_CONCERTS_TO_STATE,
-    meta: {
-        feature: CONCERTS,
-    },
-    payload: {
-        concerts,
-    },
-})
-
-export const fetchConcerts = (): Action => ({
-    type: FETCH_CONCERTS,
-    meta: {
-        feature: CONCERTS,
-        api: {
-            url: `${API_URL}/concerts`,
-            method: 'GET',
-            successAction: addConcertsToState,
+export function addConcertsToState(concerts: Concerts): Action<ConcertsPayload> {
+    return {
+        type: ADD_CONCERTS_TO_STATE,
+        payload: {
+            concerts,
         },
-    },
-})
+    }
+}
 
-export const addConcertToState = (concert: Concert): Action<ConcertPayload> => ({
-    type: ADD_CONCERT_TO_STATE,
-    meta: {
-        feature: CONCERTS,
-    },
-    payload: {
-        concert,
-    },
-})
+export function fetchConcerts(): Action {
+    return {
+        type: FETCH_CONCERTS,
+    }
+}
 
-export const postConcert = (concert: Concert): Action => ({
-    type: POST_CONCERT,
-    meta: {
-        feature: CONCERTS,
-        api: {
-            url: `${API_URL}/concerts`,
-            method: 'POST',
-            body: JSON.stringify(concert),
-            successAction: addConcertToState,
+export function addConcertToState(concert: Concert): Action<ConcertsPayload> {
+    return addConcertsToState([concert])
+}
+
+export function postConcert(concert: Concert): Action<ConcertPayload> {
+    return {
+        type: POST_CONCERT,
+        payload: {
+            concert,
         },
-    },
-})
+    }
+}
 
-export const updateConcertOnState = (concert: Concert): Action<ConcertPayload> => ({
-    type: UPDATE_CONCERT_ON_STATE,
-    meta: {
-        feature: CONCERTS,
-    },
-    payload: {
-        concert,
-    },
-})
-
-export const putConcert = (concert: Concert): Action => ({
-    type: PUT_CONCERT,
-    meta: {
-        feature: CONCERTS,
-        api: {
-            url: `${API_URL}/concerts/${concert.id}`,
-            method: 'PUT',
-            body: JSON.stringify(concert),
-            successAction: updateConcertOnState,
+export function updateConcertOnState(concert: Concert): Action<ConcertPayload> {
+    return {
+        type: UPDATE_CONCERT_ON_STATE,
+        payload: {
+            concert,
         },
-    },
-})
+    }
+}
 
-export const removeConcertFromState = (concertId: ConcertId): Action<ConcertIdPayload> => ({
-    type: REMOVE_CONCERT_FROM_STATE,
-    meta: {
-        feature: CONCERTS,
-    },
-    payload: {
-        concertId,
-    },
-})
-
-export const deleteConcert = (concertId: ConcertId): Action => ({
-    type: DELETE_CONCERT,
-    meta: {
-        feature: CONCERTS,
-        api: {
-            url: `${API_URL}/concerts/${concertId}`,
-            method: 'DELETE',
-            successAction: removeConcertFromState.bind(this, concertId),
+export function putConcert(concert: Concert): Action<ConcertPayload> {
+    return {
+        type: PUT_CONCERT,
+        payload: {
+            concert,
         },
-    },
-})
+    }
+}
+
+export function removeConcertFromState(concertId: ConcertId): Action<ConcertIdPayload> {
+    return {
+        type: REMOVE_CONCERT_FROM_STATE,
+        payload: {
+            concertId,
+        },
+    }
+}
+
+export function deleteConcert(concertId: ConcertId): Action<ConcertIdPayload> {
+    return {
+        type: DELETE_CONCERT,
+        payload: {
+            concertId,
+        },
+    }
+}

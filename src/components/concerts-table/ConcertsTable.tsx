@@ -12,6 +12,10 @@ interface Props {
 function ConcertsTable(props: Props): ReactElement {
     const { concerts, deleteConcert } = props
 
+    if (concerts.length === 0) {
+        return null
+    }
+
     const rowElements = concerts.map((concert: Concert) => {
         const { id, band, location } = concert
         const supportBands = concert.supportBands.join(', ')

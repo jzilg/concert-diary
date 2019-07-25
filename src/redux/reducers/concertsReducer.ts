@@ -1,10 +1,9 @@
 import { Concerts } from '../../entities/Concert.interface'
 import {
     ConcertsAction,
-    ADD_CONCERT_TO_STATE,
+    ADD_CONCERTS_TO_STATE,
     UPDATE_CONCERT_ON_STATE,
     REMOVE_CONCERT_FROM_STATE,
-    ADD_CONCERTS_TO_STATE,
 } from '../actions/app/concerts.actions'
 
 export type ConcertsState = Concerts
@@ -17,16 +16,7 @@ function concertsReducer(
 ): ConcertsState {
     switch (action.type) {
         case ADD_CONCERTS_TO_STATE: {
-            return [
-                ...state,
-                ...action.payload.concerts,
-            ]
-        }
-        case ADD_CONCERT_TO_STATE: {
-            return [
-                ...state,
-                action.payload.concert,
-            ]
+            return state.concat(action.payload.concerts)
         }
         case UPDATE_CONCERT_ON_STATE: {
             return state.map((concertFromState) => {

@@ -1,12 +1,11 @@
-import uniqid from 'uniqid'
-import Notification from '../../../entities/Notification.interface'
 import {
     ApiAction,
     API_REQUEST,
     API_SUCCESS,
     API_ERROR,
 } from '../../actions/core/api.actions'
-import { increaseLoaderCount, decreaseLoaderCount, addNotificationToState } from '../../actions/core/ui.actions'
+import { NotificationOptions } from '../../../entities/Notification.interface'
+import { increaseLoaderCount, decreaseLoaderCount, createNotification } from '../../actions/core/ui.actions'
 
 const apiUiMiddleware = ({ dispatch }) => next => (action: ApiAction) => {
     next(action)
@@ -22,12 +21,11 @@ const apiUiMiddleware = ({ dispatch }) => next => (action: ApiAction) => {
     if (action.type.includes(API_ERROR)) {
         dispatch(decreaseLoaderCount(action.meta.feature))
 
-        const notification: Notification = {
-            id: uniqid(),
+        const notificationOptions: NotificationOptions = {
             type: 'error',
             message: action.payload.errorMsg,
         }
-        dispatch(addNotificationToState(notification, action.meta.feature))
+        dispatch(createNotification(notificationOptions, action.meta.feature))
     }
 }
 

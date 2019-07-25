@@ -1,10 +1,9 @@
 import { Festivals } from '../../entities/Festival.interface'
 import {
     FestivalsAction,
-    ADD_FESTIVAL_TO_STATE,
+    ADD_FESTIVALS_TO_STATE,
     UPDATE_FESTIVAL_ON_STATE,
     REMOVE_FESTIVAL_FROM_STATE,
-    ADD_FESTIVALS_TO_STATE,
 } from '../actions/app/festivals.actions'
 
 export type FestivalsState = Festivals
@@ -17,16 +16,7 @@ function festivalsReducer(
 ): FestivalsState {
     switch (action.type) {
         case ADD_FESTIVALS_TO_STATE: {
-            return [
-                ...state,
-                ...action.payload.festivals,
-            ]
-        }
-        case ADD_FESTIVAL_TO_STATE: {
-            return [
-                ...state,
-                action.payload.festival,
-            ]
+            return state.concat(action.payload.festivals)
         }
         case UPDATE_FESTIVAL_ON_STATE: {
             return state.map((festivalFromState) => {

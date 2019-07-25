@@ -3,7 +3,6 @@ import {
     ApiAction,
     API_REQUEST,
     API_SUCCESS,
-    apiRequest,
     apiSuccess,
     apiError,
 } from '../../actions/core/api.actions'
@@ -18,11 +17,6 @@ export interface ApiRequestOptions {
 
 const apiMiddleware = ({ dispatch }) => next => (action: ApiAction) => {
     next(action)
-
-    if (action.meta && action.meta.api) {
-        dispatch(apiRequest(action.meta.api, action.meta.feature))
-        return
-    }
 
     if (action.type.includes(API_REQUEST)) {
         const {

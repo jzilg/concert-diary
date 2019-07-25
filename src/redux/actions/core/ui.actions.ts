@@ -1,55 +1,89 @@
 import Action, { Feature } from '../../interfaces/action.interface'
-import Notification, { NotificationId } from '../../../entities/Notification.interface'
+import Notification, { NotificationId, NotificationOptions } from '../../../entities/Notification.interface'
 
 export const INCREASE_LOADER_COUNT_ON_STATE = '[DOC] INCREASE_LOADER_COUNT_ON_STATE'
 export const DECREASE_LOADER_COUNT_ON_STATE = '[DOC] DECREASE_LOADER_COUNT_ON_STATE'
+export const CREATE_NOTIFICATION = '[CMD] CREATE_NOTIFICATION'
 export const DELETE_NOTIFICATION = '[CMD] DELETE_NOTIFICATION'
 export const ADD_NOTIFICATION_TO_STATE = '[DOC] ADD_NOTIFICATION_TO_STATE'
 export const REMOVE_NOTIFICATION_FROM_STATE = '[DOC] REMOVE_NOTIFICATION_FROM_STATE'
 
-export const increaseLoaderCount = (feature: Feature): Action => ({
-    type: `${feature} ${INCREASE_LOADER_COUNT_ON_STATE}`,
-    meta: {
-        feature,
-    },
-})
+export interface UiAction extends Action {
+    payload?: {
+        notificationOptions?: NotificationOptions
+        notification?: Notification
+        notificationId?: NotificationId
+    }
+}
 
-export const decreaseLoaderCount = (feature: Feature): Action => ({
-    type: `${feature} ${DECREASE_LOADER_COUNT_ON_STATE}`,
-    meta: {
-        feature,
-    },
-})
+export function increaseLoaderCount(feature: Feature): Action {
+    return {
+        type: `${feature} ${INCREASE_LOADER_COUNT_ON_STATE}`,
+        meta: {
+            feature,
+        },
+    }
+}
 
-export const deleteNotification = (notificationId: NotificationId, feature: Feature): Action => ({
-    type: `${feature} ${DELETE_NOTIFICATION}`,
-    meta: {
-        feature,
-    },
-    payload: {
-        notificationId,
-    },
-})
+export function decreaseLoaderCount(feature: Feature): Action {
+    return {
+        type: `${feature} ${DECREASE_LOADER_COUNT_ON_STATE}`,
+        meta: {
+            feature,
+        },
+    }
+}
 
-export const addNotificationToState = (notification: Notification, feature: Feature): Action => ({
-    type: `${feature} ${ADD_NOTIFICATION_TO_STATE}`,
-    meta: {
-        feature,
-    },
-    payload: {
-        notification,
-    },
-})
+export function deleteNotification(notificationId: NotificationId, feature: Feature): UiAction {
+    return {
+        type: `${feature} ${DELETE_NOTIFICATION}`,
+        meta: {
+            feature,
+        },
+        payload: {
+            notificationId,
+        },
+    }
+}
 
-export const removeNotificationFromState = (
+export function createNotification(
+    notificationOptions: NotificationOptions,
+    feature: Feature,
+): UiAction {
+    return {
+        type: `${feature} ${CREATE_NOTIFICATION}`,
+        meta: {
+            feature,
+        },
+        payload: {
+            notificationOptions,
+        },
+    }
+}
+
+export function addNotificationToState(notification: Notification, feature: Feature): UiAction {
+    return {
+        type: `${feature} ${ADD_NOTIFICATION_TO_STATE}`,
+        meta: {
+            feature,
+        },
+        payload: {
+            notification,
+        },
+    }
+}
+
+export function removeNotificationFromState(
     notificationId: NotificationId,
     feature: Feature,
-): Action => ({
-    type: `${feature} ${REMOVE_NOTIFICATION_FROM_STATE}`,
-    meta: {
-        feature,
-    },
-    payload: {
-        notificationId,
-    },
-})
+): UiAction {
+    return {
+        type: `${feature} ${REMOVE_NOTIFICATION_FROM_STATE}`,
+        meta: {
+            feature,
+        },
+        payload: {
+            notificationId,
+        },
+    }
+}
