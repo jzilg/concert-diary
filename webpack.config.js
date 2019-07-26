@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const Dotenv = require('dotenv-webpack')
 const dartSass = require('dart-sass')
 
 const isDevServer = process.argv[1].includes('webpack-dev-server')
@@ -99,6 +100,7 @@ module.exports = {
             chunkFilename: `${filename}.css`,
         }),
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+        new Dotenv(),
     ].filter(Boolean),
     devServer: {
         watchOptions: {

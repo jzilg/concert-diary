@@ -11,14 +11,13 @@ import {
     DELETE_CONCERT,
 } from '../../actions/app/concerts.actions'
 import { apiRequest } from '../../actions/core/api.actions'
-import API_URL from '../../../constants/api'
 
 const concertsMiddleware = ({ dispatch }) => next => (action: ConcertsAction) => {
     next(action)
 
     if (action.type === FETCH_CONCERTS) {
         dispatch(apiRequest({
-            url: `${API_URL}/concerts`,
+            url: `${process.env.API_URL}/concerts`,
             method: 'GET',
             successAction: addConcertsToState,
         }, CONCERTS))
@@ -29,7 +28,7 @@ const concertsMiddleware = ({ dispatch }) => next => (action: ConcertsAction) =>
     if (action.type === POST_CONCERT) {
         const { concert } = action.payload
         next(apiRequest({
-            url: `${API_URL}/concerts`,
+            url: `${process.env.API_URL}/concerts`,
             method: 'POST',
             body: JSON.stringify(concert),
             successAction: addConcertToState,
@@ -41,7 +40,7 @@ const concertsMiddleware = ({ dispatch }) => next => (action: ConcertsAction) =>
     if (action.type === PUT_CONCERT) {
         const { concert } = action.payload
         dispatch(apiRequest({
-            url: `${API_URL}/concerts/${concert.id}`,
+            url: `${process.env.API_URL}/concerts/${concert.id}`,
             method: 'PUT',
             body: JSON.stringify(concert),
             successAction: updateConcertOnState,
@@ -53,7 +52,7 @@ const concertsMiddleware = ({ dispatch }) => next => (action: ConcertsAction) =>
     if (action.type === DELETE_CONCERT) {
         const { concertId } = action.payload
         dispatch(apiRequest({
-            url: `${API_URL}/concerts/${concertId}`,
+            url: `${process.env.API_URL}/concerts/${concertId}`,
             method: 'DELETE',
             successAction: removeConcertFromState.bind(this, concertId),
         }, CONCERTS))
