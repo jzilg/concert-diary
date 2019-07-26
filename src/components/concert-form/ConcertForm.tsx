@@ -14,10 +14,14 @@ function ConcertForm(props: Props): ReactElement {
     const { concert, saveConcert, goToConcerts } = props
 
     const [band, onBandInputChange, setBand] = useFormInput(concert.band)
-    const [supportBands, onSupportBandChange, setSupportBands] = useListInput(concert.supportBands)
     const [location, onLocationInputChange, setLocation] = useFormInput(concert.location)
     const [date, onDateInputChange, setDate] = useFormInput(concert.date)
-    const [companions, onCompanionsChange, setCompanions] = useListInput(concert.companions)
+    const [companions, onCompanionsInputChange, setCompanions] = useListInput(concert.companions)
+    const [
+        supportBands,
+        onSupportBandInputChange,
+        setSupportBands,
+    ] = useListInput(concert.supportBands)
 
     useEffect(() => {
         setBand(concert.band)
@@ -55,7 +59,7 @@ function ConcertForm(props: Props): ReactElement {
                 <span>Support</span>
                 <ListInput
                     list={supportBands}
-                    onChange={onSupportBandChange}
+                    onChange={onSupportBandInputChange}
                     placeholder="The Cure, Talking Heads,..."
                 />
             </label>
@@ -80,7 +84,7 @@ function ConcertForm(props: Props): ReactElement {
                 <span>Companions</span>
                 <ListInput
                     list={companions}
-                    onChange={onCompanionsChange}
+                    onChange={onCompanionsInputChange}
                     placeholder="Leo, Max, Peter,..."
                 />
             </label>

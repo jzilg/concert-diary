@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { InputList } from '../components/list-input/ListInput'
 
-function useListInput(initialValue): [InputList, (list: InputList) => void, Function] {
-    const [value, setValue]: [InputList, Function] = useState(initialValue)
+type SetValue = (value) => void
+
+function useListInput(initialValue): [InputList, (list: InputList) => void, SetValue] {
+    const [value, setValue]: [InputList, SetValue] = useState(initialValue)
 
     function handleChange(list: InputList): void {
         setValue(list)
