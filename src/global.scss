@@ -37,6 +37,13 @@ caption {
     text-align: left;
 }
 
+th {
+    position: sticky;
+    top: 0;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--gray);
+}
+
 :global {
     .no-list-style {
         margin-top: 0;
