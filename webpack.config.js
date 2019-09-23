@@ -22,7 +22,7 @@ module.exports = {
     output: {
         path: path.resolve('dist'),
         filename: `${filename}.js`,
-        publicPath: isDevServer ? '/' : './',
+        publicPath: '/',
     },
     resolve: {
         extensions: [
