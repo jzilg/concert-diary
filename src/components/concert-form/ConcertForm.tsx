@@ -29,7 +29,7 @@ function ConcertForm(props: Props): ReactElement {
         setLocation(concert.location)
         setDate(concert.date)
         setCompanions(concert.companions)
-    }, [concert])
+    }, [concert, setBand, setCompanions, setDate, setLocation, setSupportBands])
 
     function handleSubmit(event): void {
         event.preventDefault()
