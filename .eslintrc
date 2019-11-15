@@ -22,6 +22,7 @@
   ],
   "rules": {
     "curly": ["error", "all"],
+    "function-paren-newline": ["error", "multiline"],
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": true
     }],
