@@ -18,7 +18,9 @@
     "start": "webpack-dev-server",
     "build": "webpack -p",
     "test": "jest",
-    "test:watch": "jest --watch --coverage"
+    "test-watch": "jest --watch --coverage",
+    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "eslint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
