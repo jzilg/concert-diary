@@ -1,3 +1,4 @@
+import { Store } from 'redux'
 import {
     FestivalsAction,
     addFestivalsToState,
@@ -12,8 +13,9 @@ import {
 } from '../../actions/app/festivals.actions'
 import { apiRequest } from '../../actions/core/api.actions'
 
-const festivalsMiddleware = ({ dispatch }) => next => (action: FestivalsAction) => {
+const festivalsMiddleware = (store: Store) => next => (action: FestivalsAction) => {
     next(action)
+    const { dispatch } = store
 
     if (action.type === FETCH_FESTIVALS) {
         dispatch(apiRequest({

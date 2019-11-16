@@ -1,3 +1,4 @@
+import { Store } from 'redux'
 import {
     ApiAction,
     API_REQUEST,
@@ -7,8 +8,9 @@ import {
 import { NotificationOptions } from '../../../entities/Notification.interface'
 import { increaseLoaderCount, decreaseLoaderCount, createNotification } from '../../actions/core/ui.actions'
 
-const apiUiMiddleware = ({ dispatch }) => next => (action: ApiAction) => {
+const apiUiMiddleware = (store: Store) => next => (action: ApiAction) => {
     next(action)
+    const { dispatch } = store
 
     if (action.type.includes(API_REQUEST)) {
         dispatch(increaseLoaderCount(action.meta.feature))
