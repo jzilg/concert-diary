@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
-import State from '../interfaces/state.interface'
+import State from '../interfaces/State'
 import { ConcertsState } from '../reducers/concertsReducer'
-import { Concerts } from '../../entities/Concert.interface'
+import { Concerts } from '../../entities/Concert'
 
 const concertsSelector = (state: State): ConcertsState => state.concerts
 

@@ -5,7 +5,7 @@ import {
     API_SUCCESS,
     API_ERROR,
 } from '../../actions/core/api.actions'
-import { NotificationOptions } from '../../../entities/Notification.interface'
+import { NotificationOptions } from '../../../entities/Notification'
 import { increaseLoaderCount, decreaseLoaderCount, createNotification } from '../../actions/core/ui.actions'
 
 const apiUiMiddleware = (store: Store) => next => (action: ApiAction) => {

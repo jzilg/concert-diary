@@ -1,4 +1,4 @@
-import Action, { Feature } from '../../interfaces/action.interface'
+import Action, { Feature } from '../../interfaces/Action'
 import { ApiRequestOptions } from '../../middleware/core/apiMiddleware'
 
 export const API_REQUEST = '[EVENT] API_REQUEST'

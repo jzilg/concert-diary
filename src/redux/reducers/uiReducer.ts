@@ -1,5 +1,5 @@
-import Action from '../interfaces/action.interface'
-import Notification, { NotificationId } from '../../entities/Notification.interface'
+import Action from '../interfaces/Action'
+import Notification, { NotificationId } from '../../entities/Notification'
 import {
     INCREASE_LOADER_COUNT_ON_STATE,
     DECREASE_LOADER_COUNT_ON_STATE,

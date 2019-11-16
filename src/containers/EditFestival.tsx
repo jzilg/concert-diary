@@ -1,7 +1,7 @@
 import React, { Fragment, ReactElement } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
-import Festival from '../entities/Festival.interface'
+import Festival from '../entities/Festival'
 import { postFestival, putFestival } from '../redux/actions/app/festivals.actions'
 import Navigation from './Navigation'
 import LoadData from './LoadData'

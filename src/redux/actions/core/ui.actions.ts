@@ -1,5 +1,5 @@
-import Action, { Feature } from '../../interfaces/action.interface'
-import Notification, { NotificationId, NotificationOptions } from '../../../entities/Notification.interface'
+import Action, { Feature } from '../../interfaces/Action'
+import Notification, { NotificationId, NotificationOptions } from '../../../entities/Notification'
 
 export const INCREASE_LOADER_COUNT_ON_STATE = '[DOC] INCREASE_LOADER_COUNT_ON_STATE'
 export const DECREASE_LOADER_COUNT_ON_STATE = '[DOC] DECREASE_LOADER_COUNT_ON_STATE'

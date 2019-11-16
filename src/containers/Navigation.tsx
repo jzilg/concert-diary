@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react'
 import { connect } from 'react-redux'
-import { Concerts } from '../entities/Concert.interface'
-import { Festivals } from '../entities/Festival.interface'
-import State from '../redux/interfaces/state.interface'
+import { Concerts } from '../entities/Concert'
+import { Festivals } from '../entities/Festival'
+import State from '../redux/interfaces/State'
 import NavigationLinks from '../components/navigation-links'
 
 interface Props extends StateProps {}

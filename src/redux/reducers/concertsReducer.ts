@@ -1,4 +1,4 @@
-import { Concerts } from '../../entities/Concert.interface'
+import { Concerts } from '../../entities/Concert'
 import {
     ConcertsAction,
     ADD_CONCERTS_TO_STATE,

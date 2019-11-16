@@ -1,5 +1,5 @@
 import React, { useEffect, ReactElement } from 'react'
-import Concert from '../../entities/Concert.interface'
+import Concert from '../../entities/Concert'
 import ListInput from '../list-input'
 import useFormInput from '../../hooks/useFormInput'
 import useListInput from '../../hooks/useListInput'

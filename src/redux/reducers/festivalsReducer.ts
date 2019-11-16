@@ -1,4 +1,4 @@
-import { Festivals } from '../../entities/Festival.interface'
+import { Festivals } from '../../entities/Festival'
 import {
     FestivalsAction,
     ADD_FESTIVALS_TO_STATE,

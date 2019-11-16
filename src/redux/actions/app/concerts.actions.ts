@@ -1,5 +1,5 @@
-import Action from '../../interfaces/action.interface'
-import Concert, { Concerts, ConcertId } from '../../../entities/Concert.interface'
+import Action from '../../interfaces/Action'
+import Concert, { Concerts, ConcertId } from '../../../entities/Concert'
 
 export const CONCERTS = '[Concerts]'
 
