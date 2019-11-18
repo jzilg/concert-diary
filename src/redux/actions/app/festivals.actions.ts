@@ -1,4 +1,4 @@
-import Action from '../../interfaces/Action'
+import Action from '../../types/action'
 import Festival, { Festivals, FestivalId } from '../../../entities/Festival'
 
 export const FESTIVALS = '[Festivals]'

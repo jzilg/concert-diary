@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { connect } from 'react-redux'
-import State from '../redux/interfaces/State'
+import State from '../redux/types/state'
 import mostSeenBandsSelector, { MostSeenBand } from '../redux/selectors/mostSeenBandsSelector'
 import numOfBandsSelector from '../redux/selectors/numOfBandsSelector'
 import numOfFestivalsSelector from '../redux/selectors/numOfFestivalsSelector'
