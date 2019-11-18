@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement, ReactNode } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import { connect } from 'react-redux'
 import State from '../redux/interfaces/State'
 import useOnMount from '../hooks/useOnMount'

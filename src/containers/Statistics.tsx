@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement } from 'react'
+import React, { ReactElement } from 'react'
 import { connect } from 'react-redux'
 import State from '../redux/interfaces/State'
 import mostSeenBandsSelector, { MostSeenBand } from '../redux/selectors/mostSeenBandsSelector'

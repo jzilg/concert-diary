@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement } from 'react'
+import React, { ReactElement } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import Concert from '../entities/Concert'
