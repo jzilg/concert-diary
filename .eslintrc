@@ -68,7 +68,7 @@
     "react/jsx-indent": ["error", 4],
     "react/jsx-indent-props": ["error", 4],
     "jsx-a11y/no-autofocus": [false],
-    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/prefer-interface": 0,
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/explicit-function-return-type": ["error", {
       "allowExpressions": true,
