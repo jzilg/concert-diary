@@ -8,7 +8,7 @@ import LoadData from './LoadData'
 import ConcertForm from '../components/concert-form'
 import todaysDate from '../utils/todaysDate'
 
-interface Props extends StateProps, DispatchProps {}
+type Props = StateProps & DispatchProps
 
 function EditConcert(props: Props): ReactElement {
     const {
@@ -23,7 +23,7 @@ function EditConcert(props: Props): ReactElement {
     const title = concertExists ? 'Edit Concert' : 'Add New Concert'
 
     return (
-        <Fragment>
+        <>
             <h1>{title}</h1>
             <Navigation />
             <LoadData concerts>
@@ -33,7 +33,7 @@ function EditConcert(props: Props): ReactElement {
                     goToConcerts={goToConcerts}
                 />
             </LoadData>
-        </Fragment>
+        </>
     )
 }
 
@@ -48,14 +48,14 @@ function createEmptyConcert(id: number): Concert {
     }
 }
 
-interface StateProps {
+type StateProps = {
     concert: Concert
     concertExists: boolean
 }
 
 const mapStateToProps = (state, ownProps): StateProps => {
     const paramId = parseInt(ownProps.match.params.id, 10)
-    const concert = state.concerts.find(stateConcert => stateConcert.id === paramId)
+    const concert = state.concerts.find((stateConcert) => stateConcert.id === paramId)
     const concertExists = !!concert
 
     return {
@@ -64,7 +64,7 @@ const mapStateToProps = (state, ownProps): StateProps => {
     }
 }
 
-interface DispatchProps {
+type DispatchProps = {
     addNewConcert: Function
     updateExistingConcert: Function
     goToConcerts: Function

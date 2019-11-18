@@ -5,7 +5,7 @@ import { Festivals } from '../entities/Festival'
 import State from '../redux/interfaces/State'
 import NavigationLinks from '../components/navigation-links'
 
-interface Props extends StateProps {}
+type Props = StateProps
 
 function Navigation(props: Props): ReactElement {
     const { concerts, festivals } = props
@@ -31,7 +31,7 @@ function Navigation(props: Props): ReactElement {
     )
 }
 
-interface StateProps {
+type StateProps = {
     concerts: Concerts
     festivals: Festivals
 }

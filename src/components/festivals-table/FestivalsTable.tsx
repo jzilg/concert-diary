@@ -4,7 +4,7 @@ import moment from 'moment'
 import Festival, { Festivals } from '../../entities/Festival'
 import style from '../concerts-table/concertsTable.scss'
 
-interface Props {
+type Props = {
     festivals: Festivals
     deleteFestival: Function
 }
@@ -53,8 +53,7 @@ function FestivalsTable(props: Props): ReactElement {
                     <th>Name</th>
                     <th>Bands</th>
                     <th>Date</th>
-                    <th>Companions</th>
-                    <th />
+                    <th colSpan={2}>Companions</th>
                 </tr>
             </thead>
             <tbody>

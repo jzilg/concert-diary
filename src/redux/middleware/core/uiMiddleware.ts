@@ -1,3 +1,4 @@
+import { Store } from 'redux'
 import uniqid from 'uniqid'
 import {
     UiAction,
@@ -7,8 +8,9 @@ import {
     DELETE_NOTIFICATION,
 } from '../../actions/core/ui.actions'
 
-const uiMiddleware = ({ dispatch }) => next => (action: UiAction) => {
+const uiMiddleware = (store: Store) => (next) => (action: UiAction) => {
     next(action)
+    const { dispatch } = store
 
     if (action.type.includes(CREATE_NOTIFICATION)) {
         const id = uniqid()

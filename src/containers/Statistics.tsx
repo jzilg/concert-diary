@@ -10,7 +10,7 @@ import LoadData from './LoadData'
 import MostSeenBands from '../components/most-seen-bands'
 import GeneralStatistics from '../components/general-statistics'
 
-interface Props extends StateProps {}
+type Props = StateProps
 
 function Statistics(props: Props): ReactElement {
     const {
@@ -22,7 +22,7 @@ function Statistics(props: Props): ReactElement {
     } = props
 
     return (
-        <Fragment>
+        <>
             <h1>Statistics</h1>
             <Navigation />
             <LoadData concerts festivals>
@@ -34,11 +34,11 @@ function Statistics(props: Props): ReactElement {
                 />
                 <MostSeenBands mostSeenBands={mostSeenBands} />
             </LoadData>
-        </Fragment>
+        </>
     )
 }
 
-interface StateProps {
+type StateProps = {
     mostSeenBands: MostSeenBand[]
     totalNumOfConcerts: number
     totalNumOfFestivals: number

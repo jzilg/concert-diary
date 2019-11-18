@@ -2,7 +2,7 @@ import React, { useState, useEffect, ReactElement } from 'react'
 
 export type InputList = string[]
 
-interface Props {
+type Props = {
     list: InputList
     onChange: (list: InputList) => void
     placeholder?: string

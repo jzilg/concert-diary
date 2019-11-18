@@ -2,7 +2,7 @@ import React, { useState, useEffect, ReactElement } from 'react'
 import Festival from '../../entities/Festival'
 import ListInput from '../list-input'
 
-interface Props {
+type Props = {
     festival: Festival
     saveFestival: Function
     goToFestivals: Function
@@ -47,7 +47,7 @@ function FestivalForm(props: Props): ReactElement {
                 <input
                     type="text"
                     value={name}
-                    onChange={event => setName(event.target.value)}
+                    onChange={(event) => setName(event.target.value)}
                     placeholder="Melt 2010"
                 />
             </label>
@@ -55,7 +55,7 @@ function FestivalForm(props: Props): ReactElement {
                 <span>Bands</span>
                 <ListInput
                     list={bands}
-                    onChange={list => setBands(list)}
+                    onChange={(list) => setBands(list)}
                     placeholder="The Strokes, Pearl Jam,..."
                 />
             </label>
@@ -64,7 +64,7 @@ function FestivalForm(props: Props): ReactElement {
                 <input
                     type="date"
                     value={startDate}
-                    onChange={event => setStartDate(event.target.value)}
+                    onChange={(event) => setStartDate(event.target.value)}
                 />
             </label>
             <label>
@@ -72,14 +72,14 @@ function FestivalForm(props: Props): ReactElement {
                 <input
                     type="date"
                     value={endDate}
-                    onChange={event => setEndDate(event.target.value)}
+                    onChange={(event) => setEndDate(event.target.value)}
                 />
             </label>
             <label>
                 <span>Companions</span>
                 <ListInput
                     list={companions}
-                    onChange={list => setCompanions(list)}
+                    onChange={(list) => setCompanions(list)}
                     placeholder="Leo, Max, Peter,..."
                 />
             </label>

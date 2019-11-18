@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 
-interface Props {
+type Props = {
     totalNumOfConcerts: number
     totalNumOfFestivals: number
     totalNumOfBands: number
@@ -34,7 +34,7 @@ function GeneralStatistics(props: Props): ReactElement {
         },
     ]
 
-    const listElements = list.map(item => (
+    const listElements = list.map((item) => (
         <li key={item.label}>
             {`${item.label}: ${item.value}`}
         </li>

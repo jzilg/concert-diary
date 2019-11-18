@@ -5,15 +5,18 @@ export type NotificationDuration = number
 
 export type Notifications = Notification[]
 
-export interface NotificationOptions {
+export type NotificationOptions = {
     type: NotificationType
     message: NotificationMessage
     duration?: NotificationDuration
 }
 
-export default interface Notification {
+type Notification = {
     id: NotificationId
     type: NotificationType
     message: NotificationMessage
     duration?: NotificationDuration
 }
+
+/* eslint-disable-next-line no-undef */
+export default Notification

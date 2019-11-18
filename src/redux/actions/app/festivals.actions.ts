@@ -11,19 +11,19 @@ export const UPDATE_FESTIVAL_ON_STATE = `${FESTIVALS} [DOC] UPDATE_ON_STATE`
 export const DELETE_FESTIVAL = `${FESTIVALS} [CMD] DELETE`
 export const REMOVE_FESTIVAL_FROM_STATE = `${FESTIVALS} [DOC] REMOVE_FROM_STATE`
 
-interface FestivalsPayload {
+type FestivalsPayload = {
     festivals: Festivals
 }
 
-interface FestivalPayload {
+type FestivalPayload = {
     festival: Festival
 }
 
-interface FestivalIdPayload {
+type FestivalIdPayload = {
     festivalId: FestivalId
 }
 
-interface FestivalsPayloads extends FestivalsPayload, FestivalPayload, FestivalIdPayload {}
+type FestivalsPayloads = FestivalsPayload & FestivalPayload &FestivalIdPayload
 export type FestivalsAction = Action<FestivalsPayloads>
 
 export function addFestivalsToState(festivals: Festivals): Action<FestivalsPayload> {

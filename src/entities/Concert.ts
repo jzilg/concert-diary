@@ -1,7 +1,7 @@
 export type Concerts = Concert[]
 export type ConcertId = number
 
-export default interface Concert {
+type Concert = {
     id: ConcertId
     date: string
     band: string
@@ -9,3 +9,6 @@ export default interface Concert {
     location: string
     companions: string[]
 }
+
+/* eslint-disable-next-line no-undef */
+export default Concert

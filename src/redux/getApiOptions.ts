@@ -1,12 +1,12 @@
 export type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
-interface ApiOptions {
+type ApiOptions = {
     method: HTTPMethod
     headers?: object
     body?: string
 }
 
-interface ApiOptionsConfig extends ApiOptions {}
+type ApiOptionsConfig = ApiOptions
 
 function getApiOptions({ method, headers, body }: ApiOptionsConfig): ApiOptions {
     const options: ApiOptions = {

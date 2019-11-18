@@ -8,7 +8,7 @@ import { Festivals } from '../../entities/Festival'
 const concertsSelector = (state: State): ConcertsState => state.concerts
 const festivalsSelector = (state: State): FestivalsState => state.festivals
 
-export interface MostSeenBand {
+export type MostSeenBand = {
     name: string
     mainCount: number
     supportCount: number
@@ -16,7 +16,7 @@ export interface MostSeenBand {
     totalCount: number
 }
 
-interface Band {
+type Band = {
     name: string
     type: string
 }
@@ -24,7 +24,7 @@ interface Band {
 function getMostSeenBands(concerts: Concerts, festivals: Festivals): MostSeenBand[] {
     const bandsFromConcerts: Band[] = concerts.reduce((accumulator, concert) => {
         const mainBand = { name: concert.band, type: 'main' }
-        const supportBands = concert.supportBands.map(band => ({ name: band, type: 'support' }))
+        const supportBands = concert.supportBands.map((band) => ({ name: band, type: 'support' }))
         return [
             ...accumulator,
             ...supportBands,
@@ -33,7 +33,7 @@ function getMostSeenBands(concerts: Concerts, festivals: Festivals): MostSeenBan
     }, [])
 
     const bandsFromFestivals: Band[] = festivals.reduce((accumulator, festival) => {
-        const bands = festival.bands.map(band => ({ name: band, type: 'festival' }))
+        const bands = festival.bands.map((band) => ({ name: band, type: 'festival' }))
         return [
             ...accumulator,
             ...bands,
@@ -46,7 +46,7 @@ function getMostSeenBands(concerts: Concerts, festivals: Festivals): MostSeenBan
     ]
 
     const toMostSeenBands = (accumulator, band: Band): MostSeenBand[] => {
-        const multipleEntry = accumulator.find(prevBand => prevBand.name === band.name)
+        const multipleEntry = accumulator.find((prevBand) => prevBand.name === band.name)
         const entryAlreadyExists = !!multipleEntry
 
         const newMostSeenBand = {

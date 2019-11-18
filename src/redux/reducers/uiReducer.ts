@@ -7,12 +7,12 @@ import {
     REMOVE_NOTIFICATION_FROM_STATE,
 } from '../actions/core/ui.actions'
 
-export interface UiState {
+export type UiState = {
     loaderCount: number
     notifications: Notification[]
 }
 
-interface UiAction extends Action {
+type UiAction = Action & {
     payload: {
         value?: boolean
         notification?: Notification
@@ -47,7 +47,7 @@ function uiReducer(state = defaultState, action: UiAction): UiState {
         }
         case action.type.includes(REMOVE_NOTIFICATION_FROM_STATE): {
             const notificationIdToRemove = action.payload.notificationId
-            const updatedNotifications = state.notifications.filter(notification => (
+            const updatedNotifications = state.notifications.filter((notification) => (
                 notification.id !== notificationIdToRemove
             ))
             return {

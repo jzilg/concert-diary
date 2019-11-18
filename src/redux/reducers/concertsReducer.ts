@@ -25,7 +25,7 @@ function concertsReducer(
             })
         }
         case REMOVE_CONCERT_FROM_STATE: {
-            return state.filter(concert => concert.id !== action.payload.concertId)
+            return state.filter((concert) => concert.id !== action.payload.concertId)
         }
         default: {
             return state

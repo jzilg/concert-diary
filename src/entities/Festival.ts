@@ -1,7 +1,7 @@
 export type Festivals = Festival[]
 export type FestivalId = number
 
-export default interface Festival {
+type Festival = {
     id: FestivalId
     date: {
         from: string
@@ -11,3 +11,6 @@ export default interface Festival {
     bands: string[]
     companions: string[]
 }
+
+/* eslint-disable-next-line no-undef */
+export default Festival

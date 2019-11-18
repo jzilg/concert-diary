@@ -13,7 +13,7 @@ import {
 } from '../../actions/app/concerts.actions'
 import { apiRequest } from '../../actions/core/api.actions'
 
-const concertsMiddleware = (store: Store) => next => (action: ConcertsAction) => {
+const concertsMiddleware = (store: Store) => (next) => (action: ConcertsAction) => {
     next(action)
     const { dispatch } = store
 

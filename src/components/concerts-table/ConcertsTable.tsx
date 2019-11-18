@@ -4,7 +4,7 @@ import moment from 'moment'
 import Concert, { Concerts } from '../../entities/Concert'
 import style from './concertsTable.scss'
 
-interface Props {
+type Props = {
     concerts: Concerts
     deleteConcert: Function
 }
@@ -57,8 +57,7 @@ function ConcertsTable(props: Props): ReactElement {
                     <th>Support</th>
                     <th>Location</th>
                     <th>Date</th>
-                    <th>Companions</th>
-                    <th />
+                    <th colSpan={2}>Companions</th>
                 </tr>
             </thead>
             <tbody>

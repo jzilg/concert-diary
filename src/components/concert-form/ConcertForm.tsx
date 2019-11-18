@@ -4,7 +4,7 @@ import ListInput from '../list-input'
 import useFormInput from '../../hooks/useFormInput'
 import useListInput from '../../hooks/useListInput'
 
-interface Props {
+type Props = {
     concert: Concert
     saveConcert: Function
     goToConcerts: Function

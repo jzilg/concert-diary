@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import style from './navigationLinks.scss'
 
-interface Props {
+type Props = {
     newConcertUrl: string
     newFestivalUrl: string
 }
@@ -32,7 +32,7 @@ function NavigationLinks(props: Props): ReactElement {
         },
     ]
 
-    const linkElements = links.map(link => (
+    const linkElements = links.map((link) => (
         <li key={`${link.url}-${link.label}`} className={style.listItem}>
             <Link to={link.url}>
                 {link.label}

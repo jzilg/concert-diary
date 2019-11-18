@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import Notification from '../../entities/Notification'
 import style from './notificationsList.scss'
 
-interface Props {
+type Props = {
     notifications: Notification[]
     removeNotification: Function
 }

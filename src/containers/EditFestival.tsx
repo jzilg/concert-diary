@@ -7,7 +7,7 @@ import Navigation from './Navigation'
 import LoadData from './LoadData'
 import FestivalForm from '../components/festival-form'
 
-interface Props extends StateProps, DispatchProps {}
+type Props = StateProps & DispatchProps
 
 function EditFestival(props: Props): ReactElement {
     const {
@@ -22,7 +22,7 @@ function EditFestival(props: Props): ReactElement {
     const title = festivalExists ? 'Edit Festival' : 'Add New Festival'
 
     return (
-        <Fragment>
+        <>
             <h1>{title}</h1>
             <Navigation />
             <LoadData festivals>
@@ -32,7 +32,7 @@ function EditFestival(props: Props): ReactElement {
                     goToFestivals={goToFestivals}
                 />
             </LoadData>
-        </Fragment>
+        </>
     )
 }
 
@@ -49,14 +49,14 @@ function createEmptyFestival(id: number): Festival {
     }
 }
 
-interface StateProps {
+type StateProps = {
     festival: Festival
     festivalExists: boolean
 }
 
 const mapStateToProps = (state, ownProps): StateProps => {
     const paramId = parseInt(ownProps.match.params.id, 10)
-    const festival = state.festivals.find(stateFestival => stateFestival.id === paramId)
+    const festival = state.festivals.find((stateFestival) => stateFestival.id === paramId)
     const festivalExists = !!festival
 
     return {
@@ -65,7 +65,7 @@ const mapStateToProps = (state, ownProps): StateProps => {
     }
 }
 
-interface DispatchProps {
+type DispatchProps = {
     addNewFestival: Function
     updateExistingFestival: Function
     goToFestivals: Function

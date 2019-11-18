@@ -5,12 +5,12 @@ export const API_REQUEST = '[EVENT] API_REQUEST'
 export const API_SUCCESS = '[EVENT] API_SUCCESS'
 export const API_ERROR = '[EVENT] API_ERROR'
 
-interface ApiActionPayload extends ApiRequestOptions {
+type ApiActionPayload = ApiRequestOptions & {
     data?: object
     errorMsg?: string
 }
 
-export interface ApiAction extends Action {
+export type ApiAction = Action & {
     payload: ApiActionPayload
 }
 

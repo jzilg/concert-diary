@@ -5,7 +5,7 @@ import useOnMount from '../hooks/useOnMount'
 import { fetchConcerts } from '../redux/actions/app/concerts.actions'
 import { fetchFestivals } from '../redux/actions/app/festivals.actions'
 
-interface Props extends StateProps, DispatchProps {
+type Props = StateProps & DispatchProps & {
     children: ReactNode
     concerts?: boolean
     festivals?: boolean
@@ -35,9 +35,9 @@ function LoadData(props: Props): ReactElement {
     })
 
     return (
-        <Fragment>
+        <>
             {children}
-        </Fragment>
+        </>
     )
 }
 
@@ -46,7 +46,7 @@ LoadData.defaultProps = {
     festivals: false,
 }
 
-interface StateProps {
+type StateProps = {
     concertsAreLoaded: boolean
     festivalsAreLoaded: boolean
 }
@@ -56,7 +56,7 @@ const mapStateToProps = (state: State): StateProps => ({
     festivalsAreLoaded: state.festivals.length > 0,
 })
 
-interface DispatchProps {
+type DispatchProps = {
     loadConcerts: Function
     loadFestivals: Function
 }

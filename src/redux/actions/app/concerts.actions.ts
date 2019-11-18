@@ -11,19 +11,19 @@ export const UPDATE_CONCERT_ON_STATE = `${CONCERTS} [DOC] UPDATE_ON_STATE`
 export const DELETE_CONCERT = `${CONCERTS} [CMD] DELETE`
 export const REMOVE_CONCERT_FROM_STATE = `${CONCERTS} [DOC] REMOVE_FROM_STATE`
 
-interface ConcertsPayload {
+type ConcertsPayload = {
     concerts: Concerts
 }
 
-interface ConcertPayload {
+type ConcertPayload = {
     concert: Concert
 }
 
-interface ConcertIdPayload {
+type ConcertIdPayload = {
     concertId: ConcertId
 }
 
-interface ConcertsPayloads extends ConcertsPayload, ConcertPayload, ConcertIdPayload {}
+type ConcertsPayloads = ConcertsPayload & ConcertPayload & ConcertIdPayload
 export type ConcertsAction = Action<ConcertsPayloads>
 
 export function addConcertsToState(concerts: Concerts): Action<ConcertsPayload> {

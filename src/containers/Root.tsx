@@ -9,7 +9,7 @@ import Loader from '../components/loader'
 import NotificationsList from '../components/notification-list'
 import Router from '../components/router'
 
-interface Props extends StateProps, DispatchProps {
+type Props = StateProps & DispatchProps & {
     store: Store
 }
 
@@ -38,7 +38,7 @@ function Root(props: Props): ReactElement {
     )
 }
 
-interface StateProps {
+type StateProps = {
     isLoading: boolean
     notifications: Notifications
 }
@@ -48,7 +48,7 @@ const mapStateToProps = (state: State): StateProps => ({
     notifications: state.ui.notifications,
 })
 
-interface DispatchProps {
+type DispatchProps = {
     removeNotification: Function
 }
 

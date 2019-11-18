@@ -25,7 +25,7 @@ function festivalsReducer(
             })
         }
         case REMOVE_FESTIVAL_FROM_STATE: {
-            return state.filter(festival => festival.id !== action.payload.festivalId)
+            return state.filter((festival) => festival.id !== action.payload.festivalId)
         }
         default: {
             return state

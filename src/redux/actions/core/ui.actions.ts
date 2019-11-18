@@ -8,7 +8,7 @@ export const DELETE_NOTIFICATION = '[CMD] DELETE_NOTIFICATION'
 export const ADD_NOTIFICATION_TO_STATE = '[DOC] ADD_NOTIFICATION_TO_STATE'
 export const REMOVE_NOTIFICATION_FROM_STATE = '[DOC] REMOVE_NOTIFICATION_FROM_STATE'
 
-export interface UiAction extends Action {
+export type UiAction = Action & {
     payload?: {
         notificationOptions?: NotificationOptions
         notification?: Notification

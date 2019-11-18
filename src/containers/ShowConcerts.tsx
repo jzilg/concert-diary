@@ -8,23 +8,23 @@ import Navigation from './Navigation'
 import LoadData from './LoadData'
 import ConcertsTable from '../components/concerts-table'
 
-interface Props extends StateProps, DispatchProps {}
+type Props = StateProps & DispatchProps
 
 function ShowConcerts(props: Props): ReactElement {
     const { concerts, deleteConcert } = props
 
     return (
-        <Fragment>
+        <>
             <h1>Concert Diary</h1>
             <Navigation />
             <LoadData concerts>
                 <ConcertsTable concerts={concerts} deleteConcert={deleteConcert} />
             </LoadData>
-        </Fragment>
+        </>
     )
 }
 
-interface StateProps {
+type StateProps = {
     concerts: Concerts
 }
 
@@ -32,7 +32,7 @@ const mapStateToProps = (state: State): StateProps => ({
     concerts: concertsSortedByDateSelector(state),
 })
 
-interface DispatchProps {
+type DispatchProps = {
     deleteConcert: Function
 }
 
