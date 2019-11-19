@@ -1,4 +1,4 @@
-import Action from '../../types/action'
+import Action from '../../types/Action'
 import Concert, { Concerts, ConcertId } from '../../../entities/Concert'
 
 export const CONCERTS = '[Concerts]'

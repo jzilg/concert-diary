@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import State from '../types/state'
+import State from '../types/State'
 import { UiState } from '../reducers/uiReducer'
 
 const uiSelector = (state: State): UiState => state.ui

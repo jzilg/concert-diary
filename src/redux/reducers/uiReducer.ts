@@ -1,4 +1,4 @@
-import Action from '../types/action'
+import Action from '../types/Action'
 import Notification, { NotificationId } from '../../entities/Notification'
 import {
     INCREASE_LOADER_COUNT_ON_STATE,

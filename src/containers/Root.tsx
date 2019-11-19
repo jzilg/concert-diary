@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Store } from 'redux'
 import { connect, Provider } from 'react-redux'
-import State from '../redux/types/state'
+import State from '../redux/types/State'
 import { Notifications } from '../entities/Notification'
 import isLoadingSelector from '../redux/selectors/isLoadingSelector'
 import { deleteNotification } from '../redux/actions/core/ui.actions'

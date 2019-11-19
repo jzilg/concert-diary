@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { connect } from 'react-redux'
 import { Concerts } from '../entities/Concert'
 import { Festivals } from '../entities/Festival'
-import State from '../redux/types/state'
+import State from '../redux/types/State'
 import NavigationLinks from '../components/navigation-links'
 
 type Props = StateProps

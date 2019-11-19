@@ -1,4 +1,4 @@
-import Action, { Feature } from '../../types/action'
+import Action, { Feature } from '../../types/Action'
 import Notification, { NotificationId, NotificationOptions } from '../../../entities/Notification'
 
 export const INCREASE_LOADER_COUNT_ON_STATE = '[DOC] INCREASE_LOADER_COUNT_ON_STATE'

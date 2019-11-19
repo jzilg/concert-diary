@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import State from '../types/state'
+import State from '../types/State'
 import { ConcertsState } from '../reducers/concertsReducer'
 import { Concerts } from '../../entities/Concert'
 import { FestivalsState } from '../reducers/festivalsReducer'
