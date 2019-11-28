@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import store from './redux/store'
-import Root from './containers/Root'
+import Root from './components/root'
 import 'embellish.css'
 import './global.scss'
 

@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react'
 import { Store } from 'redux'
 import { Provider } from 'react-redux'
-import Loader from './LoaderContainer'
-import NotificationsList from './NotificationsListContainer'
-import Router from '../components/router'
+import Loader from '../../containers/LoaderContainer'
+import NotificationsList from '../../containers/NotificationsListContainer'
+import Router from '../router'
 
 type Props = {
     store: Store
