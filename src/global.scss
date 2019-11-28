@@ -9,13 +9,6 @@ table {
     width: 100%;
 }
 
-input:not([type="checkbox"]):not([type="radio"]),
-select,
-textarea {
-    border-width: 0 0 1px;
-    border-radius: 0;
-}
-
 label {
     display: inline-block;
 }
