@@ -2,37 +2,23 @@ import React, { ReactElement } from 'react'
 import { Store } from 'redux'
 import { connect, Provider } from 'react-redux'
 import State from '../redux/types/State'
-import { Notifications } from '../entities/Notification'
 import isLoadingSelector from '../redux/selectors/isLoadingSelector'
-import { deleteNotification } from '../redux/actions/core/ui.actions'
 import Loader from '../components/loader'
-import NotificationsList from '../components/notification-list'
+import NotificationsList from './NotificationsListContainer'
 import Router from '../components/router'
 
-type Props = StateProps & DispatchProps & {
+type Props = StateProps & {
     store: Store
 }
 
 function Root(props: Props): ReactElement {
-    const {
-        store,
-        isLoading,
-        notifications,
-        removeNotification,
-    } = props
-
+    const { store, isLoading } = props
     const loadingElement = isLoading ? <Loader /> : null
-    const notificationListElement = notifications.length ? (
-        <NotificationsList
-            notifications={notifications}
-            removeNotification={removeNotification}
-        />
-    ) : null
 
     return (
         <Provider store={store}>
             {loadingElement}
-            {notificationListElement}
+            <NotificationsList />
             <Router />
         </Provider>
     )
@@ -40,20 +26,10 @@ function Root(props: Props): ReactElement {
 
 type StateProps = {
     isLoading: boolean
-    notifications: Notifications
 }
 
 const mapStateToProps = (state: State): StateProps => ({
     isLoading: isLoadingSelector(state),
-    notifications: state.ui.notifications,
 })
 
-type DispatchProps = {
-    removeNotification: Function
-}
-
-const mapDispatchToProps = {
-    removeNotification: deleteNotification,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Root)
+export default connect(mapStateToProps)(Root)

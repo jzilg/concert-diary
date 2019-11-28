@@ -10,6 +10,10 @@ type Props = {
 function NotificationsList(props: Props): ReactElement {
     const { notifications, removeNotification } = props
 
+    if (notifications.length === 0) {
+        return null
+    }
+
     const notificationMessageElements = notifications.map((notification) => {
         const { id, type, message } = notification
 
