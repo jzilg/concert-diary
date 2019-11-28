@@ -1,35 +1,24 @@
 import React, { ReactElement } from 'react'
 import { Store } from 'redux'
-import { connect, Provider } from 'react-redux'
-import State from '../redux/types/State'
-import isLoadingSelector from '../redux/selectors/isLoadingSelector'
-import Loader from '../components/loader'
+import { Provider } from 'react-redux'
+import Loader from './LoaderContainer'
 import NotificationsList from './NotificationsListContainer'
 import Router from '../components/router'
 
-type Props = StateProps & {
+type Props = {
     store: Store
 }
 
 function Root(props: Props): ReactElement {
-    const { store, isLoading } = props
-    const loadingElement = isLoading ? <Loader /> : null
+    const { store } = props
 
     return (
         <Provider store={store}>
-            {loadingElement}
+            <Loader />
             <NotificationsList />
             <Router />
         </Provider>
     )
 }
 
-type StateProps = {
-    isLoading: boolean
-}
-
-const mapStateToProps = (state: State): StateProps => ({
-    isLoading: isLoadingSelector(state),
-})
-
-export default connect(mapStateToProps)(Root)
+export default Root

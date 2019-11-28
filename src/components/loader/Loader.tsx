@@ -1,7 +1,17 @@
 import React, { ReactElement } from 'react'
 import style from './loader.scss'
 
-function Loader(): ReactElement {
+type Props = {
+    isLoading: boolean
+}
+
+function Loader(props: Props): ReactElement {
+    const { isLoading } = props
+
+    if (isLoading === false) {
+        return null
+    }
+
     return <div className={style.bar} />
 }
 
