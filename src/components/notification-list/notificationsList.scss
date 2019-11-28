@@ -8,7 +8,6 @@
 
 .container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     max-width: 1140px;
     min-height: 2.5em;
@@ -34,7 +33,7 @@
 }
 
 .button {
-    width: 40px;
+    width: 2.5em;
     height: 2.5em;
     color: white;
     transition: background-color .2s;

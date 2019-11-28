@@ -24,12 +24,12 @@ function NotificationsList(props: Props): ReactElement {
         return (
             <li key={id} className={`${style.listItem} ${style[type]}`}>
                 <div className={style.container}>
-                    <span>
-                        {message}
-                    </span>
                     <button onClick={clickHandler} className={`${style.button} no-button-style`} type="button">
                         ✕
                     </button>
+                    <span>
+                        {message}
+                    </span>
                 </div>
             </li>
         )
