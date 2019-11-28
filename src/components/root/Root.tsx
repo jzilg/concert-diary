@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Store } from 'redux'
-import { Provider } from 'react-redux'
+import { Provider as ReduxProvider } from 'react-redux'
 import Loader from '../../containers/LoaderContainer'
 import NotificationsList from '../../containers/NotificationsListContainer'
 import Router from '../router'
@@ -13,11 +13,11 @@ function Root(props: Props): ReactElement {
     const { store } = props
 
     return (
-        <Provider store={store}>
+        <ReduxProvider store={store}>
             <Loader />
             <NotificationsList />
             <Router />
-        </Provider>
+        </ReduxProvider>
     )
 }
 
