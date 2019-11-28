@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { shallowToJson } from 'enzyme-to-json'
 import ConcertForm from './ConcertForm'
-import concerts from '../../mock-data/concerts'
+import concerts from '../../../mock-data/concerts.json'
 
 describe('Loading', () => {
     const goToConcerts = () => {}
