@@ -16,6 +16,7 @@
   "homepage": "https://github.com/jzilg/concert-diary#readme",
   "scripts": {
     "start": "webpack-dev-server",
+    "json-server": "node json-server/server.js",
     "build": "webpack -p",
     "test": "jest",
     "test-watch": "jest --watch --coverage",
@@ -58,6 +59,7 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.8.0",
     "jest-css-modules": "^2.1.0",
+    "json-server": "^0.15.1",
     "mini-css-extract-plugin": "^0.6.0",
     "sass-loader": "^7.1.0",
     "ts-jest": "^24.0.2",
