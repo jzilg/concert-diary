@@ -4,7 +4,7 @@ import State from '../redux/types/State'
 import { Festivals } from '../entities/Festival'
 import festivalsSortedByDateSelector from '../redux/selectors/festivalsSortedByDateSelector'
 import { deleteFestival as deleteFestivalActionCreator } from '../redux/actions/app/festivals.actions'
-import Navigation from './Navigation'
+import Navigation from './NavigationContainer'
 import LoadData from './LoadData'
 import FestivalsTable from '../components/festivals-table'
 

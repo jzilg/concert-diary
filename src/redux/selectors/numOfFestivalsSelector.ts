@@ -1,9 +1,6 @@
 import { createSelector } from 'reselect'
-import State from '../types/State'
-import { FestivalsState } from '../reducers/festivalsReducer'
 import { Festivals } from '../../entities/Festival'
-
-const festivalsSelector = (state: State): FestivalsState => state.festivals
+import festivalsSelector from './festivalsSelector'
 
 function calcNumOfFestivals(festivals: Festivals): number {
     return festivals.length

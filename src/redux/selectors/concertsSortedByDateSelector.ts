@@ -1,8 +1,7 @@
 import { createSelector } from 'reselect'
 import moment from 'moment'
+import concertsSelector from './concertsSelector'
 import { ConcertsState } from '../reducers/concertsReducer'
-
-const concertsSelector = (state): ConcertsState => state.concerts
 
 function concertsSortedByDate(concerts): ConcertsState {
     const byDate = ((concert0, concert1): number => {

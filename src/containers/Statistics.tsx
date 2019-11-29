@@ -5,7 +5,7 @@ import mostSeenBandsSelector, { MostSeenBand } from '../redux/selectors/mostSeen
 import numOfBandsSelector from '../redux/selectors/numOfBandsSelector'
 import numOfFestivalsSelector from '../redux/selectors/numOfFestivalsSelector'
 import numOfLocationsSelector from '../redux/selectors/numOfLocationsSelector'
-import Navigation from './Navigation'
+import Navigation from './NavigationContainer'
 import LoadData from './LoadData'
 import MostSeenBands from '../components/most-seen-bands'
 import GeneralStatistics from '../components/general-statistics'

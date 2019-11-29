@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import Festival from '../entities/Festival'
 import { postFestival, putFestival } from '../redux/actions/app/festivals.actions'
-import Navigation from './Navigation'
+import Navigation from './NavigationContainer'
 import LoadData from './LoadData'
 import FestivalForm from '../components/festival-form'
 

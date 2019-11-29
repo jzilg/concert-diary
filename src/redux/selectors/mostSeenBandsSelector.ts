@@ -1,12 +1,8 @@
 import { createSelector } from 'reselect'
-import State from '../types/State'
-import { ConcertsState } from '../reducers/concertsReducer'
 import { Concerts } from '../../entities/Concert'
-import { FestivalsState } from '../reducers/festivalsReducer'
 import { Festivals } from '../../entities/Festival'
-
-const concertsSelector = (state: State): ConcertsState => state.concerts
-const festivalsSelector = (state: State): FestivalsState => state.festivals
+import concertsSelector from './concertsSelector'
+import festivalsSelector from './festivalsSelector'
 
 export type MostSeenBand = {
     name: string
