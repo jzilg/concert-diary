@@ -18,7 +18,7 @@ function getNavigationLinks(concerts: Concerts, festivals: Festivals): NavLinks 
     const newConcertUrl = `/concerts/edit/${createId(concerts)}`
     const newFestivalUrl = `/festivals/edit/${createId(festivals)}`
 
-    const navLinks = [
+    const navLinks: NavLinks = [
         {
             url: '/concerts',
             label: 'Concerts',
