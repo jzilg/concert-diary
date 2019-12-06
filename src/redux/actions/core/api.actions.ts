@@ -24,7 +24,7 @@ export const apiSuccess = createAction(
 )()
 
 export const apiFailure = createAction(
-    '[API] [EVENT] API_ERROR',
+    '[API] [EVENT] API_FAILURE',
     (failureAction: Function, error: Error, causedBy: string) => ({
         failureAction,
         error,

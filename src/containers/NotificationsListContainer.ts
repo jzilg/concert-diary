@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { Notifications } from '../entities/Notification'
 import notificationsSelector from '../redux/selectors/notificationsSelector'
-import { deleteNotification } from '../redux/actions/core/ui.actions'
+import { deleteNotification } from '../redux/actions/core/notifications.actions'
 import NotificationsList from '../components/notification-list'
 
 type StateProps = {

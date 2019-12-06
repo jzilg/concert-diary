@@ -6,7 +6,7 @@ import {
     addNotificationToState,
     deleteNotification,
     removeNotificationFromState,
-} from '../../actions/core/ui.actions'
+} from '../../actions/core/notifications.actions'
 
 const uiMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
@@ -22,7 +22,6 @@ const uiMiddleware: Middleware = (store) => (next) => (action) => {
             message,
         }
 
-        console.log('%cnotification:', 'color: #d83', notification)
         dispatch(addNotificationToState(notification, causedBy))
 
         if (duration) {

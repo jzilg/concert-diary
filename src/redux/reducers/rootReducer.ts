@@ -3,13 +3,15 @@ import { connectRouter } from 'connected-react-router'
 import history from '../../history'
 import concertsReducer from './concertsReducer'
 import festivalsReducer from './festivalsReducer'
-import uiReducer from './uiReducer'
+import loadingCountReducer from './loadingCountReducer'
+import notificationsReducer from './notificationsReducer'
 
 const rootReducer: Reducer = combineReducers({
     router: connectRouter(history),
     concerts: concertsReducer,
     festivals: festivalsReducer,
-    ui: uiReducer,
+    loadingCount: loadingCountReducer,
+    notifications: notificationsReducer,
 })
 
 export default rootReducer

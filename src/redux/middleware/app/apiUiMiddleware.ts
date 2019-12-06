@@ -2,7 +2,8 @@ import { Middleware } from 'redux'
 import { isActionOf } from 'typesafe-actions'
 import { apiRequest, apiSuccess, apiFailure } from '../../actions/core/api.actions'
 import { NotificationOptions } from '../../../entities/Notification'
-import { increaseLoaderCount, decreaseLoaderCount, createNotification } from '../../actions/core/ui.actions'
+import { increaseLoaderCount, decreaseLoaderCount } from '../../actions/core/loadingCount.actions'
+import { createNotification } from '../../actions/core/notifications.actions'
 
 const apiUiMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
