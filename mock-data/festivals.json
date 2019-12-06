@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "name": "Melt 2009",
+    "bands": [
+      "Bloc Party",
+      "Crystal Castles"
+    ],
+    "date": {
+      "from": "2009-10-09",
+      "until": "2009-10-11"
+    },
+    "companions": [
+      "Max",
+      "Tanja"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Rock am Ring 2012",
+    "bands": [
+      "Pearl Jam",
+      "The Offspring",
+      "Billy Talent"
+    ],
+    "date": {
+      "from": "2012-06-05",
+      "until": "2012-06-07"
+    },
+    "companions": [
+      "Peter",
+      "Marcel",
+      "Patte"
+    ]
+  }
+]
