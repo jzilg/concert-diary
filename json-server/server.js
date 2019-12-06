@@ -11,5 +11,6 @@ server.use(middlewares)
 server.use(router)
 
 server.listen(PORT, () => {
+    /* eslint-disable-next-line no-console */
     console.log(`JSON Server is running on http://localhost:${PORT}`)
 })
