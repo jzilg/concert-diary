@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { connect } from 'react-redux'
-import State from '../redux/types/State'
+import State from '../redux/State'
 import { Festivals } from '../entities/Festival'
 import festivalsSortedByDateSelector from '../redux/selectors/festivalsSortedByDateSelector'
 import { deleteFestivalAsync } from '../redux/actions/app/festivals.actions'

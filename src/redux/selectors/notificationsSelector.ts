@@ -1,4 +1,4 @@
-import State from '../types/State'
+import State from '../State'
 import Notification from '../../entities/Notification'
 
 function notificationsSelector(state: State): Notification[] {

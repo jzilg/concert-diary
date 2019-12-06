@@ -1,4 +1,4 @@
-import State from '../types/State'
+import State from '../State'
 import { FestivalsState } from '../reducers/festivalsReducer'
 
 function festivalsSelector(state: State): FestivalsState {

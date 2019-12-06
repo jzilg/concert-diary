@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react'
 import { connect } from 'react-redux'
-import State from '../redux/types/State'
+import State from '../redux/State'
 import useOnMount from '../hooks/useOnMount'
 import { fetchConcertsAsync } from '../redux/actions/app/concerts.actions'
 import { fetchFestivalsAsync } from '../redux/actions/app/festivals.actions'

@@ -1,4 +1,4 @@
-import State from '../types/State'
+import State from '../State'
 
 function isLoadingSelector(state: State): boolean {
     return state.loadingCount > 0
