@@ -1,52 +1,35 @@
-import Action, { Feature } from '../../types/Action'
+import { createAction } from 'typesafe-actions'
 import { ApiRequestOptions } from '../../middleware/core/apiMiddleware'
 
-export const API_REQUEST = '[EVENT] API_REQUEST'
-export const API_SUCCESS = '[EVENT] API_SUCCESS'
-export const API_ERROR = '[EVENT] API_ERROR'
+export const apiRequest = createAction(
+    '[API] [EVENT] API_REQUEST',
+    (apiRequestOptions: ApiRequestOptions, causedBy: string) => ({
+        ...apiRequestOptions,
+    }),
+    (apiRequestOptions: ApiRequestOptions, causedBy: string) => ({
+        causedBy,
+    }),
+)()
 
-type ApiActionPayload = ApiRequestOptions & {
-    data?: object
-    errorMsg?: string
-}
+export const apiSuccess = createAction(
+    '[API] [EVENT] API_SUCCESS',
+    (successAction: Function, data: object, causedBy: string) => ({
+        successAction,
+        data,
+    }),
+    (successAction: Function, data: object, causedBy: string) => ({
+        causedBy,
+    }),
 
-export type ApiAction = Action & {
-    payload: ApiActionPayload
-}
+)()
 
-export function apiRequest(apiRequestOptions: ApiRequestOptions, feature: Feature): ApiAction {
-    return {
-        type: `${feature} ${API_REQUEST}`,
-        meta: {
-            feature,
-        },
-        payload: {
-            ...apiRequestOptions,
-        },
-    }
-}
-
-export function apiSuccess(successAction: Function, data: object, feature: Feature): Action {
-    return {
-        type: `${feature} ${API_SUCCESS}`,
-        meta: {
-            feature,
-        },
-        payload: {
-            successAction,
-            data,
-        },
-    }
-}
-
-export function apiError(errorMsg: string, feature: Feature): Action {
-    return {
-        type: `${feature} ${API_ERROR}`,
-        meta: {
-            feature,
-        },
-        payload: {
-            errorMsg,
-        },
-    }
-}
+export const apiFailure = createAction(
+    '[API] [EVENT] API_ERROR',
+    (failureAction: Function, error: Error, causedBy: string) => ({
+        failureAction,
+        error,
+    }),
+    (failureAction: Function, error: Error, causedBy: string) => ({
+        causedBy,
+    }),
+)()

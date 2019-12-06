@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import Festival from '../entities/Festival'
-import { postFestival, putFestival } from '../redux/actions/app/festivals.actions'
+import { postFestivalAsync, putFestivalAsync } from '../redux/actions/app/festivals.actions'
 import Navigation from './NavigationContainer'
 import LoadData from './LoadData'
 import FestivalForm from '../components/festival-form'
@@ -72,8 +72,8 @@ type DispatchProps = {
 }
 
 const mapDispatchToProps: DispatchProps = {
-    addNewFestival: postFestival,
-    updateExistingFestival: putFestival,
+    addNewFestival: postFestivalAsync.request,
+    updateExistingFestival: putFestivalAsync.request,
     goToFestivals: push.bind(this, '/festivals'),
 }
 

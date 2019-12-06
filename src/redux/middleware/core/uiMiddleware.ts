@@ -1,39 +1,44 @@
-import { Store } from 'redux'
+import { Middleware } from 'redux'
+import { isActionOf } from 'typesafe-actions'
 import uniqid from 'uniqid'
 import {
-    UiAction,
+    createNotification,
     addNotificationToState,
+    deleteNotification,
     removeNotificationFromState,
-    CREATE_NOTIFICATION,
-    DELETE_NOTIFICATION,
 } from '../../actions/core/ui.actions'
 
-const uiMiddleware = (store: Store) => (next) => (action: UiAction) => {
+const uiMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
     const { dispatch } = store
 
-    if (action.type.includes(CREATE_NOTIFICATION)) {
+    if (isActionOf(createNotification, action)) {
         const id = uniqid()
-        const { type, message, duration } = action.payload.notificationOptions
+        const { type, message, duration } = action.payload
+        const causedBy = action.meta
         const notification = {
             id,
             type,
             message,
         }
 
-        dispatch(addNotificationToState(notification, action.meta.feature))
+        console.log('%cnotification:', 'color: #d83', notification)
+        dispatch(addNotificationToState(notification, causedBy))
 
         if (duration) {
             setTimeout(() => {
-                dispatch(removeNotificationFromState(id, action.meta.feature))
+                dispatch(removeNotificationFromState(id, causedBy))
             }, duration)
         }
 
         return
     }
 
-    if (action.type.includes(DELETE_NOTIFICATION)) {
-        dispatch(removeNotificationFromState(action.payload.notificationId, action.meta.feature))
+    if (isActionOf(deleteNotification, action)) {
+        const notificationId = action.payload
+        const causedBy = action.meta
+
+        dispatch(removeNotificationFromState(notificationId, causedBy))
     }
 }
 

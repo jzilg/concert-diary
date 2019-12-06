@@ -2,24 +2,22 @@ export type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 type ApiOptions = {
     method: HTTPMethod
-    headers?: object
-    body?: string
+    headers?: HeadersInit
+    body?: BodyInit
 }
 
-type ApiOptionsConfig = ApiOptions
-
-function getApiOptions({ method, headers, body }: ApiOptionsConfig): ApiOptions {
+function getApiOptions({ method, headers, body }: ApiOptions): RequestInit {
     const options: ApiOptions = {
         method,
+    }
+
+    if (headers) {
+        options.headers = headers
     }
 
     if (method === 'POST' || method === 'PUT') {
         options.headers = {
             'Content-Type': 'application/json',
-            ...headers,
-        }
-    } else if (headers) {
-        options.headers = {
             ...headers,
         }
     }

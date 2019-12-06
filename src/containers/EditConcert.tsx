@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import Concert from '../entities/Concert'
-import { postConcert, putConcert } from '../redux/actions/app/concerts.actions'
+import { postConcertAsync, putConcertAsync } from '../redux/actions/app/concerts.actions'
 import Navigation from './NavigationContainer'
 import LoadData from './LoadData'
 import ConcertForm from '../components/concert-form'
@@ -71,8 +71,8 @@ type DispatchProps = {
 }
 
 const mapDispatchToProps: DispatchProps = {
-    addNewConcert: postConcert,
-    updateExistingConcert: putConcert,
+    addNewConcert: postConcertAsync.request,
+    updateExistingConcert: putConcertAsync.request,
     goToConcerts: push.bind(this, '/'),
 }
 

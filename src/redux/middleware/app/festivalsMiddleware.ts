@@ -1,63 +1,86 @@
-import { Store } from 'redux'
+import { Middleware } from 'redux'
+import { getType, isActionOf } from 'typesafe-actions'
 import {
-    FestivalsAction,
+    fetchFestivalsAsync,
     addFestivalsToState,
-    addFestivalToState,
+    postFestivalAsync,
+    putFestivalAsync,
     updateFestivalOnState,
-    removeFestivalFromState,
-    FESTIVALS,
-    FETCH_FESTIVALS,
-    POST_FESTIVAL,
-    PUT_FESTIVAL,
-    DELETE_FESTIVAL,
+    deleteFestivalAsync,
+    removeFestivalFromState, addFestivalToState,
 } from '../../actions/app/festivals.actions'
 import { apiRequest } from '../../actions/core/api.actions'
 
-const festivalsMiddleware = (store: Store) => (next) => (action: FestivalsAction) => {
+const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
     const { dispatch } = store
 
-    if (action.type === FETCH_FESTIVALS) {
+    if (isActionOf(fetchFestivalsAsync.request, action)) {
         dispatch(apiRequest({
             url: `${process.env.API_URL}/festivals`,
             method: 'GET',
-            successAction: addFestivalsToState,
-        }, FESTIVALS))
-
-        return
+            successAction: fetchFestivalsAsync.success,
+            failureAction: fetchFestivalsAsync.failure,
+        }, getType(fetchFestivalsAsync.request)))
     }
 
-    if (action.type === POST_FESTIVAL) {
-        const { festival } = action.payload
+    if (isActionOf(fetchFestivalsAsync.success, action)) {
+        const festivals = action.payload
+
+        dispatch(addFestivalsToState(festivals))
+    }
+
+    if (isActionOf(postFestivalAsync.request, action)) {
+        const festival = action.payload
+
         next(apiRequest({
             url: `${process.env.API_URL}/festivals`,
             method: 'POST',
             body: JSON.stringify(festival),
-            successAction: addFestivalToState,
-        }, FESTIVALS))
-
-        return
+            successAction: postFestivalAsync.success,
+            failureAction: postFestivalAsync.failure,
+        }, getType(postFestivalAsync.request)))
     }
 
-    if (action.type === PUT_FESTIVAL) {
-        const { festival } = action.payload
+    if (isActionOf(postFestivalAsync.success, action)) {
+        const festival = action.payload
+
+        dispatch(addFestivalToState(festival))
+    }
+
+    if (isActionOf(putFestivalAsync.request, action)) {
+        const festival = action.payload
+
         dispatch(apiRequest({
             url: `${process.env.API_URL}/festivals/${festival.id}`,
             method: 'PUT',
             body: JSON.stringify(festival),
-            successAction: updateFestivalOnState,
-        }, FESTIVALS))
-
-        return
+            successAction: putFestivalAsync.success,
+            failureAction: putFestivalAsync.failure,
+        }, getType(putFestivalAsync.request)))
     }
 
-    if (action.type === DELETE_FESTIVAL) {
-        const { festivalId } = action.payload
+    if (isActionOf(putFestivalAsync.success, action)) {
+        const festival = action.payload
+
+        dispatch(updateFestivalOnState(festival))
+    }
+
+    if (isActionOf(deleteFestivalAsync.request, action)) {
+        const festivalId = action.payload
+
         dispatch(apiRequest({
             url: `${process.env.API_URL}/festivals/${festivalId}`,
             method: 'DELETE',
-            successAction: removeFestivalFromState.bind(this, festivalId),
-        }, FESTIVALS))
+            successAction: deleteFestivalAsync.success.bind(this, festivalId),
+            failureAction: deleteFestivalAsync.failure,
+        }, getType(deleteFestivalAsync.request)))
+    }
+
+    if (isActionOf(deleteFestivalAsync.success, action)) {
+        const festivalId = action.payload
+
+        dispatch(removeFestivalFromState(festivalId))
     }
 }
 

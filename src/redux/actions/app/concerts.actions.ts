@@ -1,91 +1,34 @@
-import Action from '../../types/Action'
+import { createAction, createAsyncAction } from 'typesafe-actions'
 import Concert, { Concerts, ConcertId } from '../../../entities/Concert'
 
-export const CONCERTS = '[Concerts]'
+export const fetchConcertsAsync = createAsyncAction(
+    '[Concerts] [CMD] FETCH_REQUEST',
+    '[Concerts] [EVENT] FETCH_SUCCESS',
+    '[Concerts] [EVENT] FETCH_FAILURE',
+)<undefined, Concerts, Error>()
 
-export const FETCH_CONCERTS = `${CONCERTS} [CMD] FETCH`
-export const ADD_CONCERTS_TO_STATE = `${CONCERTS} [DOC] ADD_TO_STATE`
-export const POST_CONCERT = `${CONCERTS} [CMD] POST`
-export const PUT_CONCERT = `${CONCERTS} [CMD] PUT`
-export const UPDATE_CONCERT_ON_STATE = `${CONCERTS} [DOC] UPDATE_ON_STATE`
-export const DELETE_CONCERT = `${CONCERTS} [CMD] DELETE`
-export const REMOVE_CONCERT_FROM_STATE = `${CONCERTS} [DOC] REMOVE_FROM_STATE`
+export const addConcertsToState = createAction('[Concerts] [DOC] ADD_TO_STATE')<Concerts>()
 
-type ConcertsPayload = {
-    concerts: Concerts
-}
+export const postConcertAsync = createAsyncAction(
+    '[Concerts] [CMD] POST_REQUEST',
+    '[Concerts] [EVENT] POST_SUCCESS',
+    '[Concerts] [EVENT] POST_FAILURE',
+)<Concert, Concert, Error>()
 
-type ConcertPayload = {
-    concert: Concert
-}
+export const addConcertToState = createAction('[Concerts] [DOC] ADD_TO_STATE')<Concert>()
 
-type ConcertIdPayload = {
-    concertId: ConcertId
-}
+export const putConcertAsync = createAsyncAction(
+    '[Concerts] [CMD] PUT_REQUEST',
+    '[Concerts] [EVENT] PUT_SUCCESS',
+    '[Concerts] [EVENT] PUT_FAILURE',
+)<Concert, Concert, Error>()
 
-type ConcertsPayloads = ConcertsPayload & ConcertPayload & ConcertIdPayload
-export type ConcertsAction = Action<ConcertsPayloads>
+export const updateConcertOnState = createAction('[Concerts] [DOC] UPDATE_ON_STATE')<Concert>()
 
-export function addConcertsToState(concerts: Concerts): Action<ConcertsPayload> {
-    return {
-        type: ADD_CONCERTS_TO_STATE,
-        payload: {
-            concerts,
-        },
-    }
-}
+export const deleteConcertAsync = createAsyncAction(
+    '[Concerts] [CMD] DELETE_REQUEST',
+    '[Concerts] [EVENT] DELETE_SUCCESS',
+    '[Concerts] [EVENT] DELETE_FAILURE',
+)<ConcertId, ConcertId, Error>()
 
-export function fetchConcerts(): Action {
-    return {
-        type: FETCH_CONCERTS,
-    }
-}
-
-export function addConcertToState(concert: Concert): Action<ConcertsPayload> {
-    return addConcertsToState([concert])
-}
-
-export function postConcert(concert: Concert): Action<ConcertPayload> {
-    return {
-        type: POST_CONCERT,
-        payload: {
-            concert,
-        },
-    }
-}
-
-export function updateConcertOnState(concert: Concert): Action<ConcertPayload> {
-    return {
-        type: UPDATE_CONCERT_ON_STATE,
-        payload: {
-            concert,
-        },
-    }
-}
-
-export function putConcert(concert: Concert): Action<ConcertPayload> {
-    return {
-        type: PUT_CONCERT,
-        payload: {
-            concert,
-        },
-    }
-}
-
-export function removeConcertFromState(concertId: ConcertId): Action<ConcertIdPayload> {
-    return {
-        type: REMOVE_CONCERT_FROM_STATE,
-        payload: {
-            concertId,
-        },
-    }
-}
-
-export function deleteConcert(concertId: ConcertId): Action<ConcertIdPayload> {
-    return {
-        type: DELETE_CONCERT,
-        payload: {
-            concertId,
-        },
-    }
-}
+export const removeConcertFromState = createAction('[Concerts] [DOC] REMOVE_FROM_STATE')<ConcertId>()

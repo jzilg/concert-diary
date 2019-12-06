@@ -1,63 +1,86 @@
-import { Store } from 'redux'
+import { Middleware } from 'redux'
+import { getType, isActionOf } from 'typesafe-actions'
 import {
-    ConcertsAction,
+    fetchConcertsAsync,
     addConcertsToState,
-    addConcertToState,
+    postConcertAsync,
+    putConcertAsync,
     updateConcertOnState,
-    removeConcertFromState,
-    CONCERTS,
-    FETCH_CONCERTS,
-    POST_CONCERT,
-    PUT_CONCERT,
-    DELETE_CONCERT,
+    deleteConcertAsync,
+    removeConcertFromState, addConcertToState,
 } from '../../actions/app/concerts.actions'
 import { apiRequest } from '../../actions/core/api.actions'
 
-const concertsMiddleware = (store: Store) => (next) => (action: ConcertsAction) => {
+const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
     const { dispatch } = store
 
-    if (action.type === FETCH_CONCERTS) {
+    if (isActionOf(fetchConcertsAsync.request, action)) {
         dispatch(apiRequest({
             url: `${process.env.API_URL}/concerts`,
             method: 'GET',
-            successAction: addConcertsToState,
-        }, CONCERTS))
-
-        return
+            successAction: fetchConcertsAsync.success,
+            failureAction: fetchConcertsAsync.failure,
+        }, getType(fetchConcertsAsync.request)))
     }
 
-    if (action.type === POST_CONCERT) {
-        const { concert } = action.payload
+    if (isActionOf(fetchConcertsAsync.success, action)) {
+        const concerts = action.payload
+
+        dispatch(addConcertsToState(concerts))
+    }
+
+    if (isActionOf(postConcertAsync.request, action)) {
+        const concert = action.payload
+
         next(apiRequest({
             url: `${process.env.API_URL}/concerts`,
             method: 'POST',
             body: JSON.stringify(concert),
-            successAction: addConcertToState,
-        }, CONCERTS))
-
-        return
+            successAction: postConcertAsync.success,
+            failureAction: postConcertAsync.failure,
+        }, getType(postConcertAsync.request)))
     }
 
-    if (action.type === PUT_CONCERT) {
-        const { concert } = action.payload
+    if (isActionOf(postConcertAsync.success, action)) {
+        const concert = action.payload
+
+        dispatch(addConcertToState(concert))
+    }
+
+    if (isActionOf(putConcertAsync.request, action)) {
+        const concert = action.payload
+
         dispatch(apiRequest({
             url: `${process.env.API_URL}/concerts/${concert.id}`,
             method: 'PUT',
             body: JSON.stringify(concert),
-            successAction: updateConcertOnState,
-        }, CONCERTS))
-
-        return
+            successAction: putConcertAsync.success,
+            failureAction: putConcertAsync.failure,
+        }, getType(putConcertAsync.request)))
     }
 
-    if (action.type === DELETE_CONCERT) {
-        const { concertId } = action.payload
+    if (isActionOf(putConcertAsync.success, action)) {
+        const concert = action.payload
+
+        dispatch(updateConcertOnState(concert))
+    }
+
+    if (isActionOf(deleteConcertAsync.request, action)) {
+        const concertId = action.payload
+
         dispatch(apiRequest({
             url: `${process.env.API_URL}/concerts/${concertId}`,
             method: 'DELETE',
-            successAction: removeConcertFromState.bind(this, concertId),
-        }, CONCERTS))
+            successAction: deleteConcertAsync.success.bind(this, concertId),
+            failureAction: deleteConcertAsync.failure,
+        }, getType(deleteConcertAsync.request)))
+    }
+
+    if (isActionOf(deleteConcertAsync.success, action)) {
+        const concertId = action.payload
+
+        dispatch(removeConcertFromState(concertId))
     }
 }
 

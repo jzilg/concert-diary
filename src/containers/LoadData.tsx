@@ -2,8 +2,8 @@ import React, { ReactElement, ReactNode } from 'react'
 import { connect } from 'react-redux'
 import State from '../redux/types/State'
 import useOnMount from '../hooks/useOnMount'
-import { fetchConcerts } from '../redux/actions/app/concerts.actions'
-import { fetchFestivals } from '../redux/actions/app/festivals.actions'
+import { fetchConcertsAsync } from '../redux/actions/app/concerts.actions'
+import { fetchFestivalsAsync } from '../redux/actions/app/festivals.actions'
 
 type Props = StateProps & DispatchProps & {
     children: ReactNode
@@ -62,8 +62,8 @@ type DispatchProps = {
 }
 
 const mapDispatchToProps: DispatchProps = {
-    loadConcerts: fetchConcerts,
-    loadFestivals: fetchFestivals,
+    loadConcerts: fetchConcertsAsync.request,
+    loadFestivals: fetchFestivalsAsync.request,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoadData)
