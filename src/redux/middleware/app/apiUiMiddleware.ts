@@ -22,7 +22,7 @@ const apiUiMiddleware: Middleware = (store) => (next) => (action) => {
 
         const notificationOptions: NotificationOptions = {
             type: 'error',
-            message: 'Error occured',
+            message: action.payload.error.message,
         }
 
         dispatch(createNotification(notificationOptions, action.meta.causedBy))
