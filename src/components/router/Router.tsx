@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { ConnectedRouter } from 'connected-react-router'
 import { Route, Switch } from 'react-router-dom'
 import history from '../../history'
+import LoginForm from '../../containers/LoginFormContainer'
 import ShowConcerts from '../../containers/ShowConcerts'
 import EditConcert from '../../containers/EditConcert'
 import ShowFestivals from '../../containers/ShowFestivals'
@@ -13,6 +14,7 @@ function Router(): ReactElement {
         <ConnectedRouter history={history}>
             <Switch>
                 <Route exact path="/" component={ShowConcerts} />
+                <Route exact path="/login" component={LoginForm} />
                 <Route exact path="/concerts" component={ShowConcerts} />
                 <Route exact path="/concerts/edit/:id" component={EditConcert} />
                 <Route exact path="/festivals" component={ShowFestivals} />
