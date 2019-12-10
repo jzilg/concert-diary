@@ -16,8 +16,8 @@ const getScriptLoaders = ({ typescriptIsUsed }) => [
 ].filter(Boolean)
 
 module.exports = {
-    mode: !isDevServer ? 'production' : 'development',
-    devtool: !isDevServer ? '' : 'source-map',
+    mode: isDevServer ? 'development' : 'production',
+    devtool: isDevServer ? 'source-map' : false,
     entry: './src/index.tsx',
     output: {
         path: path.resolve('dist'),
@@ -91,7 +91,7 @@ module.exports = {
         },
     },
     plugins: [
-        !isDevServer ? new CleanWebpackPlugin() : null,
+        isDevServer ? null : new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './src/index.html',
         }),
