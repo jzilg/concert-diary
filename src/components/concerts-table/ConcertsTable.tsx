@@ -3,14 +3,24 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import Concert, { Concerts } from '../../entities/Concert'
 import style from './concertsTable.scss'
+import useOnMount from '../../hooks/useOnMount'
 
 type Props = {
     concerts: Concerts
+    loadConcerts: Function
     deleteConcert: Function
 }
 
 function ConcertsTable(props: Props): ReactElement {
-    const { concerts, deleteConcert } = props
+    const {
+        concerts,
+        loadConcerts,
+        deleteConcert,
+    } = props
+
+    useOnMount(() => {
+        loadConcerts()
+    })
 
     if (concerts.length === 0) {
         return null
