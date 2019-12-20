@@ -103,11 +103,7 @@ module.exports = {
         new Dotenv(),
     ].filter(Boolean),
     devServer: {
-        watchOptions: {
-            ignored: /node_modules/,
-            aggregateTimeout: 300,
-            poll: 1000,
-        },
+        historyApiFallback: true,
         stats: {
             children: false,
             modules: false,
