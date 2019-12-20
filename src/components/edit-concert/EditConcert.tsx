@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react'
 import Navigation from '../../containers/NavigationContainer'
-import LoadData from '../../containers/LoadData'
 import ConcertForm from '../concert-form'
 import Concert from '../../entities/Concert'
 
@@ -23,12 +22,10 @@ function EditConcert(props: Props): ReactElement {
         <>
             <h1>{title}</h1>
             <Navigation />
-            <LoadData concerts>
-                <ConcertForm
-                    concert={concert}
-                    saveConcert={saveConcert}
-                />
-            </LoadData>
+            <ConcertForm
+                concert={concert}
+                saveConcert={saveConcert}
+            />
         </>
     )
 }
