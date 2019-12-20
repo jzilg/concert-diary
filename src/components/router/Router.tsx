@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import history from '../../history'
 import LoginForm from '../../containers/LoginFormContainer'
 import ShowConcerts from '../../containers/ShowConcerts'
-import EditConcert from '../../containers/EditConcert'
+import EditConcert from '../../containers/EditConcertContainer'
 import ShowFestivals from '../../containers/ShowFestivals'
 import EditFestival from '../../containers/EditFestival'
 import Statistics from '../../containers/Statistics'
@@ -16,7 +16,7 @@ function Router(): ReactElement {
                 <Route exact path="/" component={ShowConcerts} />
                 <Route exact path="/login" component={LoginForm} />
                 <Route exact path="/concerts" component={ShowConcerts} />
-                <Route exact path="/concerts/edit/:id" component={EditConcert} />
+                <Route exact path="/concerts/edit" component={EditConcert} />
                 <Route exact path="/festivals" component={ShowFestivals} />
                 <Route exact path="/festivals/edit/:id" component={EditFestival} />
                 <Route exact path="/statistics" component={Statistics} />

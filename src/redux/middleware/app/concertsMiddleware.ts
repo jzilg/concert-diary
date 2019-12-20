@@ -1,5 +1,6 @@
 import { Middleware } from 'redux'
 import { getType, isActionOf } from 'typesafe-actions'
+import { push } from 'connected-react-router'
 import {
     fetchConcertsAsync,
     addConcertsToState,
@@ -7,13 +8,28 @@ import {
     putConcertAsync,
     updateConcertOnState,
     deleteConcertAsync,
-    removeConcertFromState, addConcertToState,
+    removeConcertFromState,
+    addConcertToState,
+    saveConcert,
 } from '../../actions/app/concerts.actions'
 import { apiRequest } from '../../actions/core/api.actions'
+import concertExistsSelector from '../../selectors/concertExistsSelector'
 
 const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
-    const { dispatch } = store
+    const { dispatch, getState } = store
+
+    if (isActionOf(saveConcert, action)) {
+        const state = getState()
+        const concert = action.payload
+        const concertExist = concertExistsSelector(state)
+
+        const saveAction = concertExist
+            ? putConcertAsync.request(concert)
+            : postConcertAsync.request(concert)
+
+        dispatch(saveAction)
+    }
 
     if (isActionOf(fetchConcertsAsync.request, action)) {
         dispatch(apiRequest({
@@ -50,6 +66,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
         const concert = action.payload
 
         dispatch(addConcertToState(concert))
+        dispatch(push('/concerts'))
     }
 
     if (isActionOf(putConcertAsync.request, action)) {
@@ -70,6 +87,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
         const concert = action.payload
 
         dispatch(updateConcertOnState(concert))
+        dispatch(push('/concerts'))
     }
 
     if (isActionOf(deleteConcertAsync.request, action)) {

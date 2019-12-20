@@ -1,6 +1,8 @@
 import { createAction, createAsyncAction } from 'typesafe-actions'
 import Concert, { Concerts, ConcertId } from '../../../entities/Concert'
 
+export const saveConcert = createAction('[Concerts] [CMD] SAVE')<Concert>()
+
 export const fetchConcertsAsync = createAsyncAction(
     '[Concerts] [CMD] FETCH_REQUEST',
     '[Concerts] [EVENT] FETCH_SUCCESS',

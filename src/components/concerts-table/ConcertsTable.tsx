@@ -36,7 +36,7 @@ function ConcertsTable(props: Props): ReactElement {
                 <td>
                     <ul className={style.controlsList}>
                         <li>
-                            <Link to={`concerts/edit/${id}`}>Edit</Link>
+                            <Link to={`concerts/edit?id=${id}`}>Edit</Link>
                         </li>
                         <li>
                             <button type="button" onClick={deleteButtonClickHandler}>

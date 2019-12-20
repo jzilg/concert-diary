@@ -7,11 +7,10 @@ import useListInput from '../../hooks/useListInput'
 type Props = {
     concert: Concert
     saveConcert: Function
-    goToConcerts: Function
 }
 
 function ConcertForm(props: Props): ReactElement {
-    const { concert, saveConcert, goToConcerts } = props
+    const { concert, saveConcert } = props
 
     const [band, onBandInputChange, setBand] = useFormInput(concert.band)
     const [location, onLocationInputChange, setLocation] = useFormInput(concert.location)
@@ -41,7 +40,6 @@ function ConcertForm(props: Props): ReactElement {
             date,
             companions,
         })
-        goToConcerts()
     }
 
     return (
