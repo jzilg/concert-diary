@@ -32,8 +32,13 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(fetchConcertsAsync.request, action)) {
+        const id = action.payload
+        const url = id !== undefined
+            ? `${process.env.API_URL}/concerts?id=${id}`
+            : `${process.env.API_URL}/concerts`
+
         dispatch(apiRequest({
-            url: `${process.env.API_URL}/concerts`,
+            url,
             method: 'GET',
             successAction: fetchConcertsAsync.success,
             failureAction: fetchConcertsAsync.failure,

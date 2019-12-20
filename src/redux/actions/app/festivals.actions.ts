@@ -7,7 +7,7 @@ export const fetchFestivalsAsync = createAsyncAction(
     '[Festivals] [CMD] FETCH_REQUEST',
     '[Festivals] [EVENT] FETCH_SUCCESS',
     '[Festivals] [EVENT] FETCH_FAILURE',
-)<undefined, Festivals, Error>()
+)<FestivalId|undefined, Festivals, Error>()
 
 export const setFestivalsState = createAction('[Festivals] [DOC] SET_STATE')<Festivals>()
 

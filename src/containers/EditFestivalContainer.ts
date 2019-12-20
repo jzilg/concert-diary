@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import Festival from '../entities/Festival'
+import Festival, { FestivalId } from '../entities/Festival'
 import festivalSelector from '../redux/selectors/festivalSelector'
 import festivalExistsSelector from '../redux/selectors/festivalExistsSelector'
-import { saveFestival } from '../redux/actions/app/festivals.actions'
+import { fetchFestivalsAsync, saveFestival } from '../redux/actions/app/festivals.actions'
 import EditFestival from '../components/edit-festival'
 
 type StateProps = {
@@ -18,10 +18,12 @@ function mapStateToProps(state): StateProps {
 }
 
 type DispatchProps = {
+    loadFestival: (festivalId: FestivalId) => void
     saveFestival: Function
 }
 
 const mapDispatchToProps: DispatchProps = {
+    loadFestival: fetchFestivalsAsync.request,
     saveFestival,
 }
 
