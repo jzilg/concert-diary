@@ -16,7 +16,7 @@ function createId(list): number {
 
 function getNavigationLinks(concerts: Concerts, festivals: Festivals): NavLinks {
     const newConcertUrl = `/concerts/edit?id=${createId(concerts)}`
-    const newFestivalUrl = `/festivals/edit/${createId(festivals)}`
+    const newFestivalUrl = `/festivals/edit?id=${createId(festivals)}`
 
     const navLinks: NavLinks = [
         {

@@ -2,15 +2,29 @@ import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import Festival, { Festivals } from '../../entities/Festival'
-import style from '../concerts-table/concertsTable.scss'
+import useOnMount from '../../hooks/useOnMount'
+import style from './festivalsTable.scss'
 
 type Props = {
     festivals: Festivals
+    loadFestivals: Function
     deleteFestival: Function
 }
 
 function FestivalsTable(props: Props): ReactElement {
-    const { festivals, deleteFestival } = props
+    const {
+        festivals,
+        loadFestivals,
+        deleteFestival,
+    } = props
+
+    useOnMount(() => {
+        loadFestivals()
+    })
+
+    if (festivals.length === 0) {
+        return null
+    }
 
     const rowElements = festivals.map((festival: Festival) => {
         const { id, name } = festival
@@ -33,7 +47,7 @@ function FestivalsTable(props: Props): ReactElement {
                 <td>
                     <ul className={style.controlsList}>
                         <li>
-                            <Link to={`festivals/edit/${id}`}>Edit</Link>
+                            <Link to={`festivals/edit?id=${id}`}>Edit</Link>
                         </li>
                         <li>
                             <button type="button" onClick={deleteButtonClickHandler}>

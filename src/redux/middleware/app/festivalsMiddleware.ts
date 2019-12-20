@@ -1,5 +1,6 @@
 import { Middleware } from 'redux'
 import { getType, isActionOf } from 'typesafe-actions'
+import { push } from 'connected-react-router'
 import {
     fetchFestivalsAsync,
     addFestivalsToState,
@@ -7,13 +8,28 @@ import {
     putFestivalAsync,
     updateFestivalOnState,
     deleteFestivalAsync,
-    removeFestivalFromState, addFestivalToState,
+    removeFestivalFromState,
+    addFestivalToState,
+    saveFestival,
 } from '../../actions/app/festivals.actions'
 import { apiRequest } from '../../actions/core/api.actions'
+import festivalExistsSelector from '../../selectors/festivalExistsSelector'
 
 const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
-    const { dispatch } = store
+    const { dispatch, getState } = store
+
+    if (isActionOf(saveFestival, action)) {
+        const state = getState()
+        const festival = action.payload
+        const festivalExist = festivalExistsSelector(state)
+
+        const saveAction = festivalExist
+            ? putFestivalAsync.request(festival)
+            : postFestivalAsync.request(festival)
+
+        dispatch(saveAction)
+    }
 
     if (isActionOf(fetchFestivalsAsync.request, action)) {
         dispatch(apiRequest({
@@ -50,6 +66,7 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
         const festival = action.payload
 
         dispatch(addFestivalToState(festival))
+        dispatch(push('/festivals'))
     }
 
     if (isActionOf(putFestivalAsync.request, action)) {
@@ -70,6 +87,7 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
         const festival = action.payload
 
         dispatch(updateFestivalOnState(festival))
+        dispatch(push('/festivals'))
     }
 
     if (isActionOf(deleteFestivalAsync.request, action)) {
