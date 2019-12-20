@@ -10,22 +10,26 @@ const apiUiMiddleware: Middleware = (store) => (next) => (action) => {
     const { dispatch } = store
 
     if (isActionOf(apiRequest, action)) {
-        dispatch(increaseLoaderCount(undefined, action.meta.causedBy))
+        const { causedBy } = action.meta
+        dispatch(increaseLoaderCount(undefined, { causedBy }))
     }
 
     if (isActionOf(apiSuccess, action)) {
-        dispatch(decreaseLoaderCount(undefined, action.meta.causedBy))
+        const { causedBy } = action.meta
+        dispatch(decreaseLoaderCount(undefined, { causedBy }))
     }
 
     if (isActionOf(apiFailure, action)) {
-        dispatch(decreaseLoaderCount(undefined, action.meta.causedBy))
+        const { causedBy } = action.meta
+
+        dispatch(decreaseLoaderCount(undefined, { causedBy }))
 
         const notificationOptions: NotificationOptions = {
             type: 'error',
             message: action.payload.error.message,
         }
 
-        dispatch(createNotification(notificationOptions, action.meta.causedBy))
+        dispatch(createNotification(notificationOptions, { causedBy }))
     }
 }
 

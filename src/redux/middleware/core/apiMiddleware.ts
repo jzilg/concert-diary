@@ -9,7 +9,7 @@ export type ApiRequestOptions = {
     headers?: HeadersInit
     body?: BodyInit
     successAction: ActionCreator
-    failureAction?: ActionCreator
+    failureAction: ActionCreator
 }
 
 /* eslint-disable-next-line consistent-return */
@@ -26,15 +26,17 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
             successAction,
             failureAction,
         } = action.payload
+        const { causedBy } = action.meta
         const options: RequestInit = getApiOptions({ method, headers, body })
 
         return fetch(url, options)
             .then((response) => response.json())
             .then((data) => {
-                dispatch(apiSuccess(successAction, data, action.meta.causedBy))
+                dispatch(apiSuccess({ successAction, data }, { causedBy }))
             })
             .catch((error) => {
-                dispatch(apiFailure(failureAction, error, action.meta.causedBy))
+                dispatch(apiFailure({ failureAction, error }, { causedBy }))
+                console.error(error)
             })
     }
 

@@ -21,7 +21,9 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
             method: 'GET',
             successAction: fetchConcertsAsync.success,
             failureAction: fetchConcertsAsync.failure,
-        }, getType(fetchConcertsAsync.request)))
+        }, {
+            causedBy: getType(fetchConcertsAsync.request),
+        }))
     }
 
     if (isActionOf(fetchConcertsAsync.success, action)) {
@@ -39,7 +41,9 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
             body: JSON.stringify(concert),
             successAction: postConcertAsync.success,
             failureAction: postConcertAsync.failure,
-        }, getType(postConcertAsync.request)))
+        }, {
+            causedBy: getType(postConcertAsync.request),
+        }))
     }
 
     if (isActionOf(postConcertAsync.success, action)) {
@@ -57,7 +61,9 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
             body: JSON.stringify(concert),
             successAction: putConcertAsync.success,
             failureAction: putConcertAsync.failure,
-        }, getType(putConcertAsync.request)))
+        }, {
+            causedBy: getType(putConcertAsync.request),
+        }))
     }
 
     if (isActionOf(putConcertAsync.success, action)) {
@@ -74,7 +80,9 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
             method: 'DELETE',
             successAction: deleteConcertAsync.success.bind(this, concertId),
             failureAction: deleteConcertAsync.failure,
-        }, getType(deleteConcertAsync.request)))
+        }, {
+            causedBy: getType(deleteConcertAsync.request),
+        }))
     }
 
     if (isActionOf(deleteConcertAsync.success, action)) {

@@ -21,7 +21,9 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
             method: 'GET',
             successAction: fetchFestivalsAsync.success,
             failureAction: fetchFestivalsAsync.failure,
-        }, getType(fetchFestivalsAsync.request)))
+        }, {
+            causedBy: getType(fetchFestivalsAsync.request),
+        }))
     }
 
     if (isActionOf(fetchFestivalsAsync.success, action)) {
@@ -39,7 +41,9 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
             body: JSON.stringify(festival),
             successAction: postFestivalAsync.success,
             failureAction: postFestivalAsync.failure,
-        }, getType(postFestivalAsync.request)))
+        }, {
+            causedBy: getType(postFestivalAsync.request),
+        }))
     }
 
     if (isActionOf(postFestivalAsync.success, action)) {
@@ -57,7 +61,9 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
             body: JSON.stringify(festival),
             successAction: putFestivalAsync.success,
             failureAction: putFestivalAsync.failure,
-        }, getType(putFestivalAsync.request)))
+        }, {
+            causedBy: getType(putFestivalAsync.request),
+        }))
     }
 
     if (isActionOf(putFestivalAsync.success, action)) {
@@ -74,7 +80,9 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
             method: 'DELETE',
             successAction: deleteFestivalAsync.success.bind(this, festivalId),
             failureAction: deleteFestivalAsync.failure,
-        }, getType(deleteFestivalAsync.request)))
+        }, {
+            causedBy: getType(deleteFestivalAsync.request),
+        }))
     }
 
     if (isActionOf(deleteFestivalAsync.success, action)) {

@@ -24,7 +24,9 @@ const authMiddleware: Middleware = (store) => (next) => (action) => {
             body: JSON.stringify(action.payload),
             successAction: authAsync.success,
             failureAction: authAsync.failure,
-        }, getType(authAsync.request)))
+        }, {
+            causedBy: getType(authAsync.request),
+        }))
     }
 
     if (isActionOf(authAsync.success, action)) {
