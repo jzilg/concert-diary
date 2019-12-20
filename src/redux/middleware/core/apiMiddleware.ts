@@ -36,6 +36,7 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
             })
             .catch((error) => {
                 dispatch(apiFailure({ failureAction, error }, { causedBy }))
+                /* eslint-disable-next-line no-console */
                 console.error(error)
             })
     }
