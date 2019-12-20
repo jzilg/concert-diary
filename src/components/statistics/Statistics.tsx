@@ -3,6 +3,7 @@ import { MostSeenBand } from '../../redux/selectors/mostSeenBandsSelector'
 import Navigation from '../../containers/NavigationContainer'
 import MostSeenBands from '../most-seen-bands'
 import GeneralStatistics from '../general-statistics'
+import useOnMount from '../../hooks/useOnMount'
 
 type Props = {
     mostSeenBands: MostSeenBand[]
@@ -10,6 +11,8 @@ type Props = {
     totalNumOfFestivals: number
     totalNumOfBands: number
     totalNumOfLocations: number
+    loadConcerts: Function
+    loadFestivals: Function
 }
 
 function Statistics(props: Props): ReactElement {
@@ -19,7 +22,14 @@ function Statistics(props: Props): ReactElement {
         totalNumOfFestivals,
         totalNumOfBands,
         totalNumOfLocations,
+        loadConcerts,
+        loadFestivals,
     } = props
+
+    useOnMount(() => {
+        loadConcerts()
+        loadFestivals()
+    })
 
     return (
         <>
