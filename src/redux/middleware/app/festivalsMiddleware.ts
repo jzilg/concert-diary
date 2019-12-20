@@ -3,7 +3,7 @@ import { getType, isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
 import {
     fetchFestivalsAsync,
-    addFestivalsToState,
+    setFestivalsState,
     postFestivalAsync,
     putFestivalAsync,
     updateFestivalOnState,
@@ -45,7 +45,7 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     if (isActionOf(fetchFestivalsAsync.success, action)) {
         const festivals = action.payload
 
-        dispatch(addFestivalsToState(festivals))
+        dispatch(setFestivalsState(festivals))
     }
 
     if (isActionOf(postFestivalAsync.request, action)) {

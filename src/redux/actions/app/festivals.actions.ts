@@ -9,7 +9,7 @@ export const fetchFestivalsAsync = createAsyncAction(
     '[Festivals] [EVENT] FETCH_FAILURE',
 )<undefined, Festivals, Error>()
 
-export const addFestivalsToState = createAction('[Festivals] [DOC] ADD_TO_STATE')<Festivals>()
+export const setFestivalsState = createAction('[Festivals] [DOC] SET_STATE')<Festivals>()
 
 export const postFestivalAsync = createAsyncAction(
     '[Festivals] [CMD] POST_REQUEST',

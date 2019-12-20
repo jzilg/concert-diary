@@ -1,7 +1,7 @@
 import { createReducer } from 'typesafe-actions'
 import { Concerts } from '../../entities/Concert'
 import {
-    addConcertsToState,
+    setConcertsState,
     addConcertToState,
     updateConcertOnState,
     removeConcertFromState,
@@ -13,8 +13,8 @@ export const defaultState: ConcertsState = []
 
 const concertsReducer = createReducer(defaultState)
     .handleAction(
-        addConcertsToState,
-        (state, action) => state.concat(action.payload),
+        setConcertsState,
+        (state, action) => action.payload,
     )
     .handleAction(
         addConcertToState,
