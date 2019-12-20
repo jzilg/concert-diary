@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import Concert, { Concerts } from '../../entities/Concert'
-import style from './concertsTable.scss'
 import useOnMount from '../../hooks/useOnMount'
+import style from './concertsTable.scss'
 
 type Props = {
     concerts: Concerts
