@@ -7,7 +7,7 @@ import ConcertsView from '../concerts-view'
 import EditConcert from '../../containers/EditConcertContainer'
 import FestivalsView from '../festivals-view'
 import EditFestival from '../../containers/EditFestivalContainer'
-import Statistics from '../../containers/Statistics'
+import Statistics from '../../containers/StatisticsContainer'
 
 function Router(): ReactElement {
     return (
