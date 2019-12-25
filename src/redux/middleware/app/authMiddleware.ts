@@ -1,20 +1,22 @@
 import { Middleware } from 'redux'
 import { isActionOf, getType } from 'typesafe-actions'
 import { push } from 'connected-react-router'
-import { apiRequest } from '../../actions/core/api.actions'
+import { apiRequest, apiFailure } from '../../actions/core/api.actions'
 import { authAsync, setWebtokenOnState } from '../../actions/app/auth.actions'
-import isAuthenticatedSelector from '../../selectors/isAuthenticatedSelector'
 import routeIsLoginSelector from '../../selectors/routeIsLoginSelector'
 
 const authMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
     const { dispatch, getState } = store
     const state = getState()
-    const isAuthenticated = isAuthenticatedSelector(state)
     const routeIsLogin = routeIsLoginSelector(state)
 
-    if (!isAuthenticated && !routeIsLogin) {
-        dispatch(push('/login'))
+    if (isActionOf(apiFailure, action)) {
+        const { error } = action.payload
+
+        if (error.status === 401 && !routeIsLogin) {
+            dispatch(push('/login'))
+        }
     }
 
     if (isActionOf(authAsync.request, action)) {

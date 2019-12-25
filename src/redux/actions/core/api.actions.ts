@@ -1,5 +1,6 @@
 import { createAction } from 'typesafe-actions'
 import { ApiRequestOptions } from '../../middleware/core/apiMiddleware'
+import Error from '../../../entities/Error'
 
 export const apiRequest = createAction('[API] [EVENT] API_REQUEST')<ApiRequestOptions, { causedBy: string }>()
 

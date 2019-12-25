@@ -21,12 +21,13 @@ const apiUiMiddleware: Middleware = (store) => (next) => (action) => {
 
     if (isActionOf(apiFailure, action)) {
         const { causedBy } = action.meta
+        const { error } = action.payload
 
         dispatch(decreaseLoaderCount(undefined, { causedBy }))
 
         const notificationOptions: NotificationOptions = {
             type: 'error',
-            message: action.payload.error.message,
+            message: error.message,
         }
 
         dispatch(createNotification(notificationOptions, { causedBy }))

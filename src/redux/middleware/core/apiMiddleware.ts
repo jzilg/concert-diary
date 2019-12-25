@@ -2,6 +2,7 @@ import { Middleware } from 'redux'
 import { ActionCreator, isActionOf } from 'typesafe-actions'
 import getApiOptions, { HTTPMethod } from '../../getApiOptions'
 import { apiRequest, apiSuccess, apiFailure } from '../../actions/core/api.actions'
+import Error from '../../../entities/Error'
 
 export type ApiRequestOptions = {
     url: string
@@ -30,14 +31,31 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
         const options: RequestInit = getApiOptions({ method, headers, body })
 
         return fetch(url, options)
-            .then((response) => response.json())
+            .then((response) => {
+                if (response.ok) {
+                    return response.json()
+                }
+
+                const error: Error = {
+                    status: response.status,
+                    message: response.statusText,
+                }
+
+                return dispatch(apiFailure({ failureAction, error }, { causedBy }))
+            })
             .then((data) => {
                 dispatch(apiSuccess({ successAction, data }, { causedBy }))
             })
-            .catch((error) => {
+            .catch((apiError) => {
+                const error: Error = {
+                    status: 0,
+                    message: apiError.message,
+                }
+
                 dispatch(apiFailure({ failureAction, error }, { causedBy }))
+
                 /* eslint-disable-next-line no-console */
-                console.error(error)
+                console.error(apiError)
             })
     }
 
