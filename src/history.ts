@@ -1,3 +1,5 @@
 import { createBrowserHistory } from 'history'
 
-export default createBrowserHistory()
+const { BASE_URL } = process.env
+
+export default createBrowserHistory({ basename: BASE_URL })

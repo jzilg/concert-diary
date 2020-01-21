@@ -1,3 +1,4 @@
+require('dotenv').config()
 const path = require('path')
 const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
@@ -22,7 +23,7 @@ module.exports = {
     output: {
         path: path.resolve('dist'),
         filename: `${filename}.js`,
-        publicPath: '/',
+        publicPath: process.env.BASE_URL,
     },
     resolve: {
         extensions: [
