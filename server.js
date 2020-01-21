@@ -9,7 +9,7 @@ const router = express.Router()
 
 server.use(express.static('dist'))
 
-router.get('/', (request, response) => {
+router.get('*', (request, response) => {
     response.sendFile(path.resolve('dist/index.html'))
 })
 
