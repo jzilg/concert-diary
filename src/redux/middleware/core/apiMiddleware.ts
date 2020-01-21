@@ -33,18 +33,17 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
         return fetch(url, options)
             .then((response) => {
                 if (response.ok) {
-                    return response.json()
-                }
+                    response.json().then((data) => {
+                        dispatch(apiSuccess({ successAction, data }, { causedBy }))
+                    })
+                } else {
+                    const error: Error = {
+                        status: response.status,
+                        message: response.statusText,
+                    }
 
-                const error: Error = {
-                    status: response.status,
-                    message: response.statusText,
+                    dispatch(apiFailure({ failureAction, error }, { causedBy }))
                 }
-
-                return dispatch(apiFailure({ failureAction, error }, { causedBy }))
-            })
-            .then((data) => {
-                dispatch(apiSuccess({ successAction, data }, { causedBy }))
             })
             .catch((apiError) => {
                 const error: Error = {
