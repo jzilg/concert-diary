@@ -1,9 +1,8 @@
 import React, { ReactElement } from 'react'
-import { Link } from 'react-router-dom'
 import moment from 'moment'
 import Festival, { Festivals } from '../../entities/Festival'
 import useOnMount from '../../hooks/useOnMount'
-import style from './festivalsTable.scss'
+import TableControls from '../table-controls'
 
 type Props = {
     festivals: Festivals
@@ -33,8 +32,9 @@ function FestivalsTable(props: Props): ReactElement {
         const startDate = moment(festival.date.from).format('DD.MM.YYYY')
         const endDate = moment(festival.date.until).format('DD.MM.YYYY')
         const date = `${startDate} - ${endDate}`
+        const editUrl = `festivals/edit?id=${id}`
 
-        function deleteButtonClickHandler(): void {
+        function deleteFn(): void {
             deleteFestival(id)
         }
 
@@ -45,16 +45,10 @@ function FestivalsTable(props: Props): ReactElement {
                 <td>{date}</td>
                 <td>{companions}</td>
                 <td>
-                    <ul className={style.controlsList}>
-                        <li>
-                            <Link to={`festivals/edit?id=${id}`}>Edit</Link>
-                        </li>
-                        <li>
-                            <button type="button" onClick={deleteButtonClickHandler}>
-                                Delete
-                            </button>
-                        </li>
-                    </ul>
+                    <TableControls
+                        editUrl={editUrl}
+                        deleteFn={deleteFn}
+                    />
                 </td>
             </tr>
         )

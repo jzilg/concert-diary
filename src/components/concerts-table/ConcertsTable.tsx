@@ -1,9 +1,8 @@
 import React, { ReactElement } from 'react'
-import { Link } from 'react-router-dom'
 import moment from 'moment'
 import Concert, { Concerts } from '../../entities/Concert'
 import useOnMount from '../../hooks/useOnMount'
-import style from './concertsTable.scss'
+import TableControls from '../table-controls'
 
 type Props = {
     concerts: Concerts
@@ -31,8 +30,9 @@ function ConcertsTable(props: Props): ReactElement {
         const supportBands = concert.supportBands.join(', ')
         const companions = concert.companions.join(', ')
         const date = moment(concert.date).format('DD.MM.YYYY')
+        const editUrl = `concerts/edit?id=${id}`
 
-        function deleteButtonClickHandler(): void {
+        function deleteFn(): void {
             deleteConcert(id)
         }
 
@@ -44,16 +44,10 @@ function ConcertsTable(props: Props): ReactElement {
                 <td>{date}</td>
                 <td>{companions}</td>
                 <td>
-                    <ul className={style.controlsList}>
-                        <li>
-                            <Link to={`concerts/edit?id=${id}`}>Edit</Link>
-                        </li>
-                        <li>
-                            <button type="button" onClick={deleteButtonClickHandler}>
-                                Delete
-                            </button>
-                        </li>
-                    </ul>
+                    <TableControls
+                        editUrl={editUrl}
+                        deleteFn={deleteFn}
+                    />
                 </td>
             </tr>
         )

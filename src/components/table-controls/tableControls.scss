@@ -1,0 +1,32 @@
+.controlsList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.editBtn,
+.editBtn:visited,
+.editBtn:active {
+    color: inherit;
+}
+
+.editBtn {
+    padding: 0.5em 1em;
+    background-color: var(--lightgray);
+    border: 1px solid var(--gray);
+    border-radius: 5px 0 0 5px;
+    text-decoration: none;
+    transition: border-color var(--transition-time), background-color var(--transition-time);
+}
+
+.deleteBtn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: var(--red);
+    border-color: var(--red-dark);
+    color: var(--white);
+}
