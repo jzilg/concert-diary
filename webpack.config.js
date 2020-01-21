@@ -18,7 +18,7 @@ const getScriptLoaders = ({ typescriptIsUsed }) => [
 module.exports = {
     mode: isDevServer ? 'development' : 'production',
     devtool: isDevServer ? 'source-map' : false,
-    entry: './src/index.tsx',
+    entry: path.resolve('src/index.tsx'),
     output: {
         path: path.resolve('dist'),
         filename: `${filename}.js`,
@@ -93,7 +93,7 @@ module.exports = {
     plugins: [
         isDevServer ? null : new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: './src/index.html',
+            template: path.resolve('src/index.html'),
         }),
         new MiniCssExtractPlugin({
             filename: `${filename}.css`,
