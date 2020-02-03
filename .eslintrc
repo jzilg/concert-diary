@@ -29,6 +29,16 @@
     "indent": ["error", 4, {
       "SwitchCase": 1
     }],
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        "ts": "never",
+        "tsx": "never",
+        "js": "never",
+        "jsx": "never"
+      }
+    ],
     "no-multiple-empty-lines": ["error", {
       "max": 1,
       "maxEOF": 1
