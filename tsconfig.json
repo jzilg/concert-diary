@@ -5,6 +5,7 @@
     "lib": [
       "dom",
       "es2018"
-    ]
+    ],
+    "strictNullChecks": true
   }
 }

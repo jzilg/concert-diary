@@ -10,7 +10,7 @@ type Props = {
     deleteConcert: Function
 }
 
-function ConcertsTable(props: Props): ReactElement {
+function ConcertsTable(props: Props): ReactElement | null {
     const {
         concerts,
         loadConcerts,

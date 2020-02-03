@@ -5,7 +5,7 @@ type Props = {
     isLoading: boolean
 }
 
-function Loader(props: Props): ReactElement {
+function Loader(props: Props): ReactElement | null {
     const { isLoading } = props
 
     if (isLoading === false) {

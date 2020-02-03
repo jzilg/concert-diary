@@ -7,7 +7,7 @@ type Props = {
     removeNotification: Function
 }
 
-function NotificationsList(props: Props): ReactElement {
+function NotificationsList(props: Props): ReactElement | null {
     const { notifications, removeNotification } = props
 
     if (notifications.length === 0) {

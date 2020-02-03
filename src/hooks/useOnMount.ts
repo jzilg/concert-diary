@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 
-function useOnMount(callback: () => void, cleanup: Function = undefined): void | Function {
+function useOnMount(
+    callback: () => void,
+    cleanup: Function | undefined = undefined,
+): void | Function {
     useEffect(callback, [])
     return cleanup
 }

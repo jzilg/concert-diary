@@ -10,7 +10,7 @@ type Props = {
     deleteFestival: Function
 }
 
-function FestivalsTable(props: Props): ReactElement {
+function FestivalsTable(props: Props): ReactElement | null {
     const {
         festivals,
         loadFestivals,
