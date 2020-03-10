@@ -46,6 +46,12 @@
     "no-plusplus": ["error", {
       "allowForLoopAfterthoughts": true
     }],
+    "object-property-newline": [
+      "error",
+      {
+        "allowAllPropertiesOnSameLine": false
+      }
+    ],
     "semi": ["error", "never"],
     "valid-jsdoc": ["error", {
       "requireReturn": false,

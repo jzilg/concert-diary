@@ -28,13 +28,20 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
             failureAction,
         } = action.payload
         const { causedBy } = action.meta
-        const options: RequestInit = getApiOptions({ method, headers, body })
+        const options: RequestInit = getApiOptions({
+            method,
+            headers,
+            body,
+        })
 
         return fetch(url, options)
             .then((response) => {
                 if (response.ok) {
                     response.json().then((data) => {
-                        dispatch(apiSuccess({ successAction, data }, { causedBy }))
+                        dispatch(apiSuccess({
+                            successAction,
+                            data,
+                        }, { causedBy }))
                     })
                 } else {
                     const error: Error = {
@@ -42,7 +49,10 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
                         message: response.statusText,
                     }
 
-                    dispatch(apiFailure({ failureAction, error }, { causedBy }))
+                    dispatch(apiFailure({
+                        failureAction,
+                        error,
+                    }, { causedBy }))
                 }
             })
             .catch((apiError) => {
@@ -51,7 +61,10 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
                     message: apiError.message,
                 }
 
-                dispatch(apiFailure({ failureAction, error }, { causedBy }))
+                dispatch(apiFailure({
+                    failureAction,
+                    error,
+                }, { causedBy }))
 
                 /* eslint-disable-next-line no-console */
                 console.error(apiError)

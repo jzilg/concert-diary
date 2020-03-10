@@ -19,8 +19,14 @@ type Band = {
 
 function getMostSeenBands(concerts: Concerts, festivals: Festivals): MostSeenBand[] {
     const bandsFromConcerts: Band[] = concerts.reduce((accumulator, concert) => {
-        const mainBand = { name: concert.band, type: 'main' }
-        const supportBands = concert.supportBands.map((band) => ({ name: band, type: 'support' }))
+        const mainBand = {
+            name: concert.band,
+            type: 'main',
+        }
+        const supportBands = concert.supportBands.map((band) => ({
+            name: band,
+            type: 'support',
+        }))
         return [
             ...accumulator,
             ...supportBands,
@@ -29,7 +35,10 @@ function getMostSeenBands(concerts: Concerts, festivals: Festivals): MostSeenBan
     }, [])
 
     const bandsFromFestivals: Band[] = festivals.reduce((accumulator, festival) => {
-        const bands = festival.bands.map((band) => ({ name: band, type: 'festival' }))
+        const bands = festival.bands.map((band) => ({
+            name: band,
+            type: 'festival',
+        }))
         return [
             ...accumulator,
             ...bands,
