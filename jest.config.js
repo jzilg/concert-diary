@@ -1,5 +1,5 @@
 module.exports = {
-    collectCoverage: false,
+    collectCoverage: true,
     collectCoverageFrom: [
         'src/**/*.{ts,tsx}',
         '!src/**/index.ts',
