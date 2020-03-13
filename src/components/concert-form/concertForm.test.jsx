@@ -5,8 +5,8 @@ import ConcertForm from './ConcertForm'
 import concerts from '../../../mock-data/concerts.json'
 
 describe('Loading', () => {
-    const goToConcerts = () => {}
-    const saveConcert = () => {}
+    const goToConcerts = jest.fn()
+    const saveConcert = jest.fn()
 
     it('should render correctly', () => {
         const component = shallow((
