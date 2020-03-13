@@ -74,7 +74,7 @@
   "dependencies": {
     "connected-react-router": "^6.7.0",
     "dotenv": "^8.2.0",
-    "embellish.css": "^1.4.0",
+    "embellish.css": "^2.1.1",
     "express": "^4.17.1",
     "history": "^4.10.1",
     "moment": "^2.24.0",
