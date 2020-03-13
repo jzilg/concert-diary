@@ -67,8 +67,9 @@ module.exports = {
                         options: {
                             sourceMap: isDevServer,
                             importLoaders: 1,
-                            modules: true,
-                            localIdentName: '[name]-[local]',
+                            modules: {
+                                localIdentName: '[name]-[local]',
+                            },
                         },
                     },
                     {

@@ -72,7 +72,7 @@
         "object": "Object"
       }
     }],
-    "react/forbid-prop-types": [false],
+    "react/forbid-prop-types": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": [1, {
@@ -83,7 +83,7 @@
     }],
     "react/jsx-indent": ["error", 4],
     "react/jsx-indent-props": ["error", 4],
-    "jsx-a11y/no-autofocus": [false],
+    "jsx-a11y/no-autofocus": 0,
     "@typescript-eslint/indent": ["error", 4],
     "@typescript-eslint/prefer-interface": 0,
     "@typescript-eslint/no-var-requires": 0,
@@ -97,7 +97,18 @@
         "delimiter": "none"
       }
     }],
-    "jsx-a11y/label-has-associated-control": [false],
-    "jsx-a11y/label-has-for": [false]
-  }
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/label-has-for": 0
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    }
+  ]
 }
