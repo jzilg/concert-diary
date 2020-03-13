@@ -11,15 +11,14 @@ function getApiOptions({ method, headers, body }: ApiOptions): RequestInit {
         method,
     }
 
-    if (headers) {
-        options.headers = headers
-    }
-
     if (method === 'POST' || method === 'PUT') {
         options.headers = {
             'Content-Type': 'application/json',
-            ...headers,
         }
+    }
+
+    if (headers) {
+        options.headers = headers
     }
 
     if (body) {
