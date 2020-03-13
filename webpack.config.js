@@ -9,7 +9,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const dartSass = require('dart-sass')
 
-const isDevServer = process.argv[1].includes('webpack-dev-server')
+const isDevServer = process.argv[1] && process.argv[1].includes('webpack-dev-server')
 const filename = '[name]-[contenthash]'
 
 const getScriptLoaders = ({ typescriptIsUsed }) => [
