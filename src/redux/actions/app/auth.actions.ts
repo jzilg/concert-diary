@@ -1,4 +1,4 @@
-import { createAction, createAsyncAction } from 'typesafe-actions'
+import { createAsyncAction } from 'typesafe-actions'
 
 export const authAsync = createAsyncAction(
     '[Auth] [CMD] REQUEST',
@@ -6,4 +6,4 @@ export const authAsync = createAsyncAction(
     '[Auth] [EVENT] FAILURE',
 )<{ username: string; password: string }, string, Error>()
 
-export const setWebtokenOnState = createAction('[AUTH] [DOC] SET_TOKEN_ON_STATE')<string>()
+export default authAsync

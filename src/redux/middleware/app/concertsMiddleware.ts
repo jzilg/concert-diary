@@ -14,6 +14,7 @@ import {
 } from '../../actions/app/concerts.actions'
 import { apiRequest } from '../../actions/core/api.actions'
 import concertExistsSelector from '../../selectors/concertExistsSelector'
+import { getConcertsApiUrl } from '../../../api'
 
 const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
@@ -33,9 +34,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
 
     if (isActionOf(fetchConcertsAsync.request, action)) {
         const id = action.payload
-        const url = id !== undefined
-            ? `${process.env.API_URL}/concerts?id=${id}`
-            : `${process.env.API_URL}/concerts`
+        const url = getConcertsApiUrl(id)
 
         dispatch(apiRequest({
             url,
@@ -57,7 +56,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
         const concert = action.payload
 
         next(apiRequest({
-            url: `${process.env.API_URL}/concerts`,
+            url: getConcertsApiUrl(),
             method: 'POST',
             body: JSON.stringify(concert),
             successAction: postConcertAsync.success,
@@ -78,7 +77,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
         const concert = action.payload
 
         dispatch(apiRequest({
-            url: `${process.env.API_URL}/concerts/${concert.id}`,
+            url: getConcertsApiUrl(concert.id),
             method: 'PUT',
             body: JSON.stringify(concert),
             successAction: putConcertAsync.success,
@@ -99,7 +98,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
         const concertId = action.payload
 
         dispatch(apiRequest({
-            url: `${process.env.API_URL}/concerts/${concertId}`,
+            url: getConcertsApiUrl(concertId),
             method: 'DELETE',
             successAction: deleteConcertAsync.success.bind(this, concertId),
             failureAction: deleteConcertAsync.failure,

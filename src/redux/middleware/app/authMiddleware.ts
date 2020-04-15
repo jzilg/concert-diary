@@ -2,8 +2,9 @@ import { Middleware } from 'redux'
 import { isActionOf, getType } from 'typesafe-actions'
 import { push } from 'connected-react-router'
 import { apiRequest, apiFailure } from '../../actions/core/api.actions'
-import { authAsync, setWebtokenOnState } from '../../actions/app/auth.actions'
+import authAsync from '../../actions/app/auth.actions'
 import routeIsLoginSelector from '../../selectors/routeIsLoginSelector'
+import { setApiToken } from '../../../api'
 
 const authMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
@@ -21,7 +22,7 @@ const authMiddleware: Middleware = (store) => (next) => (action) => {
 
     if (isActionOf(authAsync.request, action)) {
         dispatch(apiRequest({
-            url: `${process.env.AUTH_URL}/login`,
+            url: `${process.env.API_URL}/login`,
             method: 'POST',
             body: JSON.stringify(action.payload),
             successAction: authAsync.success,
@@ -32,12 +33,8 @@ const authMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(authAsync.success, action)) {
-        dispatch(setWebtokenOnState(action.payload))
+        setApiToken(action.payload)
         dispatch(push('/'))
-    }
-
-    if (isActionOf(authAsync.failure, action)) {
-        dispatch(setWebtokenOnState(''))
     }
 }
 
