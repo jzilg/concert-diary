@@ -14,7 +14,6 @@ type Props = {
 function EditConcert(props: Props): ReactElement {
     const {
         concert,
-        concertExists,
         loadConcert,
         saveConcert,
     } = props
@@ -23,11 +22,9 @@ function EditConcert(props: Props): ReactElement {
         loadConcert(concert.id)
     })
 
-    const title = concertExists ? 'Edit Concert' : 'Add New Concert'
-
     return (
         <>
-            <h1>{title}</h1>
+            <h1>Edit Concert</h1>
             <Navigation />
             <ConcertForm
                 concert={concert}

@@ -32,6 +32,7 @@ export const deleteConcertAsync = createAsyncAction(
 )<ConcertId, ConcertId, Error>()
 
 export const saveConcert = createAction('Concert | CMD | SAVE')<Concert>()
+export const saveNewConcert = createAction('Concert | CMD | SAVE NEW')<Concert>()
 export const setConcertsState = createAction('Concert | DOC | SET_STATE')<Concerts>()
 export const setConcertOnState = createAction('Concert | DOC | ADD_TO_STATE')<Concert>()
 export const removeConcertFromState = createAction('Concert | DOC | REMOVE_FROM_STATE')<ConcertId>()

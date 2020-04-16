@@ -10,26 +10,25 @@ import {
     deleteConcertAsync,
     removeConcertFromState,
     setConcertOnState,
-    saveConcert,
+    saveConcert, saveNewConcert,
 } from '../../actions/app/concerts.actions'
 import { apiRequest } from '../../actions/core/api.actions'
-import concertExistsSelector from '../../selectors/concertExistsSelector'
 import { getConcertsApiUrl } from '../../../api'
 
 const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
     const { dispatch, getState } = store
 
-    if (isActionOf(saveConcert, action)) {
-        const state = getState()
+    if (isActionOf(saveNewConcert, action)) {
         const concert = action.payload
-        const concertExist = concertExistsSelector(state)
 
-        const saveAction = concertExist
-            ? putConcertAsync.request(concert)
-            : postConcertAsync.request(concert)
+        dispatch(postConcertAsync.request(concert))
+    }
 
-        dispatch(saveAction)
+    if (isActionOf(saveConcert, action)) {
+        const concert = action.payload
+
+        dispatch(putConcertAsync.request(concert))
     }
 
     if (isActionOf(fetchConcertsAsync.request, action)) {
