@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import Concert, { ConcertId } from '../entities/Concert'
 import concertSelector from '../redux/selectors/concertSelector'
 import concertExistsSelector from '../redux/selectors/concertExistsSelector'
-import { fetchConcertsAsync, saveConcert } from '../redux/actions/app/concerts.actions'
+import { fetchConcertAsync, saveConcert } from '../redux/actions/app/concerts.actions'
 import EditConcert from '../components/edit-concert'
 
 type StateProps = {
@@ -23,7 +23,7 @@ type DispatchProps = {
 }
 
 const mapDispatchToProps: DispatchProps = {
-    loadConcert: fetchConcertsAsync.request,
+    loadConcert: fetchConcertAsync.request,
     saveConcert,
 }
 

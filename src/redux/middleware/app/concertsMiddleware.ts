@@ -2,14 +2,14 @@ import { Middleware } from 'redux'
 import { getType, isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
 import {
+    fetchConcertAsync,
     fetchConcertsAsync,
     setConcertsState,
     postConcertAsync,
     putConcertAsync,
-    updateConcertOnState,
     deleteConcertAsync,
     removeConcertFromState,
-    addConcertToState,
+    setConcertOnState,
     saveConcert,
 } from '../../actions/app/concerts.actions'
 import { apiRequest } from '../../actions/core/api.actions'
@@ -33,8 +33,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(fetchConcertsAsync.request, action)) {
-        const id = action.payload
-        const url = getConcertsApiUrl(id)
+        const url = getConcertsApiUrl()
 
         dispatch(apiRequest({
             url,
@@ -50,6 +49,26 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
         const concerts = action.payload
 
         dispatch(setConcertsState(concerts))
+    }
+
+    if (isActionOf(fetchConcertAsync.request, action)) {
+        const id = action.payload
+        const url = getConcertsApiUrl(id)
+
+        dispatch(apiRequest({
+            url,
+            method: 'GET',
+            successAction: fetchConcertAsync.success,
+            failureAction: fetchConcertAsync.failure,
+        }, {
+            causedBy: getType(fetchConcertAsync.request),
+        }))
+    }
+
+    if (isActionOf(fetchConcertAsync.success, action)) {
+        const concert = action.payload
+
+        dispatch(setConcertOnState(concert))
     }
 
     if (isActionOf(postConcertAsync.request, action)) {
@@ -69,7 +88,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     if (isActionOf(postConcertAsync.success, action)) {
         const concert = action.payload
 
-        dispatch(addConcertToState(concert))
+        dispatch(setConcertOnState(concert))
         dispatch(push('/concerts'))
     }
 
@@ -90,7 +109,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     if (isActionOf(putConcertAsync.success, action)) {
         const concert = action.payload
 
-        dispatch(updateConcertOnState(concert))
+        dispatch(setConcertOnState(concert))
         dispatch(push('/concerts'))
     }
 

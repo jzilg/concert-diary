@@ -1,8 +1,8 @@
 export type Concerts = Concert[]
-export type ConcertId = number
+export type ConcertId = Concert['id']
 
 type Concert = {
-    id: ConcertId
+    id: number
     date: string
     band: string
     supportBands: string[]
