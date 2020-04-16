@@ -25,7 +25,7 @@ module.exports = {
     output: {
         path: path.resolve('dist'),
         filename: `${filename}.js`,
-        publicPath: process.env.BASE_URL,
+        publicPath: '/',
     },
     resolve: {
         extensions: [
