@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import Concert from '../../entities/Concert'
-import Navigation from '../../containers/NavigationContainer'
+import Header from '../header'
 import ConcertForm from '../concert-form'
 
 type Props = {
@@ -16,8 +16,8 @@ function NewConcert(props: Props): ReactElement {
 
     return (
         <>
-            <h1>Add New Concert</h1>
-            <Navigation />
+            <Header />
+            <h2>Add New Concert</h2>
             <ConcertForm
                 concert={concert}
                 saveConcert={saveNewConcert}

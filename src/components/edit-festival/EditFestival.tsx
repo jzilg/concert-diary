@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import Festival, { FestivalId } from '../../entities/Festival'
 import useOnMount from '../../hooks/useOnMount'
-import Navigation from '../../containers/NavigationContainer'
+import Header from '../header'
 import FestivalForm from '../festival-form'
 
 type Props = {
@@ -27,8 +27,8 @@ function EditFestival(props: Props): ReactElement {
 
     return (
         <>
-            <h1>{title}</h1>
-            <Navigation />
+            <Header />
+            <h2>{title}</h2>
             <FestivalForm
                 festival={festival}
                 saveFestival={saveFestival}

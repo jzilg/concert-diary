@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { MostSeenBand } from '../../redux/selectors/mostSeenBandsSelector'
-import Navigation from '../../containers/NavigationContainer'
+import Header from '../header'
 import MostSeenBands from '../most-seen-bands'
 import GeneralStatistics from '../general-statistics'
 import useOnMount from '../../hooks/useOnMount'
@@ -33,8 +33,8 @@ function Statistics(props: Props): ReactElement {
 
     return (
         <>
-            <h1>Statistics</h1>
-            <Navigation />
+            <Header />
+            <h2>Statistics</h2>
             <GeneralStatistics
                 totalNumOfBands={totalNumOfBands}
                 totalNumOfConcerts={totalNumOfConcerts}
