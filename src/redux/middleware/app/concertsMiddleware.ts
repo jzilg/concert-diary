@@ -17,7 +17,7 @@ import { getConcertsApiUrl } from '../../../api'
 
 const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
-    const { dispatch, getState } = store
+    const { dispatch } = store
 
     if (isActionOf(saveNewConcert, action)) {
         const concert = action.payload

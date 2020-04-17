@@ -1,7 +1,6 @@
-import State from '../State'
 import { NavLinks } from '../../entities/NavLink'
 
-function navLinksSelector(state: State): NavLinks {
+function navLinksSelector(): NavLinks {
     return [
         {
             url: '/concerts',
@@ -16,11 +15,11 @@ function navLinksSelector(state: State): NavLinks {
             label: 'Statistics',
         },
         {
-            url: 'concerts/new',
+            url: '/concerts/new',
             label: 'Add new concert',
         },
         {
-            url: 'festivals/new',
+            url: '/festivals/new',
             label: 'Add new festival',
         },
     ]
