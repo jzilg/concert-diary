@@ -1,36 +1,36 @@
 import { createAction, createAsyncAction } from 'typesafe-actions'
 import Festival, { Festivals, FestivalId } from '../../../entities/Festival'
 
-export const saveFestival = createAction('Festival | CMD | SAVE')<Festival>()
+export const saveFestival = createAction('CMD / Festival / SAVE')<Festival>()
 
 export const fetchFestivalsAsync = createAsyncAction(
-    'Festival | CMD | FETCH_REQUEST',
-    'Festival | EVENT | FETCH_SUCCESS',
-    'Festival | EVENT | FETCH_FAILURE',
+    'CMD / Festival / FETCH_REQUEST',
+    'EVT / Festival / FETCH_SUCCESS',
+    'EVT / Festival / FETCH_FAILURE',
 )<FestivalId|undefined, Festivals, Error>()
 
-export const setFestivalsState = createAction('Festival | DOC | SET_STATE')<Festivals>()
+export const setFestivalsState = createAction('DOC / Festival / SET_STATE')<Festivals>()
 
 export const postFestivalAsync = createAsyncAction(
-    'Festival | CMD | POST_REQUEST',
-    'Festival | EVENT | POST_SUCCESS',
-    'Festival | EVENT | POST_FAILURE',
+    'CMD / Festival / POST_REQUEST',
+    'EVT / Festival / POST_SUCCESS',
+    'EVT / Festival / POST_FAILURE',
 )<Festival, Festival, Error>()
 
-export const addFestivalToState = createAction('Festival | DOC | ADD_TO_STATE')<Festival>()
+export const addFestivalToState = createAction('DOC / Festival / ADD_TO_STATE')<Festival>()
 
 export const putFestivalAsync = createAsyncAction(
-    'Festival | CMD | PUT_REQUEST',
-    'Festival | EVENT | PUT_SUCCESS',
-    'Festival | EVENT | PUT_FAILURE',
+    'CMD / Festival / PUT_REQUEST',
+    'EVT / Festival / PUT_SUCCESS',
+    'EVT / Festival / PUT_FAILURE',
 )<Festival, Festival, Error>()
 
-export const updateFestivalOnState = createAction('Festival | DOC | UPDATE_ON_STATE')<Festival>()
+export const updateFestivalOnState = createAction('DOC / Festival / UPDATE_ON_STATE')<Festival>()
 
 export const deleteFestivalAsync = createAsyncAction(
-    'Festival | CMD | DELETE_REQUEST',
-    'Festival | EVENT | DELETE_SUCCESS',
-    'Festival | EVENT | DELETE_FAILURE',
+    'CMD / Festival / DELETE_REQUEST',
+    'EVT / Festival / DELETE_SUCCESS',
+    'EVT / Festival / DELETE_FAILURE',
 )<FestivalId, FestivalId, Error>()
 
-export const removeFestivalFromState = createAction('Festival | DOC | REMOVE_FROM_STATE')<FestivalId>()
+export const removeFestivalFromState = createAction('DOC / Festival / REMOVE_FROM_STATE')<FestivalId>()
