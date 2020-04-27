@@ -89,13 +89,7 @@ module.exports = {
             isDevServer ? null : new TerserPlugin(),
         ].filter(Boolean),
         splitChunks: {
-            cacheGroups: {
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendor',
-                    chunks: 'initial',
-                },
-            },
+            chunks: 'all',
         },
     },
     plugins: [
