@@ -2,40 +2,37 @@ import { Middleware } from 'redux'
 import { getType, isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
 import {
+    fetchConcertAsync,
     fetchConcertsAsync,
     setConcertsState,
     postConcertAsync,
     putConcertAsync,
-    updateConcertOnState,
     deleteConcertAsync,
     removeConcertFromState,
-    addConcertToState,
-    saveConcert,
+    setConcertOnState,
+    saveConcert, saveNewConcert,
 } from '../../actions/app/concerts.actions'
 import { apiRequest } from '../../actions/core/api.actions'
-import concertExistsSelector from '../../selectors/concertExistsSelector'
+import { getConcertsApiUrl } from '../../../api'
 
 const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
-    const { dispatch, getState } = store
+    const { dispatch } = store
+
+    if (isActionOf(saveNewConcert, action)) {
+        const concert = action.payload
+
+        dispatch(postConcertAsync.request(concert))
+    }
 
     if (isActionOf(saveConcert, action)) {
-        const state = getState()
         const concert = action.payload
-        const concertExist = concertExistsSelector(state)
 
-        const saveAction = concertExist
-            ? putConcertAsync.request(concert)
-            : postConcertAsync.request(concert)
-
-        dispatch(saveAction)
+        dispatch(putConcertAsync.request(concert))
     }
 
     if (isActionOf(fetchConcertsAsync.request, action)) {
-        const id = action.payload
-        const url = id !== undefined
-            ? `${process.env.API_URL}/concerts?id=${id}`
-            : `${process.env.API_URL}/concerts`
+        const url = getConcertsApiUrl()
 
         dispatch(apiRequest({
             url,
@@ -53,11 +50,31 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
         dispatch(setConcertsState(concerts))
     }
 
+    if (isActionOf(fetchConcertAsync.request, action)) {
+        const id = action.payload
+        const url = getConcertsApiUrl(id)
+
+        dispatch(apiRequest({
+            url,
+            method: 'GET',
+            successAction: fetchConcertAsync.success,
+            failureAction: fetchConcertAsync.failure,
+        }, {
+            causedBy: getType(fetchConcertAsync.request),
+        }))
+    }
+
+    if (isActionOf(fetchConcertAsync.success, action)) {
+        const concert = action.payload
+
+        dispatch(setConcertOnState(concert))
+    }
+
     if (isActionOf(postConcertAsync.request, action)) {
         const concert = action.payload
 
         next(apiRequest({
-            url: `${process.env.API_URL}/concerts`,
+            url: getConcertsApiUrl(),
             method: 'POST',
             body: JSON.stringify(concert),
             successAction: postConcertAsync.success,
@@ -70,7 +87,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     if (isActionOf(postConcertAsync.success, action)) {
         const concert = action.payload
 
-        dispatch(addConcertToState(concert))
+        dispatch(setConcertOnState(concert))
         dispatch(push('/concerts'))
     }
 
@@ -78,7 +95,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
         const concert = action.payload
 
         dispatch(apiRequest({
-            url: `${process.env.API_URL}/concerts/${concert.id}`,
+            url: getConcertsApiUrl(concert.id),
             method: 'PUT',
             body: JSON.stringify(concert),
             successAction: putConcertAsync.success,
@@ -91,7 +108,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     if (isActionOf(putConcertAsync.success, action)) {
         const concert = action.payload
 
-        dispatch(updateConcertOnState(concert))
+        dispatch(setConcertOnState(concert))
         dispatch(push('/concerts'))
     }
 
@@ -99,7 +116,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
         const concertId = action.payload
 
         dispatch(apiRequest({
-            url: `${process.env.API_URL}/concerts/${concertId}`,
+            url: getConcertsApiUrl(concertId),
             method: 'DELETE',
             successAction: deleteConcertAsync.success.bind(this, concertId),
             failureAction: deleteConcertAsync.failure,

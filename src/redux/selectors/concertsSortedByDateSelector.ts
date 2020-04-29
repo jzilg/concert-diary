@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect'
 import moment from 'moment'
 import concertsSelector from './concertsSelector'
-import { ConcertsState } from '../reducers/concertsReducer'
+import { Concerts } from '../../entities/Concert'
 
-function concertsSortedByDate(concerts): ConcertsState {
+function concertsSortedByDate(concerts: Concerts): Concerts {
     const byDate = ((concert0, concert1): number => {
         const concert0Timestamp = moment(concert0.date).unix()
         const concert1Timestamp = moment(concert1.date).unix()

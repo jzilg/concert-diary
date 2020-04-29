@@ -18,6 +18,18 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
     const { dispatch } = store
 
+    function createError(status, message, causedBy, failureAction): void {
+        const error: Error = {
+            status,
+            message,
+        }
+
+        dispatch(apiFailure({
+            failureAction,
+            error,
+        }, { causedBy }))
+    }
+
     if (isActionOf(apiRequest, action)) {
         const {
             url,
@@ -36,35 +48,20 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
 
         return fetch(url, options)
             .then((response) => {
-                if (response.ok) {
-                    response.json().then((data) => {
-                        dispatch(apiSuccess({
-                            successAction,
-                            data,
-                        }, { causedBy }))
-                    })
-                } else {
-                    const error: Error = {
-                        status: response.status,
-                        message: response.statusText,
-                    }
-
-                    dispatch(apiFailure({
-                        failureAction,
-                        error,
-                    }, { causedBy }))
+                if (!response.ok) {
+                    createError(response.status, response.statusText, causedBy, failureAction)
+                    return
                 }
+
+                response.json().then((data) => {
+                    dispatch(apiSuccess({
+                        successAction,
+                        data,
+                    }, { causedBy }))
+                })
             })
             .catch((apiError) => {
-                const error: Error = {
-                    status: 0,
-                    message: apiError.message,
-                }
-
-                dispatch(apiFailure({
-                    failureAction,
-                    error,
-                }, { causedBy }))
+                createError(0, apiError.message, causedBy, failureAction)
 
                 /* eslint-disable-next-line no-console */
                 console.error(apiError)

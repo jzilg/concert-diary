@@ -1,12 +1,11 @@
 import React, { ReactElement } from 'react'
-import Navigation from '../../containers/NavigationContainer'
+import Header from '../header'
 import FestivalsTable from '../../containers/FestivalsTableContainer'
 
 function FestivalsView(): ReactElement {
     return (
         <>
-            <h1>Festival Diary</h1>
-            <Navigation />
+            <Header />
             <FestivalsTable />
         </>
     )

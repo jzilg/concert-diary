@@ -1,41 +1,43 @@
 import { createReducer } from 'typesafe-actions'
-import { Concerts } from '../../entities/Concert'
+import Concert from '../../entities/Concert'
 import {
     setConcertsState,
-    addConcertToState,
-    updateConcertOnState,
+    setConcertOnState,
     removeConcertFromState,
 } from '../actions/app/concerts.actions'
 
-export type ConcertsState = Concerts
+export type ConcertsState = Record<Concert['id'], Concert>
 
-export const defaultState: ConcertsState = []
+export const defaultState: ConcertsState = {}
 
 const concertsReducer = createReducer(defaultState)
-    .handleAction(
-        setConcertsState,
-        (state, action) => action.payload,
-    )
-    .handleAction(
-        addConcertToState,
-        (state, action) => state.concat(action.payload),
-    )
-    .handleAction(
-        updateConcertOnState,
-        (state, action) => state.map((concertFromState) => {
-            const concert = action.payload
-            const isConcertToUpdate = concertFromState.id === concert.id
+    .handleAction(setConcertsState, (state, action) => {
+        const concerts = action.payload
+        const newState = {}
 
-            return isConcertToUpdate ? concert : concertFromState
-        }),
-    )
-    .handleAction(
-        removeConcertFromState,
-        (state, action) => state.filter((concertFromState) => {
-            const concertId = action.payload
+        concerts.forEach((concert) => {
+            newState[concert.id] = concert
+        })
 
-            return concertFromState.id !== concertId
-        }),
-    )
+        return newState
+    })
+    .handleAction(setConcertOnState, (state, action) => {
+        const concert = action.payload
+
+        return {
+            ...state,
+            [concert.id]: concert,
+        }
+    })
+    .handleAction(removeConcertFromState, (state, action) => {
+        const concertId = action.payload
+        const newState = {
+            ...state,
+        }
+
+        delete newState[concertId]
+
+        return newState
+    })
 
 export default concertsReducer

@@ -25,7 +25,7 @@ module.exports = {
     output: {
         path: path.resolve('dist'),
         filename: `${filename}.js`,
-        publicPath: process.env.BASE_URL,
+        publicPath: '/',
     },
     resolve: {
         extensions: [
@@ -89,13 +89,7 @@ module.exports = {
             isDevServer ? null : new TerserPlugin(),
         ].filter(Boolean),
         splitChunks: {
-            cacheGroups: {
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendor',
-                    chunks: 'initial',
-                },
-            },
+            chunks: 'all',
         },
     },
     plugins: [

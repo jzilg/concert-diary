@@ -7,9 +7,9 @@ type StateProps = {
     navLinks: NavLinks
 }
 
-function mapStateToProps(state): StateProps {
+function mapStateToProps(): StateProps {
     return {
-        navLinks: navLinksSelector(state),
+        navLinks: navLinksSelector(),
     }
 }
 

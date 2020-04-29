@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import Concert, { ConcertId } from '../../entities/Concert'
 import useOnMount from '../../hooks/useOnMount'
-import Navigation from '../../containers/NavigationContainer'
+import Header from '../header'
 import ConcertForm from '../concert-form'
 
 type Props = {
@@ -14,7 +14,6 @@ type Props = {
 function EditConcert(props: Props): ReactElement {
     const {
         concert,
-        concertExists,
         loadConcert,
         saveConcert,
     } = props
@@ -23,12 +22,10 @@ function EditConcert(props: Props): ReactElement {
         loadConcert(concert.id)
     })
 
-    const title = concertExists ? 'Edit Concert' : 'Add New Concert'
-
     return (
         <>
-            <h1>{title}</h1>
-            <Navigation />
+            <Header />
+            <h2>Edit Concert</h2>
             <ConcertForm
                 concert={concert}
                 saveConcert={saveConcert}

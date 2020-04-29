@@ -1,36 +1,38 @@
 import { createAction, createAsyncAction } from 'typesafe-actions'
 import Concert, { Concerts, ConcertId } from '../../../entities/Concert'
 
-export const saveConcert = createAction('[Concerts] [CMD] SAVE')<Concert>()
-
 export const fetchConcertsAsync = createAsyncAction(
-    '[Concerts] [CMD] FETCH_REQUEST',
-    '[Concerts] [EVENT] FETCH_SUCCESS',
-    '[Concerts] [EVENT] FETCH_FAILURE',
-)<ConcertId|undefined, Concerts, Error>()
+    'CMD / Concert / FETCH_ALL_REQUEST',
+    'EVT / Concert / FETCH_ALL_SUCCESS',
+    'EVT / Concert / FETCH_ALL_FAILURE',
+)<undefined, Concerts, Error>()
 
-export const setConcertsState = createAction('[Concerts] [DOC] SET_STATE')<Concerts>()
+export const fetchConcertAsync = createAsyncAction(
+    'CMD / Concert / FETCH_REQUEST',
+    'EVT / Concert / FETCH_SUCCESS',
+    'EVT / Concert / FETCH_FAILURE',
+)<ConcertId, Concert, Error>()
 
 export const postConcertAsync = createAsyncAction(
-    '[Concerts] [CMD] POST_REQUEST',
-    '[Concerts] [EVENT] POST_SUCCESS',
-    '[Concerts] [EVENT] POST_FAILURE',
+    'CMD / Concert / POST_REQUEST',
+    'EVT / Concert / POST_SUCCESS',
+    'EVT / Concert / POST_FAILURE',
 )<Concert, Concert, Error>()
-
-export const addConcertToState = createAction('[Concerts] [DOC] ADD_TO_STATE')<Concert>()
 
 export const putConcertAsync = createAsyncAction(
-    '[Concerts] [CMD] PUT_REQUEST',
-    '[Concerts] [EVENT] PUT_SUCCESS',
-    '[Concerts] [EVENT] PUT_FAILURE',
+    'CMD / Concert / PUT_REQUEST',
+    'EVT / Concert / PUT_SUCCESS',
+    'EVT / Concert / PUT_FAILURE',
 )<Concert, Concert, Error>()
 
-export const updateConcertOnState = createAction('[Concerts] [DOC] UPDATE_ON_STATE')<Concert>()
-
 export const deleteConcertAsync = createAsyncAction(
-    '[Concerts] [CMD] DELETE_REQUEST',
-    '[Concerts] [EVENT] DELETE_SUCCESS',
-    '[Concerts] [EVENT] DELETE_FAILURE',
+    'CMD / Concert / DELETE_REQUEST',
+    'EVT / Concert / DELETE_SUCCESS',
+    'EVT / Concert / DELETE_FAILURE',
 )<ConcertId, ConcertId, Error>()
 
-export const removeConcertFromState = createAction('[Concerts] [DOC] REMOVE_FROM_STATE')<ConcertId>()
+export const saveConcert = createAction('CMD / Concert / SAVE')<Concert>()
+export const saveNewConcert = createAction('CMD / Concert / SAVE NEW')<Concert>()
+export const setConcertsState = createAction('DOC / Concert / SET_STATE')<Concerts>()
+export const setConcertOnState = createAction('DOC / Concert / ADD_TO_STATE')<Concert>()
+export const removeConcertFromState = createAction('DOC / Concert / REMOVE_FROM_STATE')<ConcertId>()
