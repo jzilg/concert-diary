@@ -2,7 +2,6 @@ import { Middleware } from 'redux'
 import { ActionCreator, isActionOf } from 'typesafe-actions'
 import getApiOptions, { HTTPMethod } from '../../getApiOptions'
 import { apiRequest, apiSuccess, apiFailure } from '../../actions/core/api.actions'
-import Error from '../../../entities/Error'
 
 export type ApiRequestOptions = {
     url: string
@@ -17,18 +16,6 @@ export type ApiRequestOptions = {
 const apiMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
     const { dispatch } = store
-
-    function createError(status, message, causedBy, failureAction): void {
-        const error: Error = {
-            status,
-            message,
-        }
-
-        dispatch(apiFailure({
-            failureAction,
-            error,
-        }, { causedBy }))
-    }
 
     if (isActionOf(apiRequest, action)) {
         const {
@@ -46,26 +33,39 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
             body,
         })
 
+        const handleSuccess = (data): void => {
+            dispatch(apiSuccess({
+                successAction,
+                data,
+            }, { causedBy }))
+        }
+
+        const handleError = (error: Error): void => {
+            dispatch(apiFailure({
+                failureAction,
+                error,
+            }, { causedBy }))
+
+            /* eslint-disable-next-line no-console */
+            console.error(error)
+        }
+
+        const handleResponse = (response): void => {
+            if (!response.ok) {
+                const error = new Error(response.statusText)
+
+                handleError(error)
+                return
+            }
+
+            response.json()
+                .then(handleSuccess)
+                .catch(handleError)
+        }
+
         return fetch(url, options)
-            .then((response) => {
-                if (!response.ok) {
-                    createError(response.status, response.statusText, causedBy, failureAction)
-                    return
-                }
-
-                response.json().then((data) => {
-                    dispatch(apiSuccess({
-                        successAction,
-                        data,
-                    }, { causedBy }))
-                })
-            })
-            .catch((apiError) => {
-                createError(0, apiError.message, causedBy, failureAction)
-
-                /* eslint-disable-next-line no-console */
-                console.error(apiError)
-            })
+            .then(handleResponse)
+            .catch(handleError)
     }
 
     if (isActionOf(apiSuccess, action)) {

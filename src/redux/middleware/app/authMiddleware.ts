@@ -9,13 +9,13 @@ import { setApiToken } from '../../../api'
 const authMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
     const { dispatch, getState } = store
-    const state = getState()
-    const routeIsLogin = routeIsLoginSelector(state)
 
     if (isActionOf(apiFailure, action)) {
         const { error } = action.payload
+        const state = getState()
+        const routeIsLogin = routeIsLoginSelector(state)
 
-        if (error.status === 401 && !routeIsLogin) {
+        if (error.message === 'Unauthorized' && !routeIsLogin) {
             dispatch(push('/login'))
         }
     }
