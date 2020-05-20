@@ -2,33 +2,33 @@ import { createAction, createAsyncAction } from 'typesafe-actions'
 import Concert, { Concerts, ConcertId } from '../../../entities/Concert'
 
 export const fetchConcertsAsync = createAsyncAction(
-    'CMD / Concert / FETCH_ALL_REQUEST',
-    'EVT / Concert / FETCH_ALL_SUCCESS',
-    'EVT / Concert / FETCH_ALL_FAILURE',
+    'CMD / Concert / fetch-all request',
+    'EVT / Concert / fetch-all success',
+    'EVT / Concert / fetch-all failure',
 )<undefined, Concerts, Error>()
 
 export const fetchConcertAsync = createAsyncAction(
-    'CMD / Concert / FETCH_REQUEST',
-    'EVT / Concert / FETCH_SUCCESS',
-    'EVT / Concert / FETCH_FAILURE',
+    'CMD / Concert / fetch request',
+    'EVT / Concert / fetch success',
+    'EVT / Concert / fetch failure',
 )<ConcertId, Concert, Error>()
 
 export const postConcertAsync = createAsyncAction(
-    'CMD / Concert / POST_REQUEST',
-    'EVT / Concert / POST_SUCCESS',
-    'EVT / Concert / POST_FAILURE',
+    'CMD / Concert / post request',
+    'EVT / Concert / post success',
+    'EVT / Concert / post failure',
 )<Concert, Concert, Error>()
 
 export const putConcertAsync = createAsyncAction(
-    'CMD / Concert / PUT_REQUEST',
-    'EVT / Concert / PUT_SUCCESS',
-    'EVT / Concert / PUT_FAILURE',
+    'CMD / Concert / put request',
+    'EVT / Concert / put success',
+    'EVT / Concert / put failure',
 )<Concert, Concert, Error>()
 
 export const deleteConcertAsync = createAsyncAction(
-    'CMD / Concert / DELETE_REQUEST',
-    'EVT / Concert / DELETE_SUCCESS',
-    'EVT / Concert / DELETE_FAILURE',
+    'CMD / Concert / delete request',
+    'EVT / Concert / delete success',
+    'EVT / Concert / delete failure',
 )<ConcertId, ConcertId, Error>()
 
 export const saveConcert = createAction('CMD / Concert / SAVE')<Concert>()
