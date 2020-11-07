@@ -6,7 +6,6 @@ import ConcertForm from '../concert-form'
 
 type Props = {
     concert: Concert
-    concertExists: boolean
     loadConcert: (concertId: ConcertId) => void
     saveConcert: Function
 }

@@ -37,4 +37,8 @@ function ListInput(props: Props): ReactElement {
     )
 }
 
+ListInput.defaultProps = {
+    placeholder: '',
+}
+
 export default ListInput
