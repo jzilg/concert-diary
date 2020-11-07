@@ -12,12 +12,6 @@ const dartSass = require('dart-sass')
 const isDevServer = process.argv[1] && process.argv[1].includes('webpack-dev-server')
 const filename = '[name]-[contenthash]'
 
-const getScriptLoaders = ({ typescriptIsUsed }) => [
-    'babel-loader',
-    typescriptIsUsed ? 'ts-loader' : null,
-    'eslint-loader',
-].filter(Boolean)
-
 module.exports = {
     mode: isDevServer ? 'development' : 'production',
     devtool: isDevServer ? 'source-map' : false,
@@ -43,18 +37,13 @@ module.exports = {
                 loader: 'html-loader',
             },
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(js|jsx|ts|tsx)$/,
                 exclude: /node_modules/,
-                use: getScriptLoaders({
-                    typescriptIsUsed: false,
-                }),
-            },
-            {
-                test: /\.(ts|tsx)$/,
-                exclude: /node_modules/,
-                use: getScriptLoaders({
-                    typescriptIsUsed: true,
-                }),
+                use: [
+                    'babel-loader',
+                    'ts-loader',
+                    'eslint-loader',
+                ],
             },
             {
                 test: /\.(s)?css$/,
