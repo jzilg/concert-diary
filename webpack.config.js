@@ -8,9 +8,16 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const dartSass = require('dart-sass')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 const isDevServer = process.argv[1] && process.argv[1].includes('webpack-dev-server')
 const filename = '[name]-[contenthash]'
+const extensions = [
+    '.js',
+    '.jsx',
+    '.ts',
+    '.tsx',
+]
 
 module.exports = {
     mode: isDevServer ? 'development' : 'production',
@@ -22,12 +29,7 @@ module.exports = {
         publicPath: '/',
     },
     resolve: {
-        extensions: [
-            '.js',
-            '.jsx',
-            '.ts',
-            '.tsx',
-        ],
+        extensions,
     },
     module: {
         rules: [
@@ -42,7 +44,6 @@ module.exports = {
                 use: [
                     'babel-loader',
                     'ts-loader',
-                    'eslint-loader',
                 ],
             },
             {
@@ -92,6 +93,9 @@ module.exports = {
         }),
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new Dotenv(),
+        new ESLintPlugin({
+            extensions,
+        }),
     ].filter(Boolean),
     devServer: {
         historyApiFallback: true,
