@@ -3,7 +3,7 @@ import { InputList } from '../components/list-input/ListInput'
 
 type SetValue = (value) => void
 
-function useListInput(initialValue): [InputList, (list: InputList) => void, SetValue] {
+function useListInput(initialValue: InputList): [InputList, (list: InputList) => void, SetValue] {
     const [value, setValue]: [InputList, SetValue] = useState(initialValue)
 
     function handleChange(list: InputList): void {

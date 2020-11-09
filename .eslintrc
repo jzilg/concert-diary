@@ -46,6 +46,7 @@
     "no-plusplus": ["error", {
       "allowForLoopAfterthoughts": true
     }],
+    "no-use-before-define": "off",
     "object-property-newline": [
       "error",
       {
@@ -84,8 +85,10 @@
     "react/jsx-indent": ["error", 4],
     "react/jsx-indent-props": ["error", 4],
     "jsx-a11y/no-autofocus": 0,
+    "@typescript-eslint/ban-types": 0,
     "@typescript-eslint/indent": ["error", 4],
     "@typescript-eslint/prefer-interface": 0,
+    "@typescript-eslint/no-use-before-define": "error",
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/explicit-function-return-type": ["error", {
       "allowExpressions": true,
