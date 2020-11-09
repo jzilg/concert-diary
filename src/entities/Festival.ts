@@ -12,5 +12,4 @@ type Festival = {
     companions: string[]
 }
 
-/* eslint-disable-next-line no-undef */
 export default Festival

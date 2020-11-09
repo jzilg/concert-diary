@@ -10,5 +10,4 @@ type Concert = {
     companions: string[]
 }
 
-/* eslint-disable-next-line no-undef */
 export default Concert

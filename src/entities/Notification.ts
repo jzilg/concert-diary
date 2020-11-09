@@ -18,5 +18,4 @@ type Notification = {
     duration?: NotificationDuration
 }
 
-/* eslint-disable-next-line no-undef */
 export default Notification
