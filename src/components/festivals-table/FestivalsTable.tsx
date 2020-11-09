@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import Festival, { Festivals } from '../../entities/Festival'
 import useOnMount from '../../hooks/useOnMount'
 import TableControls from '../table-controls'
@@ -29,8 +29,8 @@ function FestivalsTable(props: Props): ReactElement | null {
         const { id, name } = festival
         const bands = festival.bands.join(', ')
         const companions = festival.companions.join(', ')
-        const startDate = moment(festival.date.from).format('DD.MM.YYYY')
-        const endDate = moment(festival.date.until).format('DD.MM.YYYY')
+        const startDate = dayjs(festival.date.from).format('DD.MM.YYYY')
+        const endDate = dayjs(festival.date.until).format('DD.MM.YYYY')
         const date = `${startDate} - ${endDate}`
         const editUrl = `festivals/edit?id=${id}`
 

@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import Concert, { Concerts } from '../../entities/Concert'
 import useOnMount from '../../hooks/useOnMount'
 import TableControls from '../table-controls'
@@ -29,7 +29,7 @@ function ConcertsTable(props: Props): ReactElement | null {
         const { id, band, location } = concert
         const supportBands = concert.supportBands.join(', ')
         const companions = concert.companions.join(', ')
-        const date = moment(concert.date).format('DD.MM.YYYY')
+        const date = dayjs(concert.date).format('DD.MM.YYYY')
         const editUrl = `concerts/edit?id=${id}`
 
         function deleteFn(): void {

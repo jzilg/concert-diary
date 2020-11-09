@@ -91,7 +91,6 @@ module.exports = {
             filename: `${filename}.css`,
             chunkFilename: `${filename}.css`,
         }),
-        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new Dotenv(),
         new ESLintPlugin({
             extensions,
