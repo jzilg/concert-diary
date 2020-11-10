@@ -3,11 +3,15 @@ import concertsSortedByDateSelector from '../redux/selectors/concertsSortedByDat
 import { fetchConcertsAsync, deleteConcertAsync } from '../redux/actions/app/concerts.actions'
 import ConcertsTable, { Props } from '../components/concerts-table'
 
-const mapStateToProps: MapStateToProps<Partial<Props>, {}> = (state) => ({
+type StateProps = Pick<Props, 'concerts'>
+
+const mapStateToProps: MapStateToProps<StateProps, {}> = (state): StateProps => ({
     concerts: concertsSortedByDateSelector(state),
 })
 
-const mapDispatchToProps: Partial<Props> = {
+type DispatchProps = Pick<Props, 'loadConcerts' | 'deleteConcert'>
+
+const mapDispatchToProps: DispatchProps = {
     loadConcerts: fetchConcertsAsync.request,
     deleteConcert: deleteConcertAsync.request,
 }

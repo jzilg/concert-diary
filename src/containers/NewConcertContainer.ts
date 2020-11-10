@@ -3,11 +3,15 @@ import concertSelector from '../redux/selectors/concertSelector'
 import { saveNewConcert } from '../redux/actions/app/concerts.actions'
 import NewConcert, { Props } from '../components/new-concert'
 
-const mapStateToProps: MapStateToProps<Partial<Props>, {}> = (state) => ({
+type StateProps = Pick<Props, 'concert'>
+
+const mapStateToProps: MapStateToProps<StateProps, {}> = (state): StateProps => ({
     concert: concertSelector(state),
 })
 
-const mapDispatchToProps: Partial<Props> = {
+type DispatchProps = Pick<Props, 'saveNewConcert'>
+
+const mapDispatchToProps: DispatchProps = {
     saveNewConcert,
 }
 

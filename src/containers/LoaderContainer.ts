@@ -2,7 +2,9 @@ import { connect, MapStateToProps } from 'react-redux'
 import isLoadingSelector from '../redux/selectors/isLoadingSelector'
 import Loader, { Props } from '../components/loader'
 
-const mapStateToProps: MapStateToProps<Partial<Props>, {}> = (state) => ({
+type StateProps = Pick<Props, 'isLoading'>
+
+const mapStateToProps: MapStateToProps<StateProps, {}> = (state): StateProps => ({
     isLoading: isLoadingSelector(state),
 })
 

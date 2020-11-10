@@ -3,11 +3,15 @@ import notificationsSelector from '../redux/selectors/notificationsSelector'
 import { deleteNotification } from '../redux/actions/core/notifications.actions'
 import NotificationsList, { Props } from '../components/notification-list'
 
-const mapStateToProps: MapStateToProps<Partial<Props>, {}> = (state) => ({
+type StateProps = Pick<Props, 'notifications'>
+
+const mapStateToProps: MapStateToProps<StateProps, {}> = (state): StateProps => ({
     notifications: notificationsSelector(state),
 })
 
-const mapDispatchToProps: Partial<Props> = {
+type DispatchProps = Pick<Props, 'removeNotification'>
+
+const mapDispatchToProps: DispatchProps = {
     removeNotification: deleteNotification,
 }
 

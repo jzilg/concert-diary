@@ -4,12 +4,16 @@ import festivalExistsSelector from '../redux/selectors/festivalExistsSelector'
 import { fetchFestivalsAsync, saveFestival } from '../redux/actions/app/festivals.actions'
 import EditFestival, { Props } from '../components/edit-festival'
 
-const mapStateToProps: MapStateToProps<Partial<Props>, {}> = (state) => ({
+type StateProps = Pick<Props, 'festival' | 'festivalExists'>
+
+const mapStateToProps: MapStateToProps<StateProps, {}> = (state): StateProps => ({
     festival: festivalSelector(state),
     festivalExists: festivalExistsSelector(state),
 })
 
-const mapDispatchToProps: Partial<Props> = {
+type DispatchProps = Pick<Props, 'loadFestival' | 'saveFestival'>
+
+const mapDispatchToProps: DispatchProps = {
     loadFestival: fetchFestivalsAsync.request,
     saveFestival,
 }

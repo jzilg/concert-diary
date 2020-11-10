@@ -8,7 +8,15 @@ import { fetchConcertsAsync } from '../redux/actions/app/concerts.actions'
 import { fetchFestivalsAsync } from '../redux/actions/app/festivals.actions'
 import Statistics, { Props } from '../components/statistics'
 
-const mapStateToProps: MapStateToProps<Partial<Props>, {}> = (state) => ({
+type StateProps = Pick<Props, (
+    'mostSeenBands'
+    | 'totalNumOfConcerts'
+    | 'totalNumOfFestivals'
+    | 'totalNumOfBands'
+    | 'totalNumOfLocations'
+)>
+
+const mapStateToProps: MapStateToProps<StateProps, {}> = (state): StateProps => ({
     mostSeenBands: mostSeenBandsSelector(state),
     totalNumOfConcerts: numOfConcertsSelector(state),
     totalNumOfFestivals: numOfFestivalsSelector(state),
@@ -16,7 +24,9 @@ const mapStateToProps: MapStateToProps<Partial<Props>, {}> = (state) => ({
     totalNumOfLocations: numOfLocationsSelector(state),
 })
 
-const mapDispatchToProps: Partial<Props> = {
+type DispatchProps = Pick<Props, 'loadConcerts' | 'loadFestivals'>
+
+const mapDispatchToProps: DispatchProps = {
     loadConcerts: fetchConcertsAsync.request,
     loadFestivals: fetchFestivalsAsync.request,
 }
