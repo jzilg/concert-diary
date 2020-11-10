@@ -5,7 +5,7 @@ import MostSeenBands from '../most-seen-bands'
 import GeneralStatistics from '../general-statistics'
 import useOnMount from '../../hooks/useOnMount'
 
-type Props = {
+export type Props = {
     mostSeenBands: MostSeenBand[]
     totalNumOfConcerts: number
     totalNumOfFestivals: number

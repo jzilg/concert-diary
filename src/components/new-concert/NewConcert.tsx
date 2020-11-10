@@ -3,7 +3,7 @@ import Concert from '../../entities/Concert'
 import Header from '../header'
 import ConcertForm from '../concert-form'
 
-type Props = {
+export type Props = {
     concert: Concert
     saveNewConcert: Function
 }

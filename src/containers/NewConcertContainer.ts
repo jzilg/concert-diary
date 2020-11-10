@@ -1,24 +1,13 @@
-import { connect } from 'react-redux'
-import Concert from '../entities/Concert'
+import { connect, MapStateToProps } from 'react-redux'
 import concertSelector from '../redux/selectors/concertSelector'
 import { saveNewConcert } from '../redux/actions/app/concerts.actions'
-import NewConcert from '../components/new-concert'
+import NewConcert, { Props } from '../components/new-concert'
 
-type StateProps = {
-    concert: Concert
-}
+const mapStateToProps: MapStateToProps<Partial<Props>, {}> = (state) => ({
+    concert: concertSelector(state),
+})
 
-function mapStateToProps(state): StateProps {
-    return {
-        concert: concertSelector(state),
-    }
-}
-
-type DispatchProps = {
-    saveNewConcert: Function
-}
-
-const mapDispatchToProps: DispatchProps = {
+const mapDispatchToProps: Partial<Props> = {
     saveNewConcert,
 }
 

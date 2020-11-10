@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import style from './loader.scss'
 
-type Props = {
+export type Props = {
     isLoading: boolean
 }
 

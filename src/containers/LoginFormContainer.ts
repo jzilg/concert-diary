@@ -1,12 +1,8 @@
 import { connect } from 'react-redux'
-import LoginForm from '../components/login-form'
+import LoginForm, { Props } from '../components/login-form'
 import authAsync from '../redux/actions/app/auth.actions'
 
-type DispatchProps = {
-    authenticate: Function
-}
-
-const mapDispatchToProps: DispatchProps = {
+const mapDispatchToProps: Partial<Props> = {
     authenticate: authAsync.request,
 }
 

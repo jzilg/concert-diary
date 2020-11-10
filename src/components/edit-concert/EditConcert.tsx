@@ -4,7 +4,7 @@ import useOnMount from '../../hooks/useOnMount'
 import Header from '../header'
 import ConcertForm from '../concert-form'
 
-type Props = {
+export type Props = {
     concert: Concert
     loadConcert: (concertId: ConcertId) => void
     saveConcert: Function

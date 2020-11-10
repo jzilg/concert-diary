@@ -1,1 +1,1 @@
-export { default } from './NewConcert'
+export { default, Props } from './NewConcert'

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { NavLinks } from '../../entities/NavLink'
 import style from './navigation.scss'
 
-type Props = {
+export type Props = {
     navLinks: NavLinks
 }
 

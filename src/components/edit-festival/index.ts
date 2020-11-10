@@ -1,1 +1,1 @@
-export { default } from './EditFestival'
+export { default, Props } from './EditFestival'

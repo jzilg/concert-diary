@@ -1,1 +1,1 @@
-export { default } from './Navigation'
+export { default, Props } from './Navigation'

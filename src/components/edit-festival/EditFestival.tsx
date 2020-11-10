@@ -4,7 +4,7 @@ import useOnMount from '../../hooks/useOnMount'
 import Header from '../header'
 import FestivalForm from '../festival-form'
 
-type Props = {
+export type Props = {
     festival: Festival
     festivalExists: boolean
     loadFestival: (festivalId: FestivalId) => void

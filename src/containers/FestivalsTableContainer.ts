@@ -1,25 +1,13 @@
-import { connect } from 'react-redux'
-import { Festivals } from '../entities/Festival'
+import { connect, MapStateToProps } from 'react-redux'
 import festivalsSortedByDateSelector from '../redux/selectors/festivalsSortedByDateSelector'
 import { fetchFestivalsAsync, deleteFestivalAsync } from '../redux/actions/app/festivals.actions'
-import FestivalsTable from '../components/festivals-table'
+import FestivalsTable, { Props } from '../components/festivals-table'
 
-type StateProps = {
-    festivals: Festivals
-}
+const mapStateToProps: MapStateToProps<Partial<Props>, {}> = (state) => ({
+    festivals: festivalsSortedByDateSelector(state),
+})
 
-function mapStateToProps(state): StateProps {
-    return {
-        festivals: festivalsSortedByDateSelector(state),
-    }
-}
-
-type DispatchProps = {
-    loadFestivals: Function
-    deleteFestival: Function
-}
-
-const mapDispatchToProps: DispatchProps = {
+const mapDispatchToProps: Partial<Props> = {
     loadFestivals: fetchFestivalsAsync.request,
     deleteFestival: deleteFestivalAsync.request,
 }

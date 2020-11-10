@@ -1,12 +1,8 @@
-import { connect } from 'react-redux'
+import { connect, MapStateToProps } from 'react-redux'
 import isLoadingSelector from '../redux/selectors/isLoadingSelector'
-import Loader from '../components/loader'
+import Loader, { Props } from '../components/loader'
 
-type StateProps = {
-    isLoading: boolean
-}
-
-const mapStateToProps = (state): StateProps => ({
+const mapStateToProps: MapStateToProps<Partial<Props>, {}> = (state) => ({
     isLoading: isLoadingSelector(state),
 })
 

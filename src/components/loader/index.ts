@@ -1,1 +1,1 @@
-export { default } from './Loader'
+export { default, Props } from './Loader'

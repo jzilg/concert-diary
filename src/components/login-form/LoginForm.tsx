@@ -1,7 +1,7 @@
 import React, { ReactElement, FormEvent } from 'react'
 import useFormInput from '../../hooks/useFormInput'
 
-type Props = {
+export type Props = {
     authenticate: Function
 }
 

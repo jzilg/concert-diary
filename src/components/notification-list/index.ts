@@ -1,1 +1,1 @@
-export { default } from './NotificationsList'
+export { default, Props } from './NotificationsList'

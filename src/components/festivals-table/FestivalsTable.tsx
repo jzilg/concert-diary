@@ -4,7 +4,7 @@ import Festival, { Festivals } from '../../entities/Festival'
 import useOnMount from '../../hooks/useOnMount'
 import TableControls from '../table-controls'
 
-type Props = {
+export type Props = {
     festivals: Festivals
     loadFestivals: Function
     deleteFestival: Function

@@ -1,22 +1,13 @@
-import { connect } from 'react-redux'
-import { Notifications } from '../entities/Notification'
+import { connect, MapStateToProps } from 'react-redux'
 import notificationsSelector from '../redux/selectors/notificationsSelector'
 import { deleteNotification } from '../redux/actions/core/notifications.actions'
-import NotificationsList from '../components/notification-list'
+import NotificationsList, { Props } from '../components/notification-list'
 
-type StateProps = {
-    notifications: Notifications
-}
-
-const mapStateToProps = (state): StateProps => ({
+const mapStateToProps: MapStateToProps<Partial<Props>, {}> = (state) => ({
     notifications: notificationsSelector(state),
 })
 
-type DispatchProps = {
-    removeNotification: Function
-}
-
-const mapDispatchToProps: DispatchProps = {
+const mapDispatchToProps: Partial<Props> = {
     removeNotification: deleteNotification,
 }
 

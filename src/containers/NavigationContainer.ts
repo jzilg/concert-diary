@@ -1,16 +1,9 @@
-import { connect } from 'react-redux'
-import { NavLinks } from '../entities/NavLink'
+import { connect, MapStateToProps } from 'react-redux'
 import navLinksSelector from '../redux/selectors/navLinksSelector'
-import Navigation from '../components/navigation'
+import Navigation, { Props } from '../components/navigation'
 
-type StateProps = {
-    navLinks: NavLinks
-}
-
-function mapStateToProps(): StateProps {
-    return {
-        navLinks: navLinksSelector(),
-    }
-}
+const mapStateToProps: MapStateToProps<Partial<Props>, {}> = () => ({
+    navLinks: navLinksSelector(),
+})
 
 export default connect(mapStateToProps)(Navigation)
