@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { shallowToJson } from 'enzyme-to-json'
-import Loader from './Loader'
+import Loader from '../Loader'
 
 describe('Loading', () => {
     it('should render correctly', () => {
