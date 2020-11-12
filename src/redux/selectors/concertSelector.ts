@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect'
-import { ParsedQuery } from 'query-string'
-import Concert, { Concerts } from '../../entities/Concert'
+import Concert from '../../entities/Concert'
 import concertsSelector from './concertsSelector'
 import paramsSelector from './paramsSelector'
 import todaysDate from '../../utils/todaysDate'
@@ -16,16 +15,14 @@ function createEmptyConcert(id: number): Concert {
     }
 }
 
-function getConcert(concerts: Concerts, params: ParsedQuery): Concert {
-    const paramId = parseInt(params.id as string, 10)
-
-    return concerts.find((concert) => concert.id === paramId) || createEmptyConcert(paramId)
-}
-
 const concertSelector = createSelector(
     concertsSelector,
     paramsSelector,
-    getConcert,
+    (concerts, params): Concert => {
+        const paramId = parseInt(params.id as string, 10)
+
+        return concerts.find((concert) => concert.id === paramId) || createEmptyConcert(paramId)
+    },
 )
 
 export default concertSelector
