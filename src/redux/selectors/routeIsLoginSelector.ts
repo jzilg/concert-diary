@@ -1,7 +1,9 @@
-import State from '../State'
+import { createSelector } from 'reselect'
+import routerSelector from './routerSelector'
 
-function routeIsLoginSelector(state: State): boolean {
-    return state.router.location.pathname === '/login'
-}
+const routeIsLoginSelector = createSelector(
+    routerSelector,
+    (router): boolean => router.location.pathname === '/login',
+)
 
 export default routeIsLoginSelector
