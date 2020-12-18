@@ -1,5 +1,5 @@
 import { Middleware } from 'redux'
-import { getType, isActionOf } from 'typesafe-actions'
+import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
 import {
     fetchConcertAsync,
@@ -40,7 +40,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
             successAction: fetchConcertsAsync.success,
             failureAction: fetchConcertsAsync.failure,
         }, {
-            causedBy: getType(fetchConcertsAsync.request),
+            causedBy: action,
         }))
     }
 
@@ -60,7 +60,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
             successAction: fetchConcertAsync.success,
             failureAction: fetchConcertAsync.failure,
         }, {
-            causedBy: getType(fetchConcertAsync.request),
+            causedBy: action,
         }))
     }
 
@@ -80,7 +80,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
             successAction: postConcertAsync.success,
             failureAction: postConcertAsync.failure,
         }, {
-            causedBy: getType(postConcertAsync.request),
+            causedBy: action,
         }))
     }
 
@@ -101,7 +101,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
             successAction: putConcertAsync.success,
             failureAction: putConcertAsync.failure,
         }, {
-            causedBy: getType(putConcertAsync.request),
+            causedBy: action,
         }))
     }
 
@@ -121,7 +121,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
             successAction: deleteConcertAsync.success.bind(this, concertId),
             failureAction: deleteConcertAsync.failure,
         }, {
-            causedBy: getType(deleteConcertAsync.request),
+            causedBy: action,
         }))
     }
 

@@ -1,5 +1,5 @@
 import { Middleware } from 'redux'
-import { getType, isActionOf } from 'typesafe-actions'
+import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
 import {
     fetchFestivalsAsync,
@@ -43,7 +43,7 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
             successAction: fetchFestivalsAsync.success,
             failureAction: fetchFestivalsAsync.failure,
         }, {
-            causedBy: getType(fetchFestivalsAsync.request),
+            causedBy: action,
         }))
     }
 
@@ -63,7 +63,7 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
             successAction: postFestivalAsync.success,
             failureAction: postFestivalAsync.failure,
         }, {
-            causedBy: getType(postFestivalAsync.request),
+            causedBy: action,
         }))
     }
 
@@ -84,7 +84,7 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
             successAction: putFestivalAsync.success,
             failureAction: putFestivalAsync.failure,
         }, {
-            causedBy: getType(putFestivalAsync.request),
+            causedBy: action,
         }))
     }
 
@@ -104,7 +104,7 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
             successAction: deleteFestivalAsync.success.bind(this, festivalId),
             failureAction: deleteFestivalAsync.failure,
         }, {
-            causedBy: getType(deleteFestivalAsync.request),
+            causedBy: action,
         }))
     }
 

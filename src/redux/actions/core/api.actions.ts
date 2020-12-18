@@ -1,8 +1,8 @@
-import { createAction } from 'typesafe-actions'
+import { Action, createAction } from 'typesafe-actions'
 import { ApiRequestOptions } from '../../middleware/core/apiMiddleware'
 
-export const apiRequest = createAction('EVT / API / request')<ApiRequestOptions, { causedBy: string }>()
+export const apiRequest = createAction('EVT / API / request')<ApiRequestOptions, { causedBy: Action }>()
 
-export const apiSuccess = createAction('EVT / API / success')<{ successAction: Function; data: unknown }, { causedBy: string }>()
+export const apiSuccess = createAction('EVT / API / success')<{ successAction: Function; data: unknown }, { causedBy: Action }>()
 
-export const apiFailure = createAction('EVT / API / failure')<{ failureAction: Function; error: Error }, { causedBy: string }>()
+export const apiFailure = createAction('EVT / API / failure')<{ failureAction: Function; error: Error }, { causedBy: Action }>()

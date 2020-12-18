@@ -1,5 +1,5 @@
 import { Middleware } from 'redux'
-import { isActionOf, getType } from 'typesafe-actions'
+import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
 import { apiRequest, apiFailure } from '../../actions/core/api.actions'
 import authAsync from '../../actions/app/auth.actions'
@@ -28,7 +28,7 @@ const authMiddleware: Middleware = (store) => (next) => (action) => {
             successAction: authAsync.success,
             failureAction: authAsync.failure,
         }, {
-            causedBy: getType(authAsync.request),
+            causedBy: action,
         }))
     }
 
