@@ -14,4 +14,6 @@ const rootReducer: Reducer = combineReducers({
     notifications: notificationsReducer,
 })
 
+export type State = ReturnType<typeof rootReducer>
+
 export default rootReducer

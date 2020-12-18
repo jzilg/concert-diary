@@ -8,4 +8,6 @@ const enhancer = compose(
     applyDevtoolExtension(),
 )
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 export default createStore(rootReducer, undefined, enhancer)

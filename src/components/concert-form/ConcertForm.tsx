@@ -1,4 +1,4 @@
-import React, { useEffect, ReactElement } from 'react'
+import React, { useEffect, ReactElement, FormEvent } from 'react'
 import Concert from '../../entities/Concert'
 import ListInput from '../list-input'
 import useFormInput from '../../hooks/useFormInput'
@@ -30,7 +30,7 @@ function ConcertForm(props: Props): ReactElement {
         setCompanions(concert.companions)
     }, [concert, setBand, setCompanions, setDate, setLocation, setSupportBands])
 
-    function handleSubmit(event): void {
+    function handleSubmit(event: FormEvent): void {
         event.preventDefault()
         saveConcert({
             id: concert.id,

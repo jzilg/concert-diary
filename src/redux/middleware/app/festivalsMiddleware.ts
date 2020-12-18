@@ -101,7 +101,7 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
         dispatch(apiRequest({
             url: `${process.env.API_URL}/festivals/${festivalId}`,
             method: 'DELETE',
-            successAction: deleteFestivalAsync.success.bind(this, festivalId),
+            successAction: deleteFestivalAsync.success.bind(null, festivalId),
             failureAction: deleteFestivalAsync.failure,
         }, {
             causedBy: action,
