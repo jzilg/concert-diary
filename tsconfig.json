@@ -6,6 +6,6 @@
       "DOM",
       "ES2020"
     ],
-    "strict": true
+    "strictNullChecks": true
   }
 }
