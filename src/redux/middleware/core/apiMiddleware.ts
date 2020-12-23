@@ -2,6 +2,7 @@ import { Middleware } from 'redux'
 import { ActionCreator, isActionOf } from 'typesafe-actions'
 import getApiOptions, { HTTPMethod } from '../../getApiOptions'
 import { apiRequest, apiSuccess, apiFailure } from '../../actions/core/api.actions'
+import ErrorType from '../../../entities/ErrorType'
 
 export type ApiRequestOptions = {
     url: string
@@ -33,39 +34,51 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
             body,
         })
 
-        const handleSuccess = (data): void => {
+        const handleError = (type: ErrorType) => (error: Error) => {
+            dispatch(apiFailure({
+                failureAction,
+                error,
+                type,
+            }, { causedBy }))
+        }
+
+        const handleSuccess = (data?: object): void => {
             dispatch(apiSuccess({
                 successAction,
                 data,
             }, { causedBy }))
         }
 
-        const handleError = (error: Error): void => {
-            dispatch(apiFailure({
-                failureAction,
-                error,
-            }, { causedBy }))
-
-            /* eslint-disable-next-line no-console */
-            console.error(error)
-        }
-
-        const handleResponse = (response): void => {
+        const handleResponse = (response: Response): void => {
             if (!response.ok) {
-                const error = new Error(response.statusText)
+                response.json()
+                    .then((errorBody) => {
+                        const error = new Error(errorBody)
 
-                handleError(error)
+                        handleError('response')(error)
+                    })
+                    .catch(() => {
+                        const error = new Error(response.statusText)
+
+                        handleError('json')(error)
+                    })
+
+                return
+            }
+
+            if (response.status === 204) {
+                handleSuccess()
                 return
             }
 
             response.json()
                 .then(handleSuccess)
-                .catch(handleError)
+                .catch(handleError('json'))
         }
 
-        return fetch(url, options)
+        return fetch(encodeURI(url), options)
             .then(handleResponse)
-            .catch(handleError)
+            .catch(handleError('fetch'))
     }
 
     if (isActionOf(apiSuccess, action)) {
