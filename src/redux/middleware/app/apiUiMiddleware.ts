@@ -25,6 +25,10 @@ const apiUiMiddleware: Middleware = (store) => (next) => (action) => {
 
         dispatch(decreaseLoaderCount(undefined, { causedBy }))
 
+        if (error.status === 401) {
+            return
+        }
+
         const notificationOptions: NotificationOptions = {
             type: 'error',
             message: error.message,

@@ -5,6 +5,7 @@ import { apiRequest, apiFailure } from '../../actions/core/api.actions'
 import authAsync from '../../actions/app/auth.actions'
 import routeIsLoginSelector from '../../selectors/routeIsLoginSelector'
 import { setApiToken } from '../../../api'
+import { createNotification } from '../../actions/core/notifications.actions'
 
 const authMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
@@ -15,8 +16,17 @@ const authMiddleware: Middleware = (store) => (next) => (action) => {
         const state = getState()
         const routeIsLogin = routeIsLoginSelector(state)
 
-        if (error.message === 'Unauthorized' && !routeIsLogin) {
-            dispatch(push('/login'))
+        if (error.status === 401) {
+            if (routeIsLogin) {
+                dispatch(createNotification({
+                    type: 'error',
+                    message: 'Wrong Username or Password',
+                }, {
+                    causedBy: action.meta.causedBy,
+                }))
+            } else {
+                dispatch(push('/login'))
+            }
         }
     }
 

@@ -2,7 +2,7 @@ import { Middleware } from 'redux'
 import { ActionCreator, isActionOf } from 'typesafe-actions'
 import getApiOptions, { HTTPMethod } from '../../getApiOptions'
 import { apiRequest, apiSuccess, apiFailure } from '../../actions/core/api.actions'
-import ErrorType from '../../../entities/ErrorType'
+import ApiError from '../../../entities/ApiError'
 
 export type ApiRequestOptions = {
     url: string
@@ -34,11 +34,17 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
             body,
         })
 
-        const handleError = (type: ErrorType) => (error: Error) => {
+        const handleError = (type: ApiError['type'], status?: number) => (error: Error) => {
+            const apiError: ApiError = {
+                url,
+                status,
+                type,
+                message: error.message,
+            }
+
             dispatch(apiFailure({
                 failureAction,
-                error,
-                type,
+                error: apiError,
             }, { causedBy }))
         }
 
@@ -55,12 +61,12 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
                     .then((errorBody) => {
                         const error = new Error(errorBody)
 
-                        handleError('response')(error)
+                        handleError('response', response.status)(error)
                     })
                     .catch(() => {
                         const error = new Error(response.statusText)
 
-                        handleError('json')(error)
+                        handleError('json', response.status)(error)
                     })
 
                 return
@@ -73,7 +79,7 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
 
             response.json()
                 .then(handleSuccess)
-                .catch(handleError('json'))
+                .catch(handleError('json', response.status))
         }
 
         return fetch(encodeURI(url), options)
