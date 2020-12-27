@@ -73,7 +73,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     if (isActionOf(postConcertAsync.request, action)) {
         const concert = action.payload
 
-        next(apiRequest({
+        dispatch(apiRequest({
             url: getConcertsApiUrl(),
             method: 'POST',
             body: JSON.stringify(concert),

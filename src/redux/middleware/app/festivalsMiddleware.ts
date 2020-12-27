@@ -56,7 +56,7 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     if (isActionOf(postFestivalAsync.request, action)) {
         const festival = action.payload
 
-        next(apiRequest({
+        dispatch(apiRequest({
             url: `${process.env.API_URL}/festivals`,
             method: 'POST',
             body: JSON.stringify(festival),

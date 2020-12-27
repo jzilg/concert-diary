@@ -1,3 +1,5 @@
+import Concert from './entities/Concert'
+
 const TOKEN_STORAGE_ID = 'api_token'
 
 export function setApiToken(apiToken: string): void {
@@ -8,7 +10,7 @@ function getApiToken(): string {
     return window.sessionStorage.getItem(TOKEN_STORAGE_ID) || ''
 }
 
-export function getConcertsApiUrl(id: number | undefined = undefined): string {
+export function getConcertsApiUrl(id: Concert['id'] | undefined = undefined): string {
     const path = id !== undefined
         ? `/concerts/${id}`
         : '/concerts'

@@ -4,9 +4,9 @@ import concertsSelector from './concertsSelector'
 import paramsSelector from './paramsSelector'
 import todaysDate from '../../utils/todaysDate'
 
-function createEmptyConcert(id: number): Concert {
+function createEmptyConcert(): Concert {
     return {
-        id,
+        id: '',
         band: '',
         supportBands: [],
         location: '',
@@ -18,11 +18,9 @@ function createEmptyConcert(id: number): Concert {
 const concertSelector = createSelector(
     concertsSelector,
     paramsSelector,
-    (concerts, params): Concert => {
-        const paramId = parseInt(params.id as string, 10)
-
-        return concerts.find((concert) => concert.id === paramId) || createEmptyConcert(paramId)
-    },
+    (concerts, params): Concert => (
+        concerts.find((concert) => concert.id === params.id) || createEmptyConcert()
+    ),
 )
 
 export default concertSelector
