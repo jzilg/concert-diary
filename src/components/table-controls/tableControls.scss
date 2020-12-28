@@ -15,7 +15,11 @@
 }
 
 .editBtn {
-    padding: 0.5em 1em;
+    display: inline-flex;
+    align-items: center;
+    height: 2.5em;
+    padding-right: 1em;
+    padding-left: 1em;
     background-color: var(--lightgray);
     border: 1px solid var(--gray);
     border-radius: 5px 0 0 5px;
