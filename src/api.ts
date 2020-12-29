@@ -11,7 +11,7 @@ function getApiToken(): string {
     return window.sessionStorage.getItem(TOKEN_STORAGE_ID) || ''
 }
 
-export function getConcertsApiUrl(id: Concert['id'] | undefined = undefined): string {
+export function getConcertsApiUrl(id?: Concert['id']): string {
     const path = id !== undefined
         ? `/concerts/${id}`
         : '/concerts'
@@ -19,7 +19,7 @@ export function getConcertsApiUrl(id: Concert['id'] | undefined = undefined): st
     return `${process.env.API_URL}${path}?api_token=${getApiToken()}`
 }
 
-export function getFestivalsApiUrl(id: Festival['id'] | undefined = undefined): string {
+export function getFestivalsApiUrl(id?: Festival['id']): string {
     const path = id !== undefined
         ? `/festivals/${id}`
         : '/festivals'
