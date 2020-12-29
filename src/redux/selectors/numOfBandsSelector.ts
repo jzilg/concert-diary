@@ -1,28 +1,9 @@
 import { createSelector } from 'reselect'
-import concertsSelector from './concertsSelector'
-import festivalsSelector from './festivalsSelector'
+import statisticsSelector from './statisticsSelector'
 
 const numOfBandsSelector = createSelector(
-    concertsSelector,
-    festivalsSelector,
-    (concerts, festivals): number => {
-        const bands = new Set()
-
-        concerts.forEach((concert) => {
-            bands.add(concert.band)
-            concert.supportBands.forEach((supportBand) => {
-                bands.add(supportBand)
-            })
-        })
-
-        festivals.forEach((festival) => {
-            festival.bands.forEach((supportBand) => {
-                bands.add(supportBand)
-            })
-        })
-
-        return bands.size
-    },
+    statisticsSelector,
+    (statistics): number => statistics.totalBandsCount,
 )
 
 export default numOfBandsSelector

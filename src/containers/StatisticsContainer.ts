@@ -4,8 +4,7 @@ import numOfBandsSelector from '../redux/selectors/numOfBandsSelector'
 import numOfConcertsSelector from '../redux/selectors/numOfConcertsSelector'
 import numOfFestivalsSelector from '../redux/selectors/numOfFestivalsSelector'
 import numOfLocationsSelector from '../redux/selectors/numOfLocationsSelector'
-import { fetchConcertsAsync } from '../redux/actions/app/concerts.actions'
-import { fetchFestivalsAsync } from '../redux/actions/app/festivals.actions'
+import { fetchStatisticsAsync } from '../redux/actions/app/statistics.actions'
 import Statistics, { Props } from '../components/statistics'
 
 type StateProps = Pick<Props, (
@@ -24,11 +23,10 @@ const mapStateToProps: MapStateToProps<StateProps, {}> = (state): StateProps => 
     totalNumOfLocations: numOfLocationsSelector(state),
 })
 
-type DispatchProps = Pick<Props, 'loadConcerts' | 'loadFestivals'>
+type DispatchProps = Pick<Props, 'loadStatistics'>
 
 const mapDispatchToProps: DispatchProps = {
-    loadConcerts: fetchConcertsAsync.request,
-    loadFestivals: fetchFestivalsAsync.request,
+    loadStatistics: fetchStatisticsAsync.request,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Statistics)

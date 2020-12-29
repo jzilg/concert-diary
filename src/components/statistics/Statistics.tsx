@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { MostSeenBand } from '../../redux/selectors/mostSeenBandsSelector'
+import MostSeenBand from '../../entities/MostSeenBand'
 import Header from '../header'
 import MostSeenBands from '../most-seen-bands'
 import GeneralStatistics from '../general-statistics'
@@ -11,8 +11,7 @@ export type Props = {
     totalNumOfFestivals: number
     totalNumOfBands: number
     totalNumOfLocations: number
-    loadConcerts: Function
-    loadFestivals: Function
+    loadStatistics: () => void
 }
 
 function Statistics(props: Props): ReactElement {
@@ -22,13 +21,11 @@ function Statistics(props: Props): ReactElement {
         totalNumOfFestivals,
         totalNumOfBands,
         totalNumOfLocations,
-        loadConcerts,
-        loadFestivals,
+        loadStatistics,
     } = props
 
     useOnMount(() => {
-        loadConcerts()
-        loadFestivals()
+        loadStatistics()
     })
 
     return (

@@ -26,3 +26,7 @@ export function getFestivalsApiUrl(id?: Festival['id']): string {
 
     return `${process.env.API_URL}${path}?api_token=${getApiToken()}`
 }
+
+export function getStatisticsApiUrl(): string {
+    return `${process.env.API_URL}/statistics?api_token=${getApiToken()}`
+}

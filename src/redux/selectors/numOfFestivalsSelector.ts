@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect'
-import festivalsSelector from './festivalsSelector'
+import statisticsSelector from './statisticsSelector'
 
 const numOfFestivalsSelector = createSelector(
-    festivalsSelector,
-    (festivals): number => festivals.length,
+    statisticsSelector,
+    (statistics) : number => statistics.totalFestivalsCount,
 )
 
 export default numOfFestivalsSelector

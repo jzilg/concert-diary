@@ -1,17 +1,9 @@
 import { createSelector } from 'reselect'
-import concertsSelector from './concertsSelector'
+import statisticsSelector from './statisticsSelector'
 
 const numOfLocationsSelector = createSelector(
-    concertsSelector,
-    (concerts): number => {
-        const locations = new Set()
-
-        concerts.forEach((concert) => {
-            locations.add(concert.location)
-        })
-
-        return locations.size
-    },
+    statisticsSelector,
+    (statistics) : number => statistics.totalLocationsCount,
 )
 
 export default numOfLocationsSelector

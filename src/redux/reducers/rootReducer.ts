@@ -5,6 +5,7 @@ import concertsReducer from './concertsReducer'
 import festivalsReducer from './festivalsReducer'
 import loadingCountReducer from './loadingCountReducer'
 import notificationsReducer from './notificationsReducer'
+import statisticsReducer from './statisticsReducer'
 
 const rootReducer: Reducer = combineReducers({
     router: connectRouter(history),
@@ -12,6 +13,7 @@ const rootReducer: Reducer = combineReducers({
     festivals: festivalsReducer,
     loadingCount: loadingCountReducer,
     notifications: notificationsReducer,
+    statistics: statisticsReducer,
 })
 
 export type State = ReturnType<typeof rootReducer>
