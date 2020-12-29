@@ -6,7 +6,6 @@ import FestivalForm from '../festival-form'
 
 export type Props = {
     festival: Festival
-    festivalExists: boolean
     loadFestival: (festivalId: FestivalId) => void
     saveFestival: Function
 }
@@ -14,7 +13,6 @@ export type Props = {
 function EditFestival(props: Props): ReactElement {
     const {
         festival,
-        festivalExists,
         loadFestival,
         saveFestival,
     } = props
@@ -23,12 +21,10 @@ function EditFestival(props: Props): ReactElement {
         loadFestival(festival.id)
     })
 
-    const title = festivalExists ? 'Edit Festival' : 'Add New Festival'
-
     return (
         <>
             <Header />
-            <h2>{title}</h2>
+            <h2>Edit Festival</h2>
             <FestivalForm
                 festival={festival}
                 saveFestival={saveFestival}

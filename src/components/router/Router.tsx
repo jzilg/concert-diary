@@ -9,6 +9,7 @@ import FestivalsView from '../festivals-view'
 import EditFestival from '../../containers/EditFestivalContainer'
 import Statistics from '../../containers/StatisticsContainer'
 import NewConcert from '../../containers/NewConcertContainer'
+import NewFestival from '../../containers/NewFestivalContainer'
 
 function Router(): ReactElement {
     return (
@@ -20,6 +21,7 @@ function Router(): ReactElement {
                 <Route exact path="/concerts/new" component={NewConcert} />
                 <Route exact path="/concerts/edit" component={EditConcert} />
                 <Route exact path="/festivals" component={FestivalsView} />
+                <Route exact path="/festivals/new" component={NewFestival} />
                 <Route exact path="/festivals/edit" component={EditFestival} />
                 <Route exact path="/statistics" component={Statistics} />
                 <Route render={() => <h1>404 Not Found</h1>} />

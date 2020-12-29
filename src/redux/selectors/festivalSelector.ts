@@ -3,9 +3,9 @@ import Festival from '../../entities/Festival'
 import festivalsSelector from './festivalsSelector'
 import paramsSelector from './paramsSelector'
 
-function createEmptyFestival(id: number): Festival {
+function createEmptyFestival(): Festival {
     return {
-        id,
+        id: '',
         date: {
             from: '',
             until: '',
@@ -19,11 +19,9 @@ function createEmptyFestival(id: number): Festival {
 const festivalSelector = createSelector(
     festivalsSelector,
     paramsSelector,
-    (festivals, params): Festival => {
-        const paramId = parseInt(params.id as string, 10)
-
-        return festivals.find((festival) => festival.id === paramId) || createEmptyFestival(paramId)
-    },
+    (festivals, params): Festival => (
+        festivals.find((festival) => festival.id === params.id) || createEmptyFestival()
+    ),
 )
 
 export default festivalSelector

@@ -31,8 +31,8 @@ export const deleteConcertAsync = createAsyncAction(
     'EVT / Concert / delete failure',
 )<ConcertId, ConcertId, Error>()
 
-export const saveConcert = createAction('CMD / Concert / SAVE')<Concert>()
-export const saveNewConcert = createAction('CMD / Concert / SAVE NEW')<Concert>()
-export const setConcertsState = createAction('DOC / Concert / SET_STATE')<Concerts>()
-export const setConcertOnState = createAction('DOC / Concert / ADD_TO_STATE')<Concert>()
-export const removeConcertFromState = createAction('DOC / Concert / REMOVE_FROM_STATE')<ConcertId>()
+export const saveConcert = createAction('CMD / Concert / save')<Concert>()
+export const saveNewConcert = createAction('CMD / Concert / save new')<Concert>()
+export const setConcertsState = createAction('DOC / Concert / set state')<Concerts>()
+export const setConcertOnState = createAction('DOC / Concert / add to state')<Concert>()
+export const removeConcertFromState = createAction('DOC / Concert / remove from state')<ConcertId>()

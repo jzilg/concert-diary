@@ -1,41 +1,43 @@
 import { createReducer } from 'typesafe-actions'
-import { Festivals } from '../../entities/Festival'
+import Festival from '../../entities/Festival'
 import {
     setFestivalsState,
-    addFestivalToState,
-    updateFestivalOnState,
+    setFestivalOnState,
     removeFestivalFromState,
 } from '../actions/app/festivals.actions'
 
-export type FestivalsState = Festivals
+export type FestivalsState = Record<Festival['id'], Festival>
 
-export const defaultState: FestivalsState = []
+export const defaultState: FestivalsState = {}
 
 const festivalsReducer = createReducer(defaultState)
-    .handleAction(
-        setFestivalsState,
-        (state, action) => action.payload,
-    )
-    .handleAction(
-        addFestivalToState,
-        (state, action) => state.concat(action.payload),
-    )
-    .handleAction(
-        updateFestivalOnState,
-        (state, action) => state.map((festivalFromState) => {
-            const festival = action.payload
-            const isFestivalToUpdate = festivalFromState.id === festival.id
+    .handleAction(setFestivalsState, (state, action) => {
+        const festivals = action.payload
+        const newState = {}
 
-            return isFestivalToUpdate ? festival : festivalFromState
-        }),
-    )
-    .handleAction(
-        removeFestivalFromState,
-        (state, action) => state.filter((festivalFromState) => {
-            const festivalId = action.payload
+        festivals.forEach((festival) => {
+            newState[festival.id] = festival
+        })
 
-            return festivalFromState.id !== festivalId
-        }),
-    )
+        return newState
+    })
+    .handleAction(setFestivalOnState, (state, action) => {
+        const festival = action.payload
+
+        return {
+            ...state,
+            [festival.id]: festival,
+        }
+    })
+    .handleAction(removeFestivalFromState, (state, action) => {
+        const festivalId = action.payload
+        const newState = {
+            ...state,
+        }
+
+        delete newState[festivalId]
+
+        return newState
+    })
 
 export default festivalsReducer

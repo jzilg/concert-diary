@@ -1,5 +1,5 @@
 export type Festivals = Festival[]
-export type FestivalId = number
+export type FestivalId = string
 
 type Festival = {
     id: FestivalId

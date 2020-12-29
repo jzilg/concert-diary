@@ -1,4 +1,5 @@
 import Concert from './entities/Concert'
+import Festival from './entities/Festival'
 
 const TOKEN_STORAGE_ID = 'api_token'
 
@@ -18,7 +19,7 @@ export function getConcertsApiUrl(id: Concert['id'] | undefined = undefined): st
     return `${process.env.API_URL}${path}?api_token=${getApiToken()}`
 }
 
-export function getFestivalsApiUrl(id: number | undefined = undefined): string {
+export function getFestivalsApiUrl(id: Festival['id'] | undefined = undefined): string {
     const path = id !== undefined
         ? `/festivals/${id}`
         : '/festivals'

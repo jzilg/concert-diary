@@ -2,40 +2,38 @@ import { Middleware } from 'redux'
 import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
 import {
+    fetchFestivalAsync,
     fetchFestivalsAsync,
     setFestivalsState,
     postFestivalAsync,
     putFestivalAsync,
-    updateFestivalOnState,
     deleteFestivalAsync,
     removeFestivalFromState,
-    addFestivalToState,
+    setFestivalOnState,
     saveFestival,
+    saveNewFestival,
 } from '../../actions/app/festivals.actions'
 import { apiRequest } from '../../actions/core/api.actions'
-import festivalExistsSelector from '../../selectors/festivalExistsSelector'
+import { getFestivalsApiUrl } from '../../../api'
 
 const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
-    const { dispatch, getState } = store
+    const { dispatch } = store
+
+    if (isActionOf(saveNewFestival, action)) {
+        const festival = action.payload
+
+        dispatch(postFestivalAsync.request(festival))
+    }
 
     if (isActionOf(saveFestival, action)) {
-        const state = getState()
         const festival = action.payload
-        const festivalExist = festivalExistsSelector(state)
 
-        const saveAction = festivalExist
-            ? putFestivalAsync.request(festival)
-            : postFestivalAsync.request(festival)
-
-        dispatch(saveAction)
+        dispatch(putFestivalAsync.request(festival))
     }
 
     if (isActionOf(fetchFestivalsAsync.request, action)) {
-        const id = action.payload
-        const url = id !== undefined
-            ? `${process.env.API_URL}/festivals?id=${id}`
-            : `${process.env.API_URL}/festivals`
+        const url = getFestivalsApiUrl()
 
         dispatch(apiRequest({
             url,
@@ -53,11 +51,31 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
         dispatch(setFestivalsState(festivals))
     }
 
+    if (isActionOf(fetchFestivalAsync.request, action)) {
+        const id = action.payload
+        const url = getFestivalsApiUrl(id)
+
+        dispatch(apiRequest({
+            url,
+            method: 'GET',
+            successAction: fetchFestivalAsync.success,
+            failureAction: fetchFestivalAsync.failure,
+        }, {
+            causedBy: action,
+        }))
+    }
+
+    if (isActionOf(fetchFestivalAsync.success, action)) {
+        const festival = action.payload
+
+        dispatch(setFestivalOnState(festival))
+    }
+
     if (isActionOf(postFestivalAsync.request, action)) {
         const festival = action.payload
 
         dispatch(apiRequest({
-            url: `${process.env.API_URL}/festivals`,
+            url: getFestivalsApiUrl(),
             method: 'POST',
             body: JSON.stringify(festival),
             successAction: postFestivalAsync.success,
@@ -70,7 +88,7 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     if (isActionOf(postFestivalAsync.success, action)) {
         const festival = action.payload
 
-        dispatch(addFestivalToState(festival))
+        dispatch(setFestivalOnState(festival))
         dispatch(push('/festivals'))
     }
 
@@ -78,7 +96,7 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
         const festival = action.payload
 
         dispatch(apiRequest({
-            url: `${process.env.API_URL}/festivals/${festival.id}`,
+            url: getFestivalsApiUrl(festival.id),
             method: 'PUT',
             body: JSON.stringify(festival),
             successAction: putFestivalAsync.success,
@@ -91,7 +109,7 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     if (isActionOf(putFestivalAsync.success, action)) {
         const festival = action.payload
 
-        dispatch(updateFestivalOnState(festival))
+        dispatch(setFestivalOnState(festival))
         dispatch(push('/festivals'))
     }
 
@@ -99,9 +117,9 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
         const festivalId = action.payload
 
         dispatch(apiRequest({
-            url: `${process.env.API_URL}/festivals/${festivalId}`,
+            url: getFestivalsApiUrl(festivalId),
             method: 'DELETE',
-            successAction: deleteFestivalAsync.success.bind(null, festivalId),
+            successAction: deleteFestivalAsync.success.bind(this, festivalId),
             failureAction: deleteFestivalAsync.failure,
         }, {
             causedBy: action,
