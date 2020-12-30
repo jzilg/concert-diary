@@ -29,7 +29,9 @@ function MostSeenBands({ mostSeenBands }: Props): ReactElement {
 
     return (
         <table className={style.table}>
-            <caption>Most Seen Bands</caption>
+            <caption>
+                <h3>Most Seen Bands</h3>
+            </caption>
             <thead>
                 <tr>
                     <th>Band</th>

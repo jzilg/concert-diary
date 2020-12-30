@@ -73,7 +73,7 @@
     "connected-react-router": "^6.8.0",
     "dayjs": "^1.9.5",
     "dotenv": "^8.2.0",
-    "embellish.css": "^4.0.1",
+    "embellish.css": "^5.0.0",
     "history": "^4.10.1",
     "query-string": "^6.13.7",
     "react": "^17.0.1",
