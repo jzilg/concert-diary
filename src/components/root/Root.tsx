@@ -4,6 +4,7 @@ import { Provider as ReduxProvider } from 'react-redux'
 import Loader from '../../containers/LoaderContainer'
 import NotificationsList from '../../containers/NotificationsListContainer'
 import Router from '../router'
+import style from './root.css'
 
 type Props = {
     store: Store
@@ -15,8 +16,10 @@ function Root(props: Props): ReactElement {
     return (
         <ReduxProvider store={store}>
             <Loader />
-            <NotificationsList />
-            <Router />
+            <div className={style.container}>
+                <NotificationsList />
+                <Router />
+            </div>
         </ReduxProvider>
     )
 }

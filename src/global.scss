@@ -5,6 +5,10 @@
     --green: #52be80;
 }
 
+body {
+    margin: 0;
+}
+
 input,
 label,
 table {
@@ -26,6 +30,10 @@ label > span {
 label + button,
 label + label {
     margin-top: 1em;
+}
+
+table {
+    table-layout: fixed;
 }
 
 caption {
