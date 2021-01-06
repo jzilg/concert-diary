@@ -122,6 +122,16 @@
     "react/jsx-indent-props": ["error", 4],
     "jsx-a11y/no-autofocus": 0,
     "@typescript-eslint/ban-types": 0,
+    "@typescript-eslint/comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "always-multiline",
+      "enums": "always-multiline",
+      "generics": "always-multiline",
+      "tuples": "always-multiline"
+    }],
     "@typescript-eslint/indent": ["error", 4],
     "@typescript-eslint/prefer-interface": 0,
     "@typescript-eslint/no-use-before-define": "error",
