@@ -7,6 +7,7 @@ describe('Loading', () => {
     it('should render correctly', () => {
         const component = shallow(<Loader />)
         const tree = shallowToJson(component)
+
         expect(tree).toMatchSnapshot()
     })
 })

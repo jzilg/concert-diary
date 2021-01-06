@@ -11,11 +11,13 @@ const apiUiMiddleware: Middleware = (store) => (next) => (action) => {
 
     if (isActionOf(apiRequest, action)) {
         const { causedBy } = action.meta
+
         dispatch(increaseLoaderCount(undefined, { causedBy }))
     }
 
     if (isActionOf(apiSuccess, action)) {
         const { causedBy } = action.meta
+
         dispatch(decreaseLoaderCount(undefined, { causedBy }))
     }
 

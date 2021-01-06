@@ -23,6 +23,7 @@ function ListInput(props: Props): ReactElement {
         const newList: InputList = newValueString
             .replace(/( )*,( )*/g, separator) // remove extra spaces around comma
             .split(separator)
+
         setValueString(newValueString)
         onChange(newList)
     }

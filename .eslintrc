@@ -53,6 +53,42 @@
         "allowAllPropertiesOnSameLine": false
       }
     ],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": [
+          "block-like",
+          "const",
+          "let"
+        ],
+        "next": "*"
+      },
+      {
+        "blankLine": "any",
+        "prev": [
+          "const",
+          "let"
+        ],
+        "next": [
+          "const",
+          "let"
+        ]
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "block-like"
+      },
+      {
+        "blankLine": "never",
+        "prev": "case",
+        "next": [
+          "case",
+          "default"
+        ]
+      }
+    ],
     "semi": ["error", "never"],
     "valid-jsdoc": ["error", {
       "requireReturn": false,

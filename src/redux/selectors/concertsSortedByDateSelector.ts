@@ -9,8 +9,10 @@ const concertsSortedByDateSelector = createSelector(
         const byDate = ((concert0, concert1): number => {
             const concert0Timestamp = dayjs(concert0.date).unix()
             const concert1Timestamp = dayjs(concert1.date).unix()
+
             return concert0Timestamp - concert1Timestamp
         })
+
         return concerts.sort(byDate)
     },
 )

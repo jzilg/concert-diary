@@ -17,6 +17,7 @@ describe('Loading', () => {
             />
         ))
         const tree = shallowToJson(component)
+
         expect(tree).toMatchSnapshot()
     })
 })
