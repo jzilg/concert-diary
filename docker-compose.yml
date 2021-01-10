@@ -1,8 +1,10 @@
-concert-diary-fe:
-  image: nginx
-  container_name: "concert-diary-fe"
-  volumes:
-   - ./dist:/usr/share/nginx/html
-   - ./nginx.conf:/etc/nginx/conf.d/default.conf
-  ports:
-   - "8080:80"
+services:
+  concert-diary-fe:
+    image: nginx
+    container_name: "concert-diary-fe"
+    volumes:
+      - ./dist:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    restart: unless-stopped
+    ports:
+      - "${PORT}:80"
