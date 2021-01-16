@@ -9,7 +9,7 @@
 .container {
     display: flex;
     align-items: center;
-    max-width: 1140px;
+    max-width: calc(1400px - 1.5em);
     min-height: 2.5em;
     margin-right: auto;
     margin-left: auto;
