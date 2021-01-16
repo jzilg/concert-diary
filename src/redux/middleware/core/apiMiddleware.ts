@@ -59,7 +59,7 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
             if (!response.ok) {
                 response.json()
                     .then((errorBody) => {
-                        const error = new Error(errorBody)
+                        const error = new Error(errorBody.message)
 
                         handleError('response', response.status)(error)
                     })
