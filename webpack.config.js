@@ -29,6 +29,10 @@ module.exports = {
     },
     resolve: {
         extensions,
+        alias: {
+            react: 'preact/compat',
+            'react-dom': 'preact/compat',
+        },
     },
     module: {
         rules: [

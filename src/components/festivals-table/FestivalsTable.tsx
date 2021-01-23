@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { FunctionComponent } from 'preact/compat'
 import dayjs from 'dayjs'
 import Festival, { Festivals } from '../../entities/Festival'
 import useOnMount from '../../hooks/useOnMount'
@@ -10,7 +10,7 @@ export type Props = {
     deleteFestival: Function
 }
 
-function FestivalsTable(props: Props): ReactElement | null {
+const FestivalsTable: FunctionComponent<Props> = (props) => {
     const {
         festivals,
         loadFestivals,

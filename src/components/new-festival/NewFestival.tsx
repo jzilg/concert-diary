@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { FunctionComponent } from 'preact/compat'
 import Festival from '../../entities/Festival'
 import Header from '../header'
 import FestivalForm from '../festival-form'
@@ -8,7 +8,7 @@ export type Props = {
     saveNewFestival: Function
 }
 
-function NewFestival(props: Props): ReactElement {
+const NewFestival: FunctionComponent<Props> = (props) => {
     const {
         festival,
         saveNewFestival,

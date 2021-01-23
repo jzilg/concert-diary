@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { FunctionComponent } from 'preact/compat'
 import Festival, { FestivalId } from '../../entities/Festival'
 import useOnMount from '../../hooks/useOnMount'
 import Header from '../header'
@@ -10,7 +10,7 @@ export type Props = {
     saveFestival: Function
 }
 
-function EditFestival(props: Props): ReactElement {
+const EditFestival: FunctionComponent<Props> = (props) => {
     const {
         festival,
         loadFestival,

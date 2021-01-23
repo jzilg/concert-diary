@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'preact/compat'
 import { InputList } from '../components/list-input/ListInput'
 
 type SetValue = (value) => void

@@ -1,8 +1,11 @@
-import React from 'react'
-import { render } from 'react-dom'
+import React, { render } from 'preact'
 import store from './redux/store'
 import Root from './components/root'
 import 'embellish.css'
 import './global.scss'
 
-render(<Root store={store} />, document.getElementById('root'))
+if (process.env.NODE_ENV === 'development') {
+    import('preact/debug')
+}
+
+render(<Root store={store} />, document.body, document.getElementById('root') as Element)

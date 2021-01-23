@@ -1,4 +1,4 @@
-import React, { useEffect, ReactElement, FormEvent } from 'react'
+import React, { useEffect, FunctionComponent } from 'preact/compat'
 import Concert from '../../entities/Concert'
 import ListInput from '../list-input'
 import useFormInput from '../../hooks/useFormInput'
@@ -9,7 +9,7 @@ type Props = {
     saveConcert: Function
 }
 
-function ConcertForm(props: Props): ReactElement {
+const ConcertForm: FunctionComponent<Props> = (props) => {
     const { concert, saveConcert } = props
 
     const [band, onBandInputChange, setBand] = useFormInput(concert.band)
@@ -30,7 +30,7 @@ function ConcertForm(props: Props): ReactElement {
         setCompanions(concert.companions)
     }, [concert, setBand, setCompanions, setDate, setLocation, setSupportBands])
 
-    function handleSubmit(event: FormEvent): void {
+    function handleSubmit(event): void {
         event.preventDefault()
         saveConcert({
             id: concert.id,
@@ -49,7 +49,7 @@ function ConcertForm(props: Props): ReactElement {
                 <input
                     type="text"
                     value={band}
-                    onChange={onBandInputChange}
+                    onChange={(event) => onBandInputChange(event)}
                     placeholder="Pink Floyd"
                 />
             </label>

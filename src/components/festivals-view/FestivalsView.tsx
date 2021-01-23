@@ -1,14 +1,12 @@
-import React, { ReactElement } from 'react'
+import React, { FunctionComponent } from 'preact/compat'
 import Header from '../header'
 import FestivalsTable from '../../containers/FestivalsTableContainer'
 
-function FestivalsView(): ReactElement {
-    return (
-        <>
-            <Header />
-            <FestivalsTable />
-        </>
-    )
-}
+const FestivalsView: FunctionComponent = () => (
+    <>
+        <Header />
+        <FestivalsTable />
+    </>
+)
 
 export default FestivalsView

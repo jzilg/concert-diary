@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'preact/compat'
 import { shallow } from 'enzyme'
 import { shallowToJson } from 'enzyme-to-json'
 import ConcertForm from '../ConcertForm'

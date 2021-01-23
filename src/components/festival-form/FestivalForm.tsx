@@ -1,20 +1,23 @@
-import React, { useState, useEffect, ReactElement } from 'react'
+import React, { FunctionComponent } from 'preact/compat'
+import { useEffect } from 'preact/hooks'
 import Festival from '../../entities/Festival'
 import ListInput from '../list-input'
+import useFormInput from '../../hooks/useFormInput'
+import useListInput from '../../hooks/useListInput'
 
 type Props = {
     festival: Festival
     saveFestival: Function
 }
 
-function FestivalForm(props: Props): ReactElement {
+const FestivalForm: FunctionComponent<Props> = (props) => {
     const { festival, saveFestival } = props
 
-    const [name, setName] = useState(festival.name)
-    const [bands, setBands] = useState(festival.bands)
-    const [startDate, setStartDate] = useState(festival.date.from)
-    const [endDate, setEndDate] = useState(festival.date.until)
-    const [companions, setCompanions] = useState(festival.companions)
+    const [name, onNameChange, setName] = useFormInput(festival.name)
+    const [bands, onBandsChange, setBands] = useListInput(festival.bands)
+    const [startDate, onStartDateChange, setStartDate] = useFormInput(festival.date.from)
+    const [endDate, onEndDateChange, setEndDate] = useFormInput(festival.date.until)
+    const [companions, onCompanionsChange, setCompanions] = useListInput(festival.companions)
 
     useEffect(() => {
         setName(festival.name)
@@ -45,7 +48,7 @@ function FestivalForm(props: Props): ReactElement {
                 <input
                     type="text"
                     value={name}
-                    onChange={(event) => setName(event.target.value)}
+                    onChange={onNameChange}
                     placeholder="Melt 2010"
                 />
             </label>
@@ -53,7 +56,7 @@ function FestivalForm(props: Props): ReactElement {
                 <span>Bands</span>
                 <ListInput
                     list={bands}
-                    onChange={(list) => setBands(list)}
+                    onChange={onBandsChange}
                     placeholder="The Strokes, Pearl Jam,..."
                 />
             </label>
@@ -62,7 +65,7 @@ function FestivalForm(props: Props): ReactElement {
                 <input
                     type="date"
                     value={startDate}
-                    onChange={(event) => setStartDate(event.target.value)}
+                    onChange={onStartDateChange}
                 />
             </label>
             <label>
@@ -70,14 +73,14 @@ function FestivalForm(props: Props): ReactElement {
                 <input
                     type="date"
                     value={endDate}
-                    onChange={(event) => setEndDate(event.target.value)}
+                    onChange={onEndDateChange}
                 />
             </label>
             <label>
                 <span>Companions</span>
                 <ListInput
                     list={companions}
-                    onChange={(list) => setCompanions(list)}
+                    onChange={onCompanionsChange}
                     placeholder="Leo, Max, Peter,..."
                 />
             </label>

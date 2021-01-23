@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { FunctionComponent } from 'preact/compat'
 import { Link } from 'react-router-dom'
 import style from './tableControls.scss'
 
@@ -7,7 +7,7 @@ type Props = {
     deleteFn: Function
 }
 
-function TableControls(props: Props): ReactElement {
+const TableControls: FunctionComponent<Props> = (props) => {
     const {
         editUrl,
         deleteFn,

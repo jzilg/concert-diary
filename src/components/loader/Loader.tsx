@@ -1,11 +1,11 @@
-import React, { ReactElement } from 'react'
+import React, { FunctionComponent } from 'preact/compat'
 import style from './loader.scss'
 
 export type Props = {
     isLoading: boolean
 }
 
-function Loader(props: Props): ReactElement | null {
+const Loader: FunctionComponent<Props> = (props) => {
     const { isLoading } = props
 
     if (isLoading === false) {

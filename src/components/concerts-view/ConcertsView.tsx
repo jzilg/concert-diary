@@ -1,14 +1,12 @@
-import React, { ReactElement } from 'react'
+import React, { FunctionComponent } from 'preact/compat'
 import Header from '../header'
 import ConcertsTable from '../../containers/ConcertsTableContainer'
 
-function ConcertsView(): ReactElement {
-    return (
-        <>
-            <Header />
-            <ConcertsTable />
-        </>
-    )
-}
+const ConcertsView: FunctionComponent = () => (
+    <>
+        <Header />
+        <ConcertsTable />
+    </>
+)
 
 export default ConcertsView

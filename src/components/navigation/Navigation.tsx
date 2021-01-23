@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { FunctionComponent } from 'preact/compat'
 import { Link } from 'react-router-dom'
 import { NavLinks } from '../../entities/NavLink'
 import style from './navigation.scss'
@@ -7,7 +7,7 @@ export type Props = {
     navLinks: NavLinks
 }
 
-function Navigation(props: Props): ReactElement {
+const Navigation: FunctionComponent<Props> = (props) => {
     const { navLinks } = props
 
     const linkElements = navLinks.map((link) => (

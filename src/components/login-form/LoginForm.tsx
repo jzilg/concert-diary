@@ -1,16 +1,16 @@
-import React, { ReactElement, FormEvent } from 'react'
+import React, { FunctionComponent } from 'preact/compat'
 import useFormInput from '../../hooks/useFormInput'
 
 export type Props = {
     authenticate: Function
 }
 
-function LoginForm(props: Props): ReactElement {
+const LoginForm: FunctionComponent<Props> = (props) => {
     const { authenticate } = props
     const [usernameValue, setusernameValue] = useFormInput('')
     const [passwordValue, setPasswordValue] = useFormInput('')
 
-    function handleSubmit(event: FormEvent<HTMLFormElement>): void {
+    function handleSubmit(event): void {
         event.preventDefault()
         authenticate({
             username: usernameValue,

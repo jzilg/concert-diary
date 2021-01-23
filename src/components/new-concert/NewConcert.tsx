@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { FunctionComponent } from 'preact/compat'
 import Concert from '../../entities/Concert'
 import Header from '../header'
 import ConcertForm from '../concert-form'
@@ -8,7 +8,7 @@ export type Props = {
     saveNewConcert: Function
 }
 
-function NewConcert(props: Props): ReactElement {
+const NewConcert: FunctionComponent<Props> = (props) => {
     const {
         concert,
         saveNewConcert,

@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { FunctionComponent } from 'preact/compat'
 
 type Props = {
     totalNumOfConcerts: number
@@ -7,7 +7,7 @@ type Props = {
     totalNumOfLocations: number
 }
 
-function GeneralStatistics(props: Props): ReactElement {
+const GeneralStatistics: FunctionComponent<Props> = (props) => {
     const {
         totalNumOfConcerts,
         totalNumOfBands,

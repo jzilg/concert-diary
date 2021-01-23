@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { FunctionComponent } from 'preact/compat'
 import { Store } from 'redux'
 import { Provider as ReduxProvider } from 'react-redux'
 import Loader from '../../containers/LoaderContainer'
@@ -10,7 +10,7 @@ type Props = {
     store: Store
 }
 
-function Root(props: Props): ReactElement {
+const Root: FunctionComponent<Props> = (props) => {
     const { store } = props
 
     return (

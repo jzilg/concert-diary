@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { FunctionComponent } from 'preact/compat'
 import MostSeenBand from '../../entities/MostSeenBand'
 import Header from '../header'
 import MostSeenBands from '../most-seen-bands'
@@ -14,7 +14,7 @@ export type Props = {
     loadStatistics: () => void
 }
 
-function Statistics(props: Props): ReactElement {
+const Statistics: FunctionComponent<Props> = (props) => {
     const {
         mostSeenBands,
         totalNumOfConcerts,
