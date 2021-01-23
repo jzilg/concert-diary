@@ -1,4 +1,4 @@
-require('dotenv').config()
+const webpack = require('webpack')
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -9,7 +9,7 @@ const Dotenv = require('dotenv-webpack')
 const dartSass = require('dart-sass')
 const ESLintPlugin = require('eslint-webpack-plugin')
 
-const isDevServer = process.argv[1] && process.argv[1].includes('webpack-dev-server')
+const isDevServer = process.argv?.includes('serve')
 const filename = '[name]-[contenthash]'
 const extensions = [
     '.js',
@@ -93,6 +93,9 @@ module.exports = {
         new Dotenv(),
         new ESLintPlugin({
             extensions,
+        }),
+        new webpack.ProvidePlugin({
+            process: 'process/browser',
         }),
     ].filter(Boolean),
     devServer: {
