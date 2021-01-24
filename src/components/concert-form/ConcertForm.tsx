@@ -30,7 +30,7 @@ const ConcertForm: FunctionComponent<Props> = (props) => {
         setCompanions(concert.companions)
     }, [concert, setBand, setCompanions, setDate, setLocation, setSupportBands])
 
-    function handleSubmit(event): void {
+    function handleSubmit(event: Event): void {
         event.preventDefault()
         saveConcert({
             id: concert.id,
@@ -49,7 +49,7 @@ const ConcertForm: FunctionComponent<Props> = (props) => {
                 <input
                     type="text"
                     value={band}
-                    onChange={(event) => onBandInputChange(event)}
+                    onChange={onBandInputChange}
                     placeholder="Pink Floyd"
                 />
             </label>

@@ -1,9 +1,9 @@
 import { useState } from 'preact/compat'
 
-// type OnChange = (event: ChangeEvent<HTMLInputElement>) => void
+type OnChange = (event) => void
 type SetValue = (value) => void
 
-function useFormInput(initialValue: string): [string, (event) => void, SetValue] {
+function useFormInput(initialValue: string): [string, OnChange, SetValue] {
     const [value, setValue]: [string, SetValue] = useState(initialValue)
 
     function handleChange(event): void {
