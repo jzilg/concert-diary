@@ -7,9 +7,6 @@
 # VS Code
 .vscode
 
-# Enviorment
-.env
-
 # npm
 node_modules
 npm-debug.log*
@@ -18,4 +15,9 @@ npm-debug.log*
 coverage
 
 # Built files
-/dist
+dist
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore

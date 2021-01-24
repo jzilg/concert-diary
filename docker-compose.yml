@@ -1,10 +1,9 @@
 services:
   concert-diary-fe:
-    image: nginx
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: "concert-diary-fe"
-    volumes:
-      - ./dist:/usr/share/nginx/html
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
     restart: unless-stopped
     ports:
       - "${PORT}:80"
