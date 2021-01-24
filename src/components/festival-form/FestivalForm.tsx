@@ -25,7 +25,7 @@ const FestivalForm: FunctionComponent<Props> = (props) => {
         setStartDate(festival.date.from)
         setEndDate(festival.date.until)
         setCompanions(festival.companions)
-    }, [festival])
+    }, [festival, setName, setBands, setStartDate, setEndDate, setCompanions])
 
     function handleSubmit(event): void {
         event.preventDefault()
