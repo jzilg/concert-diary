@@ -51,6 +51,7 @@ const ConcertForm: FunctionComponent<Props> = (props) => {
                     value={band}
                     onChange={onBandInputChange}
                     placeholder="Pink Floyd"
+                    required
                 />
             </label>
             <label>
@@ -76,6 +77,7 @@ const ConcertForm: FunctionComponent<Props> = (props) => {
                     type="date"
                     value={date}
                     onChange={onDateInputChange}
+                    required
                 />
             </label>
             <label>

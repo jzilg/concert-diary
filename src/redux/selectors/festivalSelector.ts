@@ -2,13 +2,14 @@ import { createSelector } from 'reselect'
 import Festival from '../../entities/Festival'
 import festivalsSelector from './festivalsSelector'
 import paramsSelector from './paramsSelector'
+import todaysDate from '../../utils/todaysDate'
 
 function createEmptyFestival(): Festival {
     return {
         id: '',
         date: {
-            from: '',
-            until: '',
+            from: todaysDate,
+            until: todaysDate,
         },
         name: '',
         bands: [],

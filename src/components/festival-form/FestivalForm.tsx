@@ -50,6 +50,7 @@ const FestivalForm: FunctionComponent<Props> = (props) => {
                     value={name}
                     onChange={onNameChange}
                     placeholder="Melt 2010"
+                    required
                 />
             </label>
             <label>
@@ -66,6 +67,7 @@ const FestivalForm: FunctionComponent<Props> = (props) => {
                     type="date"
                     value={startDate}
                     onChange={onStartDateChange}
+                    required
                 />
             </label>
             <label>
@@ -74,6 +76,7 @@ const FestivalForm: FunctionComponent<Props> = (props) => {
                     type="date"
                     value={endDate}
                     onChange={onEndDateChange}
+                    required
                 />
             </label>
             <label>
