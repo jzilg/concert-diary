@@ -10,7 +10,7 @@ import {
     deleteConcertAsync,
     removeConcertFromState,
     addConcertToState,
-    saveConcert, saveNewConcert,
+    saveConcert, saveNewConcert, updateConcertOnState,
 } from '../../actions/app/concerts.actions'
 import { apiRequest } from '../../actions/core/api.actions'
 import { getConcertsApiUrl } from '../../../api'
@@ -108,7 +108,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     if (isActionOf(putConcertAsync.success, action)) {
         const concert = action.payload
 
-        dispatch(addConcertToState(concert))
+        dispatch(updateConcertOnState(concert))
         dispatch(push('/concerts'))
     }
 
