@@ -1,11 +1,7 @@
 import { useEffect } from 'preact/compat'
 
-function useOnMount(
-    callback: () => void,
-    cleanup: Function | undefined = undefined,
-): void | Function {
-    useEffect(callback, [])
-    return cleanup
+function useOnMount(fn: () => void): void {
+    useEffect(fn, [])
 }
 
 export default useOnMount
