@@ -25,6 +25,13 @@ const authMiddleware: Middleware = (store) => (next) => (action) => {
                     causedBy: action.meta.causedBy,
                 }))
             } else {
+                dispatch(createNotification({
+                    type: 'error',
+                    message: 'Session expired',
+                }, {
+                    causedBy: action.meta.causedBy,
+                }))
+
                 dispatch(push('/login'))
             }
         }

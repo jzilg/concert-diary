@@ -1,25 +1,46 @@
 import React, { FunctionComponent } from 'preact/compat'
 import { Store } from 'redux'
 import { Provider as ReduxProvider } from 'react-redux'
+import { ConnectedRouter as RouterProvider } from 'connected-react-router'
+import { History } from 'history'
 import Loader from '../../containers/LoaderContainer'
 import NotificationsList from '../../containers/NotificationsListContainer'
 import Router from '../router'
 import style from './root.css'
+import useOnMount from '../../hooks/useOnMount'
 
-type Props = {
+export type Props = {
     store: Store
+    history: History
+    pageRendered: () => void
+    pageIsRendered: boolean
 }
 
 const Root: FunctionComponent<Props> = (props) => {
-    const { store } = props
+    const {
+        store,
+        history,
+        pageRendered,
+        pageIsRendered,
+    } = props
+
+    useOnMount(() => {
+        pageRendered()
+    })
+
+    const content = (pageIsRendered) ? (
+        <div className={style.container}>
+            <NotificationsList />
+            <Router />
+        </div>
+    ) : null
 
     return (
         <ReduxProvider store={store}>
             <Loader />
-            <div className={style.container}>
-                <NotificationsList />
-                <Router />
-            </div>
+            <RouterProvider history={history}>
+                {content}
+            </RouterProvider>
         </ReduxProvider>
     )
 }

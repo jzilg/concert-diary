@@ -5,6 +5,7 @@ import * as notificationsActions from './core/notifications.actions'
 import * as apiActions from './core/api.actions'
 import * as loadingActions from './core/loadingCount.actions'
 import * as statisticsActions from './app/statistics.actions'
+import * as pageActions from './app/page.actions'
 
 export default {
     authActions,
@@ -14,4 +15,5 @@ export default {
     apiActions,
     loadingActions,
     statisticsActions,
+    pageActions,
 }

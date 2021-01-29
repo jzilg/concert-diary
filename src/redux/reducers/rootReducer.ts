@@ -7,6 +7,7 @@ import loadingCountReducer from './loadingCountReducer'
 import notificationsReducer from './notificationsReducer'
 import statisticsReducer from './statisticsReducer'
 import authReducer from './authReducer'
+import pageReducer from './pageReducer'
 
 const rootReducer: Reducer = combineReducers({
     router: connectRouter(history),
@@ -15,6 +16,7 @@ const rootReducer: Reducer = combineReducers({
     festivals: festivalsReducer,
     loadingCount: loadingCountReducer,
     notifications: notificationsReducer,
+    page: pageReducer,
     statistics: statisticsReducer,
 })
 
