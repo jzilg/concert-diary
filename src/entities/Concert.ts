@@ -1,6 +1,3 @@
-export type Concerts = Concert[]
-export type ConcertId = Concert['id']
-
 type Concert = {
     id: string
     date: string

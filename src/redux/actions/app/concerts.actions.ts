@@ -1,17 +1,17 @@
 import { createAction, createAsyncAction } from 'typesafe-actions'
-import Concert, { Concerts, ConcertId } from '../../../entities/Concert'
+import Concert from '../../../entities/Concert'
 
 export const fetchConcertsAsync = createAsyncAction(
     'CMD / Concert / fetch-all request',
     'EVT / Concert / fetch-all success',
     'EVT / Concert / fetch-all failure',
-)<undefined, Concerts, Error>()
+)<undefined, Concert[], Error>()
 
 export const fetchConcertAsync = createAsyncAction(
     'CMD / Concert / fetch request',
     'EVT / Concert / fetch success',
     'EVT / Concert / fetch failure',
-)<ConcertId, Concert, Error>()
+)<Concert['id'], Concert, Error>()
 
 export const postConcertAsync = createAsyncAction(
     'CMD / Concert / post request',
@@ -29,11 +29,11 @@ export const deleteConcertAsync = createAsyncAction(
     'CMD / Concert / delete request',
     'EVT / Concert / delete success',
     'EVT / Concert / delete failure',
-)<ConcertId, ConcertId, Error>()
+)<Concert['id'], Concert['id'], Error>()
 
 export const saveConcert = createAction('CMD / Concert / save')<Concert>()
 export const saveNewConcert = createAction('CMD / Concert / save new')<Concert>()
-export const setConcertsState = createAction('DOC / Concert / set state')<Concerts>()
+export const setConcertsState = createAction('DOC / Concert / set state')<Concert[]>()
 export const addConcertToState = createAction('DOC / Concert / add to state')<Concert>()
 export const updateConcertOnState = createAction('DOC / Concert / update on state')<Concert>()
-export const removeConcertFromState = createAction('DOC / Concert / remove from state')<ConcertId>()
+export const removeConcertFromState = createAction('DOC / Concert / remove from state')<Concert['id']>()

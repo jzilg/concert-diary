@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect'
 import dayjs from 'dayjs'
 import concertsSelector from './concertsSelector'
-import { Concerts } from '../../entities/Concert'
+import Concert from '../../entities/Concert'
 
 const concertsSortedByDateSelector = createSelector(
     concertsSelector,
-    (concerts): Concerts => {
+    (concerts): Concert[] => {
         const byDate = ((concert0, concert1): number => {
             const concert0Timestamp = dayjs(concert0.date).unix()
             const concert1Timestamp = dayjs(concert1.date).unix()

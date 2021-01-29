@@ -1,12 +1,12 @@
 import React, { FunctionComponent } from 'preact/compat'
-import Concert, { ConcertId } from '../../entities/Concert'
+import Concert from '../../entities/Concert'
 import useOnMount from '../../hooks/useOnMount'
 import Header from '../header'
 import ConcertForm from '../concert-form'
 
 export type Props = {
     concert: Concert
-    loadConcert: (concertId: ConcertId) => void
+    loadConcert: (concertId: Concert['id']) => void
     saveConcert: Function
 }
 

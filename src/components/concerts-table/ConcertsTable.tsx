@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'preact/compat'
 import dayjs from 'dayjs'
-import Concert, { Concerts } from '../../entities/Concert'
+import Concert from '../../entities/Concert'
 import useOnMount from '../../hooks/useOnMount'
 import TableControls from '../table-controls'
 
 export type Props = {
-    concerts: Concerts
+    concerts: Concert[]
     loadConcerts: Function
     deleteConcert: Function
 }
