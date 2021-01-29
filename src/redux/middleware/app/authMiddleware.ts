@@ -4,7 +4,7 @@ import { push } from 'connected-react-router'
 import { apiRequest, apiFailure } from '../../actions/core/api.actions'
 import authAsync from '../../actions/app/auth.actions'
 import routeIsLoginSelector from '../../selectors/routeIsLoginSelector'
-import { setApiToken } from '../../../api'
+import { getAuthApiUrl, setApiToken } from '../../../api'
 import { createNotification } from '../../actions/core/notifications.actions'
 
 const authMiddleware: Middleware = (store) => (next) => (action) => {
@@ -32,7 +32,7 @@ const authMiddleware: Middleware = (store) => (next) => (action) => {
 
     if (isActionOf(authAsync.request, action)) {
         dispatch(apiRequest({
-            url: `${process.env.API_URL}/login`,
+            url: getAuthApiUrl(),
             method: 'POST',
             body: JSON.stringify(action.payload),
             successAction: authAsync.success,

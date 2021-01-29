@@ -11,6 +11,10 @@ function getApiToken(): string {
     return window.sessionStorage.getItem(TOKEN_STORAGE_ID) || ''
 }
 
+export function getAuthApiUrl(): string {
+    return `${process.env.API_URL}/login`
+}
+
 export function getConcertsApiUrl(id?: Concert['id']): string {
     const path = id !== undefined
         ? `/concerts/${id}`
