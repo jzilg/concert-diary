@@ -10,7 +10,9 @@ import {
     deleteFestivalAsync,
     removeFestivalFromState,
     addFestivalToState,
-    saveFestival, saveNewFestival, updateFestivalOnState,
+    saveFestival,
+    saveNewFestival,
+    updateFestivalOnState,
 } from '../../actions/app/festivals.actions'
 import { apiRequest } from '../../actions/core/api.actions'
 import { getFestivalsApiUrl } from '../../../api'

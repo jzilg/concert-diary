@@ -10,7 +10,9 @@ import {
     deleteConcertAsync,
     removeConcertFromState,
     addConcertToState,
-    saveConcert, saveNewConcert, updateConcertOnState,
+    saveConcert,
+    saveNewConcert,
+    updateConcertOnState,
 } from '../../actions/app/concerts.actions'
 import { apiRequest } from '../../actions/core/api.actions'
 import { getConcertsApiUrl } from '../../../api'
