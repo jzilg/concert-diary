@@ -9,16 +9,16 @@ import {
     putFestivalAsync,
     deleteFestivalAsync,
     removeFestivalFromState,
-    setFestivalOnState,
-    saveFestival,
-    saveNewFestival,
+    addFestivalToState,
+    saveFestival, saveNewFestival, updateFestivalOnState,
 } from '../../actions/app/festivals.actions'
 import { apiRequest } from '../../actions/core/api.actions'
 import { getFestivalsApiUrl } from '../../../api'
+import festivalsSelector from '../../selectors/festivalsSelector'
 
 const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
-    const { dispatch } = store
+    const { dispatch, getState } = store
 
     if (isActionOf(saveNewFestival, action)) {
         const festival = action.payload
@@ -46,9 +46,9 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(fetchFestivalsAsync.success, action)) {
-        const festivals = action.payload
+        const fetchedFestivals = action.payload
 
-        dispatch(setFestivalsState(festivals))
+        dispatch(setFestivalsState(fetchedFestivals))
     }
 
     if (isActionOf(fetchFestivalAsync.request, action)) {
@@ -66,9 +66,14 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(fetchFestivalAsync.success, action)) {
-        const festival = action.payload
+        const fetchedFestival = action.payload
+        const festivals = festivalsSelector(getState())
+        const festivalExists = festivals.some((festival) => festival.id === fetchedFestival.id)
+        const documentAction = festivalExists
+            ? updateFestivalOnState(fetchedFestival)
+            : addFestivalToState(fetchedFestival)
 
-        dispatch(setFestivalOnState(festival))
+        dispatch(documentAction)
     }
 
     if (isActionOf(postFestivalAsync.request, action)) {
@@ -86,9 +91,9 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(postFestivalAsync.success, action)) {
-        const festival = action.payload
+        const postedFestival = action.payload
 
-        dispatch(setFestivalOnState(festival))
+        dispatch(addFestivalToState(postedFestival))
         dispatch(push('/festivals'))
     }
 
@@ -107,9 +112,9 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(putFestivalAsync.success, action)) {
-        const festival = action.payload
+        const savedFestival = action.payload
 
-        dispatch(setFestivalOnState(festival))
+        dispatch(updateFestivalOnState(savedFestival))
         dispatch(push('/festivals'))
     }
 
@@ -127,9 +132,9 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(deleteFestivalAsync.success, action)) {
-        const festivalId = action.payload
+        const deletedFestivalId = action.payload
 
-        dispatch(removeFestivalFromState(festivalId))
+        dispatch(removeFestivalFromState(deletedFestivalId))
     }
 }
 

@@ -1,8 +1,8 @@
 import { State } from '../reducers/rootReducer'
-import { Festivals } from '../../entities/Festival'
+import { FestivalsState } from '../reducers/festivalsReducer'
 
-function festivalsSelector(state: State): Festivals {
-    return Object.values(state.festivals)
+function festivalsSelector(state: State): FestivalsState {
+    return state.festivals
 }
 
 export default festivalsSelector

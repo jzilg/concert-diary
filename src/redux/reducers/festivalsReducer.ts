@@ -2,42 +2,23 @@ import { createReducer } from 'typesafe-actions'
 import Festival from '../../entities/Festival'
 import {
     setFestivalsState,
-    setFestivalOnState,
+    addFestivalToState,
     removeFestivalFromState,
+    updateFestivalOnState,
 } from '../actions/app/festivals.actions'
 
-export type FestivalsState = Record<Festival['id'], Festival>
+export type FestivalsState = Festival[]
 
-export const defaultState: FestivalsState = {}
+export const defaultState: FestivalsState = []
 
 const festivalsReducer = createReducer(defaultState)
-    .handleAction(setFestivalsState, (state, action) => {
-        const festivals = action.payload
-        const newState = {}
-
-        festivals.forEach((festival) => {
-            newState[festival.id] = festival
-        })
-
-        return newState
-    })
-    .handleAction(setFestivalOnState, (state, action) => {
-        const festival = action.payload
-
-        return {
-            ...state,
-            [festival.id]: festival,
-        }
-    })
-    .handleAction(removeFestivalFromState, (state, action) => {
-        const festivalId = action.payload
-        const newState = {
-            ...state,
-        }
-
-        delete newState[festivalId]
-
-        return newState
-    })
+    .handleAction(setFestivalsState, (state, action) => action.payload)
+    .handleAction(addFestivalToState, (state, action) => state.concat(action.payload))
+    .handleAction(updateFestivalOnState, (state, action) => (
+        state.map((festival) => (festival.id === action.payload.id ? action.payload : festival))
+    ))
+    .handleAction(removeFestivalFromState, (state, action) => (
+        state.filter((festival) => festival.id !== action.payload)
+    ))
 
 export default festivalsReducer
