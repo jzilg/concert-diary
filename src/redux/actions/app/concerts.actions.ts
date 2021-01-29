@@ -34,5 +34,5 @@ export const deleteConcertAsync = createAsyncAction(
 export const saveConcert = createAction('CMD / Concert / save')<Concert>()
 export const saveNewConcert = createAction('CMD / Concert / save new')<Concert>()
 export const setConcertsState = createAction('DOC / Concert / set state')<Concerts>()
-export const setConcertOnState = createAction('DOC / Concert / add to state')<Concert>()
+export const addConcertToState = createAction('DOC / Concert / add to state')<Concert>()
 export const removeConcertFromState = createAction('DOC / Concert / remove from state')<ConcertId>()

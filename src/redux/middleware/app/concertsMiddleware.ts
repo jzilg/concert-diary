@@ -9,7 +9,7 @@ import {
     putConcertAsync,
     deleteConcertAsync,
     removeConcertFromState,
-    setConcertOnState,
+    addConcertToState,
     saveConcert, saveNewConcert,
 } from '../../actions/app/concerts.actions'
 import { apiRequest } from '../../actions/core/api.actions'
@@ -67,7 +67,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     if (isActionOf(fetchConcertAsync.success, action)) {
         const concert = action.payload
 
-        dispatch(setConcertOnState(concert))
+        dispatch(addConcertToState(concert))
     }
 
     if (isActionOf(postConcertAsync.request, action)) {
@@ -87,7 +87,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     if (isActionOf(postConcertAsync.success, action)) {
         const concert = action.payload
 
-        dispatch(setConcertOnState(concert))
+        dispatch(addConcertToState(concert))
         dispatch(push('/concerts'))
     }
 
@@ -108,7 +108,7 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     if (isActionOf(putConcertAsync.success, action)) {
         const concert = action.payload
 
-        dispatch(setConcertOnState(concert))
+        dispatch(addConcertToState(concert))
         dispatch(push('/concerts'))
     }
 
