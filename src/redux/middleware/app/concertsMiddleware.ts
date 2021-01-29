@@ -14,10 +14,11 @@ import {
 } from '../../actions/app/concerts.actions'
 import { apiRequest } from '../../actions/core/api.actions'
 import { getConcertsApiUrl } from '../../../api'
+import concertsSelector from '../../selectors/concertsSelector'
 
 const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
-    const { dispatch } = store
+    const { dispatch, getState } = store
 
     if (isActionOf(saveNewConcert, action)) {
         const concert = action.payload
@@ -45,9 +46,9 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(fetchConcertsAsync.success, action)) {
-        const concerts = action.payload
+        const fetchedConcerts = action.payload
 
-        dispatch(setConcertsState(concerts))
+        dispatch(setConcertsState(fetchedConcerts))
     }
 
     if (isActionOf(fetchConcertAsync.request, action)) {
@@ -65,9 +66,14 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(fetchConcertAsync.success, action)) {
-        const concert = action.payload
+        const fetchedConcert = action.payload
+        const concerts = concertsSelector(getState())
+        const concertExists = concerts.some((concert) => concert.id === fetchedConcert.id)
+        const documentAction = concertExists
+            ? updateConcertOnState(fetchedConcert)
+            : addConcertToState(fetchedConcert)
 
-        dispatch(addConcertToState(concert))
+        dispatch(documentAction)
     }
 
     if (isActionOf(postConcertAsync.request, action)) {
@@ -85,9 +91,9 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(postConcertAsync.success, action)) {
-        const concert = action.payload
+        const postedConcert = action.payload
 
-        dispatch(addConcertToState(concert))
+        dispatch(addConcertToState(postedConcert))
         dispatch(push('/concerts'))
     }
 
@@ -106,9 +112,9 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(putConcertAsync.success, action)) {
-        const concert = action.payload
+        const savedConcert = action.payload
 
-        dispatch(updateConcertOnState(concert))
+        dispatch(updateConcertOnState(savedConcert))
         dispatch(push('/concerts'))
     }
 
@@ -126,9 +132,9 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(deleteConcertAsync.success, action)) {
-        const concertId = action.payload
+        const deletedConcertId = action.payload
 
-        dispatch(removeConcertFromState(concertId))
+        dispatch(removeConcertFromState(deletedConcertId))
     }
 }
 
