@@ -3,13 +3,15 @@ import { isActionOf } from 'typesafe-actions'
 import { fetchStatisticsAsync, setStatisticsState } from '../../actions/app/statistics.actions'
 import { getStatisticsApiUrl } from '../../../api'
 import { apiRequest } from '../../actions/core/api.actions'
+import apiTokenSelector from '../../selectors/apiTokenSelector'
 
 const statisticsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
-    const { dispatch } = store
+    const { dispatch, getState } = store
 
     if (isActionOf(fetchStatisticsAsync.request, action)) {
-        const url = getStatisticsApiUrl()
+        const apiToken = apiTokenSelector(getState())
+        const url = getStatisticsApiUrl(apiToken)
 
         dispatch(apiRequest({
             url,

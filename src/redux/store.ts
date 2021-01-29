@@ -1,11 +1,19 @@
-import { applyMiddleware, compose, createStore } from 'redux'
+import {
+    applyMiddleware,
+    compose,
+    createStore,
+    Store,
+} from 'redux'
 import middleware from './middleware'
 import rootReducer from './reducers/rootReducer'
 import applyDevtoolExtension from './applyDevtoolExtension'
+import { getStorageData } from '../sessionStorage'
 
 const enhancer = compose(
     applyMiddleware(...middleware),
     applyDevtoolExtension(),
 )
 
-export default createStore(rootReducer, undefined, enhancer)
+const persistedState = getStorageData('redux-store') as Store
+
+export default createStore(rootReducer, persistedState, enhancer)

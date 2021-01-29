@@ -1,4 +1,4 @@
-import { createAsyncAction } from 'typesafe-actions'
+import { createAction, createAsyncAction } from 'typesafe-actions'
 
 export const authAsync = createAsyncAction(
     'CMD / Auth / request',
@@ -6,4 +6,4 @@ export const authAsync = createAsyncAction(
     'EVT / Auth / failure',
 )<{ username: string; password: string }, string, Error>()
 
-export default authAsync
+export const setApiTokenOnState = createAction('DOC / Auth / set api token')<string>()

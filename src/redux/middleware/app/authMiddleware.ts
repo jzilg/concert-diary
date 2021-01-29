@@ -2,9 +2,9 @@ import { Middleware } from 'redux'
 import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
 import { apiRequest, apiFailure } from '../../actions/core/api.actions'
-import authAsync from '../../actions/app/auth.actions'
+import { authAsync, setApiTokenOnState } from '../../actions/app/auth.actions'
 import routeIsLoginSelector from '../../selectors/routeIsLoginSelector'
-import { getAuthApiUrl, setApiToken } from '../../../api'
+import { getAuthApiUrl } from '../../../api'
 import { createNotification } from '../../actions/core/notifications.actions'
 
 const authMiddleware: Middleware = (store) => (next) => (action) => {
@@ -43,7 +43,7 @@ const authMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(authAsync.success, action)) {
-        setApiToken(action.payload)
+        dispatch(setApiTokenOnState(action.payload))
         dispatch(push('/'))
     }
 }

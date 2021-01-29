@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import LoginForm, { Props } from '../components/login-form'
-import authAsync from '../redux/actions/app/auth.actions'
+import { authAsync } from '../redux/actions/app/auth.actions'
 
 type DispatchProps = Pick<Props, 'authenticate'>
 

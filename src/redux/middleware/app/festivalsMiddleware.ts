@@ -17,6 +17,7 @@ import {
 import { apiRequest } from '../../actions/core/api.actions'
 import { getFestivalsApiUrl } from '../../../api'
 import festivalsSelector from '../../selectors/festivalsSelector'
+import apiTokenSelector from '../../selectors/apiTokenSelector'
 
 const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
@@ -35,7 +36,8 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(fetchFestivalsAsync.request, action)) {
-        const url = getFestivalsApiUrl()
+        const apiToken = apiTokenSelector(getState())
+        const url = getFestivalsApiUrl(apiToken)
 
         dispatch(apiRequest({
             url,
@@ -55,7 +57,8 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
 
     if (isActionOf(fetchFestivalAsync.request, action)) {
         const id = action.payload
-        const url = getFestivalsApiUrl(id)
+        const apiToken = apiTokenSelector(getState())
+        const url = getFestivalsApiUrl(apiToken, id)
 
         dispatch(apiRequest({
             url,
@@ -80,9 +83,10 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
 
     if (isActionOf(postFestivalAsync.request, action)) {
         const festival = action.payload
+        const apiToken = apiTokenSelector(getState())
 
         dispatch(apiRequest({
-            url: getFestivalsApiUrl(),
+            url: getFestivalsApiUrl(apiToken),
             method: 'POST',
             body: JSON.stringify(festival),
             successAction: postFestivalAsync.success,
@@ -101,9 +105,10 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
 
     if (isActionOf(putFestivalAsync.request, action)) {
         const festival = action.payload
+        const apiToken = apiTokenSelector(getState())
 
         dispatch(apiRequest({
-            url: getFestivalsApiUrl(festival.id),
+            url: getFestivalsApiUrl(apiToken, festival.id),
             method: 'PUT',
             body: JSON.stringify(festival),
             successAction: putFestivalAsync.success,
@@ -122,9 +127,10 @@ const festivalsMiddleware: Middleware = (store) => (next) => (action) => {
 
     if (isActionOf(deleteFestivalAsync.request, action)) {
         const festivalId = action.payload
+        const apiToken = apiTokenSelector(getState())
 
         dispatch(apiRequest({
-            url: getFestivalsApiUrl(festivalId),
+            url: getFestivalsApiUrl(apiToken, festivalId),
             method: 'DELETE',
             successAction: deleteFestivalAsync.success.bind(this, festivalId),
             failureAction: deleteFestivalAsync.failure,

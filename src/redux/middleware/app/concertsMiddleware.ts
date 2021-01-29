@@ -17,6 +17,7 @@ import {
 import { apiRequest } from '../../actions/core/api.actions'
 import { getConcertsApiUrl } from '../../../api'
 import concertsSelector from '../../selectors/concertsSelector'
+import apiTokenSelector from '../../selectors/apiTokenSelector'
 
 const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
@@ -35,7 +36,8 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (isActionOf(fetchConcertsAsync.request, action)) {
-        const url = getConcertsApiUrl()
+        const apiToken = apiTokenSelector(getState())
+        const url = getConcertsApiUrl(apiToken)
 
         dispatch(apiRequest({
             url,
@@ -55,7 +57,8 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
 
     if (isActionOf(fetchConcertAsync.request, action)) {
         const id = action.payload
-        const url = getConcertsApiUrl(id)
+        const apiToken = apiTokenSelector(getState())
+        const url = getConcertsApiUrl(apiToken, id)
 
         dispatch(apiRequest({
             url,
@@ -80,9 +83,10 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
 
     if (isActionOf(postConcertAsync.request, action)) {
         const concert = action.payload
+        const apiToken = apiTokenSelector(getState())
 
         dispatch(apiRequest({
-            url: getConcertsApiUrl(),
+            url: getConcertsApiUrl(apiToken),
             method: 'POST',
             body: JSON.stringify(concert),
             successAction: postConcertAsync.success,
@@ -101,9 +105,10 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
 
     if (isActionOf(putConcertAsync.request, action)) {
         const concert = action.payload
+        const apiToken = apiTokenSelector(getState())
 
         dispatch(apiRequest({
-            url: getConcertsApiUrl(concert.id),
+            url: getConcertsApiUrl(apiToken, concert.id),
             method: 'PUT',
             body: JSON.stringify(concert),
             successAction: putConcertAsync.success,
@@ -122,9 +127,10 @@ const concertsMiddleware: Middleware = (store) => (next) => (action) => {
 
     if (isActionOf(deleteConcertAsync.request, action)) {
         const concertId = action.payload
+        const apiToken = apiTokenSelector(getState())
 
         dispatch(apiRequest({
-            url: getConcertsApiUrl(concertId),
+            url: getConcertsApiUrl(apiToken, concertId),
             method: 'DELETE',
             successAction: deleteConcertAsync.success.bind(this, concertId),
             failureAction: deleteConcertAsync.failure,
