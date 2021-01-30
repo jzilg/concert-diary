@@ -73,7 +73,7 @@
     "dotenv": "^8.2.0",
     "embellish.css": "^5.0.0",
     "history": "^4.10.1",
-    "preact": "^10.5.11",
+    "preact": "^10.5.12",
     "process": "^0.11.10",
     "query-string": "^6.13.7",
     "react-redux": "^7.2.2",
