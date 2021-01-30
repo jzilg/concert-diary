@@ -11,8 +11,8 @@ const Navigation: FunctionComponent<Props> = (props) => {
     const { navLinks } = props
 
     const linkElements = navLinks.map((link) => (
-        <li key={`${link.url}-${link.label}`} className={style.listItem}>
-            <Link to={link.url}>
+        <li key={`${link.url}-${link.label}`}>
+            <Link to={link.url} className={style.link}>
                 {link.label}
             </Link>
         </li>
@@ -20,7 +20,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
 
     return (
         <nav>
-            <ul>
+            <ul className={style.list}>
                 {linkElements}
             </ul>
         </nav>
