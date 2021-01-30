@@ -5,6 +5,7 @@ import ConcertsTable from '../../containers/ConcertsTableContainer'
 const ConcertsView: FunctionComponent = () => (
     <>
         <Header />
+        <h2>Concerts</h2>
         <ConcertsTable />
     </>
 )

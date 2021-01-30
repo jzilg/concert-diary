@@ -16,11 +16,11 @@ function navLinksSelector(): NavLinks {
         },
         {
             url: '/concerts/new',
-            label: 'Add new concert',
+            label: 'Add New Concert',
         },
         {
             url: '/festivals/new',
-            label: 'Add new festival',
+            label: 'Add New Festival',
         },
     ]
 }
