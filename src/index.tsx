@@ -4,9 +4,6 @@ import history from './history'
 import Root from './containers/RootContainer'
 import 'embellish.css'
 import './global.scss'
-
-if (process.env.NODE_ENV === 'development') {
-    import('preact/debug')
-}
+import 'preact/devtools'
 
 render(<Root store={store} history={history} />, document.getElementById('root') as Element)
