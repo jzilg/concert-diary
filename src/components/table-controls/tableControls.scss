@@ -28,6 +28,8 @@
 }
 
 .deleteBtn {
+    display: inline-flex;
+    align-items: center;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     background-color: var(--red);

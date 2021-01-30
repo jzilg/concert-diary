@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from 'preact/compat'
 import { Link } from 'react-router-dom'
+import EditIcon from 'react-bootstrap-icons/dist/icons/pencil-square'
+import DeleteIcon from 'react-bootstrap-icons/dist/icons/trash'
 import style from './tableControls.scss'
 
 type Props = {
@@ -23,8 +25,9 @@ const TableControls: FunctionComponent<Props> = (props) => {
                 <Link
                     to={editUrl}
                     className={style.editBtn}
+                    title="Edit"
                 >
-                    Edit
+                    <EditIcon />
                 </Link>
             </li>
             <li>
@@ -32,8 +35,9 @@ const TableControls: FunctionComponent<Props> = (props) => {
                     onClick={deleteButtonClickHandler}
                     className={style.deleteBtn}
                     type="button"
+                    title="Delete"
                 >
-                    Delete
+                    <DeleteIcon />
                 </button>
             </li>
         </ul>
