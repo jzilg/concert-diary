@@ -12,11 +12,13 @@
   },
   "env": {
     "browser": true,
+    "jest": true,
     "node": true
   },
   "extends": [
     "airbnb",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:jest/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
     "curly": ["error", "all"],
