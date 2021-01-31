@@ -1,9 +1,11 @@
 import React, { FunctionComponent } from 'preact/compat'
 import { useEffect } from 'preact/hooks'
+import { Link } from 'react-router-dom'
 import Festival from '../../entities/Festival'
 import ListInput from '../list-input'
 import useFormInput from '../../hooks/useFormInput'
 import useListInput from '../../hooks/useListInput'
+import { FormButtonList, FormButtonListItem } from '../form-button-list'
 
 type Props = {
     festival: Festival
@@ -87,7 +89,14 @@ const FestivalForm: FunctionComponent<Props> = (props) => {
                     placeholder="Leo, Max, Peter,..."
                 />
             </label>
-            <button type="submit">Save</button>
+            <FormButtonList>
+                <FormButtonListItem>
+                    <button type="submit">Save</button>
+                </FormButtonListItem>
+                <FormButtonListItem>
+                    <Link to="/festivals">Back to Festivals</Link>
+                </FormButtonListItem>
+            </FormButtonList>
         </form>
     )
 }
