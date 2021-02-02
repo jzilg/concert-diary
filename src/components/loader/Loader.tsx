@@ -8,7 +8,7 @@ export type Props = {
 const Loader: FunctionComponent<Props> = (props) => {
     const { isLoading } = props
 
-    if (isLoading === false) {
+    if (!isLoading) {
         return null
     }
 
