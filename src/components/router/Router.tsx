@@ -26,7 +26,7 @@ const Router: FunctionComponent = () => (
             <Route exact path="/festivals/new" component={NewFestival} />
             <Route exact path="/festivals/edit" component={EditFestival} />
             <Route exact path="/statistics" component={Statistics} />
-            <Route render={() => <h1>404 Not Found</h1>} />
+            <Route render={() => <h2>404 Not Found</h2>} />
         </Switch>
     </>
 )
