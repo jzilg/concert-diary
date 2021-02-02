@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'preact/compat'
 import Festival from '../../entities/Festival'
-import Header from '../header'
 import FestivalForm from '../festival-form'
 
 export type Props = {
@@ -16,7 +15,6 @@ const NewFestival: FunctionComponent<Props> = (props) => {
 
     return (
         <>
-            <Header />
             <h2>Add New Festival</h2>
             <FestivalForm
                 festival={festival}

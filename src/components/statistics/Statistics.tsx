@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'preact/compat'
 import MostSeenBand from '../../entities/MostSeenBand'
-import Header from '../header'
 import MostSeenBands from '../most-seen-bands'
 import GeneralStatistics from '../general-statistics'
 import useOnMount from '../../hooks/useOnMount'
@@ -30,7 +29,6 @@ const Statistics: FunctionComponent<Props> = (props) => {
 
     return (
         <>
-            <Header />
             <h2>Statistics</h2>
             <GeneralStatistics
                 totalNumOfBands={totalNumOfBands}

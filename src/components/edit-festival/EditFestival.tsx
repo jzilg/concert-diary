@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from 'preact/compat'
 import Festival, { FestivalId } from '../../entities/Festival'
 import useOnMount from '../../hooks/useOnMount'
-import Header from '../header'
 import FestivalForm from '../festival-form'
 
 export type Props = {
@@ -23,7 +22,6 @@ const EditFestival: FunctionComponent<Props> = (props) => {
 
     return (
         <>
-            <Header />
             <h2>Edit Festival</h2>
             <FestivalForm
                 festival={festival}
