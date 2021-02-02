@@ -7,21 +7,29 @@ $loaderWidth: 30vw;
     width: $loaderWidth;
     height: 5px;
     background-color: var(--blue);
-    animation-name: move;
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+    animation: move 1s infinite .4s, fadeIn .4s ease .4s 1 forwards;
     transform-origin: 0 50% 0;
     will-change: transform;
+    opacity: 0;
     z-index: 1;
 }
 
 @keyframes move {
-    0% {
+    from {
         transform: translateX(-$loaderWidth);
     }
 
-    100% {
+    to {
         transform: translateX(100vw);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }
