@@ -2,7 +2,12 @@ import { Middleware } from 'redux'
 import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
 import { apiRequest, apiFailure } from '../../actions/core/api.actions'
-import { authAsync, setApiTokenOnState } from '../../actions/app/auth.actions'
+import {
+    authAsync,
+    logout,
+    resetApiTokenState,
+    setApiTokenOnState,
+} from '../../actions/app/auth.actions'
 import routeIsLoginSelector from '../../selectors/routeIsLoginSelector'
 import { getAuthApiUrl } from '../../../api'
 import { createNotification } from '../../actions/core/notifications.actions'
@@ -52,6 +57,17 @@ const authMiddleware: Middleware = (store) => (next) => (action) => {
     if (isActionOf(authAsync.success, action)) {
         dispatch(setApiTokenOnState(action.payload))
         dispatch(push('/'))
+    }
+
+    if (isActionOf(logout, action)) {
+        dispatch(resetApiTokenState())
+        dispatch(push('/login'))
+        dispatch(createNotification({
+            type: 'success',
+            message: 'Successfully logged out',
+        }, {
+            causedBy: action,
+        }))
     }
 }
 

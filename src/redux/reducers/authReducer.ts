@@ -1,5 +1,5 @@
 import { createReducer } from 'typesafe-actions'
-import { setApiTokenOnState } from '../actions/app/auth.actions'
+import { resetApiTokenState, setApiTokenOnState } from '../actions/app/auth.actions'
 
 export type AuthState = {
     apiToken: string
@@ -13,6 +13,10 @@ const authReducer = createReducer(defaultState)
     .handleAction(setApiTokenOnState, (state, action) => ({
         ...state,
         apiToken: action.payload,
+    }))
+    .handleAction(resetApiTokenState, (state) => ({
+        ...state,
+        apiToken: defaultState.apiToken,
     }))
 
 export default authReducer
