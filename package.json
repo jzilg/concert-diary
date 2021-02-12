@@ -71,7 +71,7 @@
     "connected-react-router": "^6.8.0",
     "dayjs": "^1.9.5",
     "dotenv": "^8.2.0",
-    "embellish.css": "^5.0.0",
+    "embellish.css": "^6.0.0",
     "history": "^4.10.1",
     "preact": "^10.5.12",
     "process": "^0.11.10",
