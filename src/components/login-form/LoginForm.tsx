@@ -22,30 +22,28 @@ const LoginForm: FunctionComponent<Props> = (props) => {
         <>
             <h1>Concert Diary</h1>
             <form onSubmit={handleSubmit}>
-                <fieldset>
-                    <legend>Login</legend>
-                    <label>
-                        <span>Username</span>
-                        <input
-                            value={usernameValue}
-                            onChange={setusernameValue}
-                            type="text"
-                            minLength={2}
-                            required
-                        />
-                    </label>
-                    <label>
-                        <span>Password</span>
-                        <input
-                            value={passwordValue}
-                            onChange={setPasswordValue}
-                            type="password"
-                            minLength={6}
-                            required
-                        />
-                    </label>
-                    <button type="submit">Login</button>
-                </fieldset>
+                <h2>Login</h2>
+                <label>
+                    <span>Username</span>
+                    <input
+                        value={usernameValue}
+                        onChange={setusernameValue}
+                        type="text"
+                        minLength={2}
+                        required
+                    />
+                </label>
+                <label>
+                    <span>Password</span>
+                    <input
+                        value={passwordValue}
+                        onChange={setPasswordValue}
+                        type="password"
+                        minLength={6}
+                        required
+                    />
+                </label>
+                <button type="submit">Login</button>
             </form>
         </>
     )
