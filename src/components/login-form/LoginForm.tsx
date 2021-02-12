@@ -7,7 +7,7 @@ export type Props = {
 
 const LoginForm: FunctionComponent<Props> = (props) => {
     const { authenticate } = props
-    const [usernameValue, setusernameValue] = useFormInput('')
+    const [usernameValue, setUsernameValue] = useFormInput('')
     const [passwordValue, setPasswordValue] = useFormInput('')
 
     function handleSubmit(event): void {
@@ -27,7 +27,7 @@ const LoginForm: FunctionComponent<Props> = (props) => {
                     <span>Username</span>
                     <input
                         value={usernameValue}
-                        onChange={setusernameValue}
+                        onChange={setUsernameValue}
                         type="text"
                         minLength={2}
                         required
