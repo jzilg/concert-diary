@@ -13,8 +13,9 @@ export type ApiRequestOptions = {
     failureAction: ActionCreator
 }
 
-/* eslint-disable-next-line consistent-return */
-const apiMiddleware: Middleware = (store) => (next) => (action) => {
+type Fetch = typeof fetch
+
+const apiMiddleware = (networkRequest: Fetch): Middleware => (store) => (next) => (action) => {
     next(action)
     const { dispatch } = store
 
@@ -82,7 +83,7 @@ const apiMiddleware: Middleware = (store) => (next) => (action) => {
                 .catch(handleError('json', response.status))
         }
 
-        return fetch(encodeURI(url), options)
+        networkRequest(encodeURI(url), options)
             .then(handleResponse)
             .catch(handleError('fetch'))
     }
