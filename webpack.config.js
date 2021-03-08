@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
-const dartSass = require('dart-sass')
 const ESLintPlugin = require('eslint-webpack-plugin')
 
 const isDevServer = process.argv?.includes('serve')
@@ -69,7 +68,6 @@ module.exports = {
                         loader: 'sass-loader',
                         options: {
                             sourceMap: isDevServer,
-                            implementation: dartSass,
                         },
                     },
                 ],
