@@ -1,10 +1,11 @@
 import { createAction, createAsyncAction } from 'typesafe-actions'
 import Statistics from '../../../entities/Statistics'
 
-export const fetchStatisticsAsync = createAsyncAction(
-    'CMD / Statistics / fetch request',
-    'EVT / Statistics / fetch success',
-    'EVT / Statistics / fetch failure',
+export const loadStatisticsAsync = createAsyncAction(
+    'EVT / Statistics / load request',
+    'EVT / Statistics / load success',
+    'EVT / Statistics / load failure',
 )<undefined, Statistics, Error>()
 
+export const loadStatistics = createAction('CMD / Statistics / load')()
 export const setStatisticsState = createAction('DOC / Statistics / set state')<Statistics>()

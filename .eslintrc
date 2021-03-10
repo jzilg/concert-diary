@@ -46,6 +46,7 @@
     "no-plusplus": ["error", {
       "allowForLoopAfterthoughts": true
     }],
+    "no-shadow": "off",
     "no-use-before-define": "off",
     "object-property-newline": [
       "error",
@@ -135,6 +136,7 @@
     }],
     "@typescript-eslint/indent": ["error", 4],
     "@typescript-eslint/prefer-interface": 0,
+    "@typescript-eslint/no-shadow": ["error"],
     "@typescript-eslint/no-use-before-define": "error",
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/explicit-function-return-type": ["error", {

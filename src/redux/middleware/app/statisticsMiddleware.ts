@@ -1,32 +1,30 @@
 import { Middleware } from 'redux'
 import { isActionOf } from 'typesafe-actions'
-import { fetchStatisticsAsync, setStatisticsState } from '../../actions/app/statistics.actions'
-import { getStatisticsApiUrl } from '../../../api'
-import { apiRequest } from '../../actions/core/api.actions'
+import {
+    loadStatistics,
+    loadStatisticsAsync,
+    setStatisticsState,
+} from '../../actions/app/statistics.actions'
 import apiTokenSelector from '../../selectors/apiTokenSelector'
+import apiHandler from '../../apiHandler'
+import { getStatisticsOptions } from '../../../api/api'
 
 const statisticsMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
     const { dispatch, getState } = store
 
-    if (isActionOf(fetchStatisticsAsync.request, action)) {
+    if (isActionOf(loadStatistics, action)) {
         const apiToken = apiTokenSelector(getState())
-        const url = getStatisticsApiUrl(apiToken)
 
-        dispatch(apiRequest({
-            url,
-            method: 'GET',
-            successAction: fetchStatisticsAsync.success,
-            failureAction: fetchStatisticsAsync.failure,
-        }, {
+        apiHandler({
+            request: getStatisticsOptions(apiToken),
+            asyncActions: loadStatisticsAsync,
             causedBy: action,
-        }))
+        }, dispatch)
     }
 
-    if (isActionOf(fetchStatisticsAsync.success, action)) {
-        const statistics = action.payload
-
-        dispatch(setStatisticsState(statistics))
+    if (isActionOf(loadStatisticsAsync.success, action)) {
+        dispatch(setStatisticsState(action.payload))
     }
 }
 

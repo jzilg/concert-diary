@@ -1,148 +1,107 @@
-import { Middleware } from 'redux'
 import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
+import ApiMiddleware from '../../ApiMiddleware'
 import {
-    fetchConcertAsync,
-    fetchConcertsAsync,
-    setConcertsState,
+    saveNewConcert,
     postConcertAsync,
+    addConcertToState,
+    loadAllConcerts,
+    loadAllConcertsAsync,
+    loadConcert,
+    loadConcertAsync,
+    setConcertsState,
+    saveConcert,
     putConcertAsync,
+    updateConcertOnState,
+    deleteConcert,
     deleteConcertAsync,
     removeConcertFromState,
-    addConcertToState,
-    saveConcert,
-    saveNewConcert,
-    updateConcertOnState,
 } from '../../actions/app/concerts.actions'
-import { apiRequest } from '../../actions/core/api.actions'
-import { getConcertsApiUrl } from '../../../api'
+import {
+    getSaveNewConcertOptions,
+    getLoadAllConcertsOptions,
+    getLoadConcertOptions,
+    getSaveConcertOptions,
+    getDeleteConcertOptions,
+} from '../../../api/api'
 import concertsSelector from '../../selectors/concertsSelector'
 import apiTokenSelector from '../../selectors/apiTokenSelector'
 
-const concertsMiddleware: Middleware = (store) => (next) => (action) => {
+const concertsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (action) => {
     next(action)
     const { dispatch, getState } = store
+    const apiToken = apiTokenSelector(getState())
 
     if (isActionOf(saveNewConcert, action)) {
-        const concert = action.payload
-
-        dispatch(postConcertAsync.request(concert))
-    }
-
-    if (isActionOf(saveConcert, action)) {
-        const concert = action.payload
-
-        dispatch(putConcertAsync.request(concert))
-    }
-
-    if (isActionOf(fetchConcertsAsync.request, action)) {
-        const apiToken = apiTokenSelector(getState())
-        const url = getConcertsApiUrl(apiToken)
-
-        dispatch(apiRequest({
-            url,
-            method: 'GET',
-            successAction: fetchConcertsAsync.success,
-            failureAction: fetchConcertsAsync.failure,
-        }, {
+        apiHandler({
+            request: getSaveNewConcertOptions(apiToken, action.payload),
+            asyncActions: postConcertAsync,
             causedBy: action,
-        }))
+        }, dispatch)
     }
 
-    if (isActionOf(fetchConcertsAsync.success, action)) {
-        const fetchedConcerts = action.payload
-
-        dispatch(setConcertsState(fetchedConcerts))
+    if (isActionOf(postConcertAsync.success, action)) {
+        dispatch(addConcertToState(action.payload))
+        dispatch(push('/concerts'))
     }
 
-    if (isActionOf(fetchConcertAsync.request, action)) {
-        const id = action.payload
-        const apiToken = apiTokenSelector(getState())
-        const url = getConcertsApiUrl(apiToken, id)
-
-        dispatch(apiRequest({
-            url,
-            method: 'GET',
-            successAction: fetchConcertAsync.success,
-            failureAction: fetchConcertAsync.failure,
-        }, {
+    if (isActionOf(loadAllConcerts, action)) {
+        apiHandler({
+            request: getLoadAllConcertsOptions(apiToken),
+            asyncActions: loadAllConcertsAsync,
             causedBy: action,
-        }))
+        }, dispatch)
     }
 
-    if (isActionOf(fetchConcertAsync.success, action)) {
-        const fetchedConcert = action.payload
+    if (isActionOf(loadAllConcertsAsync.success, action)) {
+        dispatch(setConcertsState(action.payload))
+    }
+
+    if (isActionOf(loadConcert, action)) {
+        apiHandler({
+            request: getLoadConcertOptions(apiToken, action.payload),
+            asyncActions: loadConcertAsync,
+            causedBy: action,
+        }, dispatch)
+    }
+
+    if (isActionOf(loadConcertAsync.success, action)) {
+        const loadedConcert = action.payload
         const concerts = concertsSelector(getState())
-        const concertExists = concerts.some((concert) => concert.id === fetchedConcert.id)
+        const concertExists = concerts.some((concert) => concert.id === loadedConcert.id)
         const documentAction = concertExists
-            ? updateConcertOnState(fetchedConcert)
-            : addConcertToState(fetchedConcert)
+            ? updateConcertOnState(loadedConcert)
+            : addConcertToState(loadedConcert)
 
         dispatch(documentAction)
     }
 
-    if (isActionOf(postConcertAsync.request, action)) {
-        const concert = action.payload
-        const apiToken = apiTokenSelector(getState())
-
-        dispatch(apiRequest({
-            url: getConcertsApiUrl(apiToken),
-            method: 'POST',
-            body: JSON.stringify(concert),
-            successAction: postConcertAsync.success,
-            failureAction: postConcertAsync.failure,
-        }, {
+    if (isActionOf(saveConcert, action)) {
+        apiHandler({
+            request: getSaveConcertOptions(apiToken, action.payload),
+            asyncActions: putConcertAsync,
             causedBy: action,
-        }))
-    }
-
-    if (isActionOf(postConcertAsync.success, action)) {
-        const postedConcert = action.payload
-
-        dispatch(addConcertToState(postedConcert))
-        dispatch(push('/concerts'))
-    }
-
-    if (isActionOf(putConcertAsync.request, action)) {
-        const concert = action.payload
-        const apiToken = apiTokenSelector(getState())
-
-        dispatch(apiRequest({
-            url: getConcertsApiUrl(apiToken, concert.id),
-            method: 'PUT',
-            body: JSON.stringify(concert),
-            successAction: putConcertAsync.success,
-            failureAction: putConcertAsync.failure,
-        }, {
-            causedBy: action,
-        }))
+        }, dispatch)
     }
 
     if (isActionOf(putConcertAsync.success, action)) {
-        const savedConcert = action.payload
-
-        dispatch(updateConcertOnState(savedConcert))
+        dispatch(updateConcertOnState(action.payload))
         dispatch(push('/concerts'))
     }
 
-    if (isActionOf(deleteConcertAsync.request, action)) {
-        const concertId = action.payload
-        const apiToken = apiTokenSelector(getState())
-
-        dispatch(apiRequest({
-            url: getConcertsApiUrl(apiToken, concertId),
-            method: 'DELETE',
-            successAction: deleteConcertAsync.success.bind(this, concertId),
-            failureAction: deleteConcertAsync.failure,
-        }, {
+    if (isActionOf(deleteConcert, action)) {
+        apiHandler({
+            request: getDeleteConcertOptions(apiToken, action.payload),
+            asyncActions: {
+                ...deleteConcertAsync,
+                success: deleteConcertAsync.success.bind(null, action.payload),
+            },
             causedBy: action,
-        }))
+        }, dispatch)
     }
 
     if (isActionOf(deleteConcertAsync.success, action)) {
-        const deletedConcertId = action.payload
-
-        dispatch(removeConcertFromState(deletedConcertId))
+        dispatch(removeConcertFromState(action.payload))
     }
 }
 

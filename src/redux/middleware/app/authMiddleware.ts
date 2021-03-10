@@ -1,62 +1,42 @@
-import { Middleware } from 'redux'
 import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
-import { apiRequest, apiFailure } from '../../actions/core/api.actions'
+import ApiMiddleware from '../../ApiMiddleware'
 import {
-    authAsync,
+    login,
     logout,
-    resetApiTokenState,
+    authAsync,
     setApiTokenOnState,
+    resetApiTokenState,
 } from '../../actions/app/auth.actions'
-import routeIsLoginSelector from '../../selectors/routeIsLoginSelector'
-import { getAuthApiUrl } from '../../../api'
+import { getLoginOptions } from '../../../api/api'
 import { createNotification } from '../../actions/core/notifications.actions'
 
-const authMiddleware: Middleware = (store) => (next) => (action) => {
+const authMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (action) => {
     next(action)
-    const { dispatch, getState } = store
+    const { dispatch } = store
 
-    if (isActionOf(apiFailure, action)) {
-        const { error } = action.payload
-        const state = getState()
-        const routeIsLogin = routeIsLoginSelector(state)
+    if (isActionOf(login, action)) {
+        const loginOptions = getLoginOptions(action.payload)
 
-        if (error.status === 401) {
-            if (routeIsLogin) {
-                dispatch(createNotification({
-                    type: 'error',
-                    message: 'Wrong Username or Password',
-                }, {
-                    causedBy: action.meta.causedBy,
-                }))
-            } else {
-                dispatch(createNotification({
-                    type: 'error',
-                    message: 'Session expired',
-                }, {
-                    causedBy: action.meta.causedBy,
-                }))
-
-                dispatch(push('/login'))
-            }
-        }
-    }
-
-    if (isActionOf(authAsync.request, action)) {
-        dispatch(apiRequest({
-            url: getAuthApiUrl(),
-            method: 'POST',
-            body: JSON.stringify(action.payload),
-            successAction: authAsync.success,
-            failureAction: authAsync.failure,
-        }, {
+        apiHandler({
+            request: loginOptions,
+            asyncActions: authAsync,
             causedBy: action,
-        }))
+        }, dispatch)
     }
 
     if (isActionOf(authAsync.success, action)) {
         dispatch(setApiTokenOnState(action.payload))
         dispatch(push('/'))
+    }
+
+    if (isActionOf(authAsync.failure, action)) {
+        dispatch(createNotification({
+            type: 'error',
+            message: 'Wrong Username or Password',
+        }, {
+            causedBy: action,
+        }))
     }
 
     if (isActionOf(logout, action)) {

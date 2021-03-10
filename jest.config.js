@@ -23,6 +23,7 @@ module.exports = {
     ],
     testMatch: [
         '<rootDir>/src/**/*.test.jsx',
+        '<rootDir>/src/**/*.test.js',
     ],
     transform: {
         '^.+\\.jsx?$': 'babel-jest',

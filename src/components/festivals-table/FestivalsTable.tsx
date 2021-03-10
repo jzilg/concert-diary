@@ -6,19 +6,19 @@ import TableControls from '../table-controls'
 
 export type Props = {
     festivals: Festivals
-    loadFestivals: Function
+    loadAllFestivals: Function
     deleteFestival: Function
 }
 
 const FestivalsTable: FunctionComponent<Props> = (props) => {
     const {
         festivals,
-        loadFestivals,
+        loadAllFestivals,
         deleteFestival,
     } = props
 
     useOnMount(() => {
-        loadFestivals()
+        loadAllFestivals()
     })
 
     if (festivals.length === 0) {

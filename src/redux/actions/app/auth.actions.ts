@@ -1,10 +1,12 @@
 import { createAction, createAsyncAction } from 'typesafe-actions'
 
+export const login = createAction('CMD / Auth / login')<{ username: string; password: string }>()
+
 export const authAsync = createAsyncAction(
-    'CMD / Auth / request',
-    'EVT / Auth / success',
-    'EVT / Auth / failure',
-)<{ username: string; password: string }, string, Error>()
+    'EVT / Auth / login request',
+    'EVT / Auth / login success',
+    'EVT / Auth / login failure',
+)<undefined, string, Error>()
 
 export const setApiTokenOnState = createAction('DOC / Auth / set api token')<string>()
 

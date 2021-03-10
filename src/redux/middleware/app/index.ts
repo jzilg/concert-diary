@@ -5,13 +5,14 @@ import concertsMiddleware from './concertsMiddleware'
 import festivalsMiddleware from './festivalsMiddleware'
 import statisticsMiddleware from './statisticsMiddleware'
 import pageMiddleware from './pageMiddleware'
+import apiHandler from '../../apiHandler'
 
 const appMiddleware: Middleware[] = [
     pageMiddleware,
     apiUiMiddleware,
-    authMiddleware,
-    concertsMiddleware,
-    festivalsMiddleware,
+    authMiddleware(apiHandler),
+    concertsMiddleware(apiHandler),
+    festivalsMiddleware(apiHandler),
     statisticsMiddleware,
 ]
 

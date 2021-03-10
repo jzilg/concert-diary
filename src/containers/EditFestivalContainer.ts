@@ -1,6 +1,6 @@
 import { connect, MapStateToProps } from 'react-redux'
 import festivalSelector from '../redux/selectors/festivalSelector'
-import { fetchFestivalAsync, saveFestival } from '../redux/actions/app/festivals.actions'
+import { loadFestival, saveFestival } from '../redux/actions/app/festivals.actions'
 import EditFestival, { Props } from '../components/edit-festival'
 
 type StateProps = Pick<Props, 'festival'>
@@ -12,7 +12,7 @@ const mapStateToProps: MapStateToProps<StateProps, {}> = (state): StateProps => 
 type DispatchProps = Pick<Props, 'loadFestival' | 'saveFestival'>
 
 const mapDispatchToProps: DispatchProps = {
-    loadFestival: fetchFestivalAsync.request,
+    loadFestival,
     saveFestival,
 }
 
