@@ -14,11 +14,10 @@ const notificationsReducer = createReducer(defaultState)
     })
     .handleAction(removeNotificationFromState, (state, action) => {
         const notificationIdToRemove = action.payload
-        const updatedNotifications = state.filter((notification) => (
+
+        return state.filter((notification) => (
             notification.id !== notificationIdToRemove
         ))
-
-        return updatedNotifications
     })
 
 export default notificationsReducer

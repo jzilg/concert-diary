@@ -1,20 +1,29 @@
 import { Middleware } from 'redux'
 import { isActionOf } from 'typesafe-actions'
-import uniqid from 'uniqid'
 import {
     createNotification,
     addNotificationToState,
     deleteNotification,
     removeNotificationFromState,
 } from '../../actions/core/notifications.actions'
+import notificationsSelector from '../../selectors/notificationsSelector'
 
 const uiMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
-    const { dispatch } = store
+    const { dispatch, getState } = store
 
     if (isActionOf(createNotification, action)) {
-        const id = uniqid()
         const { type, message, duration } = action.payload
+        const id = `${type}-${message}`
+        const notifications = notificationsSelector(getState())
+        const notificationAlreadyExists = notifications.some((notification) => (
+            notification.id === id
+        ))
+
+        if (notificationAlreadyExists) {
+            return
+        }
+
         const causedBy = action.meta
         const notification = {
             id,
