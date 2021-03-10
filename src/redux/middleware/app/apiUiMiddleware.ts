@@ -22,8 +22,8 @@ const apiUiMiddleware: Middleware = (store) => (next) => (action) => {
     }
 
     if (action.meta?.asyncActionType === AsyncActionType.Failure) {
+        const error = action.payload
         const { causedBy } = action.meta
-        const { error } = action.payload
 
         dispatch(decreaseLoaderCount(undefined, { causedBy }))
 

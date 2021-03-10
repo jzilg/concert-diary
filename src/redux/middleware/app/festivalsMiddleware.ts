@@ -26,6 +26,7 @@ import {
 } from '../../../api/api'
 import festivalsSelector from '../../selectors/festivalsSelector'
 import apiTokenSelector from '../../selectors/apiTokenSelector'
+import overwritePayload from '../helper/overwritePayload'
 
 const festivalsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (action) => {
     next(action)
@@ -94,7 +95,7 @@ const festivalsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => 
             request: getDeleteFestivalOptions(apiToken, action.payload),
             asyncActions: {
                 ...deleteFestivalAsync,
-                success: deleteFestivalAsync.success.bind(null, action.payload),
+                success: overwritePayload(deleteFestivalAsync.success, action.payload),
             },
             causedBy: action,
         }, dispatch)

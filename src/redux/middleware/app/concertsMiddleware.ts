@@ -26,6 +26,7 @@ import {
 } from '../../../api/api'
 import concertsSelector from '../../selectors/concertsSelector'
 import apiTokenSelector from '../../selectors/apiTokenSelector'
+import overwritePayload from '../helper/overwritePayload'
 
 const concertsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (action) => {
     next(action)
@@ -94,7 +95,7 @@ const concertsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (
             request: getDeleteConcertOptions(apiToken, action.payload),
             asyncActions: {
                 ...deleteConcertAsync,
-                success: deleteConcertAsync.success.bind(null, action.payload),
+                success: overwritePayload(deleteConcertAsync.success, action.payload),
             },
             causedBy: action,
         }, dispatch)
