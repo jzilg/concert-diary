@@ -16,20 +16,28 @@
     color: var(--white);
 }
 
-.listItem + .listItem {
-    border-top: 1px solid var(--black);
-}
-
 .success {
     background-color: var(--green);
+}
+
+.success + .success {
+    border-top: 1px solid var(--green-dark);
 }
 
 .error {
     background-color: var(--red);
 }
 
+.error + .error {
+    border-top: 1px solid var(--red-dark);
+}
+
 .warning {
     background-color: var(--orange);
+}
+
+.warning + .warning {
+    border-top: 1px solid var(--orange-dark);
 }
 
 .button {
