@@ -1,1 +1,4 @@
-export { default, Props } from './Statistics'
+import Statistics from './Statistics'
+import statisticsContainer from './StatisticsContainer'
+
+export default statisticsContainer(Statistics)

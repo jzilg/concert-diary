@@ -1,11 +1,11 @@
 import { connect, MapStateToProps } from 'react-redux'
-import mostSeenBandsSelector from '../redux/selectors/mostSeenBandsSelector'
-import numOfBandsSelector from '../redux/selectors/numOfBandsSelector'
-import numOfConcertsSelector from '../redux/selectors/numOfConcertsSelector'
-import numOfFestivalsSelector from '../redux/selectors/numOfFestivalsSelector'
-import numOfLocationsSelector from '../redux/selectors/numOfLocationsSelector'
-import { loadStatistics } from '../redux/actions/app/statistics.actions'
-import Statistics, { Props } from '../components/statistics'
+import mostSeenBandsSelector from '../../redux/selectors/mostSeenBandsSelector'
+import numOfBandsSelector from '../../redux/selectors/numOfBandsSelector'
+import numOfConcertsSelector from '../../redux/selectors/numOfConcertsSelector'
+import numOfFestivalsSelector from '../../redux/selectors/numOfFestivalsSelector'
+import numOfLocationsSelector from '../../redux/selectors/numOfLocationsSelector'
+import { loadStatistics } from '../../redux/actions/app/statistics.actions'
+import { Props } from './Statistics'
 
 type StateProps = Pick<Props, (
     'mostSeenBands'
@@ -29,4 +29,4 @@ const mapDispatchToProps: DispatchProps = {
     loadStatistics,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Statistics)
+export default connect(mapStateToProps, mapDispatchToProps)

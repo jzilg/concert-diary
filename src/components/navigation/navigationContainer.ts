@@ -1,7 +1,7 @@
 import { connect, MapStateToProps } from 'react-redux'
-import navLinksSelector from '../redux/selectors/navLinksSelector'
-import Navigation, { Props } from '../components/navigation'
-import { logout } from '../redux/actions/app/auth.actions'
+import navLinksSelector from '../../redux/selectors/navLinksSelector'
+import { Props } from './Navigation'
+import { logout } from '../../redux/actions/app/auth.actions'
 
 type StateProps = Pick<Props, 'navLinks'>
 
@@ -15,4 +15,4 @@ const mapDispatchToProps: DispatchProps = {
     logout,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation)
+export default connect(mapStateToProps, mapDispatchToProps)

@@ -1,14 +1,14 @@
 import React, { FunctionComponent } from 'preact/compat'
 import { Route, Switch } from 'react-router-dom'
 import Header from '../header'
-import LoginForm from '../../containers/LoginFormContainer'
+import LoginForm from '../login-form'
 import ConcertsView from '../concerts-view'
-import EditConcert from '../../containers/EditConcertContainer'
+import EditConcert from '../edit-concert'
 import FestivalsView from '../festivals-view'
-import EditFestival from '../../containers/EditFestivalContainer'
-import Statistics from '../../containers/StatisticsContainer'
-import NewConcert from '../../containers/NewConcertContainer'
-import NewFestival from '../../containers/NewFestivalContainer'
+import EditFestival from '../edit-festival'
+import Statistics from '../statistics'
+import NewConcert from '../new-concert'
+import NewFestival from '../new-festival'
 
 const Router: FunctionComponent = () => (
     <>

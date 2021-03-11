@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'preact/compat'
-import FestivalsTable from '../../containers/FestivalsTableContainer'
+import FestivalsTable from '../festivals-table'
 
 const FestivalsView: FunctionComponent = () => (
     <>

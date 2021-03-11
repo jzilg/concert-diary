@@ -1,7 +1,7 @@
 import { connect, MapStateToProps } from 'react-redux'
-import concertsSortedByDateSelector from '../redux/selectors/concertsSortedByDateSelector'
-import { loadAllConcerts, deleteConcert } from '../redux/actions/app/concerts.actions'
-import ConcertsTable, { Props } from '../components/concerts-table'
+import concertsSortedByDateSelector from '../../redux/selectors/concertsSortedByDateSelector'
+import { loadAllConcerts, deleteConcert } from '../../redux/actions/app/concerts.actions'
+import { Props } from './ConcertsTable'
 
 type StateProps = Pick<Props, 'concerts'>
 
@@ -16,4 +16,4 @@ const mapDispatchToProps: DispatchProps = {
     deleteConcert,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConcertsTable)
+export default connect(mapStateToProps, mapDispatchToProps)

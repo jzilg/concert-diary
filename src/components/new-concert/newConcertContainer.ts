@@ -1,7 +1,7 @@
 import { connect, MapStateToProps } from 'react-redux'
-import concertSelector from '../redux/selectors/concertSelector'
-import { saveNewConcert } from '../redux/actions/app/concerts.actions'
-import NewConcert, { Props } from '../components/new-concert'
+import concertSelector from '../../redux/selectors/concertSelector'
+import { saveNewConcert } from '../../redux/actions/app/concerts.actions'
+import { Props } from './NewConcert'
 
 type StateProps = Pick<Props, 'concert'>
 
@@ -15,4 +15,4 @@ const mapDispatchToProps: DispatchProps = {
     saveNewConcert,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewConcert)
+export default connect(mapStateToProps, mapDispatchToProps)

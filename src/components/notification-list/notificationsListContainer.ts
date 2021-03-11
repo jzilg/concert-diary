@@ -1,7 +1,7 @@
 import { connect, MapStateToProps } from 'react-redux'
-import notificationsSelector from '../redux/selectors/notificationsSelector'
-import { deleteNotification } from '../redux/actions/core/notifications.actions'
-import NotificationsList, { Props } from '../components/notification-list'
+import notificationsSelector from '../../redux/selectors/notificationsSelector'
+import { deleteNotification } from '../../redux/actions/core/notifications.actions'
+import { Props } from './NotificationsList'
 
 type StateProps = Pick<Props, 'notifications'>
 
@@ -15,4 +15,4 @@ const mapDispatchToProps: DispatchProps = {
     removeNotification: deleteNotification,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NotificationsList)
+export default connect(mapStateToProps, mapDispatchToProps)
