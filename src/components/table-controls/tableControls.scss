@@ -8,12 +8,6 @@
     list-style: none;
 }
 
-.editBtn,
-.editBtn:visited,
-.editBtn:active {
-    color: inherit;
-}
-
 .editBtn {
     display: inline-flex;
     align-items: center;
@@ -25,6 +19,12 @@
     border-radius: 5px 0 0 5px;
     text-decoration: none;
     transition: border-color var(--transition-time), background-color var(--transition-time);
+}
+
+.editBtn,
+.editBtn:visited,
+.editBtn:active {
+    color: inherit;
 }
 
 .deleteBtn {
