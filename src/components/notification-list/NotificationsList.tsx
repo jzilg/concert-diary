@@ -24,7 +24,7 @@ const NotificationsList: FunctionComponent<Props> = (props) => {
         return (
             <li key={id} className={`${style.listItem} ${style[type]}`}>
                 <div className={style.container}>
-                    <button onClick={clickHandler} className={`${style.button} no-button-style`} type="button">
+                    <button onClick={clickHandler} className={style.button} type="button">
                         ✕
                     </button>
                     <span>
@@ -36,7 +36,7 @@ const NotificationsList: FunctionComponent<Props> = (props) => {
     })
 
     return (
-        <ul className={`${style.list} no-list-style fade-in`}>
+        <ul className={style.list}>
             {notificationMessageElements}
         </ul>
     )

@@ -3,7 +3,23 @@
     top: 0;
     left: 0;
     width: 100%;
+    opacity: 0;
     animation-duration: .4s;
+    animation-name: fadeIn;
+    animation-fill-mode: forwards;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .container {
@@ -44,8 +60,10 @@
     width: 2.5em;
     height: 2.5em;
     color: white;
+    padding: 0;
+    border-width: 0;
+    background-color: transparent;
     transition: background-color .2s;
-
 }
 
 .button:hover {

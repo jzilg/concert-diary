@@ -49,33 +49,3 @@ th {
     background-color: var(--white);
     border-bottom: 1px solid var(--gray);
 }
-
-:global {
-    .no-list-style {
-        margin-top: 0;
-        margin-bottom: 0;
-        padding-left: 0;
-        list-style: none;
-    }
-
-    .no-button-style {
-        padding: 0;
-        border-width: 0;
-        background-color: transparent;
-    }
-
-    .fade-in {
-        opacity: 0;
-        animation-name: fadeIn;
-        animation-fill-mode: forwards;
-    }
-}
-
-@keyframes :global(fadeIn) {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
