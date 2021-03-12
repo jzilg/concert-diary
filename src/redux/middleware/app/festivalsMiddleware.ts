@@ -35,7 +35,7 @@ const festivalsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => 
 
     if (isActionOf(saveNewFestival, action)) {
         apiHandler({
-            request: getSaveNewFestivalOptions(apiToken, action.payload),
+            options: getSaveNewFestivalOptions(apiToken, action.payload),
             asyncActions: postFestivalAsync,
             causedBy: action,
         }, dispatch)
@@ -48,7 +48,7 @@ const festivalsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => 
 
     if (isActionOf(loadAllFestivals, action)) {
         apiHandler({
-            request: getLoadAllFestivalsOptions(apiToken),
+            options: getLoadAllFestivalsOptions(apiToken),
             asyncActions: loadAllFestivalsAsync,
             causedBy: action,
         }, dispatch)
@@ -60,7 +60,7 @@ const festivalsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => 
 
     if (isActionOf(loadFestival, action)) {
         apiHandler({
-            request: getLoadFestivalOptions(apiToken, action.payload),
+            options: getLoadFestivalOptions(apiToken, action.payload),
             asyncActions: loadFestivalAsync,
             causedBy: action,
         }, dispatch)
@@ -79,7 +79,7 @@ const festivalsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => 
 
     if (isActionOf(saveFestival, action)) {
         apiHandler({
-            request: getSaveFestivalOptions(apiToken, action.payload),
+            options: getSaveFestivalOptions(apiToken, action.payload),
             asyncActions: putFestivalAsync,
             causedBy: action,
         }, dispatch)
@@ -92,7 +92,7 @@ const festivalsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => 
 
     if (isActionOf(deleteFestival, action)) {
         apiHandler({
-            request: getDeleteFestivalOptions(apiToken, action.payload),
+            options: getDeleteFestivalOptions(apiToken, action.payload),
             asyncActions: {
                 ...deleteFestivalAsync,
                 success: overwritePayload(deleteFestivalAsync.success, action.payload),

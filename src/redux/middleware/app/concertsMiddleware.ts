@@ -35,7 +35,7 @@ const concertsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (
 
     if (isActionOf(saveNewConcert, action)) {
         apiHandler({
-            request: getSaveNewConcertOptions(apiToken, action.payload),
+            options: getSaveNewConcertOptions(apiToken, action.payload),
             asyncActions: postConcertAsync,
             causedBy: action,
         }, dispatch)
@@ -48,7 +48,7 @@ const concertsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (
 
     if (isActionOf(loadAllConcerts, action)) {
         apiHandler({
-            request: getLoadAllConcertsOptions(apiToken),
+            options: getLoadAllConcertsOptions(apiToken),
             asyncActions: loadAllConcertsAsync,
             causedBy: action,
         }, dispatch)
@@ -60,7 +60,7 @@ const concertsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (
 
     if (isActionOf(loadConcert, action)) {
         apiHandler({
-            request: getLoadConcertOptions(apiToken, action.payload),
+            options: getLoadConcertOptions(apiToken, action.payload),
             asyncActions: loadConcertAsync,
             causedBy: action,
         }, dispatch)
@@ -79,7 +79,7 @@ const concertsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (
 
     if (isActionOf(saveConcert, action)) {
         apiHandler({
-            request: getSaveConcertOptions(apiToken, action.payload),
+            options: getSaveConcertOptions(apiToken, action.payload),
             asyncActions: putConcertAsync,
             causedBy: action,
         }, dispatch)
@@ -92,7 +92,7 @@ const concertsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (
 
     if (isActionOf(deleteConcert, action)) {
         apiHandler({
-            request: getDeleteConcertOptions(apiToken, action.payload),
+            options: getDeleteConcertOptions(apiToken, action.payload),
             asyncActions: {
                 ...deleteConcertAsync,
                 success: overwritePayload(deleteConcertAsync.success, action.payload),

@@ -17,7 +17,7 @@ const statisticsMiddleware: Middleware = (store) => (next) => (action) => {
         const apiToken = apiTokenSelector(getState())
 
         apiHandler({
-            request: getStatisticsOptions(apiToken),
+            options: getStatisticsOptions(apiToken),
             asyncActions: loadStatisticsAsync,
             causedBy: action,
         }, dispatch)

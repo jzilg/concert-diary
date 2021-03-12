@@ -1,6 +1,6 @@
 import Concert from '../entities/Concert'
 import Festival from '../entities/Festival'
-import ApiRequest from '../entities/ApiRequest'
+import ApiOptions from '../entities/ApiOptions'
 import enhanceApiOptions from './enhanceApiOptions'
 
 const { API_URL } = process.env
@@ -25,28 +25,28 @@ const getFestivalsApiUrl = (apiToken: string, id?: Festival['id']): string => {
 
 const getStatisticsApiUrl = (apiToken: string): string => `${API_URL}/statistics?api_token=${apiToken}`
 
-export const getLoginOptions = (data: unknown) : ApiRequest => enhanceApiOptions({
+export const getLoginOptions = (data: unknown) : ApiOptions => enhanceApiOptions({
     url: getAuthApiUrl(),
     method: 'POST',
     body: JSON.stringify(data),
 })
 
-export const getLoadAllConcertsOptions = (apiToken: string): ApiRequest => enhanceApiOptions({
+export const getLoadAllConcertsOptions = (apiToken: string): ApiOptions => enhanceApiOptions({
     url: getConcertsApiUrl(apiToken),
     method: 'GET',
 })
 
-export const getLoadConcertOptions = (apiToken: string, id: Concert['id']): ApiRequest => enhanceApiOptions({
+export const getLoadConcertOptions = (apiToken: string, id: Concert['id']): ApiOptions => enhanceApiOptions({
     url: getConcertsApiUrl(apiToken, id),
     method: 'GET',
 })
 
-export const getDeleteConcertOptions = (apiToken: string, id: Concert['id']): ApiRequest => enhanceApiOptions({
+export const getDeleteConcertOptions = (apiToken: string, id: Concert['id']): ApiOptions => enhanceApiOptions({
     url: getConcertsApiUrl(apiToken, id),
     method: 'DELETE',
 })
 
-export const getSaveNewConcertOptions = (apiToken: string, concert: Concert): ApiRequest => (
+export const getSaveNewConcertOptions = (apiToken: string, concert: Concert): ApiOptions => (
     enhanceApiOptions({
         url: getConcertsApiUrl(apiToken),
         method: 'POST',
@@ -54,7 +54,7 @@ export const getSaveNewConcertOptions = (apiToken: string, concert: Concert): Ap
     })
 )
 
-export const getSaveConcertOptions = (apiToken: string, concert: Concert): ApiRequest => (
+export const getSaveConcertOptions = (apiToken: string, concert: Concert): ApiOptions => (
     enhanceApiOptions({
         url: getConcertsApiUrl(apiToken, concert.id),
         method: 'PUT',
@@ -62,22 +62,22 @@ export const getSaveConcertOptions = (apiToken: string, concert: Concert): ApiRe
     })
 )
 
-export const getLoadAllFestivalsOptions = (apiToken: string): ApiRequest => enhanceApiOptions({
+export const getLoadAllFestivalsOptions = (apiToken: string): ApiOptions => enhanceApiOptions({
     url: getFestivalsApiUrl(apiToken),
     method: 'GET',
 })
 
-export const getLoadFestivalOptions = (apiToken: string, id: Festival['id']): ApiRequest => enhanceApiOptions({
+export const getLoadFestivalOptions = (apiToken: string, id: Festival['id']): ApiOptions => enhanceApiOptions({
     url: getFestivalsApiUrl(apiToken, id),
     method: 'GET',
 })
 
-export const getDeleteFestivalOptions = (apiToken: string, id: Festival['id']): ApiRequest => enhanceApiOptions({
+export const getDeleteFestivalOptions = (apiToken: string, id: Festival['id']): ApiOptions => enhanceApiOptions({
     url: getFestivalsApiUrl(apiToken, id),
     method: 'DELETE',
 })
 
-export const getSaveNewFestivalOptions = (apiToken: string, concert: Festival): ApiRequest => (
+export const getSaveNewFestivalOptions = (apiToken: string, concert: Festival): ApiOptions => (
     enhanceApiOptions({
         url: getFestivalsApiUrl(apiToken),
         method: 'POST',
@@ -85,7 +85,7 @@ export const getSaveNewFestivalOptions = (apiToken: string, concert: Festival): 
     })
 )
 
-export const getSaveFestivalOptions = (apiToken: string, concert: Festival): ApiRequest => (
+export const getSaveFestivalOptions = (apiToken: string, concert: Festival): ApiOptions => (
     enhanceApiOptions({
         url: getFestivalsApiUrl(apiToken, concert.id),
         method: 'PUT',
@@ -93,7 +93,7 @@ export const getSaveFestivalOptions = (apiToken: string, concert: Festival): Api
     })
 )
 
-export const getStatisticsOptions = (apiToken: string): ApiRequest => enhanceApiOptions({
+export const getStatisticsOptions = (apiToken: string): ApiOptions => enhanceApiOptions({
     url: getStatisticsApiUrl(apiToken),
     method: 'GET',
 })

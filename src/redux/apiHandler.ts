@@ -1,10 +1,14 @@
 import { Dispatch } from 'redux'
 import { Action, ActionCreator } from 'typesafe-actions'
 import ApiError from '../entities/ApiError'
-import ApiRequest from '../entities/ApiRequest'
+import ApiOptions from '../entities/ApiOptions'
+
+export type ApiHandler = typeof apiHandler
+
+type Fetch = typeof window.fetch
 
 type ApiHandlerOptions = {
-    request: ApiRequest
+    options: ApiOptions
     asyncActions: {
         request: ActionCreator
         success: ActionCreator
@@ -19,20 +23,18 @@ export const enum AsyncActionType {
     Failure,
 }
 
-type Fetch = typeof window.fetch
-
 // eslint-disable-next-line max-len
 export const createApiHandler = (networkRequest: Fetch) => (apiHandlerOptions: ApiHandlerOptions, dispatch: Dispatch): Promise<unknown> => {
     const {
-        request,
+        options,
         asyncActions,
         causedBy,
     } = apiHandlerOptions
-    const { url } = request
+    const { url } = options
 
     dispatch(asyncActions.request(undefined, {
         asyncActionType: AsyncActionType.Request,
-        request,
+        options,
         causedBy,
     }))
 
@@ -46,7 +48,7 @@ export const createApiHandler = (networkRequest: Fetch) => (apiHandlerOptions: A
 
         dispatch(asyncActions.failure(apiError, {
             asyncActionType: AsyncActionType.Failure,
-            request,
+            options,
             causedBy,
         }))
     }
@@ -54,7 +56,7 @@ export const createApiHandler = (networkRequest: Fetch) => (apiHandlerOptions: A
     const handleSuccess = (data?: object): void => {
         dispatch(asyncActions.success(data, {
             asyncActionType: AsyncActionType.Success,
-            request,
+            options,
             causedBy,
         }))
     }
@@ -86,13 +88,11 @@ export const createApiHandler = (networkRequest: Fetch) => (apiHandlerOptions: A
             .catch(handleError('json', response.status))
     }
 
-    return networkRequest(encodeURI(url), request)
+    return networkRequest(encodeURI(url), options)
         .then(handleResponse)
         .catch(handleError('fetch'))
 }
 
 const apiHandler = createApiHandler(window.fetch)
-
-export type ApiHandler = typeof apiHandler
 
 export default apiHandler

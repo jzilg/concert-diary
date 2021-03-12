@@ -1,8 +1,8 @@
-import ApiRequest from '../entities/ApiRequest'
+import ApiOptions from '../entities/ApiOptions'
 
-function enhanceApiOptions(options: ApiRequest): ApiRequest {
+function enhanceApiOptions(options: ApiOptions): ApiOptions {
     const { method, headers, body } = options
-    const enhancedOptions: ApiRequest = {
+    const enhancedOptions: ApiOptions = {
         ...options,
     }
 

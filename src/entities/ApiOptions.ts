@@ -1,6 +1,6 @@
-type ApiRequest = RequestInit & {
+type ApiOptions = RequestInit & {
     url: string
     method: 'GET' | 'POST' | 'PUT' | 'DELETE'
 }
 
-export default ApiRequest
+export default ApiOptions

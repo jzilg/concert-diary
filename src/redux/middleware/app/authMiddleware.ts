@@ -19,7 +19,7 @@ const authMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (acti
         const loginOptions = getLoginOptions(action.payload)
 
         apiHandler({
-            request: loginOptions,
+            options: loginOptions,
             asyncActions: authAsync,
             causedBy: action,
         }, dispatch)
