@@ -1,16 +1,16 @@
 $loaderWidth: 30vw;
 
 .bar {
+    animation: move 1s infinite .4s, fadeIn .4s ease .4s 1 forwards;
+    background-color: var(--blue);
+    height: 5px;
+    left: 0;
+    opacity: 0;
     position: fixed;
     top: 0;
-    left: 0;
-    width: $loaderWidth;
-    height: 5px;
-    background-color: var(--blue);
-    animation: move 1s infinite .4s, fadeIn .4s ease .4s 1 forwards;
     transform-origin: 0 50% 0;
+    width: $loaderWidth;
     will-change: transform;
-    opacity: 0;
     z-index: 1;
 }
 

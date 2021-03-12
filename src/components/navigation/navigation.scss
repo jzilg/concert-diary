@@ -2,9 +2,9 @@
     display: flex;
     flex-wrap: wrap;
     list-style: none;
-    padding-left: 0;
-    margin-top: 0;
     margin-bottom: 0;
+    margin-top: 0;
+    padding-left: 0;
 }
 
 .link {
@@ -13,8 +13,8 @@
 }
 
 .button {
-    display: inline-grid;
-    grid-template-columns: 1fr auto;
-    grid-column-gap: .5em;
     align-items: center;
+    display: inline-grid;
+    grid-column-gap: .5em;
+    grid-template-columns: 1fr auto;
 }

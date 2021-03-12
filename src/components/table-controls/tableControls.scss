@@ -1,22 +1,22 @@
 .controlsList {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: flex-end;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-left: 0;
     list-style: none;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-left: 0;
 }
 
 .editBtn {
-    display: inline-flex;
     align-items: center;
-    height: 2.5em;
-    padding-right: 1em;
-    padding-left: 1em;
     background-color: var(--lightgray);
     border: 1px solid var(--gray);
     border-radius: 5px 0 0 5px;
+    display: inline-flex;
+    height: 2.5em;
+    padding-left: 1em;
+    padding-right: 1em;
     text-decoration: none;
     transition: border-color var(--transition-time), background-color var(--transition-time);
 }
@@ -28,11 +28,11 @@
 }
 
 .deleteBtn {
-    display: inline-flex;
     align-items: center;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
     background-color: var(--red);
+    border-bottom-left-radius: 0;
     border-color: var(--red-dark);
+    border-top-left-radius: 0;
     color: var(--white);
+    display: inline-flex;
 }

@@ -1,7 +1,11 @@
 {
   "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-order"
+  ],
   "rules": {
     "indentation": 4,
-    "number-leading-zero": "never"
+    "number-leading-zero": "never",
+    "order/properties-alphabetical-order": true
   }
 }
