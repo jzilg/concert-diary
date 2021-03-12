@@ -1,11 +1,19 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": [
+    "stylelint-config-standard"
+  ],
   "plugins": [
     "stylelint-order"
   ],
   "rules": {
+    "font-family-name-quotes": "always-where-recommended",
     "indentation": 4,
+    "max-nesting-depth": 2,
     "number-leading-zero": "never",
-    "order/properties-alphabetical-order": true
+    "order/properties-alphabetical-order": true,
+    "selector-attribute-quotes": "always",
+    "selector-max-id": 0,
+    "selector-pseudo-element-colon-notation": "double",
+    "string-quotes": "double"
   }
 }
