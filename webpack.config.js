@@ -21,6 +21,7 @@ module.exports = {
     mode: isDevServer ? 'development' : 'production',
     devtool: isDevServer ? 'source-map' : false,
     entry: path.resolve('src/index.tsx'),
+    target: isDevServer ? 'web' : 'browserslist', // fix for not working hot reload for webpack-dev-server -> can be removed with webpack-dev-server 4
     output: {
         path: path.resolve('dist'),
         filename: `${filename}.js`,
