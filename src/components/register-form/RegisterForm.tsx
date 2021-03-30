@@ -4,19 +4,21 @@ import useFormInput from '../../hooks/useFormInput'
 import HorizontalList from '../horizontal-list'
 
 export type Props = {
-    authenticate: Function
+    register: Function
 }
 
-const LoginForm: FunctionComponent<Props> = (props) => {
-    const { authenticate } = props
+const RegisterForm: FunctionComponent<Props> = (props) => {
+    const { register } = props
     const [usernameValue, setUsernameValue] = useFormInput('')
     const [passwordValue, setPasswordValue] = useFormInput('')
+    const [tokenValue, setTokenValue] = useFormInput('')
 
     function handleSubmit(event): void {
         event.preventDefault()
-        authenticate({
+        register({
             username: usernameValue,
             password: passwordValue,
+            token: tokenValue,
         })
     }
 
@@ -24,7 +26,7 @@ const LoginForm: FunctionComponent<Props> = (props) => {
         <>
             <h1>Concert Diary</h1>
             <form onSubmit={handleSubmit}>
-                <h2>Login</h2>
+                <h2>Register</h2>
                 <label>
                     <span>Username</span>
                     <input
@@ -45,13 +47,22 @@ const LoginForm: FunctionComponent<Props> = (props) => {
                         required
                     />
                 </label>
+                <label>
+                    <span>Token</span>
+                    <input
+                        value={tokenValue}
+                        onChange={setTokenValue}
+                        type="password"
+                        required
+                    />
+                </label>
                 <HorizontalList>
-                    <button type="submit">Login</button>
-                    <Link to="/register">Register</Link>
+                    <button type="submit">Register</button>
+                    <Link to="/login">Back to Login</Link>
                 </HorizontalList>
             </form>
         </>
     )
 }
 
-export default LoginForm
+export default RegisterForm

@@ -13,3 +13,11 @@ export const setApiTokenOnState = createAction('DOC / Auth / set api token')<str
 export const resetApiTokenState = createAction('DOC / Auth / reset api token')()
 
 export const logout = createAction('CMD / Auth / logout')()
+
+export const register = createAction('CMD / Auth / register')<{ username: string; password: string; token: string }>()
+
+export const registerAsync = createAsyncAction(
+    'EVT / Auth / register request',
+    'EVT / Auth / lregister success',
+    'EVT / Auth / register failure',
+)<undefined, undefined, Error>()

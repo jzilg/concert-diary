@@ -5,7 +5,9 @@ import enhanceApiOptions from './enhanceApiOptions'
 
 const { API_URL } = process.env
 
-const getAuthApiUrl = (): string => `${process.env.API_URL}/login`
+const getAuthApiUrl = (): string => `${API_URL}/login`
+
+const getRegisterApiUrl = (): string => `${API_URL}/register`
 
 const getConcertsApiUrl = (id?: Concert['id']): string => {
     const path = id !== undefined
@@ -27,6 +29,12 @@ const getStatisticsApiUrl = (): string => `${API_URL}/statistics`
 
 export const getLoginOptions = (data: unknown) : ApiOptions => enhanceApiOptions({
     url: getAuthApiUrl(),
+    method: 'POST',
+    body: JSON.stringify(data),
+})
+
+export const getRegisterOptions = (data: unknown): ApiOptions => enhanceApiOptions({
+    url: getRegisterApiUrl(),
     method: 'POST',
     body: JSON.stringify(data),
 })

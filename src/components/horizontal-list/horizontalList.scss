@@ -1,0 +1,14 @@
+.container {
+    align-items: center;
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.item {
+    margin-right: 1em;
+}
+
+.item:last-child {
+    margin-right: 0;
+}

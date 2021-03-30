@@ -9,16 +9,19 @@ import EditFestival from '../edit-festival'
 import Statistics from '../statistics'
 import NewConcert from '../new-concert'
 import NewFestival from '../new-festival'
+import RegisterForm from '../register-form'
 
 const Router: FunctionComponent = () => (
     <>
         <Switch>
             <Route exact path="/login" />
+            <Route exact path="/register" />
             <Route component={Header} />
         </Switch>
         <Switch>
             <Route exact path="/" component={ConcertsView} />
             <Route exact path="/login" component={LoginForm} />
+            <Route exact path="/register" component={RegisterForm} />
             <Route exact path="/concerts" component={ConcertsView} />
             <Route exact path="/concerts/new" component={NewConcert} />
             <Route exact path="/concerts/edit" component={EditConcert} />
