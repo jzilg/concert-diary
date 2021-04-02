@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'preact/compat'
-import style from './loader.scss'
+import style from './loader.module.scss'
 
 export type Props = {
     isLoading: boolean

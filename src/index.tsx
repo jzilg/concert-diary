@@ -1,4 +1,4 @@
-import React, { render } from 'preact'
+import React, { render } from 'preact/compat'
 import store from './redux/store'
 import history from './history'
 import Root from './components/root'

@@ -3,7 +3,9 @@ import Festival from '../entities/Festival'
 import ApiOptions from '../entities/ApiOptions'
 import enhanceApiOptions from './enhanceApiOptions'
 
-const { API_URL } = process.env
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+const { API_URL } = import.meta.env
 
 const getAuthApiUrl = (): string => `${API_URL}/login`
 

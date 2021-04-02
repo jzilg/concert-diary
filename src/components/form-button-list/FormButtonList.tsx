@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'preact/compat'
-import style from './formButtonList.scss'
+import style from './formButtonList.module.scss'
 
 const FormButtonList: FunctionComponent = (props) => {
     const { children } = props

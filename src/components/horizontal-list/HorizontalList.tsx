@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'preact/compat'
-import style from './horizontalList.scss'
+import style from './horizontalList.module.scss'
 
 const HorizontalList: FunctionComponent = (props) => {
     const { children } = props

@@ -6,7 +6,7 @@ import { History } from 'history'
 import Loader from '../loader'
 import NotificationsList from '../notification-list'
 import Router from '../router'
-import style from './root.scss'
+import style from './root.module.scss'
 import useOnMount from '../../hooks/useOnMount'
 
 export type Props = {

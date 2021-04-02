@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'preact/compat'
 import MostSeenBand from '../../entities/MostSeenBand'
-import style from './mostSeenBands.scss'
+import style from './mostSeenBands.module.scss'
 
 type Props = {
     mostSeenBands: MostSeenBand[]

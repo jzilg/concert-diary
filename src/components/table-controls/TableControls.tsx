@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'preact/compat'
 import { Link } from 'react-router-dom'
 import EditIcon from 'react-bootstrap-icons/dist/icons/pencil-square'
 import DeleteIcon from 'react-bootstrap-icons/dist/icons/trash'
-import style from './tableControls.scss'
+import style from './tableControls.module.scss'
 
 type Props = {
     editUrl: string

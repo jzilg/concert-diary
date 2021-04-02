@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'preact/compat'
 import Notification from '../../entities/Notification'
-import style from './notificationsList.scss'
+import style from './notificationsList.module.scss'
 
 export type Props = {
     notifications: Notification[]

@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'preact/compat'
 import { Link } from 'react-router-dom'
 import LogoutIcon from 'react-bootstrap-icons/dist/icons/box-arrow-right'
 import { NavLinks } from '../../entities/NavLink'
-import style from './navigation.scss'
+import style from './navigation.module.scss'
 
 export type Props = {
     navLinks: NavLinks

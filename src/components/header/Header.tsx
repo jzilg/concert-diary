@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'preact/compat'
 import Navigation from '../navigation'
-import style from './header.scss'
+import style from './header.module.scss'
 
 const Header: FunctionComponent = () => (
     <header className={style.container}>
