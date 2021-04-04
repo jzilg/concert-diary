@@ -21,7 +21,6 @@
     "test": "jest",
     "test:watch": "jest --watch --coverage",
     "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "eslint:watch": "esw -w --clear src --ext .js,.jsx,.ts,.tsx",
     "eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "stylelint": "stylelint src/**/*.scss",
     "stylelint:fix": "stylelint src/**/*.scss --fix"
@@ -52,7 +51,6 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-watch": "^7.0.0",
     "jest": "^26.6.3",
     "jest-css-modules": "^2.1.0",
     "json-server": "^0.16.3",

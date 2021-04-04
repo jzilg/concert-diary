@@ -23,13 +23,6 @@ module.exports = {
             native: true,
             style: modeIsDev ? 'expanded' : 'compressed',
         }],
-        ['@snowpack/plugin-run-script', {
-            cmd: 'npm run eslint',
-            watch: 'npm run eslint:watch',
-        }],
-        ['@snowpack/plugin-run-script', {
-            cmd: 'npm run stylelint',
-        }],
     ],
     buildOptions: {
         sourcemap: modeIsDev,
