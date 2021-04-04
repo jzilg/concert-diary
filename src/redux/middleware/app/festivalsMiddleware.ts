@@ -1,6 +1,7 @@
 import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
-import ApiMiddleware from '../../ApiMiddleware'
+import { Middleware } from 'redux'
+import { ApiHandler } from '../../apiHandler'
 import {
     saveNewFestival,
     postFestivalAsync,
@@ -28,7 +29,7 @@ import festivalsSelector from '../../selectors/festivalsSelector'
 import apiTokenSelector from '../../selectors/apiTokenSelector'
 import overwritePayload from '../helper/overwritePayload'
 
-const festivalsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (action) => {
+const festivalsMiddleware = (apiHandler: ApiHandler, confirm: Window['confirm']): Middleware => (store) => (next) => (action) => {
     next(action)
     const { dispatch, getState } = store
     const apiToken = apiTokenSelector(getState())
@@ -91,6 +92,12 @@ const festivalsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => 
     }
 
     if (isActionOf(deleteFestival, action)) {
+        const confirmed = confirm('Are you sure?')
+
+        if (!confirmed) {
+            return
+        }
+
         apiHandler({
             options: getDeleteFestivalOptions(apiToken, action.payload),
             asyncActions: {

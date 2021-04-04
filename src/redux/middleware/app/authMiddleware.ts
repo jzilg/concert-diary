@@ -1,6 +1,7 @@
 import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
-import ApiMiddleware from '../../ApiMiddleware'
+import { Middleware } from 'redux'
+import { ApiHandler } from '../../apiHandler'
 import {
     login,
     logout,
@@ -13,7 +14,7 @@ import {
 import { getLoginOptions, getRegisterOptions } from '../../../api/api'
 import { createNotification } from '../../actions/core/notifications.actions'
 
-const authMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (action) => {
+const authMiddleware = (apiHandler: ApiHandler): Middleware => (store) => (next) => (action) => {
     next(action)
     const { dispatch } = store
 

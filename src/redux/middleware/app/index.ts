@@ -11,8 +11,8 @@ const appMiddleware: Middleware[] = [
     pageMiddleware,
     apiUiMiddleware,
     authMiddleware(apiHandler),
-    concertsMiddleware(apiHandler),
-    festivalsMiddleware(apiHandler),
+    concertsMiddleware(apiHandler, window.confirm),
+    festivalsMiddleware(apiHandler, window.confirm),
     statisticsMiddleware,
 ]
 

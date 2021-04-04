@@ -1,6 +1,7 @@
 import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
-import ApiMiddleware from '../../ApiMiddleware'
+import { Middleware } from 'redux'
+import { ApiHandler } from '../../apiHandler'
 import {
     saveNewConcert,
     postConcertAsync,
@@ -28,7 +29,7 @@ import concertsSelector from '../../selectors/concertsSelector'
 import apiTokenSelector from '../../selectors/apiTokenSelector'
 import overwritePayload from '../helper/overwritePayload'
 
-const concertsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (action) => {
+const concertsMiddleware = (apiHandler: ApiHandler, confirm: Window['confirm']): Middleware => (store) => (next) => (action) => {
     next(action)
     const { dispatch, getState } = store
     const apiToken = apiTokenSelector(getState())
@@ -91,6 +92,12 @@ const concertsMiddleware: ApiMiddleware = (apiHandler) => (store) => (next) => (
     }
 
     if (isActionOf(deleteConcert, action)) {
+        const confirmed = confirm('Are you sure?')
+
+        if (!confirmed) {
+            return
+        }
+
         apiHandler({
             options: getDeleteConcertOptions(apiToken, action.payload),
             asyncActions: {
