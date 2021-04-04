@@ -8,31 +8,37 @@
     padding-left: 0;
 }
 
-.editBtn {
+.editBtn,
+.deleteBtn {
     align-items: center;
-    background-color: var(--lightgray);
-    border: 1px solid var(--gray);
-    border-radius: 5px 0 0 5px;
+    color: inherit;
     display: inline-flex;
-    height: 2.5em;
-    padding-left: 1em;
-    padding-right: 1em;
-    text-decoration: none;
-    transition: border-color var(--transition-time), background-color var(--transition-time);
+    padding: 1em;
+    transition: background-color .2s, color .2s;
 }
 
-.editBtn,
-.editBtn:visited,
-.editBtn:active {
-    color: inherit;
+.editBtn {
+    text-decoration: none;
+
+    &:visited,
+    &:active {
+        color: inherit;
+    }
+
+    &:hover {
+        background-color: var(--blue);
+        color: var(--white);
+    }
 }
 
 .deleteBtn {
-    align-items: center;
-    background-color: var(--red);
-    border-bottom-left-radius: 0;
-    border-color: var(--red-dark);
-    border-top-left-radius: 0;
-    color: var(--white);
-    display: inline-flex;
+    background-color: transparent;
+    border-radius: 0;
+    border-width: 0;
+    height: auto;
+
+    &:hover {
+        background-color: var(--red);
+        color: var(--white);
+    }
 }

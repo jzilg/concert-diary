@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 import Concert from '../../entities/Concert'
 import useOnMount from '../../hooks/useOnMount'
 import TableControls from '../table-controls'
+import style from './concertsTable.module.scss'
 
 export type Props = {
     concerts: Concert[]
@@ -43,7 +44,7 @@ const ConcertsTable: FunctionComponent<Props> = (props) => {
                 <td>{location}</td>
                 <td>{date}</td>
                 <td>{companions}</td>
-                <td>
+                <td className={style.controlTd}>
                     <TableControls
                         editUrl={editUrl}
                         deleteFn={deleteFn}
