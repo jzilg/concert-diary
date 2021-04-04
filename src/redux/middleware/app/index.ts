@@ -13,7 +13,7 @@ const appMiddleware: Middleware[] = [
     authMiddleware(apiHandler),
     concertsMiddleware(apiHandler, window.confirm),
     festivalsMiddleware(apiHandler, window.confirm),
-    statisticsMiddleware,
+    statisticsMiddleware(apiHandler),
 ]
 
 export default appMiddleware

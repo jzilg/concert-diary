@@ -6,10 +6,11 @@ import {
     setStatisticsState,
 } from '../../actions/app/statistics.actions'
 import apiTokenSelector from '../../selectors/apiTokenSelector'
-import apiHandler from '../../apiHandler'
+import { ApiHandler } from '../../apiHandler'
 import { getStatisticsOptions } from '../../../api/api'
 
-const statisticsMiddleware: Middleware = (store) => (next) => (action) => {
+// eslint-disable-next-line max-len
+const statisticsMiddleware = (apiHandler: ApiHandler): Middleware => (store) => (next) => (action) => {
     next(action)
     const { dispatch, getState } = store
 
