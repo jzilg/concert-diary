@@ -10,11 +10,24 @@
 .link {
     display: inline-block;
     padding: .75em 1em;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .button {
     align-items: center;
+    background-color: white;
+    border-color: var(--black);
+    border-radius: 99vh;
     display: inline-grid;
     grid-column-gap: .5em;
     grid-template-columns: 1fr auto;
+
+    &:hover {
+        border-color: var(--black);
+        text-decoration: underline;
+    }
 }
