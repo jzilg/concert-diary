@@ -71,6 +71,7 @@ const ConcertForm: FunctionComponent<Props> = (props) => {
                     value={location}
                     onChange={onLocationInputChange}
                     placeholder="Wuhlheide"
+                    required
                 />
             </label>
             <label>
