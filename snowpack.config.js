@@ -13,7 +13,11 @@ module.exports = {
     },
     exclude: [
         '**/node_modules/**/*',
-        '**/.idea/*',
+        '**/*.json',
+        '**/*.yml',
+        '**/*.md',
+        '**/*.conf',
+        '**/*.config.js',
         '**/Dockerfile',
         '**/LICENSE',
     ],
