@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'preact/compat'
+import React, { FC } from 'preact/compat'
 import Concert from '../../entities/Concert'
 import ConcertForm from '../concert-form'
 
@@ -7,7 +7,7 @@ export type Props = {
     saveNewConcert: Function
 }
 
-const NewConcert: FunctionComponent<Props> = (props) => {
+const NewConcert: FC<Props> = (props) => {
     const {
         concert,
         saveNewConcert,

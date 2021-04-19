@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FunctionComponent } from 'preact/compat'
+import React, { useState, useEffect, FC } from 'preact/compat'
 
 export type InputList = string[]
 
@@ -8,7 +8,7 @@ type Props = {
     placeholder?: string
 }
 
-const ListInput: FunctionComponent<Props> = (props) => {
+const ListInput: FC<Props> = (props) => {
     const { list, onChange, placeholder } = props
     const separator = ', '
     const initValueString = list.join(separator)

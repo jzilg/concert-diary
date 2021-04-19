@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'preact/compat'
+import React, { FC } from 'preact/compat'
 import { Link } from 'react-router-dom'
 import LogoutIcon from 'react-bootstrap-icons/dist/icons/box-arrow-right'
 import { NavLinks } from '../../entities/NavLink'
@@ -9,7 +9,7 @@ export type Props = {
     logout: () => void
 }
 
-const Navigation: FunctionComponent<Props> = (props) => {
+const Navigation: FC<Props> = (props) => {
     const { navLinks, logout } = props
 
     const linkElements = navLinks.map((link) => (

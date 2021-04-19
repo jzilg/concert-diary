@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from 'preact/compat'
+import React, { FC } from 'preact/compat'
 import ConcertsTable from '../concerts-table'
 
-const ConcertsView: FunctionComponent = () => (
+const ConcertsView: FC = () => (
     <>
         <h2>Concerts</h2>
         <ConcertsTable />

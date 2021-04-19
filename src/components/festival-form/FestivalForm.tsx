@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'preact/compat'
+import React, { FC } from 'preact/compat'
 import { useEffect } from 'preact/hooks'
 import { Link } from 'react-router-dom'
 import Festival from '../../entities/Festival'
@@ -12,7 +12,7 @@ type Props = {
     saveFestival: Function
 }
 
-const FestivalForm: FunctionComponent<Props> = (props) => {
+const FestivalForm: FC<Props> = (props) => {
     const { festival, saveFestival } = props
 
     const [name, onNameChange, setName] = useFormInput(festival.name)

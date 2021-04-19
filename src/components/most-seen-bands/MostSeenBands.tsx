@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'preact/compat'
+import React, { FC } from 'preact/compat'
 import MostSeenBand from '../../entities/MostSeenBand'
 import style from './mostSeenBands.module.scss'
 
@@ -6,7 +6,7 @@ type Props = {
     mostSeenBands: MostSeenBand[]
 }
 
-const MostSeenBands: FunctionComponent<Props> = (props) => {
+const MostSeenBands: FC<Props> = (props) => {
     const { mostSeenBands } = props
 
     const rowElements = mostSeenBands.map((mostSeenBand) => {

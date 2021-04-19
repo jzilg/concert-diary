@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'preact/compat'
+import React, { FC } from 'preact/compat'
 import MostSeenBand from '../../entities/MostSeenBand'
 import MostSeenBands from '../most-seen-bands'
 import GeneralStatistics from '../general-statistics'
@@ -13,7 +13,7 @@ export type Props = {
     loadStatistics: () => void
 }
 
-const Statistics: FunctionComponent<Props> = (props) => {
+const Statistics: FC<Props> = (props) => {
     const {
         mostSeenBands,
         totalNumOfConcerts,

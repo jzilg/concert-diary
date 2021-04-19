@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'preact/compat'
+import React, { FC } from 'preact/compat'
 import Concert from '../../entities/Concert'
 import useOnMount from '../../hooks/useOnMount'
 import ConcertForm from '../concert-form'
@@ -9,7 +9,7 @@ export type Props = {
     saveConcert: Function
 }
 
-const EditConcert: FunctionComponent<Props> = (props) => {
+const EditConcert: FC<Props> = (props) => {
     const {
         concert,
         loadConcert,

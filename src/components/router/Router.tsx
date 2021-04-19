@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'preact/compat'
+import React, { FC } from 'preact/compat'
 import { Route, Switch } from 'react-router-dom'
 import Header from '../header'
 import LoginForm from '../login-form'
@@ -11,7 +11,7 @@ import NewConcert from '../new-concert'
 import NewFestival from '../new-festival'
 import RegisterForm from '../register-form'
 
-const Router: FunctionComponent = () => (
+const Router: FC = () => (
     <>
         <Switch>
             <Route exact path="/login" />

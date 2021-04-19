@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'preact/compat'
+import React, { FC } from 'preact/compat'
 import { Link } from 'react-router-dom'
 import useFormInput from '../../hooks/useFormInput'
 import HorizontalList from '../horizontal-list'
@@ -7,7 +7,7 @@ export type Props = {
     register: Function
 }
 
-const RegisterForm: FunctionComponent<Props> = (props) => {
+const RegisterForm: FC<Props> = (props) => {
     const { register } = props
     const [usernameValue, setUsernameValue] = useFormInput('')
     const [passwordValue, setPasswordValue] = useFormInput('')

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'preact/compat'
+import React, { FC } from 'preact/compat'
 import { Link } from 'react-router-dom'
 import EditIcon from 'react-bootstrap-icons/dist/icons/pencil-square'
 import DeleteIcon from 'react-bootstrap-icons/dist/icons/trash'
@@ -9,7 +9,7 @@ type Props = {
     deleteFn: Function
 }
 
-const TableControls: FunctionComponent<Props> = (props) => {
+const TableControls: FC<Props> = (props) => {
     const {
         editUrl,
         deleteFn,

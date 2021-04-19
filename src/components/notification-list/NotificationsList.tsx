@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'preact/compat'
+import React, { FC } from 'preact/compat'
 import Notification from '../../entities/Notification'
 import style from './notificationsList.module.scss'
 
@@ -7,7 +7,7 @@ export type Props = {
     removeNotification: Function
 }
 
-const NotificationsList: FunctionComponent<Props> = (props) => {
+const NotificationsList: FC<Props> = (props) => {
     const { notifications, removeNotification } = props
 
     if (notifications.length === 0) {

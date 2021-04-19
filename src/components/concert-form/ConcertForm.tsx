@@ -1,4 +1,4 @@
-import React, { useEffect, FunctionComponent } from 'preact/compat'
+import React, { useEffect, FC } from 'preact/compat'
 import { Link } from 'react-router-dom'
 import Concert from '../../entities/Concert'
 import ListInput from '../list-input'
@@ -11,7 +11,7 @@ type Props = {
     saveConcert: Function
 }
 
-const ConcertForm: FunctionComponent<Props> = (props) => {
+const ConcertForm: FC<Props> = (props) => {
     const { concert, saveConcert } = props
 
     const [band, onBandInputChange, setBand] = useFormInput(concert.band)

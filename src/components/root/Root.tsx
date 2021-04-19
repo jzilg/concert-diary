@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'preact/compat'
+import React, { FC } from 'preact/compat'
 import { Store } from 'redux'
 import { Provider as ReduxProvider } from 'react-redux'
 import { ConnectedRouter as RouterProvider } from 'connected-react-router'
@@ -16,7 +16,7 @@ export type Props = {
     pageIsRendered: boolean
 }
 
-const Root: FunctionComponent<Props> = (props) => {
+const Root: FC<Props> = (props) => {
     const {
         store,
         history,
