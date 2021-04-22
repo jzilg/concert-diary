@@ -6,6 +6,7 @@ export type StatisticsState = Statistics
 
 const defaultState: StatisticsState = {
     mostSeenBands: [],
+    mostCommonCompanions: [],
     totalFestivalsCount: 0,
     totalConcertsCount: 0,
     totalBandsCount: 0,
