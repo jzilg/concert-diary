@@ -4,6 +4,7 @@ import MostSeenBands from '../most-seen-bands'
 import GeneralStatistics from '../general-statistics'
 import useOnMount from '../../hooks/useOnMount'
 import MostCommonCompanionsTable from '../most-common-companions-table'
+import style from './statisticsView.module.scss'
 
 export type Props = {
     statistics: Statistics
@@ -37,8 +38,14 @@ const StatisticsView: FC<Props> = (props) => {
                 totalNumOfFestivals={totalFestivalsCount}
                 totalNumOfLocations={totalLocationsCount}
             />
-            <MostCommonCompanionsTable mostCommonCompanions={mostCommonCompanions} />
-            <MostSeenBands mostSeenBands={mostSeenBands} />
+            <div className={style.tableContainer}>
+                <div>
+                    <MostSeenBands mostSeenBands={mostSeenBands} />
+                </div>
+                <div>
+                    <MostCommonCompanionsTable mostCommonCompanions={mostCommonCompanions} />
+                </div>
+            </div>
         </>
     )
 }
