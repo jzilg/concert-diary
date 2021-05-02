@@ -6,6 +6,7 @@
     --green-dark: #42b172;
     --orange: #fc642d;
     --orange-dark: #fb4e0f;
+    --lightgray: #e9e9e9;
 }
 
 body {
@@ -16,6 +17,31 @@ input,
 label,
 table {
     width: 100%;
+}
+
+a {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+button {
+    background-color: var(--green);
+    border-color: var(--green);
+    border-radius: 99vh;
+    color: white;
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+
+    &:hover {
+        border-color: var(--green-dark);
+    }
+
+    &:focus {
+        border-color: var(--green-dark);
+    }
 }
 
 label {
@@ -30,7 +56,6 @@ label > span {
     font-weight: bold;
 }
 
-label + button,
 label + label {
     margin-top: 1em;
 }
