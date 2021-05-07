@@ -3,25 +3,25 @@ import { push } from 'connected-react-router'
 import { increaseLoaderCount, decreaseLoaderCount } from '../../actions/core/loadingCount.actions'
 import { createNotification } from '../../actions/core/notifications.actions'
 import routeIsLoginSelector from '../../selectors/routeIsLoginSelector'
-import { AsyncActionType } from '../../apiHandler'
+import { isApiFailureAction, isApiRequestAction, isApiSuccessAction } from '../../apiHandler'
 
 const apiUiMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
     const { dispatch, getState } = store
 
-    if (action.meta?.asyncActionType === AsyncActionType.Request) {
+    if (isApiRequestAction(action)) {
         const { causedBy } = action.meta
 
         dispatch(increaseLoaderCount(undefined, { causedBy }))
     }
 
-    if (action.meta?.asyncActionType === AsyncActionType.Success) {
+    if (isApiSuccessAction(action)) {
         const { causedBy } = action.meta
 
         dispatch(decreaseLoaderCount(undefined, { causedBy }))
     }
 
-    if (action.meta?.asyncActionType === AsyncActionType.Failure) {
+    if (isApiFailureAction(action)) {
         const error = action.payload
         const { causedBy } = action.meta
 

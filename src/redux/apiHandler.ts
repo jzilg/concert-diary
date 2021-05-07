@@ -1,14 +1,14 @@
 import { Dispatch } from 'redux'
 import { Action, ActionCreator } from 'typesafe-actions'
 import ApiError from '../entities/ApiError'
-import ApiOptions from '../entities/ApiOptions'
+import ApiRequestOptions from '../entities/ApiRequestOptions'
 
 export type ApiHandler = typeof apiHandler
 
 type Fetch = typeof window.fetch
 
 type ApiHandlerOptions = {
-    options: ApiOptions
+    options: ApiRequestOptions
     asyncActions: {
         request: ActionCreator
         success: ActionCreator
@@ -17,14 +17,38 @@ type ApiHandlerOptions = {
     causedBy: Action
 }
 
-export const enum AsyncActionType {
-    Request,
-    Success,
-    Failure,
+type AsyncActionMeta = {
+    asyncActionType: 'request' | 'success' | 'failure'
+    options: ApiRequestOptions
+    causedBy: Action
 }
 
+type ApiAction = Action & {
+    meta: AsyncActionMeta
+}
+
+type ApiSuccessAction = ApiAction & {
+    payload: unknown
+}
+
+type ApiFailureAction = ApiAction & {
+    payload: ApiError
+}
+
+export const isApiRequestAction = (action: ApiAction): action is ApiAction => (
+    action.meta?.asyncActionType === 'request'
+)
+
+export const isApiSuccessAction = (action: ApiAction): action is ApiSuccessAction => (
+    action.meta?.asyncActionType === 'success'
+)
+
+export const isApiFailureAction = (action: ApiAction): action is ApiFailureAction => (
+    action.meta?.asyncActionType === 'failure'
+)
+
 // eslint-disable-next-line max-len
-export const createApiHandler = (networkRequest: Fetch) => (apiHandlerOptions: ApiHandlerOptions, dispatch: Dispatch): Promise<unknown> => {
+export const createApiHandler = (fetch: Fetch) => (apiHandlerOptions: ApiHandlerOptions, dispatch: Dispatch): void => {
     const {
         options,
         asyncActions,
@@ -33,10 +57,10 @@ export const createApiHandler = (networkRequest: Fetch) => (apiHandlerOptions: A
     const { url } = options
 
     dispatch(asyncActions.request(undefined, {
-        asyncActionType: AsyncActionType.Request,
+        asyncActionType: 'request',
         options,
         causedBy,
-    }))
+    } as AsyncActionMeta))
 
     const handleError = (type: ApiError['type'], status?: number) => (error: Error) => {
         const apiError: ApiError = {
@@ -47,18 +71,18 @@ export const createApiHandler = (networkRequest: Fetch) => (apiHandlerOptions: A
         }
 
         dispatch(asyncActions.failure(apiError, {
-            asyncActionType: AsyncActionType.Failure,
+            asyncActionType: 'failure',
             options,
             causedBy,
-        }))
+        } as AsyncActionMeta))
     }
 
     const handleSuccess = (data?: object): void => {
         dispatch(asyncActions.success(data, {
-            asyncActionType: AsyncActionType.Success,
+            asyncActionType: 'success',
             options,
             causedBy,
-        }))
+        } as AsyncActionMeta))
     }
 
     const handleResponse = (response: Response): void => {
@@ -88,7 +112,7 @@ export const createApiHandler = (networkRequest: Fetch) => (apiHandlerOptions: A
             .catch(handleError('json', response.status))
     }
 
-    return networkRequest(encodeURI(url), options)
+    fetch(encodeURI(url), options)
         .then(handleResponse)
         .catch(handleError('fetch'))
 }
