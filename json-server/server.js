@@ -1,5 +1,5 @@
 const jsonServer = require('json-server')
-const db = require('./db.js')
+const db = require('./db')
 
 const PORT = 3000
 
