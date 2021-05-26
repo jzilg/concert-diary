@@ -30,7 +30,7 @@ const ConcertForm: FC<Props> = (props) => {
         setLocation(concert.location)
         setDate(concert.date)
         setCompanions(concert.companions)
-    }, [concert, setBand, setCompanions, setDate, setLocation, setSupportBands])
+    }, [concert]) // eslint-disable-line react-hooks/exhaustive-deps
 
     function handleSubmit(event: Event): void {
         event.preventDefault()
