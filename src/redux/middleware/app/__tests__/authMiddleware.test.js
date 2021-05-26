@@ -4,6 +4,8 @@ import {
     authAsync,
     login,
     logout,
+    register,
+    registerAsync,
     resetApiTokenState,
     setApiTokenOnState,
 } from '../../../actions/app/auth.actions'
@@ -13,6 +15,10 @@ import { createNotification } from '../../../actions/core/notifications.actions'
 describe('authMiddleware', () => {
     const next = jest.fn()
     const apiHandler = jest.fn()
+    const api = {
+        getLoginOptions: jest.fn(),
+        getRegisterOptions: jest.fn(),
+    }
 
     it('should call next but no action on default', () => {
         const store = createMockStore({})
@@ -20,7 +26,7 @@ describe('authMiddleware', () => {
             type: 'SOME_ACTION',
         }
 
-        authMiddleware(undefined)(store)(next)(action)
+        authMiddleware(undefined, undefined)(store)(next)(action)
 
         const executedActions = store.getActions()
 
@@ -36,8 +42,9 @@ describe('authMiddleware', () => {
                 password: '13245',
             })
 
-            authMiddleware(apiHandler)(store)(next)(action)
+            authMiddleware(api, apiHandler)(store)(next)(action)
 
+            expect(api.getLoginOptions).toHaveBeenCalled()
             expect(apiHandler).toHaveBeenCalled()
         })
     })
@@ -52,7 +59,7 @@ describe('authMiddleware', () => {
                 push('/'),
             ]
 
-            authMiddleware(undefined)(store)(next)(action)
+            authMiddleware(undefined, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 
@@ -73,7 +80,7 @@ describe('authMiddleware', () => {
                 }),
             ]
 
-            authMiddleware(undefined)(store)(next)(action)
+            authMiddleware(undefined, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 
@@ -92,11 +99,50 @@ describe('authMiddleware', () => {
                     type: 'success',
                     message: 'Successfully logged out',
                 }, {
-                    causedBy: logout(),
+                    causedBy: action,
                 }),
             ]
 
-            authMiddleware(undefined)(store)(next)(action)
+            authMiddleware(undefined, undefined)(store)(next)(action)
+
+            const executedActions = store.getActions()
+
+            expect(executedActions).toEqual(expectedActions)
+        })
+    })
+
+    describe('register', () => {
+        it('should call apiHandler', () => {
+            const store = createMockStore({})
+            const action = register({
+                username: 'name',
+                password: '13245',
+                token: '123345',
+            })
+
+            authMiddleware(api, apiHandler)(store)(next)(action)
+
+            expect(api.getRegisterOptions).toHaveBeenCalled()
+            expect(apiHandler).toHaveBeenCalled()
+        })
+    })
+
+    describe('registerAsync.success', () => {
+        it('should dispatch push to /login and createNotification', () => {
+            const store = createMockStore({})
+            const action = registerAsync.success()
+
+            const expectedActions = [
+                push('/login'),
+                createNotification({
+                    type: 'success',
+                    message: 'Registration success. Please login now.',
+                }, {
+                    causedBy: action,
+                }),
+            ]
+
+            authMiddleware(undefined, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 

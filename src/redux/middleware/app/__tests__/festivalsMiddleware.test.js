@@ -23,6 +23,13 @@ import * as apiTokenSelector from '../../../selectors/apiTokenSelector'
 describe('festivalsMiddleware', () => {
     const next = jest.fn()
     const apiHandler = jest.fn()
+    const api = {
+        getSaveNewFestivalOptions: jest.fn(),
+        getLoadAllFestivalsOptions: jest.fn(),
+        getLoadFestivalOptions: jest.fn(),
+        getSaveFestivalOptions: jest.fn(),
+        getDeleteFestivalOptions: jest.fn(),
+    }
     const festival = {
         id: '0',
     }
@@ -39,7 +46,7 @@ describe('festivalsMiddleware', () => {
             type: 'SOME_ACTION',
         }
 
-        festivalsMiddleware(undefined)(store)(next)(action)
+        festivalsMiddleware(undefined, undefined, undefined)(store)(next)(action)
 
         const executedActions = store.getActions()
 
@@ -52,7 +59,7 @@ describe('festivalsMiddleware', () => {
             const store = createMockStore({})
             const action = saveNewFestival(festival)
 
-            festivalsMiddleware(apiHandler)(store)(next)(action)
+            festivalsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             expect(apiHandler).toHaveBeenCalled()
         })
@@ -63,7 +70,7 @@ describe('festivalsMiddleware', () => {
             const store = createMockStore({})
             const action = loadAllFestivals()
 
-            festivalsMiddleware(apiHandler)(store)(next)(action)
+            festivalsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             expect(apiHandler).toHaveBeenCalled()
         })
@@ -74,7 +81,7 @@ describe('festivalsMiddleware', () => {
             const store = createMockStore({})
             const action = loadFestival(festival.id)
 
-            festivalsMiddleware(apiHandler)(store)(next)(action)
+            festivalsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             expect(apiHandler).toHaveBeenCalled()
         })
@@ -85,20 +92,33 @@ describe('festivalsMiddleware', () => {
             const store = createMockStore({})
             const action = saveFestival(festival)
 
-            festivalsMiddleware(apiHandler)(store)(next)(action)
+            festivalsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             expect(apiHandler).toHaveBeenCalled()
         })
     })
 
     describe('deleteFestival', () => {
-        it('should call apiHandler', () => {
+        it('should call apiHandler if confirm returns true', () => {
             const store = createMockStore({})
+            const confirm = jest.fn().mockReturnValue(true)
             const action = deleteFestival(festival.id)
 
-            festivalsMiddleware(apiHandler)(store)(next)(action)
+            festivalsMiddleware(api, apiHandler, confirm)(store)(next)(action)
 
+            expect(confirm).toHaveBeenCalled()
             expect(apiHandler).toHaveBeenCalled()
+        })
+
+        it('should not call apiHandler if confirm returns false', () => {
+            const store = createMockStore({})
+            const confirm = jest.fn().mockReturnValue(false)
+            const action = deleteFestival(festival.id)
+
+            festivalsMiddleware(api, apiHandler, confirm)(store)(next)(action)
+
+            expect(confirm).toHaveBeenCalled()
+            expect(apiHandler).toBeCalledTimes(0)
         })
     })
 
@@ -111,7 +131,7 @@ describe('festivalsMiddleware', () => {
                 push('/festivals'),
             ]
 
-            festivalsMiddleware(apiHandler)(store)(next)(action)
+            festivalsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 
@@ -130,7 +150,7 @@ describe('festivalsMiddleware', () => {
                 setFestivalsState(festivals),
             ]
 
-            festivalsMiddleware(apiHandler)(store)(next)(action)
+            festivalsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 
@@ -150,7 +170,7 @@ describe('festivalsMiddleware', () => {
                 updateFestivalOnState(festival),
             ]
 
-            festivalsMiddleware(apiHandler)(store)(next)(action)
+            festivalsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 
@@ -166,7 +186,7 @@ describe('festivalsMiddleware', () => {
                 addFestivalToState(festival),
             ]
 
-            festivalsMiddleware(apiHandler)(store)(next)(action)
+            festivalsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 
@@ -183,7 +203,7 @@ describe('festivalsMiddleware', () => {
                 push('/festivals'),
             ]
 
-            festivalsMiddleware(apiHandler)(store)(next)(action)
+            festivalsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 
@@ -199,7 +219,7 @@ describe('festivalsMiddleware', () => {
                 removeFestivalFromState(festival.id),
             ]
 
-            festivalsMiddleware(apiHandler)(store)(next)(action)
+            festivalsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 

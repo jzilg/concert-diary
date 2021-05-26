@@ -1,16 +1,16 @@
 import { Middleware } from 'redux'
 import { isActionOf } from 'typesafe-actions'
+import { ApiHandler } from '../../apiHandler'
+import { Api } from '../../../api'
 import {
     loadStatistics,
     loadStatisticsAsync,
     setStatisticsState,
 } from '../../actions/app/statistics.actions'
 import apiTokenSelector from '../../selectors/apiTokenSelector'
-import { ApiHandler } from '../../apiHandler'
-import { getStatisticsOptions } from '../../../api/api'
 
 // eslint-disable-next-line max-len
-const statisticsMiddleware = (apiHandler: ApiHandler): Middleware => (store) => (next) => (action) => {
+const statisticsMiddleware = (api: Api, apiHandler: ApiHandler): Middleware => (store) => (next) => (action) => {
     next(action)
     const { dispatch, getState } = store
 
@@ -18,7 +18,7 @@ const statisticsMiddleware = (apiHandler: ApiHandler): Middleware => (store) => 
         const apiToken = apiTokenSelector(getState())
 
         apiHandler({
-            options: getStatisticsOptions(apiToken),
+            options: api.getStatisticsOptions(apiToken),
             asyncActions: loadStatisticsAsync,
             causedBy: action,
         }, dispatch)

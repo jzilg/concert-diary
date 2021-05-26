@@ -2,6 +2,7 @@ import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
 import { Middleware } from 'redux'
 import { ApiHandler } from '../../apiHandler'
+import { Api } from '../../../api'
 import {
     saveNewFestival,
     postFestivalAsync,
@@ -18,25 +19,18 @@ import {
     deleteFestivalAsync,
     removeFestivalFromState,
 } from '../../actions/app/festivals.actions'
-import {
-    getSaveNewFestivalOptions,
-    getLoadAllFestivalsOptions,
-    getLoadFestivalOptions,
-    getSaveFestivalOptions,
-    getDeleteFestivalOptions,
-} from '../../../api/api'
 import festivalsSelector from '../../selectors/festivalsSelector'
 import apiTokenSelector from '../../selectors/apiTokenSelector'
 import overwritePayload from '../helper/overwritePayload'
 
-const festivalsMiddleware = (apiHandler: ApiHandler, confirm: Window['confirm']): Middleware => (store) => (next) => (action) => {
+const festivalsMiddleware = (api: Api, apiHandler: ApiHandler, confirm: Window['confirm']): Middleware => (store) => (next) => (action) => {
     next(action)
     const { dispatch, getState } = store
     const apiToken = apiTokenSelector(getState())
 
     if (isActionOf(saveNewFestival, action)) {
         apiHandler({
-            options: getSaveNewFestivalOptions(apiToken, action.payload),
+            options: api.getSaveNewFestivalOptions(apiToken, action.payload),
             asyncActions: postFestivalAsync,
             causedBy: action,
         }, dispatch)
@@ -49,7 +43,7 @@ const festivalsMiddleware = (apiHandler: ApiHandler, confirm: Window['confirm'])
 
     if (isActionOf(loadAllFestivals, action)) {
         apiHandler({
-            options: getLoadAllFestivalsOptions(apiToken),
+            options: api.getLoadAllFestivalsOptions(apiToken),
             asyncActions: loadAllFestivalsAsync,
             causedBy: action,
         }, dispatch)
@@ -61,7 +55,7 @@ const festivalsMiddleware = (apiHandler: ApiHandler, confirm: Window['confirm'])
 
     if (isActionOf(loadFestival, action)) {
         apiHandler({
-            options: getLoadFestivalOptions(apiToken, action.payload),
+            options: api.getLoadFestivalOptions(apiToken, action.payload),
             asyncActions: loadFestivalAsync,
             causedBy: action,
         }, dispatch)
@@ -80,7 +74,7 @@ const festivalsMiddleware = (apiHandler: ApiHandler, confirm: Window['confirm'])
 
     if (isActionOf(saveFestival, action)) {
         apiHandler({
-            options: getSaveFestivalOptions(apiToken, action.payload),
+            options: api.getSaveFestivalOptions(apiToken, action.payload),
             asyncActions: putFestivalAsync,
             causedBy: action,
         }, dispatch)
@@ -99,7 +93,7 @@ const festivalsMiddleware = (apiHandler: ApiHandler, confirm: Window['confirm'])
         }
 
         apiHandler({
-            options: getDeleteFestivalOptions(apiToken, action.payload),
+            options: api.getDeleteFestivalOptions(apiToken, action.payload),
             asyncActions: {
                 ...deleteFestivalAsync,
                 success: overwritePayload(deleteFestivalAsync.success, action.payload),

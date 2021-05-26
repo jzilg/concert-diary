@@ -23,6 +23,13 @@ import * as apiTokenSelector from '../../../selectors/apiTokenSelector'
 describe('concertsMiddleware', () => {
     const next = jest.fn()
     const apiHandler = jest.fn()
+    const api = {
+        getSaveNewConcertOptions: jest.fn(),
+        getLoadAllConcertsOptions: jest.fn(),
+        getLoadConcertOptions: jest.fn(),
+        getSaveConcertOptions: jest.fn(),
+        getDeleteConcertOptions: jest.fn(),
+    }
     const concert = {
         id: '0',
     }
@@ -39,7 +46,7 @@ describe('concertsMiddleware', () => {
             type: 'SOME_ACTION',
         }
 
-        concertsMiddleware(undefined)(store)(next)(action)
+        concertsMiddleware(undefined, undefined, undefined)(store)(next)(action)
 
         const executedActions = store.getActions()
 
@@ -52,7 +59,7 @@ describe('concertsMiddleware', () => {
             const store = createMockStore({})
             const action = saveNewConcert(concert)
 
-            concertsMiddleware(apiHandler)(store)(next)(action)
+            concertsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             expect(apiHandler).toHaveBeenCalled()
         })
@@ -63,7 +70,7 @@ describe('concertsMiddleware', () => {
             const store = createMockStore({})
             const action = loadAllConcerts()
 
-            concertsMiddleware(apiHandler)(store)(next)(action)
+            concertsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             expect(apiHandler).toHaveBeenCalled()
         })
@@ -74,7 +81,7 @@ describe('concertsMiddleware', () => {
             const store = createMockStore({})
             const action = loadConcert(concert.id)
 
-            concertsMiddleware(apiHandler)(store)(next)(action)
+            concertsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             expect(apiHandler).toHaveBeenCalled()
         })
@@ -85,20 +92,33 @@ describe('concertsMiddleware', () => {
             const store = createMockStore({})
             const action = saveConcert(concert)
 
-            concertsMiddleware(apiHandler)(store)(next)(action)
+            concertsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             expect(apiHandler).toHaveBeenCalled()
         })
     })
 
     describe('deleteConcert', () => {
-        it('should call apiHandler', () => {
+        it('should call apiHandler if confirm returns true', () => {
             const store = createMockStore({})
+            const confirm = jest.fn().mockReturnValue(true)
             const action = deleteConcert(concert.id)
 
-            concertsMiddleware(apiHandler)(store)(next)(action)
+            concertsMiddleware(api, apiHandler, confirm)(store)(next)(action)
 
+            expect(confirm).toHaveBeenCalled()
             expect(apiHandler).toHaveBeenCalled()
+        })
+
+        it('should not call apiHandler if confirm returns false', () => {
+            const store = createMockStore({})
+            const confirm = jest.fn().mockReturnValue(false)
+            const action = deleteConcert(concert.id)
+
+            concertsMiddleware(api, apiHandler, confirm)(store)(next)(action)
+
+            expect(confirm).toHaveBeenCalled()
+            expect(apiHandler).toBeCalledTimes(0)
         })
     })
 
@@ -111,7 +131,7 @@ describe('concertsMiddleware', () => {
                 push('/concerts'),
             ]
 
-            concertsMiddleware(apiHandler)(store)(next)(action)
+            concertsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 
@@ -130,7 +150,7 @@ describe('concertsMiddleware', () => {
                 setConcertsState(concerts),
             ]
 
-            concertsMiddleware(apiHandler)(store)(next)(action)
+            concertsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 
@@ -150,7 +170,7 @@ describe('concertsMiddleware', () => {
                 updateConcertOnState(concert),
             ]
 
-            concertsMiddleware(apiHandler)(store)(next)(action)
+            concertsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 
@@ -166,7 +186,7 @@ describe('concertsMiddleware', () => {
                 addConcertToState(concert),
             ]
 
-            concertsMiddleware(apiHandler)(store)(next)(action)
+            concertsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 
@@ -183,7 +203,7 @@ describe('concertsMiddleware', () => {
                 push('/concerts'),
             ]
 
-            concertsMiddleware(apiHandler)(store)(next)(action)
+            concertsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 
@@ -199,7 +219,7 @@ describe('concertsMiddleware', () => {
                 removeConcertFromState(concert.id),
             ]
 
-            concertsMiddleware(apiHandler)(store)(next)(action)
+            concertsMiddleware(api, apiHandler, undefined)(store)(next)(action)
 
             const executedActions = store.getActions()
 

@@ -2,6 +2,7 @@ import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
 import { Middleware } from 'redux'
 import { ApiHandler } from '../../apiHandler'
+import { Api } from '../../../api'
 import {
     login,
     logout,
@@ -11,16 +12,16 @@ import {
     register,
     registerAsync,
 } from '../../actions/app/auth.actions'
-import { getLoginOptions, getRegisterOptions } from '../../../api/api'
 import { createNotification } from '../../actions/core/notifications.actions'
 
-const authMiddleware = (apiHandler: ApiHandler): Middleware => (store) => (next) => (action) => {
+// eslint-disable-next-line max-len
+const authMiddleware = (api: Api, apiHandler: ApiHandler): Middleware => (store) => (next) => (action) => {
     next(action)
     const { dispatch } = store
 
     if (isActionOf(login, action)) {
         apiHandler({
-            options: getLoginOptions(action.payload),
+            options: api.getLoginOptions(action.payload),
             asyncActions: authAsync,
             causedBy: action,
         }, dispatch)
@@ -53,7 +54,7 @@ const authMiddleware = (apiHandler: ApiHandler): Middleware => (store) => (next)
 
     if (isActionOf(register, action)) {
         apiHandler({
-            options: getRegisterOptions(action.payload),
+            options: api.getRegisterOptions(action.payload),
             asyncActions: registerAsync,
             causedBy: action,
         }, dispatch)

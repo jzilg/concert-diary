@@ -2,6 +2,7 @@ import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
 import { Middleware } from 'redux'
 import { ApiHandler } from '../../apiHandler'
+import { Api } from '../../../api'
 import {
     saveNewConcert,
     postConcertAsync,
@@ -18,25 +19,18 @@ import {
     deleteConcertAsync,
     removeConcertFromState,
 } from '../../actions/app/concerts.actions'
-import {
-    getSaveNewConcertOptions,
-    getLoadAllConcertsOptions,
-    getLoadConcertOptions,
-    getSaveConcertOptions,
-    getDeleteConcertOptions,
-} from '../../../api/api'
 import concertsSelector from '../../selectors/concertsSelector'
 import apiTokenSelector from '../../selectors/apiTokenSelector'
 import overwritePayload from '../helper/overwritePayload'
 
-const concertsMiddleware = (apiHandler: ApiHandler, confirm: Window['confirm']): Middleware => (store) => (next) => (action) => {
+const concertsMiddleware = (api: Api, apiHandler: ApiHandler, confirm: Window['confirm']): Middleware => (store) => (next) => (action) => {
     next(action)
     const { dispatch, getState } = store
     const apiToken = apiTokenSelector(getState())
 
     if (isActionOf(saveNewConcert, action)) {
         apiHandler({
-            options: getSaveNewConcertOptions(apiToken, action.payload),
+            options: api.getSaveNewConcertOptions(apiToken, action.payload),
             asyncActions: postConcertAsync,
             causedBy: action,
         }, dispatch)
@@ -49,7 +43,7 @@ const concertsMiddleware = (apiHandler: ApiHandler, confirm: Window['confirm']):
 
     if (isActionOf(loadAllConcerts, action)) {
         apiHandler({
-            options: getLoadAllConcertsOptions(apiToken),
+            options: api.getLoadAllConcertsOptions(apiToken),
             asyncActions: loadAllConcertsAsync,
             causedBy: action,
         }, dispatch)
@@ -61,7 +55,7 @@ const concertsMiddleware = (apiHandler: ApiHandler, confirm: Window['confirm']):
 
     if (isActionOf(loadConcert, action)) {
         apiHandler({
-            options: getLoadConcertOptions(apiToken, action.payload),
+            options: api.getLoadConcertOptions(apiToken, action.payload),
             asyncActions: loadConcertAsync,
             causedBy: action,
         }, dispatch)
@@ -80,7 +74,7 @@ const concertsMiddleware = (apiHandler: ApiHandler, confirm: Window['confirm']):
 
     if (isActionOf(saveConcert, action)) {
         apiHandler({
-            options: getSaveConcertOptions(apiToken, action.payload),
+            options: api.getSaveConcertOptions(apiToken, action.payload),
             asyncActions: putConcertAsync,
             causedBy: action,
         }, dispatch)
@@ -99,7 +93,7 @@ const concertsMiddleware = (apiHandler: ApiHandler, confirm: Window['confirm']):
         }
 
         apiHandler({
-            options: getDeleteConcertOptions(apiToken, action.payload),
+            options: api.getDeleteConcertOptions(apiToken, action.payload),
             asyncActions: {
                 ...deleteConcertAsync,
                 success: overwritePayload(deleteConcertAsync.success, action.payload),
