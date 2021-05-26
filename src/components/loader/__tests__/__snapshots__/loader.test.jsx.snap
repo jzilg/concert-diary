@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Loading should render correctly 1`] = `
+exports[`Loading should render correctly if isLoading is false 1`] = `""`;
+
+exports[`Loading should render correctly if isLoading is true 1`] = `
 <div
+  class="bar"
   className="bar"
 />
 `;
