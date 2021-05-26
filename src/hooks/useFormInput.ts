@@ -1,10 +1,10 @@
 import { useState } from 'preact/compat'
+import { StateUpdater } from 'preact/hooks'
 
 type OnChange = (event) => void
-type SetValue = (value) => void
 
-function useFormInput(initialValue: string): [string, OnChange, SetValue] {
-    const [value, setValue]: [string, SetValue] = useState(initialValue)
+function useFormInput(initialValue: string): [string, OnChange, StateUpdater<string>] {
+    const [value, setValue] = useState(initialValue)
 
     function handleChange(event): void {
         setValue(event.target.value)
