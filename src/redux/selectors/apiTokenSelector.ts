@@ -1,7 +1,5 @@
 import { State } from '../reducers/rootReducer'
 
-function apiTokenSelector(state: State): string {
-    return state.auth.apiToken
-}
+const apiTokenSelector = (state: State): string => state.auth.apiToken
 
 export default apiTokenSelector

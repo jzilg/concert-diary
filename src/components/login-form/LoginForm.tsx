@@ -12,7 +12,7 @@ const LoginForm: FC<Props> = (props) => {
     const [usernameValue, setUsernameValue] = useFormInput('')
     const [passwordValue, setPasswordValue] = useFormInput('')
 
-    function handleSubmit(event): void {
+    const handleSubmit = (event): void => {
         event.preventDefault()
         authenticate({
             username: usernameValue,

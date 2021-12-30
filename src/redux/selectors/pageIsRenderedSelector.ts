@@ -1,7 +1,5 @@
 import { State } from '../reducers/rootReducer'
 
-function pageIsRenderedSelector(state: State): boolean {
-    return state.page.isRendered
-}
+const pageIsRenderedSelector = (state: State): boolean => state.page.isRendered
 
 export default pageIsRenderedSelector

@@ -15,7 +15,7 @@ const TableControls: FC<Props> = (props) => {
         deleteFn,
     } = props
 
-    function deleteButtonClickHandler(): void {
+    const deleteButtonClickHandler = (): void => {
         deleteFn()
     }
 

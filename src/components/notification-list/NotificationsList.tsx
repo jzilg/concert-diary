@@ -17,7 +17,7 @@ const NotificationsList: FC<Props> = (props) => {
     const notificationMessageElements = notifications.map((notification) => {
         const { id, type, message } = notification
 
-        function clickHandler(): void {
+        const clickHandler = (): void => {
             removeNotification(id, '[USER EVENT]')
         }
 

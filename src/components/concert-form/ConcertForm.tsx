@@ -32,7 +32,7 @@ const ConcertForm: FC<Props> = (props) => {
         setCompanions(concert.companions)
     }, [concert]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    function handleSubmit(event: Event): void {
+    const handleSubmit = (event: Event): void => {
         event.preventDefault()
         saveConcert({
             id: concert.id,

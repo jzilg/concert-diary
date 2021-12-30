@@ -29,7 +29,7 @@ const FestivalForm: FC<Props> = (props) => {
         setCompanions(festival.companions)
     }, [festival, setName, setBands, setStartDate, setEndDate, setCompanions])
 
-    function handleSubmit(event: Event): void {
+    const handleSubmit = (event: Event): void => {
         event.preventDefault()
         saveFestival({
             id: festival.id,

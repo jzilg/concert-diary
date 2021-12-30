@@ -4,16 +4,14 @@ import concertsSelector from './concertsSelector'
 import paramsSelector from './paramsSelector'
 import todaysDate from '../../utils/todaysDate'
 
-function createEmptyConcert(): Concert {
-    return {
-        id: '',
-        band: '',
-        supportBands: [],
-        location: '',
-        date: todaysDate,
-        companions: [],
-    }
-}
+const createEmptyConcert = (): Concert => ({
+    id: '',
+    band: '',
+    supportBands: [],
+    location: '',
+    date: todaysDate,
+    companions: [],
+})
 
 const concertSelector = createSelector(
     concertsSelector,

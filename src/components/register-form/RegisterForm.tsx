@@ -13,7 +13,7 @@ const RegisterForm: FC<Props> = (props) => {
     const [passwordValue, setPasswordValue] = useFormInput('')
     const [tokenValue, setTokenValue] = useFormInput('')
 
-    function handleSubmit(event): void {
+    const handleSubmit = (event): void => {
         event.preventDefault()
         register({
             username: usernameValue,

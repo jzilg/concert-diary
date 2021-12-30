@@ -33,7 +33,7 @@ const ConcertsTable: FC<Props> = (props) => {
         const date = dayjs(concert.date).format('DD.MM.YYYY')
         const editUrl = `concerts/edit?id=${id}`
 
-        function deleteFn(): void {
+        const deleteFn = (): void => {
             deleteConcert(id)
         }
 

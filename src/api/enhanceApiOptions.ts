@@ -1,6 +1,6 @@
 import ApiRequestOptions from '../entities/ApiRequestOptions'
 
-function enhanceApiOptions(options: ApiRequestOptions, token?: string): ApiRequestOptions {
+const enhanceApiOptions = (options: ApiRequestOptions, token?: string): ApiRequestOptions => {
     const { method, headers, body } = options
     const enhancedOptions: ApiRequestOptions = {
         ...options,

@@ -1,7 +1,5 @@
 import { State } from '../reducers/rootReducer'
 
-function isLoadingSelector(state: State): boolean {
-    return state.loadingCount > 0
-}
+const isLoadingSelector = (state: State): boolean => state.loadingCount > 0
 
 export default isLoadingSelector

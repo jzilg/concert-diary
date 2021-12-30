@@ -35,7 +35,7 @@ const FestivalsTable: FC<Props> = (props) => {
         const date = `${startDate} - ${endDate}`
         const editUrl = `festivals/edit?id=${id}`
 
-        function deleteFn(): void {
+        const deleteFn = (): void => {
             deleteFestival(id)
         }
 

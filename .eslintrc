@@ -3,7 +3,8 @@
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
-    "react-hooks"
+    "react-hooks",
+    "prefer-arrow"
   ],
   "settings": {
     "import/resolver": {
@@ -86,6 +87,13 @@
           "case",
           "default"
         ]
+      }
+    ],
+    "prefer-arrow/prefer-arrow-functions": [
+      "error",
+      {
+        "disallowPrototype": true,
+        "singleReturnOnly": true
       }
     ],
     "semi": ["error", "never"],

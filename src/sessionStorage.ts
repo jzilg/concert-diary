@@ -1,10 +1,10 @@
 const STORAGE = window.sessionStorage
 
-export function setStorageData(id: string, data: unknown): void {
+export const setStorageData = (id: string, data: unknown): void => {
     STORAGE.setItem(id, JSON.stringify(data))
 }
 
-export function getStorageData(id: string): unknown | undefined {
+export const getStorageData = (id: string): unknown | undefined => {
     const persistedData = STORAGE.getItem(id)
 
     // must return undefined instead of null

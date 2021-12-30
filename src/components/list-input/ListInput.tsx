@@ -18,7 +18,7 @@ const ListInput: FC<Props> = (props) => {
         setValueString(list.join(separator))
     }, [list])
 
-    function changeHandler(event): void {
+    const changeHandler = (event): void => {
         const newValueString = event.target.value
         const newList: InputList = newValueString
             .replace(/( )*,( )*/g, separator) // remove extra spaces around comma
