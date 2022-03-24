@@ -4,6 +4,7 @@ import { increaseLoaderCount, decreaseLoaderCount } from '../../actions/core/loa
 import { createNotification } from '../../actions/core/notifications.actions'
 import routeIsLoginSelector from '../../selectors/routeIsLoginSelector'
 import { isApiFailureAction, isApiRequestAction, isApiSuccessAction } from '../../apiHandler'
+import routeIsRegisterSelector from '../../selectors/routeIsRegisterSelector'
 
 const apiUiMiddleware: Middleware = (store) => (next) => (action) => {
     next(action)
@@ -37,8 +38,9 @@ const apiUiMiddleware: Middleware = (store) => (next) => (action) => {
         }
 
         const routeIsLogin = routeIsLoginSelector(getState())
+        const routeIsRegister = routeIsRegisterSelector(getState())
 
-        if (!routeIsLogin && error.status === 401) {
+        if (!(routeIsRegister || routeIsLogin) && error.status === 401) {
             dispatch(createNotification({
                 type: 'error',
                 message: 'Session expired',

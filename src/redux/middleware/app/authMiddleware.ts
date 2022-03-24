@@ -35,7 +35,7 @@ const authMiddleware = (api: Api, apiHandler: ApiHandler): Middleware => (store)
     if (isActionOf(authAsync.failure, action)) {
         dispatch(createNotification({
             type: 'error',
-            message: 'Wrong Username or Password',
+            message: 'Wrong username or password',
         }, {
             causedBy: action,
         }))
@@ -65,6 +65,15 @@ const authMiddleware = (api: Api, apiHandler: ApiHandler): Middleware => (store)
         dispatch(createNotification({
             type: 'success',
             message: 'Registration success. Please login now.',
+        }, {
+            causedBy: action,
+        }))
+    }
+
+    if (isActionOf(registerAsync.failure, action)) {
+        dispatch(createNotification({
+            type: 'error',
+            message: 'Wrong register token',
         }, {
             causedBy: action,
         }))
