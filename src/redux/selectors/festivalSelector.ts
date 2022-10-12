@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import Festival from '../../entities/Festival'
+import type Festival from '../../entities/Festival'
 import festivalsSelector from './festivalsSelector'
 import paramsSelector from './paramsSelector'
 import todaysDate from '../../utils/todaysDate'

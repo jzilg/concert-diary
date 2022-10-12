@@ -1,5 +1,7 @@
-import React, { FC } from 'preact/compat'
-import Festival, { FestivalId } from '../../entities/Festival'
+import type { FC } from 'preact/compat'
+import React from 'preact/compat'
+import type { FestivalId } from '../../entities/Festival'
+import type Festival from '../../entities/Festival'
 import useOnMount from '../../hooks/useOnMount'
 import FestivalForm from '../festival-form'
 

@@ -1,4 +1,5 @@
-import React, { FC } from 'preact/compat'
+import type { FC } from 'preact/compat'
+import React from 'preact/compat'
 import style from './loader.module.scss'
 
 export type Props = {

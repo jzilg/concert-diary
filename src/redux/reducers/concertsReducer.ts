@@ -1,5 +1,5 @@
 import { createReducer } from 'typesafe-actions'
-import Concert from '../../entities/Concert'
+import type Concert from '../../entities/Concert'
 import {
     setConcertsState,
     addConcertToState,

@@ -1,5 +1,5 @@
 import { useState } from 'preact/compat'
-import { InputList } from '../components/list-input/ListInput'
+import type { InputList } from '../components/list-input/ListInput'
 
 type SetValue = (value) => void
 type ReturnType = [InputList, (list: InputList) => void, SetValue]

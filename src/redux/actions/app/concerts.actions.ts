@@ -1,5 +1,5 @@
 import { createAction, createAsyncAction } from 'typesafe-actions'
-import Concert from '../../../entities/Concert'
+import type Concert from '../../../entities/Concert'
 
 export const loadConcert = createAction('CMD / Concert / load')<Concert['id']>()
 export const loadAllConcerts = createAction('CMD / Concert / load all')()

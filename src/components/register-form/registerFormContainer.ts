@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { Props } from './RegisterForm'
+import type { Props } from './RegisterForm'
 import { register } from '../../redux/actions/app/auth.actions'
 
 type DispatchProps = Pick<Props, 'register'>

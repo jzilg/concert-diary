@@ -1,5 +1,6 @@
-import React, { FunctionComponent } from 'react'
-import MostCommonCompanion from '../../entities/MostCommonCompanion'
+import type { FunctionComponent } from 'react'
+import React from 'react'
+import type MostCommonCompanion from '../../entities/MostCommonCompanion'
 import style from '../most-seen-bands/mostSeenBands.module.scss'
 
 export type Props = {

@@ -1,5 +1,5 @@
 import { createAction, createAsyncAction } from 'typesafe-actions'
-import Statistics from '../../../entities/Statistics'
+import type Statistics from '../../../entities/Statistics'
 
 export const loadStatisticsAsync = createAsyncAction(
     'EVT / Statistics / load request',

@@ -1,5 +1,5 @@
 import { createReducer } from 'typesafe-actions'
-import Statistics from '../../entities/Statistics'
+import type Statistics from '../../entities/Statistics'
 import { setStatisticsState } from '../actions/app/statistics.actions'
 
 export type StatisticsState = Statistics

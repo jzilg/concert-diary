@@ -1,8 +1,8 @@
+import type { Store } from 'redux'
 import {
     applyMiddleware,
     compose,
     createStore,
-    Store,
 } from 'redux'
 import middleware from './middleware'
 import rootReducer from './reducers/rootReducer'

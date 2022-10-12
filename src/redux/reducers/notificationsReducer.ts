@@ -1,5 +1,5 @@
 import { createReducer } from 'typesafe-actions'
-import Notification from '../../entities/Notification'
+import type Notification from '../../entities/Notification'
 import { addNotificationToState, removeNotificationFromState } from '../actions/core/notifications.actions'
 
 export type NotificationsState = Notification[]

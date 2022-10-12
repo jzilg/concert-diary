@@ -1,6 +1,7 @@
-import { connect, MapStateToProps } from 'react-redux'
+import type { MapStateToProps } from 'react-redux'
+import { connect } from 'react-redux'
 import isLoadingSelector from '../../redux/selectors/isLoadingSelector'
-import { Props } from './Loader'
+import type { Props } from './Loader'
 
 type StateProps = Pick<Props, 'isLoading'>
 

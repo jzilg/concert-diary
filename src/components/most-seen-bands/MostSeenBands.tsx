@@ -1,5 +1,6 @@
-import React, { FC } from 'preact/compat'
-import MostSeenBand from '../../entities/MostSeenBand'
+import type { FC } from 'preact/compat'
+import React from 'preact/compat'
+import type MostSeenBand from '../../entities/MostSeenBand'
 import style from './mostSeenBands.module.scss'
 
 type Props = {

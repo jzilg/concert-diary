@@ -1,4 +1,4 @@
-import { Middleware } from 'redux'
+import type { Middleware } from 'redux'
 import { push } from 'connected-react-router'
 import { increaseLoaderCount, decreaseLoaderCount } from '../../actions/core/loadingCount.actions'
 import { createNotification } from '../../actions/core/notifications.actions'

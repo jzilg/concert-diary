@@ -1,4 +1,4 @@
-import { Middleware } from 'redux'
+import type { Middleware } from 'redux'
 import { isActionOf } from 'typesafe-actions'
 import {
     createNotification,

@@ -1,4 +1,5 @@
-import React, { FC } from 'preact/compat'
+import type { FC } from 'preact/compat'
+import React from 'preact/compat'
 import { Link } from 'react-router-dom'
 import EditIcon from 'react-bootstrap-icons/dist/icons/pencil-square'
 import DeleteIcon from 'react-bootstrap-icons/dist/icons/trash'

@@ -1,4 +1,4 @@
-import { Middleware } from 'redux'
+import type { Middleware } from 'redux'
 import apiUiMiddleware from './apiUiMiddleware'
 import authMiddleware from './authMiddleware'
 import concertsMiddleware from './concertsMiddleware'

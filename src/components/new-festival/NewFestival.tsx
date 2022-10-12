@@ -1,5 +1,6 @@
-import React, { FC } from 'preact/compat'
-import Festival from '../../entities/Festival'
+import type { FC } from 'preact/compat'
+import React from 'preact/compat'
+import type Festival from '../../entities/Festival'
 import FestivalForm from '../festival-form'
 
 export type Props = {

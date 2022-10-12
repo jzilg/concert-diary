@@ -1,4 +1,4 @@
-import ApiRequestOptions from '../entities/ApiRequestOptions'
+import type ApiRequestOptions from '../entities/ApiRequestOptions'
 
 const enhanceApiOptions = (options: ApiRequestOptions, token?: string): ApiRequestOptions => {
     const { method, headers, body } = options

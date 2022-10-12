@@ -1,4 +1,4 @@
-import { Middleware } from 'redux'
+import type { Middleware } from 'redux'
 import notificationsMiddleware from './notificationsMiddleware'
 import persistingMiddleware from './persistingMiddleware'
 

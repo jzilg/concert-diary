@@ -1,7 +1,7 @@
-import { Dispatch } from 'redux'
-import { Action, ActionCreator } from 'typesafe-actions'
-import ApiError from '../entities/ApiError'
-import ApiRequestOptions from '../entities/ApiRequestOptions'
+import type { Dispatch } from 'redux'
+import type { Action, ActionCreator } from 'typesafe-actions'
+import type ApiError from '../entities/ApiError'
+import type ApiRequestOptions from '../entities/ApiRequestOptions'
 
 export type ApiHandler = typeof apiHandler
 

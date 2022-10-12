@@ -1,4 +1,5 @@
-import React, { FC } from 'preact/compat'
+import type { FC } from 'preact/compat'
+import React from 'preact/compat'
 import Navigation from '../navigation'
 import style from './header.module.scss'
 

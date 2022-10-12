@@ -1,5 +1,5 @@
 import { useState } from 'preact/compat'
-import { StateUpdater } from 'preact/hooks'
+import type { StateUpdater } from 'preact/hooks'
 
 type OnChange = (event) => void
 

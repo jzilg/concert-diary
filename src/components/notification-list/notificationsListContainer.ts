@@ -1,7 +1,8 @@
-import { connect, MapStateToProps } from 'react-redux'
+import type { MapStateToProps } from 'react-redux'
+import { connect } from 'react-redux'
 import notificationsSelector from '../../redux/selectors/notificationsSelector'
 import { deleteNotification } from '../../redux/actions/core/notifications.actions'
-import { Props } from './NotificationsList'
+import type { Props } from './NotificationsList'
 
 type StateProps = Pick<Props, 'notifications'>
 

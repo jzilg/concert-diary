@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 import dayjs from 'dayjs'
 import concertsSelector from './concertsSelector'
-import Concert from '../../entities/Concert'
+import type Concert from '../../entities/Concert'
 
 const concertsSortedByDateSelector = createSelector(
     concertsSelector,

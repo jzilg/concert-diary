@@ -1,5 +1,5 @@
-import { State } from '../reducers/rootReducer'
-import { ConcertsState } from '../reducers/concertsReducer'
+import type { State } from '../reducers/rootReducer'
+import type { ConcertsState } from '../reducers/concertsReducer'
 
 const concertsSelector = (state: State): ConcertsState => state.concerts
 

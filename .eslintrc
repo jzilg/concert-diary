@@ -140,6 +140,7 @@
       "generics": "always-multiline",
       "tuples": "always-multiline"
     }],
+    "@typescript-eslint/consistent-type-imports": "error",
     "@typescript-eslint/indent": ["error", 4],
     "@typescript-eslint/prefer-interface": 0,
     "@typescript-eslint/no-shadow": ["error"],

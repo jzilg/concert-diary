@@ -1,4 +1,5 @@
-import React, { useState, useEffect, FC } from 'preact/compat'
+import type { FC } from 'preact/compat'
+import React, { useState, useEffect } from 'preact/compat'
 
 export type InputList = string[]
 

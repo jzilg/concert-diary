@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import Concert from '../../entities/Concert'
+import type Concert from '../../entities/Concert'
 import concertsSelector from './concertsSelector'
 import paramsSelector from './paramsSelector'
 import todaysDate from '../../utils/todaysDate'

@@ -1,5 +1,7 @@
-import { Action, createAction } from 'typesafe-actions'
-import Notification, { NotificationId, NotificationOptions } from '../../../entities/Notification'
+import type { Action } from 'typesafe-actions'
+import { createAction } from 'typesafe-actions'
+import type { NotificationId, NotificationOptions } from '../../../entities/Notification'
+import type Notification from '../../../entities/Notification'
 
 export const createNotification = createAction('CMD / Notification / create')<NotificationOptions, { causedBy: Action }>()
 

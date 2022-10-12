@@ -1,4 +1,4 @@
-import { State } from '../reducers/rootReducer'
+import type { State } from '../reducers/rootReducer'
 
 const isLoadingSelector = (state: State): boolean => state.loadingCount > 0
 

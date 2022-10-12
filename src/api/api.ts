@@ -1,6 +1,6 @@
-import Concert from '../entities/Concert'
-import Festival from '../entities/Festival'
-import RequestOptions from '../entities/ApiRequestOptions'
+import type Concert from '../entities/Concert'
+import type Festival from '../entities/Festival'
+import type RequestOptions from '../entities/ApiRequestOptions'
 import enhanceApiOptions from './enhanceApiOptions'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

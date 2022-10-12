@@ -1,5 +1,6 @@
-import React, { FC } from 'preact/compat'
-import Concert from '../../entities/Concert'
+import type { FC } from 'preact/compat'
+import React from 'preact/compat'
+import type Concert from '../../entities/Concert'
 import useOnMount from '../../hooks/useOnMount'
 import ConcertForm from '../concert-form'
 

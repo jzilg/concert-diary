@@ -1,4 +1,5 @@
-import React, { FC } from 'preact/compat'
+import type { FC } from 'preact/compat'
+import React from 'preact/compat'
 
 type Props = {
     totalNumOfConcerts: number

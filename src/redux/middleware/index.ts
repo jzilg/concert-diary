@@ -1,5 +1,5 @@
 import { routerMiddleware } from 'connected-react-router'
-import { Middleware } from 'redux'
+import type { Middleware } from 'redux'
 import history from '../../history'
 import coreMiddleware from './core'
 import appMiddleware from './app'

@@ -1,4 +1,5 @@
-import { Action, createAction } from 'typesafe-actions'
+import type { Action } from 'typesafe-actions'
+import { createAction } from 'typesafe-actions'
 
 export const increaseLoaderCount = createAction('DOC / Loading Count / increase state')<undefined, { causedBy: Action }>()
 

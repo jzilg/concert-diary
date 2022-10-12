@@ -1,4 +1,4 @@
-import { NavLinks } from '../../entities/NavLink'
+import type { NavLinks } from '../../entities/NavLink'
 
 const navLinksSelector = (): NavLinks => [
     {

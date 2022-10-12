@@ -1,8 +1,8 @@
 import { isActionOf } from 'typesafe-actions'
 import { push } from 'connected-react-router'
-import { Middleware } from 'redux'
-import { ApiHandler } from '../../apiHandler'
-import { Api } from '../../../api'
+import type { Middleware } from 'redux'
+import type { ApiHandler } from '../../apiHandler'
+import type { Api } from '../../../api'
 import {
     saveNewConcert,
     postConcertAsync,

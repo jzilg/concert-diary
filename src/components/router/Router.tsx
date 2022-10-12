@@ -1,4 +1,5 @@
-import React, { FC } from 'preact/compat'
+import type { FC } from 'preact/compat'
+import React from 'preact/compat'
 import { Route, Switch } from 'react-router-dom'
 import Header from '../header'
 import LoginForm from '../login-form'

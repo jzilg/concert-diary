@@ -1,5 +1,5 @@
-import { State } from '../reducers/rootReducer'
-import Notification from '../../entities/Notification'
+import type { State } from '../reducers/rootReducer'
+import type Notification from '../../entities/Notification'
 
 const notificationsSelector = (state: State): Notification[] => state.notifications
 

@@ -1,4 +1,4 @@
-import { Middleware } from 'redux'
+import type { Middleware } from 'redux'
 import { setStorageData } from '../../../sessionStorage'
 
 const persistingMiddleware: Middleware = (store) => (next) => (action) => {

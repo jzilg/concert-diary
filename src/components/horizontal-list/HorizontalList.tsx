@@ -1,4 +1,5 @@
-import React, { FC } from 'preact/compat'
+import type { FC } from 'preact/compat'
+import React from 'preact/compat'
 import style from './horizontalList.module.scss'
 
 const HorizontalList: FC = (props) => {

@@ -1,5 +1,6 @@
-import React, { FC } from 'preact/compat'
-import Notification from '../../entities/Notification'
+import type { FC } from 'preact/compat'
+import React from 'preact/compat'
+import type Notification from '../../entities/Notification'
 import style from './notificationsList.module.scss'
 
 export type Props = {

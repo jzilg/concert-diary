@@ -1,7 +1,8 @@
-import { connect, MapStateToProps } from 'react-redux'
+import type { MapStateToProps } from 'react-redux'
+import { connect } from 'react-redux'
 import festivalSelector from '../../redux/selectors/festivalSelector'
 import { loadFestival, saveFestival } from '../../redux/actions/app/festivals.actions'
-import { Props } from './EditFestival'
+import type { Props } from './EditFestival'
 
 type StateProps = Pick<Props, 'festival'>
 

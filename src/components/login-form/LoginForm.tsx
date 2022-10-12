@@ -1,4 +1,5 @@
-import React, { FC } from 'preact/compat'
+import type { FC } from 'preact/compat'
+import React from 'preact/compat'
 import { Link } from 'react-router-dom'
 import useFormInput from '../../hooks/useFormInput'
 import HorizontalList from '../horizontal-list'

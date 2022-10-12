@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect'
-import { parse, ParsedQuery } from 'query-string'
+import type { ParsedQuery } from 'query-string'
+import { parse } from 'query-string'
 import routerSelector from './routerSelector'
 
 const paramsSelector = createSelector(

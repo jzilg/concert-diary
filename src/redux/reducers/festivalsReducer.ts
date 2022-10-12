@@ -1,5 +1,5 @@
 import { createReducer } from 'typesafe-actions'
-import Festival from '../../entities/Festival'
+import type Festival from '../../entities/Festival'
 import {
     setFestivalsState,
     addFestivalToState,

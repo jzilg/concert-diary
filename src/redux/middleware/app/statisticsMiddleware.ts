@@ -1,7 +1,7 @@
-import { Middleware } from 'redux'
+import type { Middleware } from 'redux'
 import { isActionOf } from 'typesafe-actions'
-import { ApiHandler } from '../../apiHandler'
-import { Api } from '../../../api'
+import type { ApiHandler } from '../../apiHandler'
+import type { Api } from '../../../api'
 import {
     loadStatistics,
     loadStatisticsAsync,

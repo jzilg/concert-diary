@@ -1,5 +1,6 @@
-import { connect, MapStateToProps } from 'react-redux'
-import { Props } from './Root'
+import type { MapStateToProps } from 'react-redux'
+import { connect } from 'react-redux'
+import type { Props } from './Root'
 import { pageRendered } from '../../redux/actions/app/page.actions'
 import pageIsRenderedSelector from '../../redux/selectors/pageIsRenderedSelector'
 
