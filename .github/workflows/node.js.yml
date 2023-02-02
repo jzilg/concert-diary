@@ -9,14 +9,12 @@ on:
 
 jobs:
   build:
-
+    name: build and test
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -27,3 +25,19 @@ jobs:
     - run: npm run eslint
     - run: npm run stylelint
     - run: npm test
+
+  deploy:
+    name: deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup ssh
+        run: |
+          mkdir ~/.ssh
+          cd ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > known_hosts
+          chmod 600 ~/.ssh/id_rsa
+      - name: execute shell script on server
+        run: ssh jzilg@${{ vars.SERVER_IP }} ${{ vars.DEPLOY_SCRIPT }}
