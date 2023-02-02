@@ -74,7 +74,7 @@ describe('authMiddleware', () => {
             const expectedActions = [
                 createNotification({
                     type: 'error',
-                    message: 'Wrong Username or Password',
+                    message: 'Wrong username or password',
                 }, {
                     causedBy: authAsync.failure(),
                 }),
